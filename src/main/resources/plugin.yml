@@ -1,5 +1,5 @@
 name: BetterTeamGUI
-version: '1.0'
+version: '1.0.1'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
 api-version: '1.21'
 depend:

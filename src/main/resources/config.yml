@@ -1,0 +1,23 @@
+##Display on Main GUI
+team-info:
+  name: "&x&f&f&a&5&0&0{team}" # Hex color: #FFA500 (Orange)
+  head: true
+  lore:
+    - "&x&f&f&d&7&0&0Owner: &x&f&f&f&f&f&f{owner}" # Owner's name in white
+    - "&x&a&a&f&f&f&fTotal Members: &x&f&f&f&f&f&f{count}&7/&x&f&f&f&f&f&f{total}" # Members count in aqua and white
+    - "&x&d&d&e&e&f&fMembers: &x&f&f&f&f&f&f{members}" # Members list in yellow
+    - "&x&6&b&f&f&f&fBalance: &x&f&f&f&f&f&f{balance}" # Balance in gold
+    - "&x&4&f&c&d&f&fLevel: &x&f&f&f&f&f&f{level}" # Level in light red
+    - "&x&5&f&a&b&c&dTag: &x&f&f&f&f&f&f{tag}" # Tag in aqua
+    - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}" # Score in pink and white
+    - "&x&2&a&f&f&f&fStatus: &x&f&f&f&f&f&f{open}" # Status in green or red
+    - "&x&f&f&6&6&6&6Click to Join" # Click to Join
+
+team-join: "&aYou have joined {team} Team"
+team-closed: "&cYou are not invited to join {team} team"
+team-already-joined: "&cYou are already in {team} Team"
+
+
+
+
+

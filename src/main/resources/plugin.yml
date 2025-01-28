@@ -1,0 +1,13 @@
+name: BetterTeamGUI
+version: '1.0'
+main: me.justlime.betterTeamGUI.BetterTeamGUI
+api-version: '1.21'
+depend:
+  - BetterTeams
+
+commands:
+  teams:
+    description: Opens the teams gui
+    usage: /teams
+    permission: BetterTeamGUI.teams
+

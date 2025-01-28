@@ -58,7 +58,6 @@ class TeamListGUI(rows: Int, title: String) : BetterTeamGUIInventory {
             player1.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamAlreadyJoined, existingTeam))
             return
         }
-
         if (team.getTeamPlayer(player1) != null) {
             player1.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamAlreadyJoined, team))
         } else if (!team.isOpen && !team.isInvited(player1.uniqueId)) {

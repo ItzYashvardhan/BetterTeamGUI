@@ -22,7 +22,9 @@ class BetterTeamGUI : JavaPlugin() {
     override fun onDisable() {
         val players = pluginInstance.server.onlinePlayers
         players.forEach {
-            if (it.inventory.holder is BetterTeamGUIInventory) it.closeInventory()
+            val inventory = it.openInventory.topInventory
+            val holder = inventory.holder
+            if (holder is BetterTeamGUIInventory) it.closeInventory()
         }
     }
 }

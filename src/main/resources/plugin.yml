@@ -9,5 +9,6 @@ commands:
   teams:
     description: Opens the teams gui
     usage: /teams
-    permission: BetterTeamGUI.teams
+    permission: betterteamgui.use.teams
+    default: true
 

@@ -20,12 +20,12 @@ self:
 
   chat:
     item: PAPER
-    name: "&aChat"
+    name: "&aTeam Chat"
     lore:
-      - "➥&7click to toggle Team chat"
-      - "➥&7Shift click to toggle Ally Team chat"
+      - "&b{chat} "
       - " "
-      - "Active Chat: &b{chat} "
+      - "&7Left Click ➡ Toggle Team chat"
+      - "&7Shift Click ➡ Toggle Ally chat"
     glow: false
     slot: 20
 
@@ -39,9 +39,11 @@ self:
 
   balance:
     item: EMERALD
-    name: "&aBalance"
+    name: "&aTeam Balance"
     lore:
-      - "&7Click to View Team Balance"
+      - "&f{balance}"
+      - ""
+      - "&7Click to Deposit/Withdraw Money"
     glow: false
     slot: 29
 
@@ -74,11 +76,11 @@ self:
     name: "&aTeam PvP"
     lore:
       - "&7Click to Toggle Team PvP"
-    glow: false
+    glow: true
     slot: 32
 
   ally:
-    item: PLAYER_HEAD
+    item: NETHER_STAR
     name: "&aAllies"
     lore:
       - "&7Click to View Team Allies"
@@ -153,7 +155,6 @@ ally:
   row: 6
   back-slot: 49
 
-
 warps:
   item: ENDER_PEARL
   title: "Teams Warps"
@@ -183,13 +184,16 @@ balance:
 
 other:
   title: "Team {team}"
-  row: 6
+  row: 3
   back-slot: 16
   info:
     item: PAPER
     name: "&aTeam Info"
     lore:
-      - "&7Click to view Team Info"
+      - "&x&f&f&d&7&0&0Owner: &x&f&f&f&f&f&f{owner}"
+      - "&x&a&a&f&f&f&fMembers: &x&f&f&f&f&f&f{count}&7/&x&f&f&f&f&f&f{total}"
+      - "&x&4&f&c&d&f&fLevel: &x&f&f&f&f&f&f{level}"
+      - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}"
     glow: false
     slot: 10
 

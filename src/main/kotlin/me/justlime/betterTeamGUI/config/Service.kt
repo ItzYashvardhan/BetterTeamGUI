@@ -2,22 +2,26 @@ package me.justlime.betterTeamGUI.config
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
+import com.booksaw.betterTeams.TeamPlayer
 import org.bukkit.ChatColor
 import java.util.regex.Pattern
 
 object Service {
 
-    fun applyLocalPlaceHolder(value: String, team: Team): String {
-        val replaced = value.replace("{team}", team.name).replace("{owner}", team.members.getRank(PlayerRank.OWNER).first().player?.name ?: "")
-            .replace("{count}", team.members.size().toString()).replace("{total}", team.teamLimit.toString())
-            .replace("{balance}", team.balance.toString()).replace("{level}", team.level.toString()).replace("{tag}", team.tag)
-            .replace("{score}", team.score.toString())
-            .replace("{members}", team.members.get().filter { PlayerRank.OWNER != it.rank }.map { it.player.name }.joinToString(", "))
-            .replace("{open}",if(team.isOpen) "&aOpen" else "&cClosed")
+    fun applyLocalPlaceHolder(value: String, team: Team, teamPlayer: TeamPlayer): String {
+        val ownerName = team.members.getRank(PlayerRank.OWNER).firstOrNull()?.player?.name ?: "N/A"
+        val members = team.members.get().filter { it.rank != PlayerRank.OWNER }.mapNotNull { it.player.name }
+
+        val replaced = value.replace("{team}", team.name).replace("{owner}", ownerName).replace("{count}", team.members.size().toString())
+            .replace("{total}", team.teamLimit.toString()).replace("{balance}", team.balance.toString()).replace("{level}", team.level.toString())
+            .replace("{tag}", team.tag ?: "").replace("{score}", team.score.toString()).replace("{open}", if (team.isOpen) "&aOpen" else "&cClosed")
+            .replace("{chat}", if (teamPlayer.isInAllyChat) "Ally" else if (teamPlayer.isInTeamChat) "Team" else "Global")
+            .replace("{player}", teamPlayer.player.name.toString())
+
         return applyColors(replaced)
     }
 
-    private fun applyColors(message: String): String {
+    fun applyColors(message: String): String {
         var coloredMessage = ChatColor.translateAlternateColorCodes('&', message)
         val hexPattern = Pattern.compile("&#[a-fA-F0-9]{6}")
         val matcher = hexPattern.matcher(coloredMessage)

@@ -21,6 +21,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("com.github.booksaw:BetterTeams:4.10.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.bstats:bstats-bukkit:3.1.0") // Latest version
 }
 
 val targetJavaVersion = 17

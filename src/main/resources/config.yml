@@ -1,3 +1,4 @@
+background: WHITE_STAINED_GLASS_PANE
 ##Display on Main GUI
 team-info:
   name: "&x&f&f&a&5&0&0{team}" # Hex color: #FFA500 (Orange)
@@ -12,6 +13,214 @@ team-info:
     - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}" # Score in pink and white
     - "&x&2&a&f&f&f&fStatus: &x&f&f&f&f&f&f{open}" # Status in green or red
     - "&x&f&f&6&6&6&6Click to Join" # Click to Join
+
+self:
+  title: "{player} {team} Team"
+  row: 6
+
+  chat:
+    item: PAPER
+    name: "&aChat"
+    lore:
+      - "➥&7click to toggle Team chat"
+      - "➥&7Shift click to toggle Ally Team chat"
+      - " "
+      - "Active Chat: &b{chat} "
+    glow: false
+    slot: 20
+
+  home:
+    item: RED_BED
+    name: "&aHome"
+    lore:
+      - "&7Click to teleport to Team Home"
+    glow: false
+    slot: 21
+
+  balance:
+    item: EMERALD
+    name: "&aBalance"
+    lore:
+      - "&7Click to View Team Balance"
+    glow: false
+    slot: 29
+
+  warp:
+    item: ENDER_PEARL
+    name: "&aWarp"
+    lore:
+      - "&7Click to View Team Warp"
+    glow: false
+    slot: 30
+
+  members:
+    item: PLAYER_HEAD
+    name: "&aTeam Members"
+    lore:
+      - "&7Click to View Team Members"
+    glow: false
+    slot: 23
+
+  enderchest:
+    item: ENDER_CHEST
+    name: "&aTeam Enderchest"
+    lore:
+      - "&7Click to open Team Enderchest"
+    glow: false
+    slot: 24
+
+  pvp:
+    item: DIAMOND_SWORD
+    name: "&aTeam PvP"
+    lore:
+      - "&7Click to Toggle Team PvP"
+    glow: false
+    slot: 32
+
+  ally:
+    item: PLAYER_HEAD
+    name: "&aAllies"
+    lore:
+      - "&7Click to View Team Allies"
+    glow: false
+    slot: 33
+
+  leave:
+    item: REDSTONE
+    name: "&cLeave Team"
+    lore:
+      - "&7Click to Leave Team"
+    glow: false
+    slot: 8
+
+  list-item:
+    item: END_CRYSTAL
+    name: "&a{team}"
+    lore:
+      - "&7Click to view Active Team List "
+    glow: false
+    slot: 49
+
+  setting-item:
+    item: COMMAND_BLOCK
+    name: "&cTeam Setting"
+    lore:
+      - "&7Click to view Team Setting"
+    glow: false
+    slot: 53
+
+back-item:
+  item: FLOWER_BANNER_PATTERN
+  name: "&cBack"
+  glow: true
+  lore:
+    - "&7Click to Back"
+
+list:
+  title: "Teams List"
+  row: 6
+  back-slot: 49
+
+leave:
+  confirm:
+    item: LIME_CONCRETE
+    name: "&aConfirm"
+    glow: false
+    slot:
+      - 0
+      - 1
+      - 2
+      - 3
+  cancel:
+    item: RED_CONCRETE
+    name: "&cCancel"
+    glow: false
+    slot:
+      - 4
+      - 5
+      - 6
+      - 7
+
+  back-slot: 8
+
+members:
+  title: "Teams Members"
+  row: 6
+  back-slot: 49
+
+ally:
+  title: "Team Allies"
+  row: 6
+  back-slot: 49
+
+
+warps:
+  item: ENDER_PEARL
+  title: "Teams Warps"
+  row: 6
+  back-slot: 49
+
+balance:
+  title: "Team Balance"
+  row: 3
+  deposit:
+    item: EMERALD
+    name: "&aDeposit"
+    glow: true
+    slot:
+      - 10
+      - 11
+      - 12
+  withdraw:
+    item: COPPER_INGOT
+    name: "&aWithdraw"
+    glow: true
+    slot:
+      - 14
+      - 15
+      - 16
+  back-item: 22
+
+other:
+  title: "Team {team}"
+  row: 6
+  back-slot: 16
+  info:
+    item: PAPER
+    name: "&aTeam Info"
+    lore:
+      - "&7Click to view Team Info"
+    glow: false
+    slot: 10
+
+  ally:
+    item: NETHER_STAR
+    name: "&aTeam Allies"
+    lore:
+      - "&7Click to view Team Allies"
+    glow: false
+    slot: 12
+
+  balance:
+    item: EMERALD
+    name: "&aTeam Balance"
+    lore:
+      - "&a{balance}"
+    glow: false
+    slot: 13
+
+  member:
+    item: PLAYER_HEAD
+    name: "&aTeam Members"
+    lore:
+      - "&7Click to view Team Members"
+    glow: false
+    slot: 14
+
+
+
+
+
 
 team-join: "&aYou have joined {team} Team"
 team-closed: "&cYou are not invited to join {team} team"

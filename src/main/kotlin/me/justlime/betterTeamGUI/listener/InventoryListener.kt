@@ -40,26 +40,4 @@ class InventoryListener : Listener {
         if (holder !is GUIHandler) return
         holder.onClose(event)
     }
-
-    @EventHandler
-    fun onAnvilRename(event: PrepareAnvilEvent) {
-        pluginInstance.logger.info("he")
-        val inventory = event.inventory
-        val holder = inventory.holder
-        if (holder !is GUIHandler) return
-        holder.onAnvilRename(event)
-    }
-
-    @EventHandler
-    fun onSignChange(event: SignChangeEvent) {
-        val player = event.player
-        val text = event.lines[0] // Get what the player typed
-
-        if (text.isNotEmpty()) {
-            // Re-open chat with the typed text
-            Bukkit.getScheduler().runTask(pluginInstance, Runnable {
-                player.chat(text) // This simulates them opening chat manually
-            })
-        }
-    }
 }

@@ -2,6 +2,8 @@ name: BetterTeamGUI
 version: '1.1'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
 api-version: '1.13'
+author: ItsJustLime
+description: "A Addon plugin for BetterTeams of (v4.10.0)"
 depend:
   - BetterTeams
 

@@ -8,15 +8,41 @@ depend:
   - BetterTeams
 
 commands:
-  team:
-    description: Opens the team gui
-    usage: /team
-    permission: betterteamgui.use.team
-    default: true
-
   teams:
     description: Opens the teams gui
     usage: /teams
     permission: betterteamgui.use.teams
     default: true
+permissions:
+  betterteamgui.use.*:
+    description: Allows the player to use the commands
+    default: true
+    children:
+      - betterteamgui.use.warps: true
+      - betterteamgui.use.balance: true
+      - betterteamgui.use.members: true
+      - betterteamgui.use.ally: true
+
+  betterteamgui.use.teams:
+    description: Allows the player to use the teams command
+    default: true
+
+  betterteamgui.use.warps:
+    description: Allows the player to use the warps command
+    default: true
+  betterteamgui.use.balance:
+    description: Allows the player to use the balance command
+    default: true
+
+  betterteamgui.use.members:
+    description: Allows the player to use the members command
+    default: true
+
+  betterteamgui.use.ally:
+    description: Allows the player to use the ally command
+    default: true
+
+  betterteamgui.admin:
+    description: Allows the player to use admin commands
+    default: op
 

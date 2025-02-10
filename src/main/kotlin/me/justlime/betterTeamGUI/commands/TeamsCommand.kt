@@ -23,49 +23,25 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         val playerTeam = team.getTeamPlayer(sender) ?: return true
 
 
-        if (args[0] == "reload" && sender.isOp) {
+        if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin")) {
             sender.sendMessage("Config Reloaded")
             pluginInstance.reloadConfig()
             return true
         }
-        if (args[0] == "warp") {
+        if (args[0] == "warp" && sender.hasPermission("betterteamgui.use.warps") ) {
             GUIManager.openTeamWarpGUI(sender)
             return true
         }
-        if (args[0] == "create") {
-            GUIManager.openTeamCreateGUI(sender)
-            return true
-        }
-        if (args[0] == "balance") {
+        if (args[0] == "balance" && sender.hasPermission("betterteamgui.use.balance")) {
             GUIManager.openTeamBalanceGUI(sender)
             return true
         }
-        if (args[0] == "leave") {
-            GUIManager.openTeamLeaveGUI(sender)
-            return true
-        }
-        if (args[0] == "home") {
-            sender.performCommand("team home")
-            return true
-        }
-        if (args[0] == "chat") {
-            sender.performCommand("team chat")
-            return true
-        }
-        if (args[0] == "members") {
+        if (args[0] == "members" && sender.hasPermission("betterteamgui.use.members")) {
             GUIManager.openTeamMemberGUI(sender,team,playerTeam)
             return true
         }
-        if (args[0] == "ally") {
-            sender.sendMessage(" ")
-            return true
-        }
-        if (args[0] == "pvp") {
-            sender.performCommand("team pvp")
-            return true
-        }
-        if (args[0] == "echest") {
-            sender.performCommand("team echest")
+        if (args[0] == "ally" && sender.hasPermission("betterteamgui.use.ally")) {
+            GUIManager.openTeamAllyGUI(sender,team,playerTeam)
             return true
         }
 
@@ -75,16 +51,11 @@ class TeamsCommand : CommandExecutor, TabCompleter {
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String>? {
         val completion = mutableListOf<String>()
         if (args.size == 1) {
-            if (sender.isOp) completion.add("reload")
-            completion.add("warp")
-            completion.add("balance")
-            completion.add("leave")
-            completion.add("home")
-            completion.add("chat")
-            completion.add("members")
-            completion.add("ally")
-            completion.add("pvp")
-            completion.add("echest")
+            if (sender.hasPermission("betterteamgui.admin")) completion.add("reload")
+            if (sender.hasPermission("betterteamgui.use.warps")) completion.add("warp")
+            if (sender.hasPermission("betterteamgui.use.balance")) completion.add("balance")
+            if (sender.hasPermission("betterteamgui.use.members")) completion.add("members")
+            if (sender.hasPermission("betterteamgui.use.ally")) completion.add("ally")
         }
         return completion
     }

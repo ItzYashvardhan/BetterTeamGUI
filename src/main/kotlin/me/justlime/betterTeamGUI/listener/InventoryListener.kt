@@ -40,4 +40,6 @@ class InventoryListener : Listener {
         if (holder !is GUIHandler) return
         holder.onClose(event)
     }
+
+
 }

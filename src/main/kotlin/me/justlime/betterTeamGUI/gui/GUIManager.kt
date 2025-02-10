@@ -51,9 +51,8 @@ object GUIManager {
                 addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
 
             }
-            }
+        }
     }
-
 
     fun loadItem(section: ConfigurationSection, inventory: Inventory, team: Team, slots: List<Int> = listOf(), player: TeamPlayer): List<Int> {
         val material = Material.valueOf(section.getString("item") ?: "PAPER")
@@ -61,7 +60,7 @@ object GUIManager {
         val lore = section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) }
         val glow = section.getBoolean("glow")
         val slotList = section.getIntegerList("slot")
-        val slot = section.getInt("slot")
+        val slot = section.getString("slot", " ")?.toIntOrNull()
         val item = createItem(material, name, lore, glow)
         if (slots.isNotEmpty()) {
             slots.forEach { inventory.setItem(it, item) }
@@ -71,6 +70,7 @@ object GUIManager {
             slotList.forEach { inventory.setItem(it, item) }
             return slotList
         }
+        if (slot == null) return listOf()
         inventory.setItem(slot, item)
         return listOf(slot)
     }
@@ -118,7 +118,7 @@ object GUIManager {
 
     }
 
-    fun openTeamMemberGUI(sender: Player,team: Team, teamPlayer: TeamPlayer) {
+    fun openTeamMemberGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         val title = Service.applyLocalPlaceHolder(Config.TeamMemberItem.title, team, teamPlayer)
         val row = Config.TeamMemberItem.row
         val memberInventory = TeamMemberGUI(row, title, team, teamPlayer)

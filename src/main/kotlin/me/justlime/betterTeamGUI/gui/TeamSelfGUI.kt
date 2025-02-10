@@ -11,7 +11,26 @@ import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
 class TeamSelfGUI(row: Int, title: String) : GUIHandler {
+
+    enum class ItemSlot {
+        CHAT, HOME, BALANCE, WARP, MEMBERS, ENDERCHEST, PVP, ALLY, LEAVE, LIST_ITEM, SETTING_ITEM
+    }
+
     private val inventory = Bukkit.createInventory(this, row * 9, title)
+    private val sections = mutableMapOf(
+        ItemSlot.ALLY to Config.TeamSelfItem.ally,
+        ItemSlot.BALANCE to Config.TeamSelfItem.balance,
+        ItemSlot.CHAT to Config.TeamSelfItem.chat,
+        ItemSlot.HOME to Config.TeamSelfItem.home,
+        ItemSlot.ENDERCHEST to Config.TeamSelfItem.enderchest,
+        ItemSlot.LEAVE to Config.TeamSelfItem.leave,
+        ItemSlot.LIST_ITEM to Config.TeamSelfItem.listItem,
+        ItemSlot.MEMBERS to Config.TeamSelfItem.members,
+        ItemSlot.PVP to Config.TeamSelfItem.pvp,
+        ItemSlot.SETTING_ITEM to Config.TeamSelfItem.settingItem,
+        ItemSlot.WARP to Config.TeamSelfItem.warp
+    )
+
     override fun onOpen(event: InventoryOpenEvent) {
     }
 
@@ -19,20 +38,7 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
         GUIManager.insertBackground(inventory)
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
-        val sections = mutableListOf(
-            Config.TeamSelfItem.chat,
-            Config.TeamSelfItem.home,
-            Config.TeamSelfItem.balance,
-            Config.TeamSelfItem.warp,
-            Config.TeamSelfItem.members,
-            Config.TeamSelfItem.enderchest,
-            Config.TeamSelfItem.pvp,
-            Config.TeamSelfItem.ally,
-            Config.TeamSelfItem.leave,
-            Config.TeamSelfItem.listItem,
-            Config.TeamSelfItem.settingItem
-        )
-        sections.forEach { loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
+        sections.values.forEach { loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
 
     }
 
@@ -43,17 +49,17 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val slot = event.slot
         val path = "slot"
-        val chatSlot = Config.TeamSelfItem.chat.getInt(path)
-        val homeSlot = Config.TeamSelfItem.home.getInt(path)
-        val balanceSlot = Config.TeamSelfItem.balance.getInt(path)
-        val warpSlot = Config.TeamSelfItem.warp.getInt(path)
-        val membersSlot = Config.TeamSelfItem.members.getInt(path)
-        val enderChestSlot = Config.TeamSelfItem.enderchest.getInt(path)
-        val pvpSlot = Config.TeamSelfItem.pvp.getInt(path)
-        val allySlot = Config.TeamSelfItem.ally.getInt(path)
-        val leaveSlot = Config.TeamSelfItem.leave.getInt("slot")
-        val listItemSlot = Config.TeamSelfItem.listItem.getInt(path)
-        val settingItemSlot = Config.TeamSelfItem.settingItem.getInt(path)
+        val allySlot = sections[ItemSlot.ALLY]?.getString("slot", " ")?.toIntOrNull()
+        val chatSlot = sections[ItemSlot.CHAT]?.getString("slot", " ")?.toIntOrNull()
+        val homeSlot = sections[ItemSlot.HOME]?.getString("slot", " ")?.toIntOrNull()
+        val balanceSlot = sections[ItemSlot.BALANCE]?.getString("slot", " ")?.toIntOrNull()
+        val warpSlot = sections[ItemSlot.WARP]?.getString("slot", " ")?.toIntOrNull()
+        val membersSlot = sections[ItemSlot.MEMBERS]?.getString("slot", " ")?.toIntOrNull()
+        val enderChestSlot = sections[ItemSlot.ENDERCHEST]?.getString("slot", " ")?.toIntOrNull()
+        val pvpSlot = sections[ItemSlot.PVP]?.getString("slot", " ")?.toIntOrNull()
+        val leaveSlot = sections[ItemSlot.LEAVE]?.getString("slot", " ")?.toIntOrNull()
+        val listItemSlot = sections[ItemSlot.LIST_ITEM]?.getString("slot", " ")?.toIntOrNull()
+        val settingItemSlot = sections[ItemSlot.SETTING_ITEM]?.getString("slot", " ")?.toIntOrNull()
 
         when (slot) {
             chatSlot -> {

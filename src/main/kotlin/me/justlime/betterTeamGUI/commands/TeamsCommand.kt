@@ -19,12 +19,10 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             GUIManager.openTeamGUI(sender)
             return true
         }
-
         val team = Team.getTeam(sender.name) ?: return true
         val playerTeam = team.getTeamPlayer(sender) ?: return true
 
-
-        if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin")) {
+        if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin.reload")) {
             sender.sendMessage("Config Reloaded")
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
@@ -47,14 +45,14 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             GUIManager.openTeamAllyGUI(sender,team,playerTeam)
             return true
         }
-
+        GUIManager.openTeamGUI(sender)
         return true
     }
 
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String>? {
         val completion = mutableListOf<String>()
         if (args.size == 1) {
-            if (sender.hasPermission("betterteamgui.admin")) completion.add("reload")
+            if (sender.hasPermission("betterteamgui.admin.reload")) completion.add("reload")
             if (sender.hasPermission("betterteamgui.use.warps")) completion.add("warp")
             if (sender.hasPermission("betterteamgui.use.balance")) completion.add("balance")
             if (sender.hasPermission("betterteamgui.use.members")) completion.add("members")

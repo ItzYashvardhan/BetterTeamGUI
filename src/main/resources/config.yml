@@ -1,7 +1,6 @@
 background: WHITE_STAINED_GLASS_PANE
 ##Display on Main GUI
 
-
 back-item:
   item: FLOWER_BANNER_PATTERN
   name: "&cBack"

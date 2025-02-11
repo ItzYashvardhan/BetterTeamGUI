@@ -1,5 +1,5 @@
 name: BetterTeamGUI
-version: '1.1'
+version: '1.2'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
 api-version: '1.13'
 description: "A Addon plugin for BetterTeams of (v4.10.0)"
@@ -43,7 +43,7 @@ permissions:
     description: Allows the player to use the ally command
     default: true
 
-  betterteamgui.admin:
+  betterteamgui.admin.reload:
     description: Allows the player to use admin commands
     default: op
 

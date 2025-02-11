@@ -1,0 +1,5 @@
+# #GUI Setting For team ally (open using /teams ally)
+main:
+  title: "Team Allies"
+  row: 6
+  back-slot: 49

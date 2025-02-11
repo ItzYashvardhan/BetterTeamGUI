@@ -2,11 +2,12 @@ name: BetterTeamGUI
 version: '1.1'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
 api-version: '1.13'
-author: ItsJustLime
 description: "A Addon plugin for BetterTeams of (v4.10.0)"
+author: ItsJustLime
+website: https://discord.gg/rVsUJ4keZN
+
 depend:
   - BetterTeams
-website: https://discord.gg/rVsUJ4keZN
 commands:
   teams:
     description: Opens the teams gui

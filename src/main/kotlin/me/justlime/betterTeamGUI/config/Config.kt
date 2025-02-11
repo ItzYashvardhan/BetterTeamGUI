@@ -1,20 +1,49 @@
 package me.justlime.betterTeamGUI.config
 
-import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Material
+import org.bukkit.configuration.file.FileConfiguration
 
 object Config {
 
-    private val config get() = pluginInstance.config
+    lateinit var config: FileConfiguration
+        private set
+    lateinit var listView: FileConfiguration
+        private set
+    lateinit var teamView: FileConfiguration
+        private set
+    lateinit var warpsView: FileConfiguration
+        private set
+    lateinit var membersView: FileConfiguration
+        private set
+    lateinit var otherTeamView: FileConfiguration
+        private set
+    lateinit var leaveView: FileConfiguration
+        private set
+    lateinit var balanceView: FileConfiguration
+        private set
+    lateinit var allyView: FileConfiguration
+        private set
+    lateinit var memberManagementView: FileConfiguration
+        private set
 
-    private val teamDetail
-        get() = config.getConfigurationSection("team-info") ?: config.createSection("team-info")
 
-    private val selfTeamDetail
-        get() = config.getConfigurationSection("self") ?: config.createSection("self")
-
+    fun reload() {
+        config = ConfigManager.getConfig(JFiles.CONFIG)
+        listView = ConfigManager.getConfig(JFiles.LISTVIEW)
+        teamView = ConfigManager.getConfig(JFiles.TEAMVIEW)
+        warpsView = ConfigManager.getConfig(JFiles.WARPSVIEW)
+        membersView = ConfigManager.getConfig(JFiles.MEMBERSVIEW)
+        otherTeamView = ConfigManager.getConfig(JFiles.OTHERTEAMVIEW)
+        leaveView = ConfigManager.getConfig(JFiles.LEAVEVIEW)
+        balanceView = ConfigManager.getConfig(JFiles.BALANCEVIEW)
+        allyView = ConfigManager.getConfig(JFiles.ALLYVIEW)
+        memberManagementView = ConfigManager.getConfig(JFiles.MEMBERMANAGEMENTVIEW)
+    }
     val backItem
         get() = config.getConfigurationSection("back-item") ?: config.createSection("back-item")
+
+    private val teamDetail
+        get() = listView.getConfigurationSection("team-info") ?: listView.createSection("team-info")
 
     object TeamInfo {
         val teamName: String
@@ -33,105 +62,96 @@ object Config {
             get() = config.getString("team-already-joined") ?: "&cYou are already in {team} Team"
     }
 
-    object TeamSelfItem {
-        val title get() = selfTeamDetail.getString("title") ?: ""
-        val row get() = selfTeamDetail.getInt("row", 6)
-        val chat get() = selfTeamDetail.getConfigurationSection("chat") ?: selfTeamDetail.createSection("chat")
-        val home get() = selfTeamDetail.getConfigurationSection("home") ?: selfTeamDetail.createSection("home")
-        val balance get() = selfTeamDetail.getConfigurationSection("balance") ?: selfTeamDetail.createSection("balance")
-        val warp get() = selfTeamDetail.getConfigurationSection("warp") ?: selfTeamDetail.createSection("warp")
-        val members get() = selfTeamDetail.getConfigurationSection("members") ?: selfTeamDetail.createSection("members")
-        val enderchest get() = selfTeamDetail.getConfigurationSection("enderchest") ?: selfTeamDetail.createSection("enderchest")
-        val pvp get() = selfTeamDetail.getConfigurationSection("pvp") ?: selfTeamDetail.createSection("pvp")
-        val ally get() = selfTeamDetail.getConfigurationSection("ally") ?: selfTeamDetail.createSection("ally")
-        val leave get() = selfTeamDetail.getConfigurationSection("leave") ?: selfTeamDetail.createSection("leave")
-        val listItem get() = selfTeamDetail.getConfigurationSection("list-item") ?: selfTeamDetail.createSection("list-item")
-        val settingItem get() = selfTeamDetail.getConfigurationSection("setting-item") ?: selfTeamDetail.createSection("setting-item")
+    object TeamSelfView {
+        val title get() = teamView.getString("main.title", "Teams List") ?: ""
+        val row get() = teamView.getInt("main.row", 6)
+        val chat get() = teamView.getConfigurationSection("chat") ?: teamView.createSection("chat")
+        val home get() = teamView.getConfigurationSection("home") ?: teamView.createSection("home")
+        val balance get() = teamView.getConfigurationSection("balance") ?: teamView.createSection("balance")
+        val warp get() = teamView.getConfigurationSection("warp") ?: teamView.createSection("warp")
+        val members get() = teamView.getConfigurationSection("members") ?: teamView.createSection("members")
+        val enderchest get() = teamView.getConfigurationSection("enderchest") ?: teamView.createSection("enderchest")
+        val pvp get() = teamView.getConfigurationSection("pvp") ?: teamView.createSection("pvp")
+        val ally get() = teamView.getConfigurationSection("ally") ?: teamView.createSection("ally")
+        val leave get() = teamView.getConfigurationSection("leave") ?: teamView.createSection("leave")
+        val listItem get() = teamView.getConfigurationSection("list") ?: teamView.createSection("list-item")
+        val settingItem get() = teamView.getConfigurationSection("setting") ?: teamView.createSection("setting-item")
     }
 
-    object TeamLeaveItem {
-        val title get() = config.getString("leave.title", "Leave Team") ?: ""
-        val row get() = config.getInt("leave.row", 1)
-        val confirm get() = config.getConfigurationSection("leave.confirm") ?: config.createSection("leave.confirm")
-        val cancel get() = config.getConfigurationSection("leave.cancel") ?: config.createSection("leave.cancel")
-        val backSlot get() = config.getInt("leave.back-slot", 8)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("leave.back-slot")
+    object TeamLeaveView {
+        val title get() = leaveView.getString("main.title", "Leave Team") ?: ""
+        val row get() = leaveView.getInt("main.row", 1)
+        val backSlot get() = leaveView.getInt("main.back-slot", 8)
+        val backSlots: MutableList<Int> get() = leaveView.getIntegerList("main.back-slot")
+        val confirm get() = leaveView.getConfigurationSection("confirm") ?: leaveView.createSection("confirm")
+        val cancel get() = leaveView.getConfigurationSection("cancel") ?: leaveView.createSection("cancel")
     }
 
-    object TeamListItem {
-        val title get() = config.getString("list.title", "Teams List") ?: ""
-        val row get() = config.getInt("list.row", 6)
-        val backSlot get() = config.getInt("list.back-slot", 49)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("list.back-slot")
+    object TeamListView {
+        val title get() = listView.getString("main.title", "Teams List") ?: ""
+        val row get() = listView.getInt("main.row", 6)
+        val backSlot get() = listView.getInt("main.back-slot", 49)
+        val backSlots: MutableList<Int> get() = listView.getIntegerList("main.back-slot")
     }
 
-    object TeamMemberItem {
-        val title get() = config.getString("members.title", "Teams List") ?: ""
-        val row get() = config.getInt("members.row", 6)
-        val backSlot get() = config.getInt("members.back-slot", 49)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("members.back-slot")
-        val owner get() = config.getConfigurationSection("members.owner") ?: config.createSection("members.owner")
-        val member get() = config.getConfigurationSection("members.member") ?: config.createSection("members.member")
-        val admin get() = config.getConfigurationSection("members.admin") ?: config.createSection("members.admin")
-        val manage get() = config.getConfigurationSection("members.manage") ?: config.createSection("members.manage")
+    object TeamMemberView {
+        val title get() = membersView.getString("main.title", "Teams List") ?: ""
+        val row get() = membersView.getInt("main.row", 6)
+        val backSlot get() = membersView.getInt("main.back-slot", 49)
+        val backSlots: MutableList<Int> get() = membersView.getIntegerList("main.back-slot")
+        val owner get() = membersView.getConfigurationSection("owner") ?: membersView.createSection("owner")
+        val member get() = membersView.getConfigurationSection("member") ?: membersView.createSection("member")
+        val admin get() = membersView.getConfigurationSection("admin") ?: membersView.createSection("admin")
+        val manage get() = membersView.getConfigurationSection("manage") ?: membersView.createSection("manage")
     }
 
-    object TeamMemberManagementItem {
-        val title get() = config.getString("member-management.title", "Team Member Management") ?: ""
-        val row get() = config.getInt("member-management.row", 3)
-        val backSlot get() = config.getInt("member-management.back-slot", 16)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("member-management.back-slot")
-        val demote get() = config.getConfigurationSection("member-management.demote") ?: config.createSection("member-management.demote")
-        val promote get() = config.getConfigurationSection("member-management.promote") ?: config.createSection("member-management.promote")
-        val kick get() = config.getConfigurationSection("member-management.kick") ?: config.createSection("member-management.kick")
-        val ban get() = config.getConfigurationSection("member-management.ban") ?: config.createSection("member-management.ban")
-        val confirm get() = config.getConfigurationSection("member-management.confirmed") ?: config.createSection("member-management.confirm")
+    object TeamMemberManagementView {
+        val title get() = memberManagementView.getString("main.title", "Team Member Management") ?: ""
+        val row get() = memberManagementView.getInt("main.row", 3)
+        val backSlot get() = memberManagementView.getInt("main.back-slot", 16)
+        val backSlots: MutableList<Int> get() = memberManagementView.getIntegerList("main.back-slot")
+        val demote get() = memberManagementView.getConfigurationSection("demote") ?: memberManagementView.createSection("demote")
+        val promote get() = memberManagementView.getConfigurationSection("promote") ?: memberManagementView.createSection("promote")
+        val kick get() = memberManagementView.getConfigurationSection("kick") ?: memberManagementView.createSection("kick")
+        val ban get() = memberManagementView.getConfigurationSection("ban") ?: memberManagementView.createSection("ban")
+        val confirm get() = memberManagementView.getConfigurationSection("confirmed") ?: memberManagementView.createSection("confirm")
     }
 
-
-    object TeamWarpItem {
-        val title get() = config.getString("warps.title", "Teams Warps") ?: ""
-        val row get() = config.getInt("warps.row", 6)
-        val item get() = config.getString("members.item", "ENDER_PEARL") ?: ""
-        val backSlot get() = config.getInt("warps.back-slot", 49)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("warps.back-slot")
+    object TeamWarpView {
+        val title get() = warpsView.getString("main.title", "Teams Warps") ?: ""
+        val row get() = warpsView.getInt("main.row", 6)
+        val item get() = warpsView.getConfigurationSection("warp") ?: warpsView.createSection("warp")
+        val backSlot get() = warpsView.getInt("main.back-slot", 49)
+        val backSlots: MutableList<Int> get() = warpsView.getIntegerList("warps.back-slot")
     }
 
-    object TeamBalanceItem {
-        val title get() = config.getString("balance.title", "Team Balance") ?: ""
-        val row get() = config.getInt("balance.row", 3)
-        val deposit get() = config.getConfigurationSection("balance.withdraw") ?: config.createSection("balance.withdraw")
-        val withdraw get() = config.getConfigurationSection("balance.deposit") ?: config.createSection("balance.deposit")
-        val backSlot get() = config.getInt("balance.back-slot", 22)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("balance.back-slot")
+    object TeamBalanceView {
+        val title get() = balanceView.getString("main.title", "Team Balance") ?: ""
+        val row get() = balanceView.getInt("main.row", 3)
+        val backSlot get() = balanceView.getInt("main.back-slot", 22)
+        val backSlots: MutableList<Int> get() = balanceView.getIntegerList("main.back-slot")
+        val deposit get() = balanceView.getConfigurationSection("withdraw") ?: balanceView.createSection("withdraw")
+        val withdraw get() = balanceView.getConfigurationSection("deposit") ?: balanceView.createSection("deposit")
+
     }
 
-    object TeamAllyItem {
-        val title get() = config.getString("ally.title", "Team Allies") ?: ""
-        val row get() = config.getInt("ally.row", 6)
-        val backSlot get() = config.getInt("ally.back-slot", 49)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("ally.back-slot")
+    object TeamAllyView {
+        val title get() = allyView.getString("main.title", "Team Allies") ?: ""
+        val row get() = allyView.getInt("main.row", 6)
+        val backSlot get() = allyView.getInt("main.back-slot", 49)
+        val backSlots: MutableList<Int> get() = allyView.getIntegerList("main.back-slot")
     }
 
-    object TeamOtherItem{
-        val title get() = config.getString("other.title", "Team Other") ?: ""
-        val row get() = config.getInt("other.row", 6)
-        val backSlot get() = config.getInt("other.back-slot", 16)
-        val backSlots: MutableList<Int> get() = config.getIntegerList("other.back-slot")
-        val info get() = config.getConfigurationSection("other.info") ?: config.createSection("other.info")
-        val ally get() = config.getConfigurationSection("other.ally") ?: config.createSection("other.ally")
-        val member get() = config.getConfigurationSection("other.member") ?: config.createSection("other.member")
-        val balance get() = config.getConfigurationSection("other.balance") ?: config.createSection("other.balance")
+    object TeamOtherView {
+        val title get() = otherTeamView.getString("main.title", "Team Other") ?: ""
+        val row get() = otherTeamView.getInt("main.row", 6)
+        val backSlot get() = otherTeamView.getInt("main.back-slot", 16)
+        val backSlots: MutableList<Int> get() = config.getIntegerList("main.back-slot")
+        val info get() = otherTeamView.getConfigurationSection("info") ?: otherTeamView.createSection("info")
+        val ally get() = otherTeamView.getConfigurationSection("ally") ?: otherTeamView.createSection("ally")
+        val member get() = otherTeamView.getConfigurationSection("member") ?: otherTeamView.createSection("member")
+        val balance get() = otherTeamView.getConfigurationSection("balance") ?: otherTeamView.createSection("balance")
     }
-
-    object TeamCreateItem {
-        val title get() = config.getString("create.title", "Create Team") ?: ""
-        val row get() = config.getInt("create.row", 3)
-        val name get() = config.getConfigurationSection("create.name") ?: config.createSection("create.name")
-        val create get() = config.getConfigurationSection("create.create") ?: config.createSection("create.create")
-        val cancel get() = config.getConfigurationSection("create.cancel") ?: config.createSection("create.cancel")
-    }
-
 
     val background: Material
         get() = Material.valueOf(config.getString("background") ?: "WHITE_STAINED_GLASS_PANE")

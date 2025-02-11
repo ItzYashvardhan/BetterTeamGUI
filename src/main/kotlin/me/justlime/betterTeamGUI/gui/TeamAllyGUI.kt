@@ -27,8 +27,8 @@ class TeamAllyGUI(row: Int, val title: String, val team: Team, val teamPlayer: T
             val item = GUIManager.createHeadItem(alliesTeam, owner.player)
             inventory.addItem(item)
         }
-        val backSlot = Config.TeamAllyItem.backSlot
-        val backSlots = Config.TeamAllyItem.backSlots
+        val backSlot = Config.TeamAllyView.backSlot
+        val backSlots = Config.TeamAllyView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
 
@@ -37,8 +37,8 @@ class TeamAllyGUI(row: Int, val title: String, val team: Team, val teamPlayer: T
     override fun onClick(event: InventoryClickEvent) {
         event.isCancelled = true
         val player = event.whoClicked as Player
-        val backSlot = Config.TeamAllyItem.backSlot
-        val backSlots = Config.TeamAllyItem.backSlots
+        val backSlot = Config.TeamAllyView.backSlot
+        val backSlots = Config.TeamAllyView.backSlots
         if (event.slot in backSlots || event.slot == backSlot) {
             GUIManager.openTeamGUI(player)
             return

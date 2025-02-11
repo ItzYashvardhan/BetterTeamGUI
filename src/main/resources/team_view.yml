@@ -1,0 +1,99 @@
+#GUI Setting For player team  (open using /teams and must be member of a team)
+main:
+  title: "{player} {team} Team"
+  row: 6
+
+#Display Item For Player Team GUI
+#To remove any item use slot: []
+chat:
+    item: PAPER
+    name: "&aTeam Chat"
+    lore:
+      - "&b{chat} "
+      - " "
+      - "&7Left Click ➡ Toggle Team chat"
+      - "&7Shift Click ➡ Toggle Ally chat"
+    glow: false
+    slot: 20
+
+home:
+    item: RED_BED
+    name: "&aHome"
+    lore:
+      - "&7Click to teleport to Team Home"
+    glow: false
+    slot: 21
+
+balance:
+    item: EMERALD
+    name: "&aTeam Balance"
+    lore:
+      - "&f{balance}"
+      - ""
+      - "&7Click to Deposit/Withdraw Money"
+    glow: false
+    slot: 29
+
+warp:
+    item: ENDER_PEARL
+    name: "&aWarp"
+    lore:
+      - "&7Click to View Team Warp"
+    glow: false
+    slot: 30
+
+members:
+    item: PLAYER_HEAD
+    name: "&aTeam Members"
+    lore:
+      - "&7Click to View Team Members"
+    glow: false
+    slot: 23
+
+enderchest:
+    item: ENDER_CHEST
+    name: "&aTeam Enderchest"
+    lore:
+      - "&7Click to open Team Enderchest"
+    glow: false
+    slot: 24
+
+pvp:
+    item: DIAMOND_SWORD
+    name: "&aTeam PvP"
+    lore:
+      - "&7Click to Toggle Team PvP"
+    glow: true
+    slot: 32
+
+ally:
+    item: NETHER_STAR
+    name: "&aAllies"
+    lore:
+      - "&7Click to View Team Allies"
+    glow: false
+    slot: 33
+
+leave:
+    item: REDSTONE
+    name: "&cLeave Team"
+    lore:
+      - "&7Click to Leave Team"
+    glow: false
+    slot: 8
+
+list:
+    item: END_CRYSTAL
+    name: "&a{team}"
+    lore:
+      - "&7Click to view Active Team List "
+    glow: false
+    slot: 49
+
+setting:
+    item: COMMAND_BLOCK
+    name: "&cTeam Setting"
+    lore:
+      - "&7Click to view Team Setting"
+    glow: false
+    slot: 53

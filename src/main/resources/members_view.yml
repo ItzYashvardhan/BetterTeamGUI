@@ -1,0 +1,28 @@
+#All Team Member Management View
+main:
+  title: "Teams Members"
+  row: 6
+  back-slot: 49
+
+## Mange Player Head View According to their ranks:
+owner:
+    name: "&a{player}"
+    glow: true
+    lore:
+      - "&c&lOwner"
+admin:
+    name: "&a{player}"
+    glow: false
+    lore:
+      - "&cAdmin"
+member:
+    name: "&a{player}"
+    glow: false
+    lore:
+      - "&fMember"
+
+## Added to the last line and only visible to higher roles
+manage:
+    lore:
+      - " "
+      - "&8Click to Manage"

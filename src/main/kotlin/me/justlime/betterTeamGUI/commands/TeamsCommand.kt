@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.commands
 
 import com.booksaw.betterTeams.Team
+import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.command.Command
@@ -27,6 +28,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             sender.sendMessage("Config Reloaded")
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
+            Config.reload()
             return true
         }
         if (args[0] == "warp" && sender.hasPermission("betterteamgui.use.warps") ) {

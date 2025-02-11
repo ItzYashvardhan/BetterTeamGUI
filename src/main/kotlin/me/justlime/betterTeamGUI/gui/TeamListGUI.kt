@@ -60,8 +60,8 @@ class TeamListGUI(rows: Int, title: String) : GUIHandler {
         }
 
         if (Team.getTeamManager().isInTeam(player)) {
-            val backSlot = Config.TeamListItem.backSlot
-            val backSlots = Config.TeamListItem.backSlots
+            val backSlot = Config.TeamListView.backSlot
+            val backSlots = Config.TeamListView.backSlots
             val backSection = Config.backItem
             val teamPlayer = getTeam(player.name)?.getTeamPlayer(player) ?: return
             GUIManager.loadItem(backSection, inventory, getTeam(player.name), if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
@@ -78,8 +78,8 @@ class TeamListGUI(rows: Int, title: String) : GUIHandler {
         val item = event.currentItem ?: return
 
         // Handle back button logic
-        val backSlot = Config.TeamListItem.backSlot
-        val backSlots = Config.TeamListItem.backSlots
+        val backSlot = Config.TeamListView.backSlot
+        val backSlots = Config.TeamListView.backSlots
         if (event.slot == backSlot || event.slot in backSlots) {
             GUIManager.openTeamGUI(player)
             return

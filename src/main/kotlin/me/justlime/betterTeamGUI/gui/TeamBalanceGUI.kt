@@ -22,12 +22,12 @@ class TeamBalanceGUI(rows: Int, title: String) : GUIHandler {
         val team = getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         GUIManager.insertBackground(inventory)
-        val withdrawItem = Config.TeamBalanceItem.withdraw
-        val depositItem = Config.TeamBalanceItem.deposit
+        val withdrawItem = Config.TeamBalanceView.withdraw
+        val depositItem = Config.TeamBalanceView.deposit
         GUIManager.loadItem(withdrawItem, inventory, team, mutableListOf(), teamPlayer)
         GUIManager.loadItem(depositItem, inventory, team, mutableListOf(), teamPlayer)
-        val backSlot = Config.TeamBalanceItem.backSlot
-        val backSlots = Config.TeamBalanceItem.backSlots
+        val backSlot = Config.TeamBalanceView.backSlot
+        val backSlots = Config.TeamBalanceView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, getTeam(player.name), if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
     }
@@ -36,10 +36,10 @@ class TeamBalanceGUI(rows: Int, title: String) : GUIHandler {
         event.isCancelled = true
         val team = getTeam(event.whoClicked.name) ?: return
         val teamPlayer = team.getTeamPlayer(event.whoClicked as Player) ?: return
-        val backSlot = Config.TeamBalanceItem.backSlot
-        val backSlots = Config.TeamBalanceItem.backSlots
-        val withdrawItem = Config.TeamBalanceItem.withdraw
-        val depositItem = Config.TeamBalanceItem.deposit
+        val backSlot = Config.TeamBalanceView.backSlot
+        val backSlots = Config.TeamBalanceView.backSlots
+        val withdrawItem = Config.TeamBalanceView.withdraw
+        val depositItem = Config.TeamBalanceView.deposit
         val depositSlot = GUIManager.loadItem(withdrawItem, inventory, team, mutableListOf(), teamPlayer)
         val withdrawSlot = GUIManager.loadItem(depositItem, inventory, team, mutableListOf(), teamPlayer)
         val player = event.whoClicked as Player

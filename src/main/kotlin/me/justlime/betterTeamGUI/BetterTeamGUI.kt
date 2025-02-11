@@ -2,6 +2,7 @@ package me.justlime.betterTeamGUI
 
 import com.booksaw.betterTeams.metrics.Metrics
 import me.justlime.betterTeamGUI.commands.CommandManager
+import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIHandler
 import me.justlime.betterTeamGUI.listener.ListenerManager
 import org.bukkit.plugin.java.JavaPlugin
@@ -16,9 +17,11 @@ class BetterTeamGUI : JavaPlugin() {
         if(!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         pluginInstance = this
+        Config.reload()
+
         CommandManager.register() //Initialize
         ListenerManager.register(this) //Initialize
-        Metrics(this, 24705)
+    // Metrics(this, 24705)
 
     }
 

@@ -1,0 +1,41 @@
+#Spector View For other Team (open using /teams {team})
+
+main:
+  title: "Team {team}"
+  row: 3
+  back-slot: 16
+
+info:
+    item: PAPER
+    name: "&aTeam Info"
+    lore:
+      - "&x&f&f&d&7&0&0Owner: &x&f&f&f&f&f&f{owner}"
+      - "&x&a&a&f&f&f&fMembers: &x&f&f&f&f&f&f{count}&7/&x&f&f&f&f&f&f{total}"
+      - "&x&4&f&c&d&f&fLevel: &x&f&f&f&f&f&f{level}"
+      - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}"
+    glow: false
+    slot: 10
+
+ally:
+    item: NETHER_STAR
+    name: "&aTeam Allies"
+    lore:
+      - "&7Click to view Team Allies"
+    glow: false
+    slot: 12
+
+balance:
+    item: EMERALD
+    name: "&aTeam Balance"
+    lore:
+      - "&a{balance}"
+    glow: false
+    slot: 13
+
+member:
+    item: PLAYER_HEAD
+    name: "&aTeam Members"
+    lore:
+      - "&7Click to view Team Members"
+    glow: false
+    slot: 14

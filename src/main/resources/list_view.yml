@@ -1,0 +1,20 @@
+#GUI Setting For team list (open using /teams)
+main:
+  title: "Teams List"
+  row: 6
+  back-slot: 49 #Back Button Only Show to those who are team members
+
+# Display Team Info on Team List GUI
+team-info:
+  name: "&x&f&f&a&5&0&0{team}" # Hex color: #FFA500 (Orange)
+  head: true
+  lore:
+    - "&x&f&f&d&7&0&0Owner: &x&f&f&f&f&f&f{owner}" # Owner's name
+    - "&x&a&a&f&f&f&fTotal Members: &x&f&f&f&f&f&f{count}&7/&x&f&f&f&f&f&f{total}" # Members count
+    - "&x&d&d&e&e&f&fMembers: &x&f&f&f&f&f&f{members}" # Members list
+    - "&x&6&b&f&f&f&fBalance: &x&f&f&f&f&f&f{balance}" # Balance
+    - "&x&4&f&c&d&f&fLevel: &x&f&f&f&f&f&f{level}" # Level
+    - "&x&5&f&a&b&c&dTag: &x&f&f&f&f&f&f{tag}" # Tag
+    - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}" # Score
+    - "&x&2&a&f&f&f&fStatus: &x&f&f&f&f&f&f{open}" # Status
+    - "&x&f&f&6&6&6&6Click to Join" #Click to Join

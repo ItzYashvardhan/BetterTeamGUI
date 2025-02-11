@@ -1,0 +1,27 @@
+#GUI Setting For team leave (open using /teams leave)
+main:
+  title: "Leave Team"
+  row: 1
+  back-slot: 8
+
+#Confirm Item
+confirm:
+    item: LIME_CONCRETE
+    name: "&aConfirm"
+    glow: false
+    slot:
+      - 0
+      - 1
+      - 2
+      - 3
+
+#Cancel Item
+cancel:
+    item: RED_CONCRETE
+    name: "&cCancel"
+    glow: false
+    slot:
+      - 4
+      - 5
+      - 6
+      - 7

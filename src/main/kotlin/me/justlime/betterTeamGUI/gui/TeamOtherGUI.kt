@@ -20,14 +20,14 @@ class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team) : G
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val sections = mutableListOf(
-            Config.TeamOtherItem.info, Config.TeamOtherItem.ally, Config.TeamOtherItem.member, Config.TeamOtherItem.balance
+            Config.TeamOtherView.info, Config.TeamOtherView.ally, Config.TeamOtherView.member, Config.TeamOtherView.balance
         )
         sections.forEach {
             GUIManager.loadItem(it, inventory, otherTeam, mutableListOf(), teamPlayer)
         }
 
-        val backSlot = Config.TeamOtherItem.backSlot
-        val backSlots = Config.TeamOtherItem.backSlots
+        val backSlot = Config.TeamOtherView.backSlot
+        val backSlots = Config.TeamOtherView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, otherTeam, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
 
@@ -37,12 +37,12 @@ class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team) : G
         event.isCancelled = true
         val player = event.whoClicked as Player
         val slot = event.slot
-        val infoSlot = Config.TeamOtherItem.info.getInt("slot")
-        val allySlot = Config.TeamOtherItem.ally.getInt("slot")
-        val memberSlot = Config.TeamOtherItem.member.getInt("slot")
-        val balanceSlot = Config.TeamOtherItem.balance.getInt("slot")
-        val backSlot = Config.TeamOtherItem.backSlot
-        val backSlots = Config.TeamOtherItem.backSlots
+        val infoSlot = Config.TeamOtherView.info.getInt("slot")
+        val allySlot = Config.TeamOtherView.ally.getInt("slot")
+        val memberSlot = Config.TeamOtherView.member.getInt("slot")
+        val balanceSlot = Config.TeamOtherView.balance.getInt("slot")
+        val backSlot = Config.TeamOtherView.backSlot
+        val backSlots = Config.TeamOtherView.backSlots
         val teamPlayer = Team.getTeam(player.name)?.getTeamPlayer(player) ?: return
 
         when (slot) {

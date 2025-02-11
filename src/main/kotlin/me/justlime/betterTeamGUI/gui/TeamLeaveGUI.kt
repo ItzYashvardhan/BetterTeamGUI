@@ -20,11 +20,11 @@ class TeamLeaveGUI(rows: Int, title: String) : GUIHandler {
         GUIManager.insertBackground(inventory)
         val team = Team.getTeam(player.name) ?: return player.closeInventory()
         val teamPlayer = team.getTeamPlayer(player) ?: return
-        val confirmSection = Config.TeamLeaveItem.confirm
-        val cancelSection = Config.TeamLeaveItem.cancel
+        val confirmSection = Config.TeamLeaveView.confirm
+        val cancelSection = Config.TeamLeaveView.cancel
         val backSection = Config.backItem
-        val backSlot = Config.TeamLeaveItem.backSlot
-        val backSlots = Config.TeamLeaveItem.backSlots
+        val backSlot = Config.TeamLeaveView.backSlot
+        val backSlots = Config.TeamLeaveView.backSlots
         GUIManager.loadItem(confirmSection, inventory, team, mutableListOf(), teamPlayer)
         GUIManager.loadItem(cancelSection, inventory, team, mutableListOf(), teamPlayer)
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
@@ -34,11 +34,11 @@ class TeamLeaveGUI(rows: Int, title: String) : GUIHandler {
         event.isCancelled = true
         val team = Team.getTeam(event.whoClicked.name) ?: return event.whoClicked.closeInventory()
         val teamPlayer = team.getTeamPlayer(event.whoClicked as Player) ?: return event.whoClicked.closeInventory()
-        val confirmSection = Config.TeamLeaveItem.confirm
-        val cancelSection = Config.TeamLeaveItem.cancel
+        val confirmSection = Config.TeamLeaveView.confirm
+        val cancelSection = Config.TeamLeaveView.cancel
         val backSection = Config.backItem
-        val backSlot = Config.TeamLeaveItem.backSlot
-        val backSlots = Config.TeamLeaveItem.backSlots
+        val backSlot = Config.TeamLeaveView.backSlot
+        val backSlots = Config.TeamLeaveView.backSlots
         val confirmSlot = GUIManager.loadItem(confirmSection, inventory, team, mutableListOf(), teamPlayer)
         val cancelSlot = GUIManager.loadItem(cancelSection, inventory, team, mutableListOf(), teamPlayer)
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)

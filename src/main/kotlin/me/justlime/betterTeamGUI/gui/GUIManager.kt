@@ -93,13 +93,13 @@ object GUIManager {
         if (isInTeam) {
             val team = Team.getTeam(sender.name) ?: return
             val teamPlayer = team.getTeamPlayer(sender) ?: return
-            val row = Config.TeamSelfItem.row
-            val title = Service.applyLocalPlaceHolder(Config.TeamSelfItem.title, team, teamPlayer)
+            val row = Config.TeamSelfView.row
+            val title = Service.applyLocalPlaceHolder(Config.TeamSelfView.title, team, teamPlayer)
             val inventory = TeamSelfGUI(row, title)
             sender.openInventory(inventory.inventory)
         } else {
-            val title = Config.TeamListItem.title
-            val row = Config.TeamListItem.row
+            val title = Config.TeamListView.title
+            val row = Config.TeamListView.row
             val gui = TeamListGUI(row, title).inventory
             sender.openInventory(gui)
         }
@@ -108,8 +108,8 @@ object GUIManager {
     fun openTeamListGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamSelfItem.title, team, teamPlayer)
-        val row = Config.TeamListItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamSelfView.title, team, teamPlayer)
+        val row = Config.TeamListView.row
         val gui = TeamListGUI(row, title).inventory
         Bukkit.getPlayer(sender.name)?.openInventory(gui)
     }
@@ -119,23 +119,23 @@ object GUIManager {
     }
 
     fun openTeamMemberGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
-        val title = Service.applyLocalPlaceHolder(Config.TeamMemberItem.title, team, teamPlayer)
-        val row = Config.TeamMemberItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamMemberView.title, team, teamPlayer)
+        val row = Config.TeamMemberView.row
         val memberInventory = TeamMemberGUI(row, title, team, teamPlayer)
         sender.openInventory(memberInventory.inventory)
     }
 
     fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer){
-        val title = Service.applyLocalPlaceHolder(Config.TeamMemberManagementItem.title, team, teamPlayer)
-        val row = Config.TeamMemberManagementItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamMemberManagementView.title, team, teamPlayer)
+        val row = Config.TeamMemberManagementView.row
         val memberInventory = TeamMemberManagementGUI(row, title, team, teamPlayer)
         sender.openInventory(memberInventory.inventory)
     }
 
 
     fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
-        val title = Service.applyLocalPlaceHolder(Config.TeamAllyItem.title, team, teamPlayer)
-        val row = Config.TeamAllyItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamAllyView.title, team, teamPlayer)
+        val row = Config.TeamAllyView.row
         val allyInventory = TeamAllyGUI(row, title, team, teamPlayer)
         sender.openInventory(allyInventory.inventory)
     }
@@ -143,8 +143,8 @@ object GUIManager {
     fun openTeamWarpGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamWarpItem.title, team, teamPlayer)
-        val row = Config.TeamWarpItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamWarpView.title, team, teamPlayer)
+        val row = Config.TeamWarpView.row
         val warpInventory = TeamWarpGUI(row, title)
         sender.openInventory(warpInventory.inventory)
     }
@@ -152,8 +152,8 @@ object GUIManager {
     fun openTeamLeaveGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamLeaveItem.title, team, teamPlayer)
-        val row = Config.TeamLeaveItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamLeaveView.title, team, teamPlayer)
+        val row = Config.TeamLeaveView.row
         val leaveInventory = TeamLeaveGUI(row, title)
         sender.openInventory(leaveInventory.inventory)
     }
@@ -161,8 +161,8 @@ object GUIManager {
     fun openTeamBalanceGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamBalanceItem.title, team, teamPlayer)
-        val row = Config.TeamBalanceItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamBalanceView.title, team, teamPlayer)
+        val row = Config.TeamBalanceView.row
         val balanceInventory = TeamBalanceGUI(row, title)
         sender.openInventory(balanceInventory.inventory)
     }
@@ -171,8 +171,8 @@ object GUIManager {
 
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamOtherItem.title, oTeam, teamPlayer)
-        val row = Config.TeamOtherItem.row
+        val title = Service.applyLocalPlaceHolder(Config.TeamOtherView.title, oTeam, teamPlayer)
+        val row = Config.TeamOtherView.row
         val otherInventory = TeamOtherGUI(row, title, oTeam)
         sender.openInventory(otherInventory.inventory)
     }

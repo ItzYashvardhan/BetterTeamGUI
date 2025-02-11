@@ -1,0 +1,39 @@
+# Player Management View
+main:
+  title: "Managing : {player}"
+  row: 3
+  back-slot: 16
+
+# Demote Item
+demote:
+    item: REDSTONE
+    name: "&cDemote"
+    glow: false
+    slot: 10
+
+# Promote Item
+promote:
+    item: EMERALD
+    name: "&aPromote"
+    glow: false
+    slot: 11
+
+# Kick Item
+kick:
+    item: RED_WOOL
+    name: "&cKick"
+    glow: false
+    slot: 13
+
+# Ban Item
+ban:
+    item: BARRIER
+    name: "&cBan"
+    glow: false
+    slot: 14
+
+# Confirm Item
+confirmed:
+    item: LIME_STAINED_GLASS_PANE
+    name: "&aConfirm"
+    glow: true

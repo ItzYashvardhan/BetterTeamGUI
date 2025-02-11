@@ -18,17 +18,17 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
 
     private val inventory = Bukkit.createInventory(this, row * 9, title)
     private val sections = mutableMapOf(
-        ItemSlot.ALLY to Config.TeamSelfItem.ally,
-        ItemSlot.BALANCE to Config.TeamSelfItem.balance,
-        ItemSlot.CHAT to Config.TeamSelfItem.chat,
-        ItemSlot.HOME to Config.TeamSelfItem.home,
-        ItemSlot.ENDERCHEST to Config.TeamSelfItem.enderchest,
-        ItemSlot.LEAVE to Config.TeamSelfItem.leave,
-        ItemSlot.LIST_ITEM to Config.TeamSelfItem.listItem,
-        ItemSlot.MEMBERS to Config.TeamSelfItem.members,
-        ItemSlot.PVP to Config.TeamSelfItem.pvp,
-        ItemSlot.SETTING_ITEM to Config.TeamSelfItem.settingItem,
-        ItemSlot.WARP to Config.TeamSelfItem.warp
+        ItemSlot.ALLY to Config.TeamSelfView.ally,
+        ItemSlot.BALANCE to Config.TeamSelfView.balance,
+        ItemSlot.CHAT to Config.TeamSelfView.chat,
+        ItemSlot.HOME to Config.TeamSelfView.home,
+        ItemSlot.ENDERCHEST to Config.TeamSelfView.enderchest,
+        ItemSlot.LEAVE to Config.TeamSelfView.leave,
+        ItemSlot.LIST_ITEM to Config.TeamSelfView.listItem,
+        ItemSlot.MEMBERS to Config.TeamSelfView.members,
+        ItemSlot.PVP to Config.TeamSelfView.pvp,
+        ItemSlot.SETTING_ITEM to Config.TeamSelfView.settingItem,
+        ItemSlot.WARP to Config.TeamSelfView.warp
     )
 
     override fun onOpen(event: InventoryOpenEvent) {

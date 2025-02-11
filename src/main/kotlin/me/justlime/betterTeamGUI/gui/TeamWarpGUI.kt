@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.gui
 
 import com.booksaw.betterTeams.Team
+import com.booksaw.betterTeams.Warp
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.pluginInstance
@@ -14,6 +15,8 @@ import org.bukkit.inventory.Inventory
 
 class TeamWarpGUI(row: Int, title: String) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, row * 9, title)
+    private val warpItem = Config.TeamWarpView.item
+    private val warpSlot: MutableMap<Int,Warp> = mutableMapOf()
     override fun onOpen(event: InventoryOpenEvent) {
     }
 
@@ -22,15 +25,17 @@ class TeamWarpGUI(row: Int, title: String) : GUIHandler {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val warps = team.warps.get()
-        val material = Material.valueOf(Config.TeamWarpItem.item)
-        warps.forEach {
-            val name = Service.applyColors("&f" + it.name)
-            val item = GUIManager.createItem(material, name, mutableListOf(), false)
-            inventory.addItem(item)
-
+        val material = Material.valueOf(Config.TeamWarpView.item.getString("item") ?: Material.ENDER_PEARL.name)
+        warps.forEach { warp ->
+            val name = Service.applyLocalPlaceHolder(warpItem.getString("name")?.replace("{warp}", warp.name) ?: warp.name,team,teamPlayer)
+            val lore = warpItem.getStringList("lore").map { it.replace("{warp}", warp.name); Service.applyLocalPlaceHolder(it,team,teamPlayer) }
+            val item = GUIManager.createItem(material, name, lore, warpItem.getBoolean("glint"))
+            val slot = inventory.firstEmpty()
+            inventory.setItem(slot,item)
+            warpSlot[slot] = warp
         }
-        val backSlot = Config.TeamWarpItem.backSlot
-        val backSlots = Config.TeamWarpItem.backSlots
+        val backSlot = Config.TeamWarpView.backSlot
+        val backSlots = Config.TeamWarpView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
     }
@@ -38,32 +43,22 @@ class TeamWarpGUI(row: Int, title: String) : GUIHandler {
     override fun onClick(event: InventoryClickEvent) {
         event.isCancelled = true
         val player = event.whoClicked as Player
-        val backSlot = Config.TeamWarpItem.backSlot
-        val backSlots = Config.TeamWarpItem.backSlots
-        val warpSlots = mutableListOf<Int>()
-        val team = Team.getTeam(event.whoClicked.name) ?: return
-
+        val backSlot = Config.TeamWarpView.backSlot
+        val backSlots = Config.TeamWarpView.backSlots
+        val warpSlots = warpSlot.keys
         if (event.slot in backSlots || event.slot == backSlot) {
             GUIManager.openTeamGUI(event.whoClicked as Player)
             return
         }
-        inventory.contents.forEach {
-            if (it == null) return@forEach
-            val material = it.type
-            if (material != Material.valueOf(Config.TeamWarpItem.item)) return@forEach
-            warpSlots.add(inventory.contents.indexOf(it))
-        }
         when (event.slot) {
             in warpSlots -> {
-                val warp = team.warps.get(event.currentItem?.itemMeta?.displayName?.removePrefix("§f"))
-                event.isCancelled = true
+                val warp = warpSlot[event.slot]
                 Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-                    player.teleport(warp.location)
+                    player.performCommand("team:team warp ${warp?.name}")
                 }, 2)
                 GUIManager.closeInventory(player)
             }
         }
-        event.isCancelled = true
     }
 
     override fun onClose(event: InventoryCloseEvent) {

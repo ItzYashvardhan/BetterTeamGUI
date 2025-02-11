@@ -25,6 +25,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
 
         if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin")) {
             sender.sendMessage("Config Reloaded")
+            pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
             return true
         }

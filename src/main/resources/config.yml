@@ -150,6 +150,61 @@ members:
   row: 6
   back-slot: 49
 
+  ## Mange Player View Here:
+  owner:
+    name: "&a{player}"
+    glow: true
+    lore:
+      - "&c&lOwner"
+  admin:
+    name: "&a{player}"
+    glow: false
+    lore:
+      - "&cAdmin"
+  member:
+    name: "&a{player}"
+    glow: false
+    lore:
+      - "&fMember"
+  ## Added to the last line and only visible to higher roles
+  manage:
+    lore:
+      - " "
+      - "&8Click to Manage"
+
+member-management:
+  title: "Managing : {player}"
+  row: 3
+  back-slot: 16
+  demote:
+    item: REDSTONE
+    name: "&cDemote"
+    glow: false
+    slot: 10
+
+  promote:
+    item: EMERALD
+    name: "&aPromote"
+    glow: false
+    slot: 11
+
+  kick:
+    item: RED_WOOL
+    name: "&cKick"
+    glow: false
+    slot: 13
+
+  ban:
+    item: BARRIER
+    name: "&cBan"
+    glow: false
+    slot: 14
+
+  confirmed:
+    item: LIME_STAINED_GLASS_PANE
+    name: "&aConfirm"
+    glow: true
+
 ally:
   title: "Team Allies"
   row: 6

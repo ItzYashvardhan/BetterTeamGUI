@@ -4,15 +4,25 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
+import me.justlime.betterTeamGUI.config.Service
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.meta.SkullMeta
 
-class TeamMemberGUI(rows: Int, title: String,val team: Team,val teamPlayer: TeamPlayer) : GUIHandler {
+class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: TeamPlayer) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, rows * 9, title)
+    private val section = mutableMapOf(
+        MemberType.OWNER to Config.TeamMemberItem.owner,
+        MemberType.ADMIN to Config.TeamMemberItem.admin,
+        MemberType.MEMBER to Config.TeamMemberItem.member,
+        MemberType.MANGE to Config.TeamMemberItem.manage
+    )
+
     override fun onOpen(event: InventoryOpenEvent) {
     }
 
@@ -23,8 +33,29 @@ class TeamMemberGUI(rows: Int, title: String,val team: Team,val teamPlayer: Team
             val item = GUIManager.createHeadItem(team, it.player)
             val itemMeta = item.itemMeta
             itemMeta?.apply {
-                setDisplayName("§" + team.color.char.toString() + it.player.name)
-                lore = listOf(if (it.rank == PlayerRank.DEFAULT) "§fMember" else "§c" + it.rank.name)
+                var cLore: MutableList<String> = mutableListOf()
+                var name: String = ""
+                if (it.rank == PlayerRank.DEFAULT) {
+                    name = section[MemberType.MEMBER]?.getString("name") ?: " "
+                    cLore = section[MemberType.MEMBER]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
+                    if (teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) {
+                        cLore.addAll(section[MemberType.MANGE]?.getStringList("lore") ?: listOf())
+                    }
+
+                }
+                if (it.rank == PlayerRank.ADMIN) {
+                    name = section[MemberType.ADMIN]?.getString("name") ?: " "
+                    cLore = section[MemberType.ADMIN]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
+                    if (teamPlayer.rank == PlayerRank.OWNER) {
+                        cLore.addAll(section[MemberType.MANGE]?.getStringList("lore") ?: listOf())
+                    }
+                }
+                if (it.rank == PlayerRank.OWNER) {
+                    name = section[MemberType.OWNER]?.getString("name") ?: " "
+                    cLore = section[MemberType.OWNER]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
+                }
+                setDisplayName(Service.applyLocalPlaceHolder(name, team, it))
+                lore = cLore.map { lore -> Service.applyLocalPlaceHolder(lore, team, it) }.toMutableList()
             }
             item.itemMeta = itemMeta
             inventory.addItem(item)
@@ -39,10 +70,21 @@ class TeamMemberGUI(rows: Int, title: String,val team: Team,val teamPlayer: Team
         event.isCancelled = true
         val backSlot = Config.TeamMemberItem.backSlot
         val backSlots = Config.TeamMemberItem.backSlots
+        val player = event.whoClicked as Player
+        val clickedItem = event.currentItem ?: return
+
         when (event.slot) {
             in backSlots, backSlot -> {
-                GUIManager.openTeamGUI(event.whoClicked as Player)
+                GUIManager.openTeamGUI(player)
             }
+        }
+        if (teamPlayer.rank == PlayerRank.DEFAULT) return
+        if (clickedItem.type == Material.PLAYER_HEAD) {
+            val clickedPlayer = (clickedItem.itemMeta as SkullMeta).owningPlayer
+            val clickedTeamPlayer = team.getTeamPlayer(clickedPlayer) ?: return
+            if (teamPlayer.rank == PlayerRank.ADMIN && (clickedTeamPlayer.rank == PlayerRank.OWNER || clickedTeamPlayer.rank == PlayerRank.ADMIN)) return
+            if (teamPlayer.rank == PlayerRank.OWNER && clickedTeamPlayer.rank == PlayerRank.OWNER) return
+            GUIManager.openTeamMemberManagementGUI(player, team, clickedTeamPlayer)
         }
     }
 
@@ -51,6 +93,10 @@ class TeamMemberGUI(rows: Int, title: String,val team: Team,val teamPlayer: Team
 
     override fun getInventory(): Inventory {
         return inventory
+    }
+
+    enum class MemberType {
+        OWNER, ADMIN, MEMBER, MANGE
     }
 
 }

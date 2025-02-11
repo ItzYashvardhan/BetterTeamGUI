@@ -6,7 +6,7 @@ author: ItsJustLime
 description: "A Addon plugin for BetterTeams of (v4.10.0)"
 depend:
   - BetterTeams
-
+website: https://discord.gg/rVsUJ4keZN
 commands:
   teams:
     description: Opens the teams gui

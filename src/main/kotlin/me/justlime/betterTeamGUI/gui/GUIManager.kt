@@ -54,14 +54,14 @@ object GUIManager {
         }
     }
 
-    fun loadItem(section: ConfigurationSection, inventory: Inventory, team: Team, slots: List<Int> = listOf(), player: TeamPlayer): List<Int> {
+    fun loadItem(section: ConfigurationSection, inventory: Inventory, team: Team, slots: List<Int> = listOf(), player: TeamPlayer,lore: MutableList<String> = mutableListOf()): List<Int> {
         val material = Material.valueOf(section.getString("item") ?: "PAPER")
         val name = Service.applyLocalPlaceHolder(section.getString("name") ?: "&aItem", team, player)
-        val lore = section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) }
+        val newLore = if (lore.isEmpty()) section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) } else lore
         val glow = section.getBoolean("glow")
         val slotList = section.getIntegerList("slot")
         val slot = section.getString("slot", " ")?.toIntOrNull()
-        val item = createItem(material, name, lore, glow)
+        val item = createItem(material, name, newLore, glow)
         if (slots.isNotEmpty()) {
             slots.forEach { inventory.setItem(it, item) }
             return slots
@@ -124,6 +124,14 @@ object GUIManager {
         val memberInventory = TeamMemberGUI(row, title, team, teamPlayer)
         sender.openInventory(memberInventory.inventory)
     }
+
+    fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer){
+        val title = Service.applyLocalPlaceHolder(Config.TeamMemberManagementItem.title, team, teamPlayer)
+        val row = Config.TeamMemberManagementItem.row
+        val memberInventory = TeamMemberManagementGUI(row, title, team, teamPlayer)
+        sender.openInventory(memberInventory.inventory)
+    }
+
 
     fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         val title = Service.applyLocalPlaceHolder(Config.TeamAllyItem.title, team, teamPlayer)

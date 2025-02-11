@@ -70,7 +70,24 @@ object Config {
         val row get() = config.getInt("members.row", 6)
         val backSlot get() = config.getInt("members.back-slot", 49)
         val backSlots: MutableList<Int> get() = config.getIntegerList("members.back-slot")
+        val owner get() = config.getConfigurationSection("members.owner") ?: config.createSection("members.owner")
+        val member get() = config.getConfigurationSection("members.member") ?: config.createSection("members.member")
+        val admin get() = config.getConfigurationSection("members.admin") ?: config.createSection("members.admin")
+        val manage get() = config.getConfigurationSection("members.manage") ?: config.createSection("members.manage")
     }
+
+    object TeamMemberManagementItem {
+        val title get() = config.getString("member-management.title", "Team Member Management") ?: ""
+        val row get() = config.getInt("member-management.row", 3)
+        val backSlot get() = config.getInt("member-management.back-slot", 16)
+        val backSlots: MutableList<Int> get() = config.getIntegerList("member-management.back-slot")
+        val demote get() = config.getConfigurationSection("member-management.demote") ?: config.createSection("member-management.demote")
+        val promote get() = config.getConfigurationSection("member-management.promote") ?: config.createSection("member-management.promote")
+        val kick get() = config.getConfigurationSection("member-management.kick") ?: config.createSection("member-management.kick")
+        val ban get() = config.getConfigurationSection("member-management.ban") ?: config.createSection("member-management.ban")
+        val confirm get() = config.getConfigurationSection("member-management.confirmed") ?: config.createSection("member-management.confirm")
+    }
+
 
     object TeamWarpItem {
         val title get() = config.getString("warps.title", "Teams Warps") ?: ""
@@ -106,6 +123,15 @@ object Config {
         val member get() = config.getConfigurationSection("other.member") ?: config.createSection("other.member")
         val balance get() = config.getConfigurationSection("other.balance") ?: config.createSection("other.balance")
     }
+
+    object TeamCreateItem {
+        val title get() = config.getString("create.title", "Create Team") ?: ""
+        val row get() = config.getInt("create.row", 3)
+        val name get() = config.getConfigurationSection("create.name") ?: config.createSection("create.name")
+        val create get() = config.getConfigurationSection("create.create") ?: config.createSection("create.create")
+        val cancel get() = config.getConfigurationSection("create.cancel") ?: config.createSection("create.cancel")
+    }
+
 
     val background: Material
         get() = Material.valueOf(config.getString("background") ?: "WHITE_STAINED_GLASS_PANE")

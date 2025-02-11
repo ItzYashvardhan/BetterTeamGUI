@@ -4,7 +4,6 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import org.bukkit.Bukkit
-import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
@@ -15,11 +14,11 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
     private val inventory = Bukkit.createInventory(this, rows * 9, title)
     private val confirmed: MutableMap<ManagementType, Int> = mutableMapOf()
     private val sections = mutableMapOf(
-        ManagementType.DEMOTE to Config.TeamMemberManagementItem.demote,
-        ManagementType.PROMOTE to Config.TeamMemberManagementItem.promote,
-        ManagementType.KICK to Config.TeamMemberManagementItem.kick,
-        ManagementType.BAN to Config.TeamMemberManagementItem.ban,
-        ManagementType.CONFIRM to Config.TeamMemberManagementItem.confirm
+        ManagementType.DEMOTE to Config.TeamMemberManagementView.demote,
+        ManagementType.PROMOTE to Config.TeamMemberManagementView.promote,
+        ManagementType.KICK to Config.TeamMemberManagementView.kick,
+        ManagementType.BAN to Config.TeamMemberManagementView.ban,
+        ManagementType.CONFIRM to Config.TeamMemberManagementView.confirm
     )
 
     override fun onOpen(event: InventoryOpenEvent) {
@@ -27,8 +26,8 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
-        val backSlot = Config.TeamMemberManagementItem.backSlot
-        val backSlots = Config.TeamMemberManagementItem.backSlots
+        val backSlot = Config.TeamMemberManagementView.backSlot
+        val backSlots = Config.TeamMemberManagementView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
         sections.values.forEach { GUIManager.loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
@@ -37,8 +36,8 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
     override fun onClick(event: InventoryClickEvent) {
         event.isCancelled = true
         val player = event.whoClicked as Player
-        val backSlot = Config.TeamMemberManagementItem.backSlot
-        val backSlots = Config.TeamMemberManagementItem.backSlots
+        val backSlot = Config.TeamMemberManagementView.backSlot
+        val backSlots = Config.TeamMemberManagementView.backSlots
         val demoteSlot = sections[ManagementType.DEMOTE]?.getString("slot", " ")?.toIntOrNull()
         val promoteSlot = sections[ManagementType.PROMOTE]?.getString("slot", " ")?.toIntOrNull()
         val kickSlot = sections[ManagementType.KICK]?.getString("slot", " ")?.toIntOrNull()

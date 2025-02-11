@@ -17,10 +17,10 @@ import org.bukkit.inventory.meta.SkullMeta
 class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: TeamPlayer) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, rows * 9, title)
     private val section = mutableMapOf(
-        MemberType.OWNER to Config.TeamMemberItem.owner,
-        MemberType.ADMIN to Config.TeamMemberItem.admin,
-        MemberType.MEMBER to Config.TeamMemberItem.member,
-        MemberType.MANGE to Config.TeamMemberItem.manage
+        MemberType.OWNER to Config.TeamMemberView.owner,
+        MemberType.ADMIN to Config.TeamMemberView.admin,
+        MemberType.MEMBER to Config.TeamMemberView.member,
+        MemberType.MANGE to Config.TeamMemberView.manage
     )
 
     override fun onOpen(event: InventoryOpenEvent) {
@@ -35,18 +35,19 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             itemMeta?.apply {
                 var cLore: MutableList<String> = mutableListOf()
                 var name: String = ""
-                if (it.rank == PlayerRank.DEFAULT) {
+                val isInSameTeam = team.getTeamPlayer(teamPlayer.player) != null
+
+                if (it.rank == PlayerRank.DEFAULT ) {
                     name = section[MemberType.MEMBER]?.getString("name") ?: " "
                     cLore = section[MemberType.MEMBER]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
-                    if (teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) {
+                    if ((teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) && isInSameTeam) {
                         cLore.addAll(section[MemberType.MANGE]?.getStringList("lore") ?: listOf())
                     }
-
                 }
                 if (it.rank == PlayerRank.ADMIN) {
                     name = section[MemberType.ADMIN]?.getString("name") ?: " "
                     cLore = section[MemberType.ADMIN]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
-                    if (teamPlayer.rank == PlayerRank.OWNER) {
+                    if (teamPlayer.rank == PlayerRank.OWNER && isInSameTeam) {
                         cLore.addAll(section[MemberType.MANGE]?.getStringList("lore") ?: listOf())
                     }
                 }
@@ -60,16 +61,16 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             item.itemMeta = itemMeta
             inventory.addItem(item)
         }
-        val backSlot = Config.TeamMemberItem.backSlot
-        val backSlots = Config.TeamMemberItem.backSlots
+        val backSlot = Config.TeamMemberView.backSlot
+        val backSlots = Config.TeamMemberView.backSlots
         val backSection = Config.backItem
         GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
     }
 
     override fun onClick(event: InventoryClickEvent) {
         event.isCancelled = true
-        val backSlot = Config.TeamMemberItem.backSlot
-        val backSlots = Config.TeamMemberItem.backSlots
+        val backSlot = Config.TeamMemberView.backSlot
+        val backSlots = Config.TeamMemberView.backSlots
         val player = event.whoClicked as Player
         val clickedItem = event.currentItem ?: return
 
@@ -79,6 +80,8 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             }
         }
         if (teamPlayer.rank == PlayerRank.DEFAULT) return
+        val isInSameTeam = team.getTeamPlayer(player) != null
+        if (!isInSameTeam) return
         if (clickedItem.type == Material.PLAYER_HEAD) {
             val clickedPlayer = (clickedItem.itemMeta as SkullMeta).owningPlayer
             val clickedTeamPlayer = team.getTeamPlayer(clickedPlayer) ?: return

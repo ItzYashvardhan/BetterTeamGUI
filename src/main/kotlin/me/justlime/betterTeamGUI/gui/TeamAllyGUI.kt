@@ -9,14 +9,11 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.meta.SkullMeta
 
 class TeamAllyGUI(row: Int, val title: String, val team: Team, val teamPlayer: TeamPlayer) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, row * 9, title)
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
@@ -45,10 +42,10 @@ class TeamAllyGUI(row: Int, val title: String, val team: Team, val teamPlayer: T
         }
 
         val item = event.currentItem ?: return
-        if (item.type != Material.PLAYER_HEAD ) return
+        if (item.type != Material.PLAYER_HEAD) return
         val owner = (item.itemMeta as? SkullMeta)?.owningPlayer ?: return
         val alliesTeam = Team.getTeam(owner) ?: return
-        GUIManager.openTeamOtherGUI(player, alliesTeam)
+        GUIManager.openTeamOtherGUI(player, alliesTeam, teamPlayer)
     }
 
     override fun onClose(event: InventoryCloseEvent) {

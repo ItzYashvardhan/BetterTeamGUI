@@ -10,15 +10,12 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
 class TeamWarpGUI(row: Int, title: String) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, row * 9, title)
     private val warpItem = Config.TeamWarpView.item
-    private val warpSlot: MutableMap<Int,Warp> = mutableMapOf()
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
+    private val warpSlot: MutableMap<Int, Warp> = mutableMapOf()
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
@@ -27,11 +24,11 @@ class TeamWarpGUI(row: Int, title: String) : GUIHandler {
         val warps = team.warps.get()
         val material = Material.valueOf(Config.TeamWarpView.item.getString("item") ?: Material.ENDER_PEARL.name)
         warps.forEach { warp ->
-            val name = Service.applyLocalPlaceHolder(warpItem.getString("name")?.replace("{warp}", warp.name) ?: warp.name,team,teamPlayer)
-            val lore = warpItem.getStringList("lore").map { it.replace("{warp}", warp.name); Service.applyLocalPlaceHolder(it,team,teamPlayer) }
+            val name = Service.applyLocalPlaceHolder(warpItem.getString("name")?.replace("{warp}", warp.name) ?: warp.name, team, teamPlayer)
+            val lore = warpItem.getStringList("lore").map { it.replace("{warp}", warp.name); Service.applyLocalPlaceHolder(it, team, teamPlayer) }
             val item = GUIManager.createItem(material, name, lore, warpItem.getBoolean("glint"))
             val slot = inventory.firstEmpty()
-            inventory.setItem(slot,item)
+            inventory.setItem(slot, item)
             warpSlot[slot] = warp
         }
         val backSlot = Config.TeamWarpView.backSlot

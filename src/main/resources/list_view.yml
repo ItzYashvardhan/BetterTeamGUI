@@ -11,10 +11,9 @@ team-info:
   lore:
     - "&x&f&f&d&7&0&0Owner: &x&f&f&f&f&f&f{owner}" # Owner's name
     - "&x&a&a&f&f&f&fTotal Members: &x&f&f&f&f&f&f{count}&7/&x&f&f&f&f&f&f{total}" # Members count
-    - "&x&d&d&e&e&f&fMembers: &x&f&f&f&f&f&f{members}" # Members list
-    - "&x&6&b&f&f&f&fBalance: &x&f&f&f&f&f&f{balance}" # Balance
+    - "&x&d&d&e&e&f&fMembers: &7{members}" # Members list
     - "&x&4&f&c&d&f&fLevel: &x&f&f&f&f&f&f{level}" # Level
-    - "&x&5&f&a&b&c&dTag: &x&f&f&f&f&f&f{tag}" # Tag
-    - "&x&b&5&e&7&f&fScore: &x&f&f&f&f&f&f{score}" # Score
     - "&x&2&a&f&f&f&fStatus: &x&f&f&f&f&f&f{open}" # Status
-    - "&x&f&f&6&6&6&6Click to Join" #Click to Join
+    - " "
+    - "&7→ Shift Click to Join" #Click to Join
+    - "&7→ Right Click to View" #Click to Join

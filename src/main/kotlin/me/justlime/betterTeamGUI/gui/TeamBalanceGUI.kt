@@ -10,13 +10,10 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
 class TeamBalanceGUI(rows: Int, title: String) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, rows * 9, title)
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
 
     override fun loadInventory(player: Player) {
         val team = getTeam(player.name) ?: return
@@ -50,8 +47,7 @@ class TeamBalanceGUI(rows: Int, title: String) : GUIHandler {
                         isBold = true
                         hoverEvent = HoverEvent(HoverEvent.Action.SHOW_TEXT, Text("§7Click to type /team deposit"))
                         clickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/team deposit ")
-                    }
-                )
+                    })
                 GUIManager.closeInventory(player)
 
             }
@@ -62,8 +58,7 @@ class TeamBalanceGUI(rows: Int, title: String) : GUIHandler {
                         isBold = true
                         hoverEvent = HoverEvent(HoverEvent.Action.SHOW_TEXT, Text("§7Click to type /team withdraw"))
                         clickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/team withdraw ")
-                    }
-                )
+                    })
                 GUIManager.closeInventory(player)
 
             }

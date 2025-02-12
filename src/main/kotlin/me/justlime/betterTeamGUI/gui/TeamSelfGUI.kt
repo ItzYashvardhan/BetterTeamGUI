@@ -7,7 +7,6 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
 class TeamSelfGUI(row: Int, title: String) : GUIHandler {
@@ -30,9 +29,6 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
         ItemSlot.SETTING_ITEM to Config.TeamSelfView.settingItem,
         ItemSlot.WARP to Config.TeamSelfView.warp
     )
-
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)

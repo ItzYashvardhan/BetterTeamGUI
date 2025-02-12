@@ -6,7 +6,6 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareAnvilEvent
 import org.bukkit.inventory.Inventory
@@ -17,10 +16,6 @@ val pendingTransactions = mutableMapOf<UUID, Boolean>()
 
 class TeamBalanceAnvilGUI(val player: Player, private val isDeposit: Boolean) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, InventoryType.ANVIL, if (isDeposit) "§lDeposit Amount" else "§lWithdraw Amount")
-
-    override fun onOpen(event: InventoryOpenEvent) {
-
-    }
 
     override fun loadInventory(player: Player) {
         val item = ItemStack(Material.EMERALD)

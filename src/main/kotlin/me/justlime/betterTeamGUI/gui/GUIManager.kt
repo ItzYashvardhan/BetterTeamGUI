@@ -54,7 +54,14 @@ object GUIManager {
         }
     }
 
-    fun loadItem(section: ConfigurationSection, inventory: Inventory, team: Team, slots: List<Int> = listOf(), player: TeamPlayer,lore: MutableList<String> = mutableListOf()): List<Int> {
+    fun loadItem(
+        section: ConfigurationSection,
+        inventory: Inventory,
+        team: Team,
+        slots: List<Int> = listOf(),
+        player: TeamPlayer,
+        lore: MutableList<String> = mutableListOf()
+    ): List<Int> {
         val material = Material.valueOf(section.getString("item") ?: "PAPER")
         val name = Service.applyLocalPlaceHolder(section.getString("name") ?: "&aItem", team, player)
         val newLore = if (lore.isEmpty()) section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) } else lore
@@ -125,13 +132,12 @@ object GUIManager {
         sender.openInventory(memberInventory.inventory)
     }
 
-    fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer){
+    fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         val title = Service.applyLocalPlaceHolder(Config.TeamMemberManagementView.title, team, teamPlayer)
         val row = Config.TeamMemberManagementView.row
         val memberInventory = TeamMemberManagementGUI(row, title, team, teamPlayer)
         sender.openInventory(memberInventory.inventory)
     }
-
 
     fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         val title = Service.applyLocalPlaceHolder(Config.TeamAllyView.title, team, teamPlayer)
@@ -167,14 +173,19 @@ object GUIManager {
         sender.openInventory(balanceInventory.inventory)
     }
 
-    fun openTeamOtherGUI(sender: Player, oTeam: Team) {
+    fun openTeamOtherGUI(sender: Player, oTeam: Team, teamPlayer: TeamPlayer) {
 
-        val team = Team.getTeam(sender.name) ?: return
-        val teamPlayer = team.getTeamPlayer(sender) ?: return
         val title = Service.applyLocalPlaceHolder(Config.TeamOtherView.title, oTeam, teamPlayer)
         val row = Config.TeamOtherView.row
-        val otherInventory = TeamOtherGUI(row, title, oTeam)
+        val otherInventory = TeamOtherGUI(row, title, oTeam, teamPlayer)
         sender.openInventory(otherInventory.inventory)
+    }
+
+    fun openTeamLeaderBoardGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
+        val title = Service.applyLocalPlaceHolder(Config.TeamLBView.title, team, teamPlayer)
+        val row = Config.TeamLBView.row
+        val leaderBoardInventory = TeamLeaderBoard(row, title, team, teamPlayer)
+        sender.openInventory(leaderBoardInventory.inventory)
     }
 
     fun closeInventory(player: Player) {

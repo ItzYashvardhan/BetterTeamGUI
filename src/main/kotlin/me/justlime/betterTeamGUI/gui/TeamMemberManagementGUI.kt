@@ -7,7 +7,6 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
 class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val teamPlayer: TeamPlayer) : GUIHandler {
@@ -20,9 +19,6 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
         ManagementType.BAN to Config.TeamMemberManagementView.ban,
         ManagementType.CONFIRM to Config.TeamMemberManagementView.confirm
     )
-
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
@@ -47,8 +43,9 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
             in backSlots, backSlot -> {
                 GUIManager.openTeamGUI(player)
             }
+
             demoteSlot -> {
-                if(!confirmed.containsKey(ManagementType.DEMOTE)) {
+                if (!confirmed.containsKey(ManagementType.DEMOTE)) {
                     val confirmedSection = sections[ManagementType.CONFIRM] ?: return
                     confirmed.clear()
                     sections.values.forEach { GUIManager.loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
@@ -61,7 +58,7 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
             }
 
             promoteSlot -> {
-                if(!confirmed.containsKey(ManagementType.PROMOTE)) {
+                if (!confirmed.containsKey(ManagementType.PROMOTE)) {
                     val confirmedSection = sections[ManagementType.CONFIRM] ?: return
                     confirmed.clear()
                     sections.values.forEach { GUIManager.loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
@@ -74,7 +71,7 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
             }
 
             kickSlot -> {
-                if(!confirmed.containsKey(ManagementType.KICK)) {
+                if (!confirmed.containsKey(ManagementType.KICK)) {
                     val confirmedSection = sections[ManagementType.CONFIRM] ?: return
                     confirmed.clear()
                     sections.values.forEach { GUIManager.loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
@@ -87,7 +84,7 @@ class TeamMemberManagementGUI(rows: Int, title: String, val team: Team, val team
             }
 
             banSlot -> {
-                if(!confirmed.containsKey(ManagementType.BAN)) {
+                if (!confirmed.containsKey(ManagementType.BAN)) {
                     val confirmedSection = sections[ManagementType.CONFIRM] ?: return
                     confirmed.clear()
                     sections.values.forEach { GUIManager.loadItem(it, inventory, team, mutableListOf(), teamPlayer) }

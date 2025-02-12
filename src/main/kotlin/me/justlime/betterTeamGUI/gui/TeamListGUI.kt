@@ -4,6 +4,7 @@ import com.booksaw.betterTeams.Main.plugin
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.Team.getTeam
+import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.GUIManager.createHeadItem
@@ -12,7 +13,6 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.meta.SkullMeta
 
@@ -20,10 +20,6 @@ class TeamListGUI(rows: Int, title: String) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, rows * 9, title)
     override fun getInventory(): Inventory {
         return inventory
-    }
-
-    override fun onOpen(event: InventoryOpenEvent) {
-        GUIManager.insertBackground(inventory)
     }
 
     override fun loadInventory(player: Player) {
@@ -90,7 +86,11 @@ class TeamListGUI(rows: Int, title: String) : GUIHandler {
         val owner = (item.itemMeta as? SkullMeta)?.owningPlayer ?: return
         val team = getTeam(owner) ?: return
         val teamOwner = team.getRank(PlayerRank.OWNER).first() ?: return
-
+        val tempTeamPlayer = team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT)
+        if (!event.click.isShiftClick) {
+            GUIManager.openTeamOtherGUI(player, team, tempTeamPlayer)
+            return
+        }
         getTeam(player)?.let {
 
             player.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamAlreadyJoined, it, teamOwner))
@@ -104,13 +104,13 @@ class TeamListGUI(rows: Int, title: String) : GUIHandler {
             }
 
             !team.isOpen && !team.isInvited(player.uniqueId) -> {
-                player.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamClosed, team,teamOwner))
+                player.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamClosed, team, teamOwner))
             }
 
             else -> {
                 Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
                     team.join(player)
-                    player.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamJoin, team,teamOwner))
+                    player.sendMessage(Service.applyLocalPlaceHolder(Config.TeamInfo.teamJoin, team, teamOwner))
                 })
             }
         }

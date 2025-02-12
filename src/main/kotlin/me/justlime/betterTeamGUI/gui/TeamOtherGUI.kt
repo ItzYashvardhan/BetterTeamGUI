@@ -1,24 +1,19 @@
 package me.justlime.betterTeamGUI.gui
 
 import com.booksaw.betterTeams.Team
+import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 
-class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team) : GUIHandler {
+class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team, val teamPlayer: TeamPlayer) : GUIHandler {
     private val inventory = Bukkit.createInventory(this, row * 9, title)
-    override fun onOpen(event: InventoryOpenEvent) {
-        return
-    }
 
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
-        val team = Team.getTeam(player.name) ?: return
-        val teamPlayer = team.getTeamPlayer(player) ?: return
         val sections = mutableListOf(
             Config.TeamOtherView.info, Config.TeamOtherView.ally, Config.TeamOtherView.member, Config.TeamOtherView.balance
         )
@@ -43,15 +38,14 @@ class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team) : G
         val balanceSlot = Config.TeamOtherView.balance.getInt("slot")
         val backSlot = Config.TeamOtherView.backSlot
         val backSlots = Config.TeamOtherView.backSlots
-        val teamPlayer = Team.getTeam(player.name)?.getTeamPlayer(player) ?: return
 
         when (slot) {
             allySlot -> {
-                GUIManager.openTeamAllyGUI(player, otherTeam,teamPlayer)
+                GUIManager.openTeamAllyGUI(player, otherTeam, teamPlayer)
             }
 
             memberSlot -> {
-                GUIManager.openTeamMemberGUI(player, otherTeam,teamPlayer)
+                GUIManager.openTeamMemberGUI(player, otherTeam, teamPlayer)
             }
 
             in backSlots, backSlot -> {

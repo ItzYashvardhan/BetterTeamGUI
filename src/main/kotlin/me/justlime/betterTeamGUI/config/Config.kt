@@ -25,7 +25,8 @@ object Config {
         private set
     lateinit var memberManagementView: FileConfiguration
         private set
-
+    lateinit var teamLBView: FileConfiguration
+        private set
 
     fun reload() {
         config = ConfigManager.getConfig(JFiles.CONFIG)
@@ -38,7 +39,9 @@ object Config {
         balanceView = ConfigManager.getConfig(JFiles.BALANCEVIEW)
         allyView = ConfigManager.getConfig(JFiles.ALLYVIEW)
         memberManagementView = ConfigManager.getConfig(JFiles.MEMBERMANAGEMENTVIEW)
+        teamLBView = ConfigManager.getConfig(JFiles.TEAMLBVIEW)
     }
+
     val backItem
         get() = config.getConfigurationSection("back-item") ?: config.createSection("back-item")
 
@@ -151,6 +154,16 @@ object Config {
         val ally get() = otherTeamView.getConfigurationSection("ally") ?: otherTeamView.createSection("ally")
         val member get() = otherTeamView.getConfigurationSection("member") ?: otherTeamView.createSection("member")
         val balance get() = otherTeamView.getConfigurationSection("balance") ?: otherTeamView.createSection("balance")
+    }
+
+    object TeamLBView {
+        val title get() = teamLBView.getString("main.title", "Team Leaderboard") ?: ""
+        val row get() = teamLBView.getInt("main.row", 6)
+        val backSlot get() = teamLBView.getInt("main.back-slot", 49)
+        val backSlots: MutableList<Int> get() = teamLBView.getIntegerList("main.back-slot")
+        val balanceTeam get() = teamLBView.getConfigurationSection("balance-team") ?: teamLBView.createSection("balance-team")
+        val scoreTeam get() = teamLBView.getConfigurationSection("score-team") ?: teamLBView.createSection("score-team")
+        val sortType get() = teamLBView.getConfigurationSection("sort-type") ?: teamLBView.createSection("sort-type")
     }
 
     val background: Material

@@ -24,6 +24,7 @@ class BetterTeamGUI : JavaPlugin() {
         Metrics(this, 24705)
 
     }
+
     override fun onDisable() {
         val players = pluginInstance.server.onlinePlayers
         players.forEach {

@@ -10,7 +10,6 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.meta.SkullMeta
 
@@ -23,9 +22,6 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
         MemberType.MANGE to Config.TeamMemberView.manage
     )
 
-    override fun onOpen(event: InventoryOpenEvent) {
-    }
-
     override fun loadInventory(player: Player) {
         GUIManager.insertBackground(inventory)
         val teamMembers = team.members.get()
@@ -37,7 +33,7 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
                 var name: String = ""
                 val isInSameTeam = team.getTeamPlayer(teamPlayer.player) != null
 
-                if (it.rank == PlayerRank.DEFAULT ) {
+                if (it.rank == PlayerRank.DEFAULT) {
                     name = section[MemberType.MEMBER]?.getString("name") ?: " "
                     cLore = section[MemberType.MEMBER]?.getStringList("lore")?.toMutableList() ?: mutableListOf()
                     if ((teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) && isInSameTeam) {

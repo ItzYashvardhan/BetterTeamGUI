@@ -23,24 +23,30 @@ permissions:
       - betterteamgui.use.balance: true
       - betterteamgui.use.members: true
       - betterteamgui.use.ally: true
+      - betterteamgui.use.view: true
 
   betterteamgui.use.teams:
     description: Allows the player to use the teams command
     default: true
 
   betterteamgui.use.warps:
-    description: Allows the player to use the warps command
+    description: Allows the player to open the warps gui
     default: true
+
   betterteamgui.use.balance:
-    description: Allows the player to use the balance command
+    description: Allows the player to open the balance gui
     default: true
 
   betterteamgui.use.members:
-    description: Allows the player to use the members command
+    description: Allows the player to open the members gui
     default: true
 
   betterteamgui.use.ally:
-    description: Allows the player to use the ally command
+    description: Allows the player to open the ally gui
+    default: true
+
+  betterteamgui.use.view:
+    description: Allows the player to open the other team view gui
     default: true
 
   betterteamgui.admin.reload:

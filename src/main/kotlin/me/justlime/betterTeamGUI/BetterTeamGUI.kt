@@ -14,17 +14,16 @@ class BetterTeamGUI : JavaPlugin() {
         if (this.server.pluginManager.isPluginEnabled("BetterTeams")) {
             this.logger.info("Successfully Enabled BetterTeamsGUI")
         } else this.server.pluginManager.disablePlugin(this)
-        if(!this.dataFolder.exists()) this.dataFolder.mkdir()
+        if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         pluginInstance = this
         Config.reload()
 
         CommandManager.register() //Initialize
         ListenerManager.register(this) //Initialize
-    // Metrics(this, 24705)
+        Metrics(this, 24705)
 
     }
-
     override fun onDisable() {
         val players = pluginInstance.server.onlinePlayers
         players.forEach {

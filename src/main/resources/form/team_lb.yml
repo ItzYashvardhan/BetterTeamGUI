@@ -1,0 +1,27 @@
+
+main:
+  title: "Team Leaderboard"
+  row: 6
+  back-slot: 49
+
+balance-team:
+  name: "{pos}. {team} Team"
+  lore:
+    - "Owner: {owner}"
+    - "Balance: {balance}"
+
+score-team:
+  name: "{pos}. {team} Team"
+  lore:
+    - "Owner: {owner}"
+    - "Score: {score}"
+
+sort-type:
+  item: HOPPER
+  name: "{sort_type}"
+  lore:
+    - "&8Click to Change"
+
+  slot: 54
+  glow: true
+

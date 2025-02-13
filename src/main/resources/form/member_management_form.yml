@@ -1,0 +1,52 @@
+# Player Management View
+main:
+  title: "Managing : {player}"
+  text:
+    - "&7Click to Manage Member"
+
+
+# Demote Item
+demote:
+  lines:
+    - "&e&lDemote {player}"
+  image:
+    enabled: false
+    url: " "
+  confirmed-title: Confirmed Demote
+  text: "Are you sure you want to demote {player}?"
+
+
+# Promote Item
+promote:
+  lines:
+    - "&a&lPromote {player}"
+  image:
+    enabled: false
+    url: " "
+  confirmed-title: Confirmed Promote
+  text: "Are you sure you want to promote {player}?"
+
+
+# Kick Item
+kick:
+  lines:
+    - "&c&lKick {player}"
+  image:
+    enabled: false
+    url: " "
+  confirmed-title: Confirmed Kick
+  text: "Are you sure you want to kick {player}?"
+# Ban Item
+ban:
+  lines:
+    - "&c&lBan {player}"
+  image:
+    enabled: false
+    url: " "
+  confirmed-title: Confirmed Ban
+  text: "Are you sure you want to ban {player}?"
+
+# Confirmed Modal
+confirm:
+  button1: "yes"
+  button2: "no"

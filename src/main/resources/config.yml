@@ -8,12 +8,16 @@ back-item:
   lore:
     - "&7Click to Back"
 
+#For Bedrock Form
+back-button:
+  lines:
+    - "&cBack"
+    - "&aClick to Back"
+  image:
+    enabled: false
+    url: " "
+
 
 team-join: "&aYou have joined {team} Team"
 team-closed: "&cYou are not invited to join {team} team"
 team-already-joined: "&cYou are already in {team} Team"
-
-
-
-
-

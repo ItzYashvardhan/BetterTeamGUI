@@ -1,0 +1,10 @@
+#team warps GUI (open using /teams warp)
+main:
+  title: "Teams Warps"
+  text: ""
+
+# warp item to display on warp GUI
+warp:
+  lines:
+    - "&a{warp}"
+    - "&b Click to Teleport"

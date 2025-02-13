@@ -14,7 +14,14 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
+    maven("https://repo.codemc.org/repository/maven-public/") {
+        name = "codemc"
+    }
     maven("https://jitpack.io")
+    maven {
+        url = uri("https://repo.opencollab.dev/main/")
+    }
+
 }
 
 dependencies {
@@ -22,7 +29,12 @@ dependencies {
     compileOnly("com.github.booksaw:BetterTeams:4.10.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
+    compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
 }
+
+tasks.withType<Jar> {
+}
+
 
 val targetJavaVersion = 17
 kotlin {

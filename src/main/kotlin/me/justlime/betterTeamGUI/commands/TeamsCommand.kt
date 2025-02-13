@@ -27,13 +27,16 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             GUIManager.openTeamOtherGUI(sender, teamToView, teamPlayer)
             return true
         }
+
+        if (args[0] == "lb") {
+            val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
+            GUIManager.openTeamLeaderBoardGUI(sender, teamPlayer)
+            return true
+        }
         val team = Team.getTeam(sender.name) ?: return true
         val playerTeam = team.getTeamPlayer(sender) ?: return true
 
-        if (args[0] == "lb") {
-            GUIManager.openTeamLeaderBoardGUI(sender, team, playerTeam)
-            return true
-        }
+
         if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin.reload")) {
             sender.sendMessage("Config Reloaded")
             pluginInstance.saveDefaultConfig()

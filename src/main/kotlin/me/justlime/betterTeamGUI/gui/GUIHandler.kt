@@ -9,6 +9,6 @@ import org.bukkit.inventory.InventoryHolder
 interface GUIHandler : InventoryHolder {
     fun loadInventory(player: Player)
     fun onClick(event: InventoryClickEvent)
-    fun onClose(event: InventoryCloseEvent)
+    fun onClose(event: InventoryCloseEvent){}
     fun onAnvilRename(event: PrepareAnvilEvent) {}
 }

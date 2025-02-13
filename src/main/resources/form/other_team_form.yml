@@ -1,0 +1,25 @@
+#Spector View For other Team (open using /teams {team})
+
+main:
+  title: "Team {team}"
+  text:
+    - "&eOwner: &f{owner}"
+    - "&6Members: &f{count}&7/&f{total}"
+    - "&bLevel: &f{level}"
+    - "&cKill Score: &f{score}"
+
+ally:
+  lines:
+    - "&b&lTeam Allies"
+    - "&8Click to view Team Allies"
+  image:
+    enabled: false
+    url: " "
+
+member:
+  lines:
+    - "&a&lTeam Members"
+    - "&8Click to view Team Members"
+  image:
+    enabled: false
+    url: " "

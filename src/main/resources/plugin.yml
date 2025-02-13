@@ -6,6 +6,8 @@ description: "A Addon plugin for BetterTeams of (v4.10.0)"
 author: ItsJustLime
 website: https://discord.gg/rVsUJ4keZN
 
+softdepend:
+  - Floodgate
 depend:
   - BetterTeams
 commands:

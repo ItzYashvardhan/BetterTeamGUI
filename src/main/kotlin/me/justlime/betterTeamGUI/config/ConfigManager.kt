@@ -10,6 +10,9 @@ object ConfigManager {
     private val plugin = pluginInstance
 
     init {
+        if (!plugin.dataFolder.exists()) plugin.dataFolder.mkdir()
+        val formDir = File(plugin.dataFolder, "form")
+        if (!formDir.exists()) formDir.mkdirs()
         plugin.saveDefaultConfig()
         getConfig(JFiles.CONFIG)
     }
@@ -19,9 +22,7 @@ object ConfigManager {
     }
 
     fun getConfig(configFile: JFiles): FileConfiguration {
-        if (!plugin.dataFolder.exists()) plugin.dataFolder.mkdir()
         val file = getFile(configFile)
-
         if (!file.exists()) {
             plugin.logger.log(Level.WARNING, "File not found: ${file.name}. Falling back to default or generating new.")
             plugin.saveResource(configFile.filename, false)

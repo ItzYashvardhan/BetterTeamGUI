@@ -1,0 +1,59 @@
+main:
+  title: "{player} {team} Team"
+  text: ""
+chat:
+  lines:
+    - "&f&lToggle Team Chat"
+    - "&9Active {chat} "
+
+home:
+  lines:
+    - "&2&lHome"
+    - "Teleport to Team Home"
+
+
+balance:
+  lines:
+    - "&a&lTransaction"
+    - "${balance} Balance "
+
+
+warp:
+  lines:
+    - "&b&lWarp"
+    - "View Team Warp"
+
+members:
+  lines:
+    - "&1&lTeam Members"
+    - "View Team Members"
+
+enderchest:
+  lines:
+    - "&d&lTeam Enderchest"
+    - "&9Open Team Enderchest"
+
+pvp:
+  lines:
+    - "&c&lTeam PvP"
+    - "Toggle Team PvP"
+
+ally:
+  lines:
+    - "&b&lAllies"
+    - "View Team Allies"
+
+leave:
+  lines:
+    - "&c&lLeave Team"
+    - "Click to Leave Team"
+
+list:
+  lines:
+    - "&d&lGlobal Teams"
+    - "&8View Active Team List "
+
+setting:
+  lines:
+    - "&cTeam Setting"
+    - "Change Team Setting"

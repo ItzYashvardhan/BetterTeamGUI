@@ -4,16 +4,16 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
+import me.justlime.betterTeamGUI.config.Config.TeamLBView.scoreTeam
 import me.justlime.betterTeamGUI.config.Service
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.meta.SkullMeta
 
-class TeamLeaderBoard(rows: Int, title: String, val team: Team, val teamPlayer: TeamPlayer) : GUIHandler {
+class TeamLeaderBoard(rows: Int, title: String, val teamPlayer: TeamPlayer) : GUIHandler {
     enum class SortType {
         MONEY, SCORE
     }
@@ -26,18 +26,12 @@ class TeamLeaderBoard(rows: Int, title: String, val team: Team, val teamPlayer: 
         val backSlot = Config.TeamLBView.backSlot
         val backSlots = Config.TeamLBView.backSlots
         val backSection = Config.backItem
-        GUIManager.loadItem(backSection, inventory, team, if (backSlots.isEmpty()) listOf(backSlot) else backSlots, teamPlayer)
+        GUIManager.createCertainItem(backSection, backSlot, backSlots, inventory)
+
         val sortItem = Config.TeamLBView.sortType
-        val material = Material.valueOf(sortItem.getString("item") ?: "PAPER")
-        val name = Service.applyLocalPlaceHolder(sortItem.getString("name")?.replace("{sort_type}", sortType.name) ?: "", team, teamPlayer)
-        val newLore = sortItem.getStringList("lore").map {
-            it.replace("{sort_type}", sortType.name)
-            Service.applyLocalPlaceHolder(it, team, teamPlayer)
-        }
-        val glow = sortItem.getBoolean("glow")
-        GUIManager.createItem(material, name, newLore, glow)
         val slot = sortItem.getInt("slot")
-        inventory.setItem(slot, GUIManager.createItem(material, name, newLore, glow))
+        val slots = sortItem.getIntegerList("slot")
+        GUIManager.createCertainItem(sortItem, slot, slots, inventory)
 
         val balanceTeam = Config.TeamLBView.balanceTeam
         val scoreTeam = Config.TeamLBView.scoreTeam
@@ -46,33 +40,14 @@ class TeamLeaderBoard(rows: Int, title: String, val team: Team, val teamPlayer: 
         val sortedTeamByScore = Team.getTeamManager().sortTeamsByScore()
         when (this.sortType) {
             SortType.MONEY -> {
-                sortedTeamByBalance.forEachIndexed() { index, it ->
-                    val balTeam = Team.getTeam(it) ?: return
-                    val owner = balTeam.members.getRank(PlayerRank.OWNER).first()
-                    val name = balanceTeam.getString("name")?.replace("{pos}", "${index + 1}") ?: " "
-                    val lore = balanceTeam.getStringList("lore").map { Service.applyLocalPlaceHolder(it, balTeam, teamPlayer) }.toMutableList()
-
-                    val item = GUIManager.createHeadItem(team, owner.player, lore)
-                    val itemMeta = item.itemMeta
-                    itemMeta?.setDisplayName(Service.applyLocalPlaceHolder(name, balTeam, teamPlayer))
-                    item.itemMeta = itemMeta
-                    val slot = inventory.firstEmpty()
-                    inventory.setItem(slot, item)
+                sortedTeamByBalance.forEachIndexed { index, it ->
+                    addItem(index, it)
                 }
             }
 
             SortType.SCORE -> {
                 sortedTeamByScore.forEachIndexed { index, it ->
-                    val scTeam = Team.getTeam(it) ?: return
-                    val owner = scTeam.members.getRank(PlayerRank.OWNER).first()
-                    val name = scoreTeam.getString("name")?.replace("{pos}", "${index + 1}") ?: " "
-                    val lore = scoreTeam.getStringList("lore").map { Service.applyLocalPlaceHolder(it, scTeam, teamPlayer) }.toMutableList()
-                    val item = GUIManager.createHeadItem(team, owner.player, lore)
-                    val itemMeta = item.itemMeta
-                    itemMeta?.setDisplayName(Service.applyLocalPlaceHolder(name, scTeam, teamPlayer))
-                    item.itemMeta = itemMeta
-                    val slot = inventory.firstEmpty()
-                    inventory.setItem(slot, item)
+                    addItem(index, it)
                 }
             }
         }
@@ -103,7 +78,7 @@ class TeamLeaderBoard(rows: Int, title: String, val team: Team, val teamPlayer: 
             GUIManager.openTeamGUI(player)
             return
         }
-        if(event.currentItem?.type == Material.PLAYER_HEAD) {
+        if (event.currentItem?.type == Material.PLAYER_HEAD) {
             val headOwner = (event.currentItem?.itemMeta as SkullMeta).owningPlayer ?: return
             val team = Team.getTeam(headOwner) ?: return
             val teamPlayer = team.getTeamPlayer(headOwner) ?: return
@@ -113,11 +88,22 @@ class TeamLeaderBoard(rows: Int, title: String, val team: Team, val teamPlayer: 
 
     }
 
-    override fun onClose(event: InventoryCloseEvent) {
-    }
-
     override fun getInventory(): Inventory {
         return inventory
+    }
+
+    private fun addItem(index: Int, it: String) {
+        val sortedTeam = Team.getTeam(it) ?: return
+        val owner = sortedTeam.members.getRank(PlayerRank.OWNER).first()
+        val name = scoreTeam.getString("name")?.replace("{pos}", "${index + 1}") ?: " "
+        val lore = scoreTeam.getStringList("lore").map { Service.applyLocalPlaceHolder(it, sortedTeam, teamPlayer) }.toMutableList()
+        val item = GUIManager.createHeadItem(sortedTeam, owner.player, lore)
+
+        val itemMeta = item.itemMeta
+        itemMeta?.setDisplayName(Service.applyLocalPlaceHolder(name, sortedTeam, teamPlayer))
+        item.itemMeta = itemMeta
+        val itemSlot = inventory.firstEmpty()
+        inventory.setItem(itemSlot, item)
     }
 
 }

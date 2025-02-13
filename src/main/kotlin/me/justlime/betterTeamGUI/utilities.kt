@@ -2,8 +2,10 @@ package me.justlime.betterTeamGUI
 
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
+import org.geysermc.floodgate.api.FloodgateApi
 
 fun getPlayerHead(offlinePlayer: OfflinePlayer): ItemStack {
 
@@ -18,4 +20,8 @@ fun getPlayerHead(offlinePlayer: OfflinePlayer): ItemStack {
         playerHead.itemMeta = meta
     }
     return playerHead
+}
+
+fun isBedrockPlayer(player: Player): Boolean {
+    return FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
 }

@@ -17,6 +17,7 @@ class BetterTeamGUI : JavaPlugin() {
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         pluginInstance = this
+//        val a = SkinsRestorerProvider.get()
         Config.reload()
 
         CommandManager.register() //Initialize

@@ -6,6 +6,7 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.getPlayerHead
+import me.justlime.betterTeamGUI.isBedrockPlayer
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -95,9 +96,28 @@ object GUIManager {
         return playerHeadItem
     }
 
+    fun createCertainItem(itemConfiguration: ConfigurationSection, itemSlot: Int, itemSlots: List<Int>, inventory: Inventory,) {
+        val backMaterial = Material.valueOf(itemConfiguration.getString("item") ?: "PAPER")
+        val backName = Service.applyColors(itemConfiguration.getString("name") ?: " ")
+        val backLore = itemConfiguration.getStringList("lore").map { Service.applyColors(it) }
+        val backGlow = itemConfiguration.getBoolean("glow")
+        if (itemSlots.isNotEmpty()) {
+            itemSlots.forEach { inventory.setItem(it, createItem(backMaterial, backName, backLore, backGlow)) }
+        }
+        inventory.setItem(itemSlot, createItem(backMaterial, backName, backLore, backGlow))
+
+    }
+
     fun openTeamGUI(sender: Player) {
         val isInTeam = Team.getTeamManager().isInTeam(sender)
+
+
+
         if (isInTeam) {
+            if (isBedrockPlayer(sender)){
+                BForm.openTeamForm(sender)
+                return
+            }
             val team = Team.getTeam(sender.name) ?: return
             val teamPlayer = team.getTeamPlayer(sender) ?: return
             val row = Config.TeamSelfView.row
@@ -105,6 +125,10 @@ object GUIManager {
             val inventory = TeamSelfGUI(row, title)
             sender.openInventory(inventory.inventory)
         } else {
+            if (isBedrockPlayer(sender)){
+                BForm.openTeamListForm(sender)
+                return
+            }
             val title = Config.TeamListView.title
             val row = Config.TeamListView.row
             val gui = TeamListGUI(row, title).inventory
@@ -181,10 +205,10 @@ object GUIManager {
         sender.openInventory(otherInventory.inventory)
     }
 
-    fun openTeamLeaderBoardGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
-        val title = Service.applyLocalPlaceHolder(Config.TeamLBView.title, team, teamPlayer)
+    fun openTeamLeaderBoardGUI(sender: Player, teamPlayer: TeamPlayer) {
+        val title = Service.applyColors(Config.TeamLBView.title)
         val row = Config.TeamLBView.row
-        val leaderBoardInventory = TeamLeaderBoard(row, title, team, teamPlayer)
+        val leaderBoardInventory = TeamLeaderBoard(row, title, teamPlayer)
         sender.openInventory(leaderBoardInventory.inventory)
     }
 

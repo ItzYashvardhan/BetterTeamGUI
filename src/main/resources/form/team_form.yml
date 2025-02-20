@@ -2,58 +2,69 @@ main:
   title: "{player} {team} Team"
   text: ""
 chat:
+  enabled: true
   lines:
     - "&f&lToggle Team Chat"
     - "&9Active {chat} "
 
 home:
+  enabled: true
   lines:
     - "&2&lHome"
     - "Teleport to Team Home"
 
 
 balance:
+  enabled: true
   lines:
     - "&a&lTransaction"
     - "${balance} Balance "
 
 
 warp:
+  enabled: true
   lines:
     - "&b&lWarp"
     - "View Team Warp"
 
 members:
+  enabled: true
   lines:
     - "&1&lTeam Members"
     - "View Team Members"
 
 enderchest:
+  enabled: true
   lines:
     - "&d&lTeam Enderchest"
     - "&9Open Team Enderchest"
 
 pvp:
+  enabled: true
   lines:
     - "&c&lTeam PvP"
     - "Toggle Team PvP"
 
 ally:
+  enabled: true
   lines:
     - "&b&lAllies"
     - "View Team Allies"
 
 leave:
+  enabled: true
   lines:
     - "&c&lLeave Team"
     - "Click to Leave Team"
 
 list:
+  enabled: true
   lines:
     - "&d&lGlobal Teams"
     - "&8View Active Team List "
 
 setting:
+  enabled: true
   lines:
     - "&cTeam Setting"
     - "Change Team Setting"

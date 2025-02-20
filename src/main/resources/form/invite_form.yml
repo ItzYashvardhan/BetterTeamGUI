@@ -1,0 +1,11 @@
+main:
+  title: "Teams Members"
+  text:
+    - "Click to Invite Member to {team}"
+
+playerBtn:
+  lines:
+    - "&l{player}"
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible

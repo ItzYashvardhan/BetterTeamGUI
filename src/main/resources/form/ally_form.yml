@@ -1,0 +1,12 @@
+# #GUI Setting For team ally (open using /teams ally)
+main:
+  title: "Team Allies"
+
+allies:
+  enabled: true
+  lines:
+    - "{team}"
+  #Team Owner Avatar
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible

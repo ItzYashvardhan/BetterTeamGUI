@@ -1,0 +1,25 @@
+#GUI Setting For team list (open using /teams)
+main:
+  title: "Teams List"
+  text: ""
+
+# Display Team Info on Team List GUI
+teams:
+  enabled: true
+  lines:
+    - "&l{team}"
+    - "&8Click to view {team} Team"
+  #Team Owner Avatar
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible
+
+# Display Only Those Player, Who are not in any Team
+create:
+  enabled: true
+  lines:
+    - "&a&lCreate Team"
+  image:
+    enabled: false
+    url: ""
+

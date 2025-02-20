@@ -1,0 +1,28 @@
+#GUI Setting For team balance (open using /teams balance)
+main:
+  title: "Team Balance"
+  text: ""
+
+# Amount
+label: Amount
+placeholder: 100
+
+withdraw:
+  title: "Withdraw Money"
+  enabled: true
+  lines:
+    - "&eWithdraw"
+  image:
+    enabled: false
+    url: ""
+
+deposit:
+  title: "Deposit Money"
+  enabled: true
+  lines:
+    - "&aDeposit"
+  image:
+    enabled: false
+    url: ""
+
+

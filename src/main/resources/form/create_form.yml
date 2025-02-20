@@ -1,0 +1,8 @@
+main:
+  title: "Create Team"
+  text:
+    - "Enter Team Name"
+    - "Team Name: {team}"
+
+label: "Enter Your Team Name"
+placeholder: "MyTeam"

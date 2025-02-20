@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "me.justlime"
-version = "1.2"
+version = "1.3"
 
 repositories {
     mavenCentral()
@@ -18,9 +18,8 @@ repositories {
         name = "codemc"
     }
     maven("https://jitpack.io")
-    maven {
-        url = uri("https://repo.opencollab.dev/main/")
-    }
+    maven("https://repo.opencollab.dev/main/")
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 
 }
 
@@ -30,11 +29,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
+    compileOnly ("me.clip:placeholderapi:2.11.6")
 }
 
-tasks.withType<Jar> {
-}
-
+tasks.withType<Jar> {}
 
 val targetJavaVersion = 17
 kotlin {

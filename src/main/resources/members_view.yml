@@ -21,7 +21,13 @@ member:
     lore:
       - "&fMember"
 
-## Added to the last line and only visible to higher roles
+#visible to admins only
+invite:
+  name: "§aInvite Player"
+  item: LIME_STAINED_GLASS_PANE
+  glow: false
+
+#visible to admins only (added to last line)
 manage:
     lore:
       - " "

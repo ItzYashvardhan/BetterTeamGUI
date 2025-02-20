@@ -17,6 +17,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+import javax.swing.text.html.HTML.Tag.S
 
 object GUIManager {
 
@@ -96,7 +97,7 @@ object GUIManager {
         return playerHeadItem
     }
 
-    fun createCertainItem(itemConfiguration: ConfigurationSection, itemSlot: Int, itemSlots: List<Int>, inventory: Inventory,) {
+    fun createCertainItem(itemConfiguration: ConfigurationSection, itemSlot: Int, itemSlots: List<Int>, inventory: Inventory) {
         val backMaterial = Material.valueOf(itemConfiguration.getString("item") ?: "PAPER")
         val backName = Service.applyColors(itemConfiguration.getString("name") ?: " ")
         val backLore = itemConfiguration.getStringList("lore").map { Service.applyColors(it) }
@@ -111,10 +112,8 @@ object GUIManager {
     fun openTeamGUI(sender: Player) {
         val isInTeam = Team.getTeamManager().isInTeam(sender)
 
-
-
         if (isInTeam) {
-            if (isBedrockPlayer(sender)){
+            if (isBedrockPlayer(sender)) {
                 BForm.openTeamForm(sender)
                 return
             }
@@ -125,7 +124,7 @@ object GUIManager {
             val inventory = TeamSelfGUI(row, title)
             sender.openInventory(inventory.inventory)
         } else {
-            if (isBedrockPlayer(sender)){
+            if (isBedrockPlayer(sender)) {
                 BForm.openTeamListForm(sender)
                 return
             }
@@ -145,18 +144,33 @@ object GUIManager {
         Bukkit.getPlayer(sender.name)?.openInventory(gui)
     }
 
-    fun openTeamCreateGUI(sender: Player) {
-
-    }
-
     fun openTeamMemberGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamMemberForm(sender, team)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamMemberView.title, team, teamPlayer)
         val row = Config.TeamMemberView.row
         val memberInventory = TeamMemberGUI(row, title, team, teamPlayer)
         sender.openInventory(memberInventory.inventory)
     }
 
+    fun openTeamInviteGUI(sender: Player, team: Team,teamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamMemberForm(sender, team)
+            return
+        }
+        val title = "§lInvite Player"
+        val row = 6
+        val inviteInventory = InviteGUI(row, title, team, teamPlayer)
+        sender.openInventory(inviteInventory.inventory)
+    }
+
     fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamMemberForm(sender, team)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamMemberManagementView.title, team, teamPlayer)
         val row = Config.TeamMemberManagementView.row
         val memberInventory = TeamMemberManagementGUI(row, title, team, teamPlayer)
@@ -164,6 +178,10 @@ object GUIManager {
     }
 
     fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamAllyForm(sender, team)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamAllyView.title, team, teamPlayer)
         val row = Config.TeamAllyView.row
         val allyInventory = TeamAllyGUI(row, title, team, teamPlayer)
@@ -171,8 +189,13 @@ object GUIManager {
     }
 
     fun openTeamWarpGUI(sender: Player) {
+
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamWarpForm(team, teamPlayer)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamWarpView.title, team, teamPlayer)
         val row = Config.TeamWarpView.row
         val warpInventory = TeamWarpGUI(row, title)
@@ -191,6 +214,10 @@ object GUIManager {
     fun openTeamBalanceGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return
         val teamPlayer = team.getTeamPlayer(sender) ?: return
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamBalanceForm(team, teamPlayer)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamBalanceView.title, team, teamPlayer)
         val row = Config.TeamBalanceView.row
         val balanceInventory = TeamBalanceGUI(row, title)
@@ -198,7 +225,10 @@ object GUIManager {
     }
 
     fun openTeamOtherGUI(sender: Player, oTeam: Team, teamPlayer: TeamPlayer) {
-
+        if (isBedrockPlayer(sender)) {
+            BForm.openTeamOtherForm(sender, oTeam)
+            return
+        }
         val title = Service.applyLocalPlaceHolder(Config.TeamOtherView.title, oTeam, teamPlayer)
         val row = Config.TeamOtherView.row
         val otherInventory = TeamOtherGUI(row, title, oTeam, teamPlayer)

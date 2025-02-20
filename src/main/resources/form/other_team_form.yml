@@ -23,3 +23,12 @@ member:
   image:
     enabled: false
     url: " "
+# Shown to only those who are not in the team
+join:
+  lines:
+    - "&a&lJoin Team"
+    - "&8Click to Join Team"
+  image:
+    enabled: false
+    url: " "
+

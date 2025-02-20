@@ -23,5 +23,6 @@ fun getPlayerHead(offlinePlayer: OfflinePlayer): ItemStack {
 }
 
 fun isBedrockPlayer(player: Player): Boolean {
-    return FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
+    return if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
+    else false
 }

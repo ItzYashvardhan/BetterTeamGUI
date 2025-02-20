@@ -5,6 +5,7 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.isBedrockPlayer
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -29,9 +30,9 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         }
 
         if (args[0] == "lb") {
+            return true
             val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
             GUIManager.openTeamLeaderBoardGUI(sender, teamPlayer)
-            return true
         }
         val team = Team.getTeam(sender.name) ?: return true
         val playerTeam = team.getTeamPlayer(sender) ?: return true
@@ -42,6 +43,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
             Config.reload()
+
             return true
         }
         if (args[0] == "warp" && sender.hasPermission("betterteamgui.use.warps")) {

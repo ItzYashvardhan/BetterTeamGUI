@@ -7,14 +7,31 @@ owner:
   lines:
     - "&l{player}"
     - "&c&lOwner"
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible
 
 admin:
   lines:
     - "&l{player}"
     - "&cAdmin"
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible
 
 member:
   lines:
     - "{player}"
     - "&8Member"
+  image:
+    enabled: true
+    url: "" # Leave Blank To Use Player Avatar if possible
+
+#Only show to admins
+invite:
+  lines:
+    - "Invite"
+  image:
+    enabled: false
+    url: ""
 

@@ -1,0 +1,14 @@
+#GUI Setting For team leave (open using /teams leave)
+main:
+  title: "Leave Team"
+  text: "Are You sure you want to leave {team}?"
+
+#Confirm Item
+confirm:
+  lines:
+    - "&cLeave"
+
+#Cancel Item
+cancel:
+  lines:
+    - "&cCancel"

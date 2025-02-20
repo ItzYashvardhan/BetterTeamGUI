@@ -1,6 +1,7 @@
 background: WHITE_STAINED_GLASS_PANE
 ##Display on Main GUI
 
+#For Java GUI
 back-item:
   item: FLOWER_BANNER_PATTERN
   name: "&cBack"
@@ -17,7 +18,14 @@ back-button:
     enabled: false
     url: " "
 
+#Possible Placeholder [{player},{uuid}]
+# Avatar: "https://crafatar.com/avatars/{uuid}?size=128&overlay"
+Avatar: "https://mc-heads.net/avatar/%skinsrestorer_texture_id_or_steve%.png"
+# Note It is recommemded to use %skinsrestorer_texture_id_or_steve% as placeholder for avatar
 
 team-join: "&aYou have joined {team} Team"
 team-closed: "&cYou are not invited to join {team} team"
 team-already-joined: "&cYou are already in {team} Team"
+
+#Don't change this value unless you know what it means
+version: 1.3

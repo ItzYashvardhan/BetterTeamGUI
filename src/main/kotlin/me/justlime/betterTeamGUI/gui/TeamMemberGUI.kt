@@ -30,7 +30,7 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             val itemMeta = item.itemMeta
             itemMeta?.apply {
                 var cLore: MutableList<String> = mutableListOf()
-                var name: String = ""
+                var name = ""
                 val isInSameTeam = team.getTeamPlayer(teamPlayer.player) != null
 
                 if (it.rank == PlayerRank.DEFAULT) {
@@ -56,7 +56,25 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             }
             item.itemMeta = itemMeta
             inventory.addItem(item)
+
         }
+
+        val teamInviteItem = Config.TeamMemberView.invite
+        val teamSize = team.teamLimit
+        val memberSize = team.members.size()
+        if (teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) {
+            for (i in memberSize until teamSize) {
+                val emptySlot = inventory.firstEmpty()
+                val teamItem = GUIManager.createItem(
+                    Material.valueOf(teamInviteItem.getString("item") ?: "PAPER"),
+                    Service.applyColors(teamInviteItem.getString("name") ?: " "),
+                    teamInviteItem.getStringList("lore").map { Service.applyColors(it) },
+                    teamInviteItem.getBoolean("glow")
+                )
+                inventory.setItem(emptySlot, teamItem)
+            }
+        }
+
         val backSlot = Config.TeamMemberView.backSlot
         val backSlots = Config.TeamMemberView.backSlots
         val backSection = Config.backItem
@@ -85,6 +103,17 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             if (teamPlayer.rank == PlayerRank.OWNER && clickedTeamPlayer.rank == PlayerRank.OWNER) return
             GUIManager.openTeamMemberManagementGUI(player, team, clickedTeamPlayer)
         }
+        val teamInviteItem = Config.TeamMemberView.invite
+        val teamItem = GUIManager.createItem(
+            Material.valueOf(teamInviteItem.getString("item") ?: "PAPER"),
+            Service.applyColors(teamInviteItem.getString("name") ?: " "),
+            teamInviteItem.getStringList("lore").map { Service.applyColors(it) },
+            teamInviteItem.getBoolean("glow")
+        )
+        if (clickedItem == teamItem && teamPlayer.rank != PlayerRank.DEFAULT) {
+            GUIManager.openTeamInviteGUI(player, team, teamPlayer)
+        }
+
     }
 
     override fun onClose(event: InventoryCloseEvent) {

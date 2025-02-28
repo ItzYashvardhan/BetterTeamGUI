@@ -13,6 +13,8 @@ deposit:
       - 10
       - 11
       - 12
+    flags:
+      - HIDE_ENCHANTS
 
 # Withdraw Item
 withdraw:
@@ -23,3 +25,5 @@ withdraw:
       - 14
       - 15
       - 16
+    flags:
+      - HIDE_ENCHANTS

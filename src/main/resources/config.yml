@@ -8,6 +8,11 @@ back-item:
   glow: true
   lore:
     - "&7Click to Back"
+  #Hide flags option
+  flags:
+    - HIDE_ADDITIONAL_TOOLTIP
+    - HIDE_ENCHANTS
+
 
 #For Bedrock Form
 back-button:

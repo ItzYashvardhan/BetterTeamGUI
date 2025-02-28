@@ -26,7 +26,9 @@ class TeamWarpGUI(row: Int, title: String) : GUIHandler {
         warps.forEach { warp ->
             val name = Service.applyLocalPlaceHolder(warpItem.getString("name")?.replace("{warp}", warp.name) ?: warp.name, team, teamPlayer)
             val lore = warpItem.getStringList("lore").map { it.replace("{warp}", warp.name); Service.applyLocalPlaceHolder(it, team, teamPlayer) }
-            val item = GUIManager.createItem(material, name, lore, warpItem.getBoolean("glint"))
+            val glint = warpItem.getBoolean("glint")
+            val flags = warpItem.getStringList("flags")
+            val item = GUIManager.createItem(material, name, lore, glint, flags)
             val slot = inventory.firstEmpty()
             inventory.setItem(slot, item)
             warpSlot[slot] = warp

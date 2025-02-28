@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "me.justlime"
-version = "1.3"
+version = "1.4"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
     compileOnly("com.github.booksaw:BetterTeams:4.10.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
@@ -34,7 +34,7 @@ dependencies {
 
 tasks.withType<Jar> {}
 
-val targetJavaVersion = 17
+val targetJavaVersion = 8
 kotlin {
     jvmToolchain(targetJavaVersion)
 }

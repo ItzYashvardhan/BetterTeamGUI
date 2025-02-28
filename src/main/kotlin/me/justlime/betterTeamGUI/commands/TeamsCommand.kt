@@ -21,6 +21,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             GUIManager.openTeamGUI(sender)
             return true
         }
+
         if (args[0] == "view" && sender.hasPermission("betterteamgui.use.view")) {
             val teamName = args.getOrNull(1) ?: return true
             val teamToView = Team.getTeam(teamName) ?: return true

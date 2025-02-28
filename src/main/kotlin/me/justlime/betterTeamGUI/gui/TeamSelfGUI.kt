@@ -35,7 +35,6 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         sections.values.forEach { loadItem(it, inventory, team, mutableListOf(), teamPlayer) }
-
     }
 
     override fun onClick(event: InventoryClickEvent) {
@@ -44,7 +43,6 @@ class TeamSelfGUI(row: Int, title: String) : GUIHandler {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val slot = event.slot
-        val path = "slot"
         val allySlot = sections[ItemSlot.ALLY]?.getString("slot", " ")?.toIntOrNull()
         val chatSlot = sections[ItemSlot.CHAT]?.getString("slot", " ")?.toIntOrNull()
         val homeSlot = sections[ItemSlot.HOME]?.getString("slot", " ")?.toIntOrNull()

@@ -17,7 +17,6 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-import javax.swing.text.html.HTML.Tag.S
 
 object GUIManager {
 
@@ -26,7 +25,6 @@ object GUIManager {
         val itemStack = ItemStack(item)
         val itemMeta = itemStack.itemMeta.apply {
             this?.itemFlags?.clear()
-            this?.isHideTooltip = true
         }
         itemStack.itemMeta = itemMeta
         for (i in 0 until inventory.size) {
@@ -37,7 +35,7 @@ object GUIManager {
 
     }
 
-    fun createItem(material: Material, name: String, lore: List<String>, glint: Boolean): ItemStack {
+    fun createItem(material: Material, name: String, lore: List<String>, glint: Boolean, flags: MutableList<String>): ItemStack {
         return ItemStack(material).apply {
             itemMeta = itemMeta?.apply {
                 setDisplayName(name)
@@ -45,12 +43,17 @@ object GUIManager {
 
                 // Apply enchantment for glint effect
                 if (glint) {
-                    addEnchant(Enchantment.UNBREAKING, 1, true)
-                    addItemFlags(ItemFlag.HIDE_ENCHANTS)
+                    addEnchant(Enchantment.DURABILITY, 1, true)
                 }
-                addItemFlags(ItemFlag.HIDE_UNBREAKABLE)
-                addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
-                addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                if (flags.isNotEmpty()) {
+                    flags.forEach {
+                        try {
+                            addItemFlags(ItemFlag.valueOf(it))
+                        } catch (e: IllegalArgumentException) {
+                            pluginInstance.logger.warning("Unknown flag: $it at item: $name")
+                        }
+                    }
+                }
 
             }
         }
@@ -64,24 +67,41 @@ object GUIManager {
         player: TeamPlayer,
         lore: MutableList<String> = mutableListOf()
     ): List<Int> {
-        val material = Material.valueOf(section.getString("item") ?: "PAPER")
+        val flags = section.getStringList("flags")
+        val material = try{
+            Material.valueOf(section.getString("item") ?: "PAPER")
+        } catch (e: Exception){
+            pluginInstance.logger.warning("Invalid material: ${section.getString("item")} at item: ${section.getString("name")}")
+            Material.PAPER
+        }
         val name = Service.applyLocalPlaceHolder(section.getString("name") ?: "&aItem", team, player)
         val newLore = if (lore.isEmpty()) section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) } else lore
         val glow = section.getBoolean("glow")
         val slotList = section.getIntegerList("slot")
-        val slot = section.getString("slot", " ")?.toIntOrNull()
-        val item = createItem(material, name, newLore, glow)
+        val item = createItem(material, name, newLore, glow, flags)
         if (slots.isNotEmpty()) {
             slots.forEach { inventory.setItem(it, item) }
             return slots
         }
         if (slotList.isNotEmpty()) {
-            slotList.forEach { inventory.setItem(it, item) }
-            return slotList
+            try {
+                slotList.forEach {
+                    inventory.setItem(it, item)
+                }
+                return slotList
+            } catch (e: Exception) {
+                pluginInstance.logger.warning("Invalid slot: $slotList at item: $name")
+            }
         }
-        if (slot == null) return listOf()
-        inventory.setItem(slot, item)
-        return listOf(slot)
+        try {
+            val slot = section.getString("slot", " ")?.toIntOrNull()
+            if (slot == null) return listOf()
+            inventory.setItem(slot, item)
+            return listOf(slot)
+        } catch (e: Exception) {
+            pluginInstance.logger.warning("Invalid slot: ${section.getString("slot")} at item: ${section.getString("name")}")
+            return listOf()
+        }
     }
 
     fun createHeadItem(team: Team, offlinePlayer: OfflinePlayer, itemLore: MutableList<String> = mutableListOf()): ItemStack {
@@ -102,10 +122,11 @@ object GUIManager {
         val backName = Service.applyColors(itemConfiguration.getString("name") ?: " ")
         val backLore = itemConfiguration.getStringList("lore").map { Service.applyColors(it) }
         val backGlow = itemConfiguration.getBoolean("glow")
+        val flags = itemConfiguration.getStringList("flags")
         if (itemSlots.isNotEmpty()) {
-            itemSlots.forEach { inventory.setItem(it, createItem(backMaterial, backName, backLore, backGlow)) }
+            itemSlots.forEach { inventory.setItem(it, createItem(backMaterial, backName, backLore, backGlow, flags)) }
         }
-        inventory.setItem(itemSlot, createItem(backMaterial, backName, backLore, backGlow))
+        inventory.setItem(itemSlot, createItem(backMaterial, backName, backLore, backGlow, flags))
 
     }
 
@@ -155,7 +176,7 @@ object GUIManager {
         sender.openInventory(memberInventory.inventory)
     }
 
-    fun openTeamInviteGUI(sender: Player, team: Team,teamPlayer: TeamPlayer) {
+    fun openTeamInviteGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamMemberForm(sender, team)
             return
@@ -247,5 +268,4 @@ object GUIManager {
             player.closeInventory()
         }, 2)
     }
-
 }

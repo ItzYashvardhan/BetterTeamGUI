@@ -64,14 +64,7 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
         val memberSize = team.members.size()
         if (teamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.ADMIN) {
             for (i in memberSize until teamSize) {
-                val emptySlot = inventory.firstEmpty()
-                val teamItem = GUIManager.createItem(
-                    Material.valueOf(teamInviteItem.getString("item") ?: "PAPER"),
-                    Service.applyColors(teamInviteItem.getString("name") ?: " "),
-                    teamInviteItem.getStringList("lore").map { Service.applyColors(it) },
-                    teamInviteItem.getBoolean("glow")
-                )
-                inventory.setItem(emptySlot, teamItem)
+                GUIManager.loadItem(teamInviteItem, inventory, team, listOf(), teamPlayer)
             }
         }
 
@@ -104,12 +97,7 @@ class TeamMemberGUI(rows: Int, title: String, val team: Team, val teamPlayer: Te
             GUIManager.openTeamMemberManagementGUI(player, team, clickedTeamPlayer)
         }
         val teamInviteItem = Config.TeamMemberView.invite
-        val teamItem = GUIManager.createItem(
-            Material.valueOf(teamInviteItem.getString("item") ?: "PAPER"),
-            Service.applyColors(teamInviteItem.getString("name") ?: " "),
-            teamInviteItem.getStringList("lore").map { Service.applyColors(it) },
-            teamInviteItem.getBoolean("glow")
-        )
+        val teamItem = GUIManager.loadItem(teamInviteItem, inventory, team, listOf(), teamPlayer)
         if (clickedItem == teamItem && teamPlayer.rank != PlayerRank.DEFAULT) {
             GUIManager.openTeamInviteGUI(player, team, teamPlayer)
         }

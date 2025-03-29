@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
-    compileOnly("com.github.booksaw:BetterTeams:4.10.0")
+    compileOnly("com.github.booksaw:BetterTeams:4.11.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")

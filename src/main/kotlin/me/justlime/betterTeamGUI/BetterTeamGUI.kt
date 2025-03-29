@@ -1,6 +1,6 @@
 package me.justlime.betterTeamGUI
 
-import com.booksaw.betterTeams.metrics.Metrics
+import me.clip.placeholderapi.metrics.bukkit.Metrics
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIHandler

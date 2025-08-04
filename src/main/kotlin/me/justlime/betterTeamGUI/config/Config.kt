@@ -9,7 +9,6 @@ object Config {
     lateinit var teamCreateForm: FileConfiguration
     lateinit var listView: FileConfiguration
     lateinit var listForm: FileConfiguration
-    lateinit var teamView: FileConfiguration
     lateinit var teamForm: FileConfiguration
     lateinit var warpsView: FileConfiguration
     lateinit var warpForm: FileConfiguration
@@ -33,7 +32,6 @@ object Config {
         teamCreateForm = ConfigManager.getConfig(JFiles.TEAMCREATEFORM)
         listView = ConfigManager.getConfig(JFiles.LISTVIEW)
         listForm = ConfigManager.getConfig(JFiles.LISTFORM)
-        teamView = ConfigManager.getConfig(JFiles.TEAMVIEW)
         teamForm = ConfigManager.getConfig(JFiles.TEAMFORM)
         warpsView = ConfigManager.getConfig(JFiles.WARPSVIEW)
         warpForm = ConfigManager.getConfig(JFiles.TEAMWARPFORM)
@@ -51,6 +49,9 @@ object Config {
         memberForm = ConfigManager.getConfig(JFiles.TEAMMEMBER)
         memberManagementForm = ConfigManager.getConfig(JFiles.TEAMMEMBERMANAGEMENTFORM)
         inviteForm = ConfigManager.getConfig(JFiles.INVITEFORM)
+        ConfigManager.reloadFrameConfig()
+
+
     }
 
     val backItem
@@ -94,22 +95,6 @@ object Config {
         val text: MutableList<String> get() = leaveForm.getStringList("main.text").toMutableList()
         val confirm get() = leaveForm.getConfigurationSection("confirm") ?: leaveForm.createSection("confirm")
         val cancel get() = leaveForm.getConfigurationSection("cancel") ?: leaveForm.createSection("cancel")
-    }
-
-    object TeamSelfView {
-        val title get() = teamView.getString("main.title", "Teams List") ?: ""
-        val row get() = teamView.getInt("main.row", 6)
-        val chat get() = teamView.getConfigurationSection("chat") ?: teamView.createSection("chat")
-        val home get() = teamView.getConfigurationSection("home") ?: teamView.createSection("home")
-        val balance get() = teamView.getConfigurationSection("balance") ?: teamView.createSection("balance")
-        val warp get() = teamView.getConfigurationSection("warp") ?: teamView.createSection("warp")
-        val members get() = teamView.getConfigurationSection("members") ?: teamView.createSection("members")
-        val enderchest get() = teamView.getConfigurationSection("enderchest") ?: teamView.createSection("enderchest")
-        val pvp get() = teamView.getConfigurationSection("pvp") ?: teamView.createSection("pvp")
-        val ally get() = teamView.getConfigurationSection("ally") ?: teamView.createSection("ally")
-        val leave get() = teamView.getConfigurationSection("leave") ?: teamView.createSection("leave")
-        val listItem get() = teamView.getConfigurationSection("list") ?: teamView.createSection("list-item")
-        val settingItem get() = teamView.getConfigurationSection("setting") ?: teamView.createSection("setting-item")
     }
 
     object TeamSelfForm {

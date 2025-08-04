@@ -1,10 +1,11 @@
+
 plugins {
     kotlin("jvm") version "2.1.10"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "me.justlime"
-version = "1.4"
+version = "2.0"
 
 repositories {
     mavenCentral()
@@ -25,14 +26,14 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
-    compileOnly("com.github.booksaw:BetterTeams:4.11.0")
+    compileOnly("com.github.booksaw:BetterTeams:4.13.4")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
+    implementation("com.github.ItzYashvardhan:LimeFrameGUI:bc24f25616")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
-    compileOnly ("me.clip:placeholderapi:2.11.6")
+    compileOnly("me.clip:placeholderapi:2.11.6")
 }
 
-tasks.withType<Jar> {}
 
 val targetJavaVersion = 8
 kotlin {
@@ -60,7 +61,7 @@ tasks.processResources {
 tasks.register<Copy>("copyToServerPlugins") {
     dependsOn("shadowJar")  // Ensure shadowJar completes before copying
     from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
-    into("E:/Minecraft/servers/Plugin-Maker/plugins")  // Destination folder
+    into("E:/Minecraft/servers/PaperMC-1.21.4/plugins")  // Destination folder
 }
 
 // Combined task to build and copy

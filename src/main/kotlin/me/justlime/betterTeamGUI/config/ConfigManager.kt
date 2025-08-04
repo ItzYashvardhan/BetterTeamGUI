@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.config
 
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.impl.ConfigHandler
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
@@ -8,6 +9,8 @@ import java.util.logging.Level
 
 object ConfigManager {
     private val plugin = pluginInstance
+    val teamViewConfig = ConfigHandler("team_view.yml")
+
 
     init {
         if (!plugin.dataFolder.exists()) plugin.dataFolder.mkdir()
@@ -39,5 +42,9 @@ object ConfigManager {
         } catch (e: Exception) {
             plugin.logger.log(Level.SEVERE, "Could not save ${configFile.filename}: ${e.message}")
         }
+    }
+
+    fun reloadFrameConfig(){
+        teamViewConfig.reload()
     }
 }

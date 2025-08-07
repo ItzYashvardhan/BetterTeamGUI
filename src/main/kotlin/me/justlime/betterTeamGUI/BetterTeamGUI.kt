@@ -42,7 +42,7 @@ class BetterTeamGUI : JavaPlugin() {
 
     fun setupLimeFrameGUI() {
         FrameColor.colorType = ColorType.MINI_MESSAGE
-        ConfigHandler.setKeys {
+        LimeFrameAPI.setKeys {
             inventoryRows = "row"
             material = "item"
             name = "name"

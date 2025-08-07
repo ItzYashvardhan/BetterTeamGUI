@@ -9,6 +9,7 @@ import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.getPlayerHead
 import me.justlime.betterTeamGUI.isBedrockPlayer
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.models.GuiItem
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
@@ -34,6 +35,11 @@ object GUIManager {
             }
         }
 
+    }
+
+    fun getBackgroundGuiItem(): List<GuiItem> {
+        val item = ConfigManager.mainConfig.loadItems("background")
+        return item
     }
 
     fun createItem(material: Material, name: String, lore: List<String>, glint: Boolean, flags: MutableList<String>): ItemStack {
@@ -136,7 +142,8 @@ object GUIManager {
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
             val setting = ConfigManager.teamViewConfig.loadInventorySetting("main")
-            TeamSelfGUI(setting.rows, setting.title.let { Service.applyLocalPlaceHolder(it, team, teamPlayer) }).open(player = player)
+            setting.placeholderPlayer = player
+            teamSelf(setting, ConfigManager.teamViewConfig, team, teamPlayer).open(player)
         } else {
             if (isBedrockPlayer(player)) {
                 BForm.openTeamListForm(player)
@@ -202,18 +209,16 @@ object GUIManager {
         sender.openInventory(allyInventory.inventory)
     }
 
-    fun openTeamWarpGUI(sender: Player) {
-
-        val team = Team.getTeam(sender.name) ?: return
-        val teamPlayer = team.getTeamPlayer(sender) ?: return
-        if (isBedrockPlayer(sender)) {
+    fun openTeamWarpGUI(player: Player) {
+        val team = Team.getTeam(player.name) ?: return
+        val teamPlayer = team.getTeamPlayer(player) ?: return
+        if (isBedrockPlayer(player)) {
             BForm.openTeamWarpForm(team, teamPlayer)
             return
         }
-        val title = Service.applyLocalPlaceHolder(Config.TeamWarpView.title, team, teamPlayer)
-        val row = Config.TeamWarpView.row
-        val warpInventory = TeamWarpGUI(row, title)
-        sender.openInventory(warpInventory.inventory)
+        val setting = ConfigManager.teamWarpConfig.loadInventorySetting("main")
+        setting.placeholderPlayer = player
+        teamWarp(setting, ConfigManager.teamWarpConfig,team).open(player)
     }
 
     fun openTeamLeaveGUI(sender: Player) {

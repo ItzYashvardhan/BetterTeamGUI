@@ -27,9 +27,9 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
     compileOnly("com.github.booksaw:BetterTeams:4.13.4")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
-    implementation("com.github.ItzYashvardhan:LimeFrameGUI:bc24f25616")
+    implementation("com.github.ItzYashvardhan:LimeFrameGUI:cb08cba991")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
 }

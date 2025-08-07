@@ -9,7 +9,9 @@ import java.util.logging.Level
 
 object ConfigManager {
     private val plugin = pluginInstance
+    val mainConfig = ConfigHandler("config.yml")
     val teamViewConfig = ConfigHandler("team_view.yml")
+    val teamWarpConfig = ConfigHandler("warps_view.yml")
 
 
     init {
@@ -45,6 +47,8 @@ object ConfigManager {
     }
 
     fun reloadFrameConfig(){
+        mainConfig.reload()
         teamViewConfig.reload()
+        teamWarpConfig.reload()
     }
 }

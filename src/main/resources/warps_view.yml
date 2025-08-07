@@ -1,9 +1,8 @@
 #team warps GUI (open using /teams warp)
 main:
-  item: ENDER_PEARL
   title: "Teams Warps"
   row: 6
-  back-slot: 49
+  slot: 49
 
 # warp item to display on warp GUI
 warp:

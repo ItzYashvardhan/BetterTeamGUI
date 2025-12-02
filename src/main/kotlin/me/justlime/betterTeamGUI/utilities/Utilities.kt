@@ -1,5 +1,6 @@
-package me.justlime.betterTeamGUI
+package me.justlime.betterTeamGUI.utilities
 
+import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player

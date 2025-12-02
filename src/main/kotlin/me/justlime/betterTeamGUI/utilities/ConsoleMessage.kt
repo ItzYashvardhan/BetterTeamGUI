@@ -30,7 +30,7 @@
  * Discord: https://discord.gg/rVsUJ4keZN
  */
 
-package me.justlime.betterTeamGUI.Utilities
+package me.justlime.betterTeamGUI.utilities
 
 import org.bukkit.Bukkit
 

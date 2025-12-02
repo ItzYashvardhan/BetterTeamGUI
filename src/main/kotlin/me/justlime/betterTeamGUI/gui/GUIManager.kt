@@ -7,7 +7,7 @@ import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.JFiles
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.enums.JGui
-import me.justlime.betterTeamGUI.getPlayerHead
+import me.justlime.betterTeamGUI.utilities.getPlayerHead
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
@@ -15,7 +15,7 @@ import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.teamList
 import me.justlime.betterTeamGUI.gui.java.teamSelf
 import me.justlime.betterTeamGUI.gui.java.teamWarp
-import me.justlime.betterTeamGUI.isBedrockPlayer
+import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
 import me.justlime.betterTeamGUI.pluginInstance
 import net.justlime.limeframegui.impl.ConfigHandler
 import net.justlime.limeframegui.models.GuiItem
@@ -225,7 +225,7 @@ object GUIManager {
             return
         }
         TeamWarpItem.setting.placeholderPlayer = player
-        teamWarp(TeamWarpItem.setting, team).open(player)
+        teamWarp(TeamWarpItem.setting, team,teamPlayer).open(player)
     }
 
     fun openTeamLeaveGUI(sender: Player) {

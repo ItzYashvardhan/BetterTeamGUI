@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI.config
 
+import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
@@ -9,6 +10,7 @@ import java.util.logging.Level
 object ConfigManager {
 
     lateinit var config: FileConfiguration
+    lateinit var messages: FileConfiguration
     lateinit var font: FileConfiguration
     lateinit var background: FileConfiguration
     lateinit var teamCreateForm: FileConfiguration
@@ -35,6 +37,7 @@ object ConfigManager {
 
     fun load() {
         config = loadConfig(JFiles.CONFIG)
+        messages = loadConfig(JFiles.MESSAGES)
         font = loadConfig(JFiles.FONT)
         teamCreateForm = loadConfig(JFiles.TEAM_CREATE_FORM)
         listView = loadConfig(JFiles.LIST_VIEW)
@@ -67,10 +70,10 @@ object ConfigManager {
         if (!pluginInstance.dataFolder.exists()) pluginInstance.dataFolder.mkdir()
         val file = getFile(configFile)
 
-//        if (!file.exists()) {
-//            ConsoleMessage.printStep("Generated new ${file.name}")
-//            pluginInstance.saveResource(configFile.filename, false)
-//        }
+        if (!file.exists()) {
+            ConsoleMessage.printStep("Generated new ${file.name}")
+            pluginInstance.saveResource(configFile.filename, false)
+        }
         pluginInstance.saveResource(configFile.filename, true)
 
 
@@ -82,6 +85,7 @@ object ConfigManager {
         return try {
             when (configFile) {
                 JFiles.CONFIG -> config
+                JFiles.MESSAGES -> messages
                 JFiles.FONT -> font
                 JFiles.TEAM_CREATE_FORM -> teamCreateForm
                 JFiles.LIST_VIEW -> listView

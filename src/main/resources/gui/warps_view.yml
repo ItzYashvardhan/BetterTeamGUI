@@ -1,5 +1,5 @@
 main:
-  title: "<bold>%betterteams_name% Team</bold>"
+  title: "<bold>%betterteams_name% Team Warp's</bold>"
   row: 6
   font-title: true # Weather to enabled font for title
   font-name: true # Weather to enabled font for name
@@ -7,7 +7,79 @@ main:
   background:
     0:
       item: LIGHT_BLUE_STAINED_GLASS_PANE
-      slot: [ 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52 ]
+      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
     1:
       item: PURPLE_STAINED_GLASS_PANE
-      slot: [ 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53 ]
+      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53]
+
+claimable-warp:
+  item: GREEN_STAINED_GLASS_PANE
+  name: "<green>Claimable Warp Slot</green>"
+  lore:
+    - "<gray>Click to claim this warp slot.</gray>"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to claim</gray>"
+  slot: []
+
+occupied-warp:
+  name: "<b><gradient:#FFDAB4:#FFD2D2>{warp}</gradient></b>"
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkzZGZiM2FlODE3Nzc4NGE2NDU3NzlkY2EyYzEyZGZiYTEyNThjMjAyYWZkYzA0ZDg3ZDgwZjJjZWNlYTFkNyJ9fX0=
+  lore:
+    - "<gray>Teleport to <gradient:#FFDAB4:#FFD2D2>{warp}</gradient> warp.</gray>"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
+    - "<yellow>Shift-Click</yellow> <gray>to delete warp</gray>"
+  slot: []
+
+
+no-permission:
+  name: "<red>No Permission</red>"
+  item: BARRIER
+  lore:
+    - "<gray>You don't have permission to set new warp.</gray>"
+
+anvil-ui:
+  set-warp-name:
+    title: "<bold>Set Warp Name</bold>"
+    label: "<gray>Enter warp name</gray>"
+    input-item:
+      name: "<green>Enter Warp Name</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the name for your new warp.</gray>"
+    output-item:
+      name: "<green>Confirm Warp Name</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to confirm the warp name.</gray>"
+
+  enter-warp-password:
+    title: "<bold>Enter Warp Password</bold>"
+    label: "<gray>Enter warp password</gray>"
+    input-item:
+      name: "<green>Enter Warp Password</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the password for your new warp.</gray>"
+    output-item:
+      name: "<green>Confirm Warp Password</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to confirm the warp password.</gray>"
+
+  enter-warp-password-to-teleport:
+    title: "<bold>Enter Warp Password</bold>"
+    label: "<gray>Enter warp password</gray>"
+    input-item:
+      name: "<green>Enter Warp Password</green>"
+      item: PAPER/
+      lore:
+        - "<gray>Enter the password to teleport to this warp.</gray>"
+    output-item:
+      name: "<green>Confirm Warp Password</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to confirm the warp password.</gray>"
+
+

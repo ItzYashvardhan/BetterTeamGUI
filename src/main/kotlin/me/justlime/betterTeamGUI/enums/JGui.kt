@@ -57,7 +57,25 @@ sealed interface JGui {
 
     sealed interface WarpView : JGui {
         companion object {
-            const val WARP = "warp"
+            const val OCCUPIED_WARP = "occupied-warp"
+            const val CLAIMABLE_WARP = "claimable-warp"
+            const val NO_PERMISSION = "no-permission"
+
+            const val SET_WARP_NAME_TITLE = "anvil-ui.set-warp-name.title"
+            const val SET_WARP_NAME_LABEL = "anvil-ui.set-warp-name.label"
+            const val SET_WARP_NAME_INPUT_ITEM = "anvil-ui.set-warp-name.input-item"
+            const val SET_WARP_NAME_OUTPUT_ITEM = "anvil-ui.set-warp-name.output-item"
+
+            const val ENTER_WARP_PASSWORD_TITLE = "anvil-ui.enter-warp-password.title"
+            const val ENTER_WARP_PASSWORD_LABEL = "anvil-ui.enter-warp-password.label"
+            const val ENTER_WARP_PASSWORD_INPUT_ITEM = "anvil-ui.enter-warp-password.input-item"
+            const val ENTER_WARP_PASSWORD_OUTPUT_ITEM = "anvil-ui.enter-warp-password.output-item"
+
+            const val ENTER_WARP_PASSWORD_TO_TELEPORT_TITLE = "anvil-ui.enter-warp-password-to-teleport.title"
+            const val ENTER_WARP_PASSWORD_TO_TELEPORT_LABEL = "anvil-ui.enter-warp-password-to_teleport.label"
+            const val ENTER_WARP_PASSWORD_TO_TELEPORT_INPUT_ITEM = "anvil-ui.enter-warp-password-to-teleport.input-item"
+            const val ENTER_WARP_PASSWORD_TO_TELEPORT_OUTPUT_ITEM = "anvil-ui.enter-warp-password-to-teleport.output-item"
+
         }
     }
 

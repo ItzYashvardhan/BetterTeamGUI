@@ -1,17 +1,17 @@
-package me.justlime.betterTeamGUI.gui
+package me.justlime.betterTeamGUI.gui.java
 
 import com.booksaw.betterTeams.Team
-import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.TeamButton
+import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.pluginInstance
-import net.justlime.limeframegui.impl.ConfigHandler
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
-fun teamWarp(guiSetting: GUISetting, config: ConfigHandler, team: Team): ChestGUI = ChestGUI(guiSetting.rows, guiSetting.title) {
-    this.setting.placeholderPlayer = setting.placeholderPlayer
-    val warpItem = config.loadItem("warp") ?: return@ChestGUI
+fun teamWarp(guiSetting: GUISetting, team: Team): ChestGUI = ChestGUI(guiSetting.rows, guiSetting.title) {
+    val warpItem = TeamWarpItem.warpItem ?: return@ChestGUI
     onClick { it.isCancelled = true }
 
     val backgroundItem = GUIManager.getBackgroundGuiItem()
@@ -19,8 +19,8 @@ fun teamWarp(guiSetting: GUISetting, config: ConfigHandler, team: Team): ChestGU
 
     val warps = team.warps.get()
     warps.forEach { warp ->
-        val warpItemCopy = warpItem.copy() // Important other wise all display name or lore will be same
-        warpItemCopy.displayName = warpItemCopy.displayName?.replace("{warp}", warp.name)
+        val warpItemCopy = warpItem.copy() // Important otherwise all display name or lore will be same
+        warpItemCopy.name = warpItemCopy.name.replace("{warp}", warp.name)
         warpItemCopy.lore = warpItemCopy.lore.map { it.replace("{warp}", warp.name) }.toMutableList()
 
         addItem(warpItemCopy) {
@@ -32,9 +32,8 @@ fun teamWarp(guiSetting: GUISetting, config: ConfigHandler, team: Team): ChestGU
             GUIManager.closeInventory(player)
         }
     }
-    val backItem = ConfigManager.mainConfig.loadItem("back-item")
-    val backItemSlot = ConfigManager.teamWarpConfig.loadItem("main")?.slot ?: 49
+    val backItem = TeamButton.back
+    val backItemSlot = TeamButton.backSlot?.slot
     setItem(backItem, backItemSlot) {}
-
 }
 

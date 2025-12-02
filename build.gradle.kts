@@ -29,7 +29,7 @@ dependencies {
     compileOnly("com.github.booksaw:BetterTeams:4.13.4")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.bstats:bstats-bukkit:3.1.0")
-    implementation("com.github.ItzYashvardhan:LimeFrameGUI:cb08cba991")
+    implementation("com.github.ItzYashvardhan:LimeFrameGUI:09437f5859")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
 }
@@ -61,10 +61,10 @@ tasks.processResources {
 tasks.register<Copy>("copyToServerPlugins") {
     dependsOn("shadowJar")  // Ensure shadowJar completes before copying
     from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
-    into("E:/Minecraft/servers/PaperMC-1.21.4/plugins")  // Destination folder
+    into("E:/Minecraft/servers/Development/PaperMC-1.21.10/plugins")
 }
 
 // Combined task to build and copy
-tasks.register("buildAndCopy") {
+tasks.register("shadowJarCopy") {
     dependsOn("build", "copyToServerPlugins")
 }

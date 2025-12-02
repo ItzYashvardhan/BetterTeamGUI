@@ -1,54 +1,115 @@
 package me.justlime.betterTeamGUI.config
 
 import me.justlime.betterTeamGUI.pluginInstance
-import net.justlime.limeframegui.impl.ConfigHandler
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.util.logging.Level
 
 object ConfigManager {
-    private val plugin = pluginInstance
-    val mainConfig = ConfigHandler("config.yml")
-    val teamViewConfig = ConfigHandler("team_view.yml")
-    val teamWarpConfig = ConfigHandler("warps_view.yml")
 
+    lateinit var config: FileConfiguration
+    lateinit var font: FileConfiguration
+    lateinit var background: FileConfiguration
+    lateinit var teamCreateForm: FileConfiguration
+    lateinit var listView: FileConfiguration
+    lateinit var listForm: FileConfiguration
+    lateinit var teamForm: FileConfiguration
+    lateinit var teamView: FileConfiguration
+    lateinit var warpsView: FileConfiguration
+    lateinit var warpForm: FileConfiguration
+    lateinit var membersView: FileConfiguration
+    lateinit var memberForm: FileConfiguration
+    lateinit var inviteForm: FileConfiguration
+    lateinit var otherTeamView: FileConfiguration
+    lateinit var otherTeamForm: FileConfiguration
+    lateinit var leaveView: FileConfiguration
+    lateinit var leaveForm: FileConfiguration
+    lateinit var balanceView: FileConfiguration
+    lateinit var balanceForm: FileConfiguration
+    lateinit var allyView: FileConfiguration
+    lateinit var allyForm: FileConfiguration
+    lateinit var memberManagementView: FileConfiguration
+    lateinit var memberManagementForm: FileConfiguration
+    lateinit var teamLBView: FileConfiguration
 
-    init {
-        if (!plugin.dataFolder.exists()) plugin.dataFolder.mkdir()
-        val formDir = File(plugin.dataFolder, "form")
-        if (!formDir.exists()) formDir.mkdirs()
-        plugin.saveDefaultConfig()
-        getConfig(JFiles.CONFIG)
+    fun load() {
+        config = loadConfig(JFiles.CONFIG)
+        font = loadConfig(JFiles.FONT)
+        teamCreateForm = loadConfig(JFiles.TEAM_CREATE_FORM)
+        listView = loadConfig(JFiles.LIST_VIEW)
+        listForm = loadConfig(JFiles.LIST_FORM)
+        teamForm = loadConfig(JFiles.TEAM_FORM)
+        teamView = loadConfig(JFiles.TEAM_VIEW)
+        warpsView = loadConfig(JFiles.WARPS_VIEW)
+        warpForm = loadConfig(JFiles.WARP_FORM)
+        membersView = loadConfig(JFiles.MEMBERS_VIEW)
+        otherTeamView = loadConfig(JFiles.OTHER_TEAM_VIEW)
+        leaveView = loadConfig(JFiles.LEAVE_VIEW)
+        leaveForm = loadConfig(JFiles.LEAVE_FORM)
+        balanceView = loadConfig(JFiles.BALANCE_VIEW)
+        balanceForm = loadConfig(JFiles.BALANCE_FORM)
+        allyView = loadConfig(JFiles.ALLY_VIEW)
+        allyForm = loadConfig(JFiles.ALLY_FORM)
+        memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW)
+        teamLBView = loadConfig(JFiles.TEAM_LEADERBOARD_VIEW)
+        otherTeamForm = loadConfig(JFiles.OTHER_TEAM_FORM)
+        memberForm = loadConfig(JFiles.TEAM_MEMBER)
+        memberManagementForm = loadConfig(JFiles.TEAM_MEMBER_MANAGEMENT_FORM)
+        inviteForm = loadConfig(JFiles.INVITE_FORM)
     }
 
     private fun getFile(configFile: JFiles): File {
-        return File(plugin.dataFolder, configFile.filename)
+        return File(pluginInstance.dataFolder, configFile.filename)
     }
 
-    fun getConfig(configFile: JFiles): FileConfiguration {
+    private fun loadConfig(configFile: JFiles): FileConfiguration {
+        if (!pluginInstance.dataFolder.exists()) pluginInstance.dataFolder.mkdir()
         val file = getFile(configFile)
-        if (!file.exists()) {
-            plugin.logger.log(Level.WARNING, "File not found: ${file.name}. Falling back to default or generating new.")
-            plugin.saveResource(configFile.filename, false)
-            return YamlConfiguration.loadConfiguration(file)
-        }
-        return YamlConfiguration.loadConfiguration(file)
+
+//        if (!file.exists()) {
+//            ConsoleMessage.printStep("Generated new ${file.name}")
+//            pluginInstance.saveResource(configFile.filename, false)
+//        }
+        pluginInstance.saveResource(configFile.filename, true)
+
+
+        val config = YamlConfiguration.loadConfiguration(file)
+        return config
     }
 
-    fun saveConfig(configFile: JFiles) {
-        try {
-            val file = getFile(configFile)
-            getConfig(configFile).save(file)
-            plugin.logger.log(Level.INFO, "${file.name} saved successfully.")
+    fun saveConfig(configFile: JFiles): Boolean {
+        return try {
+            when (configFile) {
+                JFiles.CONFIG -> config
+                JFiles.FONT -> font
+                JFiles.TEAM_CREATE_FORM -> teamCreateForm
+                JFiles.LIST_VIEW -> listView
+                JFiles.LIST_FORM -> listForm
+                JFiles.TEAM_FORM -> teamForm
+                JFiles.TEAM_VIEW -> teamView
+                JFiles.WARPS_VIEW -> warpsView
+                JFiles.WARP_FORM -> warpForm
+                JFiles.MEMBERS_VIEW -> membersView
+                JFiles.TEAM_MEMBER -> memberForm
+                JFiles.INVITE_FORM -> inviteForm
+                JFiles.OTHER_TEAM_VIEW -> otherTeamView
+                JFiles.OTHER_TEAM_FORM -> otherTeamForm
+                JFiles.LEAVE_VIEW -> leaveView
+                JFiles.LEAVE_FORM -> leaveForm
+                JFiles.BALANCE_VIEW -> balanceView
+                JFiles.BALANCE_FORM -> balanceForm
+                JFiles.ALLY_VIEW -> allyView
+                JFiles.ALLY_FORM -> allyForm
+                JFiles.MEMBER_MANAGEMENT_VIEW -> memberManagementView
+                JFiles.TEAM_MEMBER_MANAGEMENT_FORM -> memberManagementForm
+                JFiles.TEAM_LEADERBOARD_VIEW -> teamLBView
+            }.save(File(pluginInstance.dataFolder, configFile.filename))
+            true
         } catch (e: Exception) {
-            plugin.logger.log(Level.SEVERE, "Could not save ${configFile.filename}: ${e.message}")
+            pluginInstance.logger.log(Level.SEVERE, "Could not save ${configFile.filename}: ${e.message}")
+            false
         }
     }
 
-    fun reloadFrameConfig(){
-        mainConfig.reload()
-        teamViewConfig.reload()
-        teamWarpConfig.reload()
-    }
 }

@@ -1,0 +1,4 @@
+
+- Item flags not working
+- disabling smallcaps via config font.yml not working
+- [Feature] add a sound section to config handler

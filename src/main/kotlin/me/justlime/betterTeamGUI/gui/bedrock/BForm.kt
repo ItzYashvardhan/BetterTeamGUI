@@ -1,10 +1,11 @@
-package me.justlime.betterTeamGUI.gui
+package me.justlime.betterTeamGUI.gui.bedrock
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
+import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
@@ -13,7 +14,6 @@ import org.bukkit.entity.Player
 import org.geysermc.cumulus.form.CustomForm
 import org.geysermc.cumulus.form.ModalForm
 import org.geysermc.cumulus.form.SimpleForm
-import org.geysermc.cumulus.form.SimpleForm.Builder
 import org.geysermc.cumulus.util.FormImage
 import org.geysermc.floodgate.api.FloodgateApi
 
@@ -110,8 +110,7 @@ object BForm {
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val title = Config.TeamSelfForm.title
         val text = Config.TeamSelfForm.text
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer))
-            .content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) })
+        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) })
         val actions = mutableListOf<() -> Unit>()
 
         createButton(form, Config.TeamSelfForm.chat, team, teamPlayer, player) {
@@ -122,8 +121,7 @@ object BForm {
             player.performCommand("team:team home")
         }?.let { actions.add(it) }
 
-        if (teamPlayer.rank != PlayerRank.DEFAULT)
-        createButton(form, Config.TeamSelfForm.balance, team, teamPlayer) {
+        if (teamPlayer.rank != PlayerRank.DEFAULT) createButton(form, Config.TeamSelfForm.balance, team, teamPlayer) {
             openTeamBalanceForm(team, teamPlayer)
         }?.let { actions.add(it) }
 
@@ -139,8 +137,7 @@ object BForm {
             player.performCommand("team:team echest")
         }?.let { actions.add(it) }
 
-        if (teamPlayer.rank != PlayerRank.DEFAULT)
-        createButton(form, Config.TeamSelfForm.pvp, team, teamPlayer) {
+        if (teamPlayer.rank != PlayerRank.DEFAULT) createButton(form, Config.TeamSelfForm.pvp, team, teamPlayer) {
             player.performCommand("team:team pvp")
         }?.let { actions.add(it) }
 
@@ -148,8 +145,7 @@ object BForm {
             openTeamAllyForm(player, team)
         }?.let { actions.add(it) }
 
-        if (teamPlayer.rank != PlayerRank.OWNER)
-        createButton(form, Config.TeamSelfForm.leave, team, teamPlayer) {
+        if (teamPlayer.rank != PlayerRank.OWNER) createButton(form, Config.TeamSelfForm.leave, team, teamPlayer) {
             openTeamLeaveForm(player)
         }?.let { actions.add(it) }
 
@@ -157,8 +153,7 @@ object BForm {
             openTeamListForm(player)
         }?.let { actions.add(it) }
 
-        if (teamPlayer.rank != PlayerRank.DEFAULT)
-        createButton(form, Config.TeamSelfForm.settingButton, team, teamPlayer) {
+        if (teamPlayer.rank != PlayerRank.DEFAULT) createButton(form, Config.TeamSelfForm.settingButton, team, teamPlayer) {
             //Setting
             player.sendMessage("&c&lComming Soon!")
         }?.let { actions.add(it) }
@@ -185,8 +180,7 @@ object BForm {
         createButton(form, Config.TeamOtherForm.member, teamToView, teamPlayer) {
             openTeamMemberForm(player, teamToView)
         }?.let { actions.add(it) }
-        if (!Team.getTeamManager().isInTeam(player))
-        createButton(form,Config.TeamOtherForm.join, teamToView, teamPlayer){
+        if (!Team.getTeamManager().isInTeam(player)) createButton(form, Config.TeamOtherForm.join, teamToView, teamPlayer) {
             player.performCommand("team join ${teamToView.name}")
         }?.let { actions.add(it) }
         createBackButton(form) {
@@ -210,13 +204,12 @@ object BForm {
         val title = Config.TeamAllyForm.title
         val text = Config.TeamAllyForm.text
         val teamAlly = team.allies.get().toMutableList()
-        val form = SimpleForm.builder()
-            .title(Service.applyLocalPlaceHolder(title, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT))).content(
-                text.joinToString("\n") {
-                    Service.applyLocalPlaceHolder(
-                        it, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT)
-                    )
-                })
+        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT))).content(
+            text.joinToString("\n") {
+                Service.applyLocalPlaceHolder(
+                    it, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT)
+                )
+            })
         val actions = mutableListOf<() -> Unit>()
         for (teamUUid in teamAlly) {
             val allyTeam = Team.getTeam(teamUUid) ?: continue
@@ -246,7 +239,7 @@ object BForm {
             when (member.rank) {
                 PlayerRank.OWNER -> {
                     createButton(form, Config.TeamMemberForm.owner, team, member, member.player) {
-                        if (isPlayerInSameTeam && currentTeamPlayer?.rank == PlayerRank.OWNER && currentTeamPlayer == member) {
+                        if (isPlayerInSameTeam && currentTeamPlayer.rank == PlayerRank.OWNER && currentTeamPlayer == member) {
                             openTeamMemberManagementForm(player, member, team)
                         } else openTeamMemberForm(player, team)
                     }?.let { actions.add(it) }
@@ -254,7 +247,7 @@ object BForm {
 
                 PlayerRank.ADMIN -> {
                     createButton(form, Config.TeamMemberForm.admin, team, member, member.player) {
-                        if (isPlayerInSameTeam && currentTeamPlayer?.rank == PlayerRank.OWNER) {
+                        if (isPlayerInSameTeam && currentTeamPlayer.rank == PlayerRank.OWNER) {
                             openTeamMemberManagementForm(player, member, team)
                         } else {
                             openTeamMemberForm(player, team)
@@ -265,7 +258,7 @@ object BForm {
                 PlayerRank.DEFAULT -> {
                     // OWNER or ADMIN can manage a member.
                     createButton(form, Config.TeamMemberForm.member, team, member, member.player) {
-                        if (isPlayerInSameTeam && (currentTeamPlayer?.rank == PlayerRank.OWNER || currentTeamPlayer?.rank == PlayerRank.ADMIN)) {
+                        if (isPlayerInSameTeam && (currentTeamPlayer.rank == PlayerRank.OWNER || currentTeamPlayer.rank == PlayerRank.ADMIN)) {
                             openTeamMemberManagementForm(player, member, team)
                         } else {
                             openTeamMemberForm(player, team)
@@ -274,7 +267,7 @@ object BForm {
                 }
             }
         }
-        if (isPlayerInSameTeam && (currentTeamPlayer?.rank == PlayerRank.OWNER || currentTeamPlayer?.rank == PlayerRank.ADMIN)) {
+        if (isPlayerInSameTeam && (currentTeamPlayer.rank == PlayerRank.OWNER || currentTeamPlayer.rank == PlayerRank.ADMIN)) {
             createButton(form, Config.TeamMemberForm.invite, team, currentTeamPlayer) {
                 openInvitePlayerListForm(player)
             }?.let { actions.add(it) }
@@ -313,8 +306,7 @@ object BForm {
         val title = Config.TeamMemberManagementForm.title
         val text = Config.TeamMemberManagementForm.text
         val actions = mutableListOf<() -> Unit>()
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, member))
-            .content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, member) })
+        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, member)).content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, member) })
 
         createButton(form, Config.TeamMemberManagementForm.demote, team, member) {
             openConfirmedModal(Config.TeamMemberManagementForm.demote) {
@@ -475,14 +467,7 @@ object BForm {
      * @param action the lambda to execute if the button is pressed
      * @return the action lambda if the button was added; null otherwise.
      */
-    private fun createButton(
-        form: Builder,
-        section: ConfigurationSection,
-        team: Team,
-        teamPlayer: TeamPlayer,
-        player: OfflinePlayer? = null,
-        editLines: (String) -> String = { it },
-        action: () -> Unit
+    private fun createButton(form: SimpleForm.Builder, section: ConfigurationSection, team: Team, teamPlayer: TeamPlayer, player: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
     ): (() -> Unit)? {
         val enabled = section.getBoolean("enabled", true)
         if (!enabled) {
@@ -497,8 +482,7 @@ object BForm {
         return action
     }
 
-    private fun createButton(
-        form: Builder, section: ConfigurationSection, playerHead: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
+    private fun createButton(form: SimpleForm.Builder, section: ConfigurationSection, playerHead: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
     ): (() -> Unit)? {
         val enabled = section.getBoolean("enabled", true)
         if (!enabled) {
@@ -510,14 +494,14 @@ object BForm {
         return action
     }
 
-    private fun createBackButton(form: Builder, actions: () -> Unit): (() -> Unit) {
+    private fun createBackButton(form: SimpleForm.Builder, actions: () -> Unit): (() -> Unit) {
         val lines = Config.backButton.getStringList("lines").joinToString("\n §r") { Service.applyColors(it) }
         val image = Config.backButton.getConfigurationSection("image")
         createImageButton(form, lines, image, null)
         return actions
     }
 
-    private fun createImageButton(form: Builder, lines: String, image: ConfigurationSection?, player: OfflinePlayer?) {
+    private fun createImageButton(form: SimpleForm.Builder, lines: String, image: ConfigurationSection?, player: OfflinePlayer?) {
         val imageEnabled = image?.getBoolean("enabled", false) ?: false
         if (imageEnabled) {
             var imageUrl = image?.getString("url", "") ?: ""

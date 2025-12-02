@@ -5,7 +5,7 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.isBedrockPlayer
+import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -31,7 +31,6 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         }
 
         if (args[0] == "lb") {
-            return true
             val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
             GUIManager.openTeamLeaderBoardGUI(sender, teamPlayer)
         }
@@ -44,6 +43,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
             Config.reload()
+            TeamViewItem.reload()
 
             return true
         }
@@ -64,6 +64,12 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             return true
         }
 
+        if (args[0] == "list" && sender.hasPermission("betterteamgui.use.ally")) {
+            GUIManager.openTeamListGUI(sender)
+            return true
+        }
+
+
         GUIManager.openTeamGUI(sender)
         return true
     }
@@ -77,6 +83,8 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             if (sender.hasPermission("betterteamgui.use.members")) completion.add("members")
             if (sender.hasPermission("betterteamgui.use.ally")) completion.add("ally")
             if (sender.hasPermission("betterteamgui.use.view")) completion.add("view")
+            if (sender.hasPermission("betterteamgui.use.list")) completion.add("list")
+            if (sender.hasPermission("betterteamgui.use.lb")) completion.add("lb")
         }
         if (args.size == 2) {
             val teamManager = Team.getTeamManager()
@@ -85,5 +93,5 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         }
         return completion
     }
-}
 
+}

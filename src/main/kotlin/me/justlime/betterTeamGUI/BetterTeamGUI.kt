@@ -3,12 +3,14 @@ package me.justlime.betterTeamGUI
 import me.clip.placeholderapi.metrics.bukkit.Metrics
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.config.Config
+import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.config.JFiles
 import me.justlime.betterTeamGUI.gui.GUIHandler
 import me.justlime.betterTeamGUI.listener.ListenerManager
 import net.justlime.limeframegui.api.LimeFrameAPI
+import net.justlime.limeframegui.color.FontLoader
 import net.justlime.limeframegui.enums.ColorType
-import net.justlime.limeframegui.impl.ConfigHandler
-import net.justlime.limeframegui.utilities.FrameColor
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.plugin.java.JavaPlugin
 
 lateinit var pluginInstance: BetterTeamGUI
@@ -21,7 +23,7 @@ class BetterTeamGUI : JavaPlugin() {
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         pluginInstance = this
-        LimeFrameAPI.init(this)
+        LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
 
         CommandManager.register() //Initialize
@@ -41,7 +43,7 @@ class BetterTeamGUI : JavaPlugin() {
     }
 
     fun setupLimeFrameGUI() {
-        FrameColor.colorType = ColorType.MINI_MESSAGE
+        FontLoader.load(JFiles.FONT.filename)
         LimeFrameAPI.setKeys {
             inventoryRows = "row"
             material = "item"
@@ -51,7 +53,10 @@ class BetterTeamGUI : JavaPlugin() {
             slot = "slot"
             slotList = "slot"
             texture = "texture"
+            flags = "flags"
+            smallCaps = ConfigManager.font.getBoolean("small-caps", true)
         }
+        ItemFlag.HIDE_ATTRIBUTES
     }
 
 }

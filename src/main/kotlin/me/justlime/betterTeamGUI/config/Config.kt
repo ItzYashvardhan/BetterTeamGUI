@@ -28,30 +28,7 @@ object Config {
     lateinit var teamLBView: FileConfiguration
 
     fun reload() {
-        config = ConfigManager.getConfig(JFiles.CONFIG)
-        teamCreateForm = ConfigManager.getConfig(JFiles.TEAMCREATEFORM)
-        listView = ConfigManager.getConfig(JFiles.LISTVIEW)
-        listForm = ConfigManager.getConfig(JFiles.LISTFORM)
-        teamForm = ConfigManager.getConfig(JFiles.TEAMFORM)
-        warpsView = ConfigManager.getConfig(JFiles.WARPSVIEW)
-        warpForm = ConfigManager.getConfig(JFiles.TEAMWARPFORM)
-        membersView = ConfigManager.getConfig(JFiles.MEMBERSVIEW)
-        otherTeamView = ConfigManager.getConfig(JFiles.OTHERTEAMVIEW)
-        leaveView = ConfigManager.getConfig(JFiles.LEAVEVIEW)
-        leaveForm = ConfigManager.getConfig(JFiles.LEAVEFORM)
-        balanceView = ConfigManager.getConfig(JFiles.BALANCEVIEW)
-        balanceForm = ConfigManager.getConfig(JFiles.BALANCEFORM)
-        allyView = ConfigManager.getConfig(JFiles.ALLYVIEW)
-        allyForm = ConfigManager.getConfig(JFiles.ALLYFORM)
-        memberManagementView = ConfigManager.getConfig(JFiles.MEMBERMANAGEMENTVIEW)
-        teamLBView = ConfigManager.getConfig(JFiles.TEAMLBVIEW)
-        otherTeamForm = ConfigManager.getConfig(JFiles.OTHERTEAMFORM)
-        memberForm = ConfigManager.getConfig(JFiles.TEAMMEMBER)
-        memberManagementForm = ConfigManager.getConfig(JFiles.TEAMMEMBERMANAGEMENTFORM)
-        inviteForm = ConfigManager.getConfig(JFiles.INVITEFORM)
-        ConfigManager.reloadFrameConfig()
-
-
+        ConfigManager.load()
     }
 
     val backItem
@@ -264,6 +241,6 @@ object Config {
     }
 
     val background: Material
-        get() = Material.valueOf(config.getString("background") ?: "WHITE_STAINED_GLASS_PANE")
+        get() = Material.valueOf(config.getString("background.yml") ?: "WHITE_STAINED_GLASS_PANE")
 
 }

@@ -47,6 +47,21 @@ sealed interface JGui {
             const val GLOBAL_CHAT = "chat.global"
             const val TEAM_CHAT = "chat.team"
             const val ALLY_CHAT = "chat.ally"
+
+        }
+    }
+
+    sealed interface MoneyView : JGui{
+        companion object{
+            const val DEPOSIT_TITLE = "anvil-ui.deposit.title"
+            const val DEPOSIT_LABEL = "anvil-ui.deposit.label"
+            const val DEPOSIT_INPUT_ITEM = "anvil-ui.deposit.input-item"
+            const val DEPOSIT_OUTPUT_ITEM = "anvil-ui.deposit.output-item"
+
+            const val WITHDRAW_TITLE = "anvil-ui.withdraw.title"
+            const val WITHDRAW_LABEL = "anvil-ui.withdraw.label"
+            const val WITHDRAW_INPUT_ITEM = "anvil-ui.withdraw.input-item"
+            const val WITHDRAW_OUTPUT_ITEM = "anvil-ui.withdraw.output-item"
         }
     }
 
@@ -92,5 +107,7 @@ sealed interface JGui {
 
         }
     }
+
+
 
 }

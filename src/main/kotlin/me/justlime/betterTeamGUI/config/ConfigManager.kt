@@ -1,7 +1,7 @@
 package me.justlime.betterTeamGUI.config
 
-import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
@@ -11,8 +11,8 @@ object ConfigManager {
 
     lateinit var config: FileConfiguration
     lateinit var messages: FileConfiguration
+    lateinit var buttons: FileConfiguration
     lateinit var font: FileConfiguration
-    lateinit var background: FileConfiguration
     lateinit var teamCreateForm: FileConfiguration
     lateinit var listView: FileConfiguration
     lateinit var listForm: FileConfiguration
@@ -27,7 +27,7 @@ object ConfigManager {
     lateinit var otherTeamForm: FileConfiguration
     lateinit var leaveView: FileConfiguration
     lateinit var leaveForm: FileConfiguration
-    lateinit var balanceView: FileConfiguration
+    lateinit var moneyView: FileConfiguration
     lateinit var balanceForm: FileConfiguration
     lateinit var allyView: FileConfiguration
     lateinit var allyForm: FileConfiguration
@@ -38,6 +38,7 @@ object ConfigManager {
     fun load() {
         config = loadConfig(JFiles.CONFIG)
         messages = loadConfig(JFiles.MESSAGES)
+        buttons = loadConfig(JFiles.BUTTONS)
         font = loadConfig(JFiles.FONT)
         teamCreateForm = loadConfig(JFiles.TEAM_CREATE_FORM)
         listView = loadConfig(JFiles.LIST_VIEW)
@@ -50,7 +51,7 @@ object ConfigManager {
         otherTeamView = loadConfig(JFiles.OTHER_TEAM_VIEW)
         leaveView = loadConfig(JFiles.LEAVE_VIEW)
         leaveForm = loadConfig(JFiles.LEAVE_FORM)
-        balanceView = loadConfig(JFiles.BALANCE_VIEW)
+        moneyView = loadConfig(JFiles.MONEY_VIEW)
         balanceForm = loadConfig(JFiles.BALANCE_FORM)
         allyView = loadConfig(JFiles.ALLY_VIEW)
         allyForm = loadConfig(JFiles.ALLY_FORM)
@@ -76,7 +77,6 @@ object ConfigManager {
         }
         pluginInstance.saveResource(configFile.filename, true)
 
-
         val config = YamlConfiguration.loadConfiguration(file)
         return config
     }
@@ -86,6 +86,7 @@ object ConfigManager {
             when (configFile) {
                 JFiles.CONFIG -> config
                 JFiles.MESSAGES -> messages
+                JFiles.BUTTONS -> buttons
                 JFiles.FONT -> font
                 JFiles.TEAM_CREATE_FORM -> teamCreateForm
                 JFiles.LIST_VIEW -> listView
@@ -101,7 +102,7 @@ object ConfigManager {
                 JFiles.OTHER_TEAM_FORM -> otherTeamForm
                 JFiles.LEAVE_VIEW -> leaveView
                 JFiles.LEAVE_FORM -> leaveForm
-                JFiles.BALANCE_VIEW -> balanceView
+                JFiles.MONEY_VIEW -> moneyView
                 JFiles.BALANCE_FORM -> balanceForm
                 JFiles.ALLY_VIEW -> allyView
                 JFiles.ALLY_FORM -> allyForm

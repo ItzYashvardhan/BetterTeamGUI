@@ -1,0 +1,28 @@
+anvil-ui:
+  deposit:
+    title: "<bold>Deposit Amount</bold>"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Enter Deposit Amount</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the amount you wish to deposit.</gray>"
+    output-item:
+      name: "<green>Confirm Deposit</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to confirm your deposit.</gray>"
+  withdraw:
+    title: "<bold>Withdraw Amount</bold>"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Enter Withdraw Amount</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the amount you wish to withdraw.</gray>"
+    output-item:
+      name: "<green>Confirm Withdraw</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to confirm your withdrawal.</gray>"
+

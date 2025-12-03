@@ -4,12 +4,20 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import com.booksaw.betterTeams.commands.team.EchestCommand
 import com.booksaw.betterTeams.commands.team.HomeCommand
+import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
+import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyMiniColor
+import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import net.justlime.limeframegui.utilities.item
 import net.justlime.limeframegui.utilities.update
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
 fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(guiSetting.rows, guiSetting.title) {
@@ -24,12 +32,13 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
 
 
     setItem(chatItem) { event ->
-        if (event.click.isLeftClick) {
+        if (event.click.isRightClick) {
             // Toggle Ally Chat
             val newState = !teamPlayer.isInAllyChat
             teamPlayer.setAllyChat(newState)
             teamPlayer.setTeamChat(false)
-        } else {
+        }
+        if (event.click.isLeftClick) {
             // Toggle Team Chat
             val newState = !teamPlayer.isInTeamChat
             teamPlayer.setTeamChat(newState)
@@ -47,10 +56,22 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
     setItem(TeamViewItem.infoItem)
 
     setItem(TeamViewItem.homeItem) {
-        HomeCommand().onCommand(teamPlayer, "", emptyArray(), team)
+        val player = it.whoClicked as? Player ?: return@setItem
+        if (!it.click.isShiftClick) {
+            TeamService.teleportToHome(player)
+            player.closeInventory()
+        }
     }
 
-    setItem(TeamViewItem.balanceItem) {}
+    //open anvil-up left to deposit and right to withdraw
+    setItem(TeamViewItem.balanceItem) { clickEvent ->
+        if (clickEvent.isLeftClick) {
+            depositOrWithdrawMoneyAnvilUI(team, teamPlayer, clickEvent.whoClicked as Player, true)
+        }
+        if (clickEvent.isRightClick) {
+            depositOrWithdrawMoneyAnvilUI(team, teamPlayer, clickEvent.whoClicked as Player, false)
+        }
+    }
 
     setItem(TeamViewItem.warpItem) {
         val player = it.whoClicked as? Player ?: return@setItem
@@ -60,7 +81,7 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
     setItem(TeamViewItem.membersItem) {}
 
     setItem(TeamViewItem.enderChestItem) {
-        EchestCommand().onCommand(teamPlayer, "", emptyArray(), team)
+        TeamService.openTeamEnderChest(it.whoClicked as Player)
     }
 
     setItem(TeamViewItem.allyItem) {}
@@ -74,5 +95,35 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
     setItem(TeamViewItem.settingItem) {}
 
 }
+
+fun depositOrWithdrawMoneyAnvilUI(team: Team, teamPlayer: TeamPlayer, player: Player, isReceiving: Boolean = false) {
+    val title = applyMiniColor((if (isReceiving) TeamMoneyItem.depositTitle else TeamMoneyItem.withdrawTitle) ?: "")
+    val label = applyMiniColor((if (isReceiving) TeamMoneyItem.depositLabel else TeamMoneyItem.withdrawLabel) ?: "")
+    val inputItem = if (isReceiving) TeamMoneyItem.depositInputItem else TeamMoneyItem.withdrawInputItem
+    val outputItem = if (isReceiving) TeamMoneyItem.depositOutputItem else TeamMoneyItem.withdrawOutputItem
+
+    openAnvilGUI(
+        player = player,
+        title = title,
+        label = label,
+        inputItem = inputItem ?: GuiItem(Material.ANVIL),
+        outputItem = outputItem ?: GuiItem(Material.ANVIL),
+        onInvalidInput = { GUIManager.openTeamGUI(player) },
+        onCancel = { GUIManager.openTeamGUI(player) }) { amountString ->
+        val amount = amountString.toDoubleOrNull()
+        if (amount == null || amount <= 0) {
+            // Handle invalid amount input
+            val msg = ConfigManager.messages.getString("money.invalid-amount") ?: ""
+            player.sendMessage(msg)
+            GUIManager.openTeamGUI(player)
+            return@openAnvilGUI
+        }
+
+        if (isReceiving) TeamService.depositAmount(player, amountString) else TeamService.withdrawAmount(player, amountString)
+        GUIManager.openTeamGUI(player)
+    }
+
+}
+
 
 

@@ -13,6 +13,7 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.adventure
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
@@ -54,8 +55,8 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
             addItem(warpItemCopy) { clickEvent ->
                 // Shift-Click Delete Logic
                 if (clickEvent.click.isShiftClick && teamPlayer.rank != PlayerRank.DEFAULT) {
+                    TeamService.delWarp(clickEvent.whoClicked as Player, warp.name)
                     Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-                        DelwarpCommand().onCommand(teamPlayer, "", arrayOf(warp.name), team)
                         GUIManager.openTeamWarpGUI(clickEvent.whoClicked as Player)
                     }, 2)
                 }
@@ -65,7 +66,7 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
                     (clickEvent.whoClicked as? Player)?.let { player ->
                         if (!warp.hasPassword()) {
                             Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-                                WarpCommand().onCommand(teamPlayer, "", arrayOf(warp.name), team)
+                                TeamService.warp(player, warp.name)
                             }, 2)
                             GUIManager.closeInventory(player)
                         } else {
@@ -88,7 +89,6 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
                 (clickEvent.whoClicked as? Player)?.let { player ->
                     val title = applyMiniColor(TeamWarpItem.setWarpNameTitle ?: "")
                     val label = applyMiniColor(TeamWarpItem.setWarpNameLabel ?: "")
-                    // Safely handle input/output items with fallbacks
                     val inputItem = TeamWarpItem.setWarpNameInputItem ?: GuiItem(Material.PAPER)
                     val outputItem = TeamWarpItem.setWarpNameOutputItem ?: GuiItem(Material.PAPER)
 
@@ -97,10 +97,9 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
                     openAnvilGUI(player, title, label, inputItem, outputItem, reopenGUI, reopenGUI) { warpInput ->
                         val args = if (warpInput.contains(" ")) {
                             warpInput.split(" ").toTypedArray()
-                        } else {
-                            arrayOf(warpInput)
-                        }
-                        SetWarpCommand().onCommand(teamPlayer, "", args, team)
+                        } else arrayOf(warpInput)
+
+                        TeamService.setWarp(player, args[0], args.getOrNull(1))
                         reopenGUI()
                     }
                 }
@@ -147,7 +146,7 @@ fun validateAndTeleport(player: Player, teamPlayer: TeamPlayer, team: Team, warp
     openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput = onInvalidInput, onCancel = onCancel) { password ->
         if (warp.isCorrectPassword(password)) {
             Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-                WarpCommand().onCommand(teamPlayer, "", arrayOf(warp.name, password), team)
+                TeamService.warp(player, warp.name, password)
             }, 2)
             GUIManager.closeInventory(player)
         } else {

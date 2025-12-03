@@ -225,7 +225,7 @@ object GUIManager {
             return
         }
         TeamWarpItem.setting.placeholderPlayer = player
-        teamWarp(TeamWarpItem.setting, team,teamPlayer).open(player)
+        teamWarp(TeamWarpItem.setting, team,teamPlayer,player).open(player)
     }
 
     fun openTeamLeaveGUI(sender: Player) {

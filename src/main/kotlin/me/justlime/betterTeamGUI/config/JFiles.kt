@@ -3,6 +3,7 @@ package me.justlime.betterTeamGUI.config
 enum class JFiles(val filename: String) {
     CONFIG("config.yml"),
     MESSAGES("messages.yml"),
+    BUTTONS("gui/buttons.yml"),
 
 
     //Java Config
@@ -14,7 +15,7 @@ enum class JFiles(val filename: String) {
     MEMBERS_VIEW("members_view.yml"),
     OTHER_TEAM_VIEW("other_team_view.yml"),
     LEAVE_VIEW("leave_view.yml"),
-    BALANCE_VIEW("balance_view.yml"),
+    MONEY_VIEW("gui/money_view.yml"),
     ALLY_VIEW("ally_view.yml"),
     TEAM_LEADERBOARD_VIEW("team_lb.yml"),
 

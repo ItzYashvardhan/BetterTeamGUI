@@ -39,9 +39,6 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
     val plainPlaceholder = PlainTextComponentSerializer.plainText().serialize(label)
 
     AnvilGUI.Builder().plugin(pluginInstance).jsonTitle(jsonString).text(displayPlaceholder).itemLeft(inputItem.toItemStack()).itemOutput(outputItem.toItemStack()).onClose {
-        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-            onCancel()
-        }, 1)
         return@onClose
     }.onClick { slot, state ->
         if (slot != AnvilGUI.Slot.OUTPUT) {

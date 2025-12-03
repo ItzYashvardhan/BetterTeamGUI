@@ -86,7 +86,7 @@ allies:
 balance:
   name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
   lore:
-    - "<b><gradient:#E2FF8D:#E2FF8D>%betterteams_money%</gradient></b>"
+    - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
     - ""
     - "<green>Left-Click</green> <gray>to deposit</gray>"
     - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"

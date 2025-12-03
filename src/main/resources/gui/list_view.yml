@@ -1,5 +1,5 @@
 main:
-  title: "<bold>Global Team List</bold>"
+  title: "<bold>Team List (Page - {page})</bold>"
   row: 6
   font-title: true # Weather to enabled font for title
   font-name: true # Weather to enabled font for name
@@ -16,12 +16,16 @@ main:
   slot:
     back: 52
     home: 53
+    prev: 47
+    next: 51
+
 
 team-item:
   name: "<yellow>%betterteams_name% <#D6BA5B>(%betterteams_members%/%betterteams_maxmembers%)"
   lore:
     - "<#5BD686>Level:</#5BD686> <#D6BA5B>%betterteams_level%"
     - "<#5BD686>Score:</#5BD686> <#D6BA5B>%betterteams_score%"
+    - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
@@ -114,10 +118,25 @@ filter:
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
 
+search-item:
+  item: OAK_SIGN
+  slot: 45
+  name: "<blue>Search by Name"
+  lore:
+    - "<gray>Click to search for a team by its name.</gray>"
 
-
-
-
-
-
+anvil-ui:
+  search-team:
+    title: "<bold>Search Team</bold>"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Enter Team Name</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the name of the team you want to search for.</gray>"
+    output-item:
+      name: "<green>Search</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to search for the team.</gray>"
 

@@ -67,6 +67,7 @@ sealed interface JGui {
     sealed interface ListView : JGui {
         companion object {
             const val TEAM_ITEM = "team-item"
+            const val SEARCH_ITEM = "search-item"
             const val SORT_ORDER_ASC = "sort.order.ASC"
             const val SORT_ORDER_DESC = "sort.order.DESC"
             const val SORT_TYPE_MONEY = "sort.type.MONEY"
@@ -77,6 +78,11 @@ sealed interface JGui {
             const val FILTER_OPEN_ONLY = "filter.OPEN_ONLY"
             const val FILTER_CURRENTLY_ONLINE = "filter.CURRENTLY_ONLINE"
             const val FILTER_NOT_FULL = "filter.NOT_FULL"
+            const val SEARCH_TITLE = "anvil-ui.search-team.title"
+            const val SEARCH_LABEL = "anvil-ui.search-team.label"
+            const val SEARCH_INPUT_ITEM = "anvil-ui.search-team.input-item"
+            const val SEARCH_OUTPUT_ITEM = "anvil-ui.search-team.output-item"
+
         }
 
 

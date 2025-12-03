@@ -11,7 +11,9 @@ object TeamListItem {
     val setting = config.loadInventorySetting(JGui.Main.SETTING)
     val background = config.loadItems(JGui.Main.BACKGROUND)
     val backSlot: List<Int> = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
-    val homeSlot: List<Int> = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty{listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
+    val homeSlot: List<Int> = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
+    val prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
+    val nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
     var teamItem = config.loadItem(JGui.ListView.TEAM_ITEM)
     var sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
     var sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)
@@ -23,6 +25,11 @@ object TeamListItem {
     var filterOpenOnly = config.loadItem(JGui.ListView.FILTER_OPEN_ONLY)
     var filterCurrentlyOnline = config.loadItem(JGui.ListView.FILTER_CURRENTLY_ONLINE)
     var filterNotFull = config.loadItem(JGui.ListView.FILTER_NOT_FULL)
+    var searchItem = config.loadItem(JGui.ListView.SEARCH_ITEM)
+    var searchTitle = ConfigManager.listView.getString(JGui.ListView.SEARCH_TITLE) ?: ""
+    var searchLabel = ConfigManager.listView.getString(JGui.ListView.SEARCH_LABEL) ?: ""
+    var searchInputItem = config.loadItem(JGui.ListView.SEARCH_INPUT_ITEM)
+    var searchOutputItem = config.loadItem(JGui.ListView.SEARCH_OUTPUT_ITEM)
 
     fun reload() {
         config.reload()
@@ -37,6 +44,12 @@ object TeamListItem {
         filterOpenOnly = config.loadItem(JGui.ListView.FILTER_OPEN_ONLY)
         filterCurrentlyOnline = config.loadItem(JGui.ListView.FILTER_CURRENTLY_ONLINE)
         filterNotFull = config.loadItem(JGui.ListView.FILTER_NOT_FULL)
+        searchItem = config.loadItem(JGui.ListView.SEARCH_ITEM)
+        searchTitle = ConfigManager.listView.getString(JGui.ListView.SEARCH_TITLE) ?: ""
+        searchLabel = ConfigManager.listView.getString(JGui.ListView.SEARCH_LABEL) ?: ""
+        searchInputItem = config.loadItem(JGui.ListView.SEARCH_INPUT_ITEM)
+        searchOutputItem = config.loadItem(JGui.ListView.SEARCH_OUTPUT_ITEM)
+
     }
 
 }

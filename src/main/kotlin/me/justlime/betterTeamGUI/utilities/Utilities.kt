@@ -36,6 +36,7 @@ fun teamToPlaceholderMap(team: Team): Map<String, String> {
         "%betterteams_members%" to team.members.size().toString(),
         "%betterteams_maxmembers%" to team.teamLimit.toString(),
         "%betterteams_level%" to team.level.toString(),
-        "%betterteams_score%" to team.score.toString()
+        "%betterteams_score%" to team.score.toString(),
+        "%betterteams_money%" to team.money.toString()
     )
 }

@@ -5,6 +5,8 @@ import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
+import me.justlime.betterTeamGUI.utilities.applyMiniColor
+import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
@@ -20,14 +22,18 @@ enum class FilterType { NONE, OPEN_ONLY, CURRENTLY_ONLINE, NOT_FULL }
 data class TeamListState(
     val sortOrder: SortOrder = SortOrder.DESC, // Default to Highest first
     val sortType: SortType = SortType.SCORE,   // Default to Score
-    val filter: FilterType = FilterType.NONE   // Default to No Filter
+    val filter: FilterType = FilterType.NONE,   // Default to No Filter
+    val searchQuery: String? = null
 )
 
 fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): ChestGUI = ChestGUI(setting.rows, setting.title) {
 
     onClick { it.isCancelled = true }
     nav {
-        margin = 3
+        prevSlot = TeamListItem.prevSlot
+        nextSlot = TeamListItem.nextSlot
+        nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
+        prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
     }
     TeamListItem.background.forEach { setItem(it) }
 
@@ -43,6 +49,9 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
         FilterType.NONE -> teams
     }
 
+    if (state.searchQuery != null) {
+        teams = teams.filter { it.name.contains(state.searchQuery, ignoreCase = true) }
+    }
 
     val selector: (Team) -> Comparable<*> = when (state.sortType) {
         SortType.SCORE -> { t -> t.score }
@@ -55,7 +64,6 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
     if (state.sortOrder == SortOrder.DESC) {
         teams = teams.reversed()
     }
-
 
     // Sort Order Button (Toggle ASC/DESC)
     val currentOrderIcon = if (state.sortOrder == SortOrder.ASC) TeamListItem.sortOrderAsc else TeamListItem.sortOrderDesc
@@ -110,6 +118,28 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
         }
     }
 
+    val searchItem = TeamListItem.searchItem ?: GuiItem(Material.STONE)
+    setItem(searchItem) { click ->
+        if (click.isShiftClick || click.isRightClick) {
+            //clear search
+            GUIManager.openTeamListGUI(click.whoClicked as Player)
+        } else {
+            val player = click.whoClicked as Player
+            openAnvilGUI(
+                player = player,
+                title = applyMiniColor(TeamListItem.searchTitle),
+                label = applyMiniColor(TeamListItem.searchLabel),
+                inputItem = TeamListItem.searchInputItem ?: GuiItem(Material.STONE),
+                outputItem = TeamListItem.searchOutputItem ?: GuiItem(Material.STONE),
+                onInvalidInput = { GUIManager.openTeamListGUI(player) },
+                onCancel = { GUIManager.openTeamListGUI(player) },
+                onConfirm = { query ->
+                    val newState = state.copy(searchQuery = query)
+                    teamList(setting, newState).open(player)
+                })
+        }
+    }
+
     addPage {
         teams.forEach { team ->
 
@@ -123,7 +153,6 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
                     this?.placeholderOfflinePlayer = offlinePlayer
                     this?.customPlaceholder = teamToPlaceholderMap(team)
                 } ?: GuiItem(Material.STONE)
-
                 addItem(item) {
                     // TODO: Action when clicking a specific team
                 }

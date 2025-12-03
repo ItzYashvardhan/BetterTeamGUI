@@ -86,7 +86,9 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
 
     setItem(TeamViewItem.allyItem) {}
 
-    setItem(TeamViewItem.leaveItem) {}
+    setItem(TeamViewItem.leaveItem) {
+        GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
+    }
 
     setItem(TeamViewItem.listItem) {
         GUIManager.openTeamListGUI(it.whoClicked as Player)

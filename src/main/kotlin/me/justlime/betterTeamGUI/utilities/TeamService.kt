@@ -39,5 +39,9 @@ object TeamService {
     fun openTeamEnderChest(player: Player) {
         player.performCommand("$teamCommandPrefix echest")
     }
+    fun leaveTeam(player: Player) {
+        player.performCommand("$teamCommandPrefix leave")
+    }
+
 
 }

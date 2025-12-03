@@ -9,9 +9,11 @@ import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.utilities.getPlayerHead
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
+import me.justlime.betterTeamGUI.gui.items.TeamLeaveItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
+import me.justlime.betterTeamGUI.gui.java.teamLeave
 import me.justlime.betterTeamGUI.gui.java.teamList
 import me.justlime.betterTeamGUI.gui.java.teamSelf
 import me.justlime.betterTeamGUI.gui.java.teamWarp
@@ -170,7 +172,7 @@ object GUIManager {
         }
         TeamListItem.setting.placeholderPlayer = sender
 
-        teamList(TeamListItem.setting, teamPlayer).open(sender)
+        teamList(TeamListItem.setting).open(sender)
     }
 
     fun openTeamMemberGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
@@ -228,14 +230,18 @@ object GUIManager {
         teamWarp(TeamWarpItem.setting, team,teamPlayer,player).open(player)
     }
 
-    fun openTeamLeaveGUI(sender: Player) {
-        val team = Team.getTeam(sender.name) ?: return
-        val teamPlayer = team.getTeamPlayer(sender) ?: return
-        val title = Service.applyLocalPlaceHolder(Config.TeamLeaveView.title, team, teamPlayer)
-        val row = Config.TeamLeaveView.row
-        val leaveInventory = TeamLeaveGUI(row, title)
-        sender.openInventory(leaveInventory.inventory)
+    fun openTeamLeaveGUI(player: Player) {
+        val team = Team.getTeam(player.name) ?: return
+        val teamPlayer = team.getTeamPlayer(player) ?: return
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamLeaveForm(player)
+            return
+        }
+        teamLeave(TeamLeaveItem.setting, player).open(player)
     }
+
+
+
 
     fun openTeamBalanceGUI(sender: Player) {
         val team = Team.getTeam(sender.name) ?: return

@@ -12,12 +12,13 @@ enum class JFiles(val filename: String) {
     TEAM_VIEW("gui/team_view.yml"),
     WARPS_VIEW("gui/warps_view.yml"),
     MEMBER_MANAGEMENT_VIEW("member_management_view.yml"),
-    MEMBERS_VIEW("members_view.yml"),
+    MEMBERS_VIEW("gui/members_view.yml"),
     OTHER_TEAM_VIEW("other_team_view.yml"),
-    LEAVE_VIEW("leave_view.yml"),
+    LEAVE_VIEW("gui/leave_view.yml"),
     MONEY_VIEW("gui/money_view.yml"),
-    ALLY_VIEW("ally_view.yml"),
+    ALLY_VIEW("gui/ally_view.yml"),
     TEAM_LEADERBOARD_VIEW("team_lb.yml"),
+    SETTING_VIEW("gui/setting_view.yml"),
 
     //Bedrock Config
     TEAM_CREATE_FORM("form/create_form.yml"),

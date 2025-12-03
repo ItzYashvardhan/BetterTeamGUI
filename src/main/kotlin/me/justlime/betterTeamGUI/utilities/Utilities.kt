@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI.utilities
 
+import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.pluginInstance
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -29,3 +30,12 @@ fun isBedrockPlayer(player: Player): Boolean {
     else false
 }
 
+fun teamToPlaceholderMap(team: Team): Map<String, String> {
+    return mapOf(
+        "%betterteams_name%" to (team.name ?: "N/A"),
+        "%betterteams_members%" to team.members.size().toString(),
+        "%betterteams_maxmembers%" to team.teamLimit.toString(),
+        "%betterteams_level%" to team.level.toString(),
+        "%betterteams_score%" to team.score.toString()
+    )
+}

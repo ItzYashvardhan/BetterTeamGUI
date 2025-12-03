@@ -17,7 +17,6 @@ sealed interface JGui {
             const val FONT_NAME = "${SETTING}.font-name"
             const val FONT_LORE = "${SETTING}.font-lore"
 
-
         }
 
     }
@@ -68,15 +67,16 @@ sealed interface JGui {
     sealed interface ListView : JGui {
         companion object {
             const val TEAM_ITEM = "team-item"
-            const val SORT_ORDER_ASC = "sort.order.asc"
-            const val SORT_ORDER_DESC = "sort.order.desc"
-            const val SORT_TYPE_MONEY = "sort.type.money"
-            const val SORT_TYPE_SCORE = "sort.type.score"
-            const val SORT_TYPE_LEVEL = "sort.type.level"
-            const val SORT_TYPE_MEMBERS = "sort.type.members"
-            const val FILTER_OPEN_ONLY = "filter.open_only"
-            const val FILTER_CURRENTLY_ONLINE = "filter.currently_online"
-            const val FILTER_NOT_FULL = "filter.not_full"
+            const val SORT_ORDER_ASC = "sort.order.ASC"
+            const val SORT_ORDER_DESC = "sort.order.DESC"
+            const val SORT_TYPE_MONEY = "sort.type.MONEY"
+            const val SORT_TYPE_SCORE = "sort.type.SCORE"
+            const val SORT_TYPE_LEVEL = "sort.type.LEVEL"
+            const val SORT_TYPE_MEMBERS = "sort.type.MEMBERS"
+            const val FILTER_DEFAULT = "filter.DEFAULT"
+            const val FILTER_OPEN_ONLY = "filter.OPEN_ONLY"
+            const val FILTER_CURRENTLY_ONLINE = "filter.CURRENTLY_ONLINE"
+            const val FILTER_NOT_FULL = "filter.NOT_FULL"
         }
 
 
@@ -105,6 +105,13 @@ sealed interface JGui {
             const val ENTER_WARP_PASSWORD_TO_TELEPORT_INPUT_ITEM = "anvil-ui.enter-warp-password-to-teleport.input-item"
             const val ENTER_WARP_PASSWORD_TO_TELEPORT_OUTPUT_ITEM = "anvil-ui.enter-warp-password-to-teleport.output-item"
 
+        }
+    }
+
+    sealed interface LeaveView : JGui{
+        companion object{
+            const val CONFIRM_ITEM = "confirm"
+            const val CANCEL_ITEM = "cancel"
         }
     }
 

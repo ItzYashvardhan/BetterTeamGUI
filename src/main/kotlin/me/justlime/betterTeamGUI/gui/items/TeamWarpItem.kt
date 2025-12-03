@@ -9,10 +9,15 @@ object TeamWarpItem {
     val config = ConfigHandler(JFiles.WARPS_VIEW.filename)
     val setting = config.loadInventorySetting(JGui.Main.SETTING)
     val background = config.loadItems(JGui.Main.BACKGROUND)
+    val backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
+    val homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)
+
 
     var occupiedWarpItem = config.loadItem(JGui.WarpView.OCCUPIED_WARP)
     var claimableWarpItem = config.loadItem(JGui.WarpView.CLAIMABLE_WARP)
     var noPermissionItem = config.loadItem(JGui.WarpView.NO_PERMISSION)
+    var lockedWarpItem = config.loadItem(JGui.WarpView.LOCKED_WARP)
+
 
     var setWarpNameTitle = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_TITLE)
     var setWarpNameLabel = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_LABEL)
@@ -35,6 +40,22 @@ object TeamWarpItem {
         occupiedWarpItem = config.loadItem(JGui.WarpView.OCCUPIED_WARP)
         claimableWarpItem = config.loadItem(JGui.WarpView.CLAIMABLE_WARP)
         noPermissionItem = config.loadItem(JGui.WarpView.NO_PERMISSION)
+        lockedWarpItem = config.loadItem(JGui.WarpView.LOCKED_WARP)
+
+        setWarpNameTitle = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_TITLE)
+        setWarpNameLabel = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_LABEL)
+        setWarpNameInputItem = config.loadItem(JGui.WarpView.SET_WARP_NAME_INPUT_ITEM)
+        setWarpNameOutputItem = config.loadItem(JGui.WarpView.SET_WARP_NAME_OUTPUT_ITEM)
+
+        enterWarpPasswordTitle = ConfigManager.warpsView.getString(JGui.WarpView.ENTER_WARP_PASSWORD_TITLE)
+        enterWarpPasswordLabel = ConfigManager.warpsView.getString(JGui.WarpView.ENTER_WARP_PASSWORD_LABEL)
+        enterWarpPasswordInputItem = config.loadItem(JGui.WarpView.ENTER_WARP_PASSWORD_INPUT_ITEM)
+        enterWarpPasswordOutputItem = config.loadItem(JGui.WarpView.ENTER_WARP_PASSWORD_OUTPUT_ITEM)
+
+        enterWarpPasswordToTeleportTitle = ConfigManager.warpsView.getString(JGui.WarpView.ENTER_WARP_PASSWORD_TO_TELEPORT_TITLE)
+        enterWarpPasswordToTeleportLabel = ConfigManager.warpsView.getString(JGui.WarpView.ENTER_WARP_PASSWORD_TO_TELEPORT_LABEL)
+        enterWarpPasswordToTeleportInputItem = config.loadItem(JGui.WarpView.ENTER_WARP_PASSWORD_TO_TELEPORT_INPUT_ITEM)
+        enterWarpPasswordToTeleportOutputItem = config.loadItem(JGui.WarpView.ENTER_WARP_PASSWORD_TO_TELEPORT_OUTPUT_ITEM)
     }
 
 }

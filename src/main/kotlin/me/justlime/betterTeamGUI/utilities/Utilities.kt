@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
 import me.justlime.betterTeamGUI.pluginInstance
+import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
@@ -27,3 +28,4 @@ fun isBedrockPlayer(player: Player): Boolean {
     return if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
     else false
 }
+

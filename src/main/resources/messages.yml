@@ -1,2 +1,4 @@
 empty-input:
-  chat: "{prefix}<gradient:#f36262:#ff9494>Input cannot be empty.</gradient>"
+  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>Input cannot be empty.</gradient>"
+warp-password-incorrect:
+  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>Incorrect password for this warp.</gradient>"

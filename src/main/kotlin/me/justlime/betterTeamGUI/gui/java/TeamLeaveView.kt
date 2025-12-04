@@ -7,7 +7,7 @@ import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamLeave(setting: GUISetting, viewer: Player)= ChestGUI(setting.rows, setting.title){
+fun teamLeave(setting: GUISetting)= ChestGUI(setting){
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamLeaveItem.background.forEach { setItem(it) }

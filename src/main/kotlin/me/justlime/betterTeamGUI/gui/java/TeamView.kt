@@ -2,13 +2,10 @@ package me.justlime.betterTeamGUI.gui.java
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
-import com.booksaw.betterTeams.commands.team.EchestCommand
-import com.booksaw.betterTeams.commands.team.HomeCommand
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
@@ -20,17 +17,16 @@ import net.justlime.limeframegui.utilities.update
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(guiSetting.rows, guiSetting.title) {
+fun teamView(setting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
+
+    onClick { it.isCancelled = true }
+    TeamViewItem.background.forEach { setItem(it) }
 
     val chatItem = when {
         teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
         teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
         else -> TeamViewItem.chatItem
     }
-    onClick { it.isCancelled = true }
-    TeamViewItem.background.forEach { setItem(it) }
-
-
     setItem(chatItem) { event ->
         if (event.click.isRightClick) {
             // Toggle Ally Chat
@@ -63,7 +59,6 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
         }
     }
 
-    //open anvil-up left to deposit and right to withdraw
     setItem(TeamViewItem.balanceItem) { clickEvent ->
         if (clickEvent.isLeftClick) {
             depositOrWithdrawMoneyAnvilUI(team, teamPlayer, clickEvent.whoClicked as Player, true)
@@ -78,7 +73,9 @@ fun teamSelf(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestG
         GUIManager.openTeamWarpGUI(player)
     }
 
-    setItem(TeamViewItem.membersItem) {}
+    setItem(TeamViewItem.membersItem) {
+        GUIManager.openTeamMemberGUI(it.whoClicked as Player, team)
+    }
 
     setItem(TeamViewItem.enderChestItem) {
         TeamService.openTeamEnderChest(it.whoClicked as Player)

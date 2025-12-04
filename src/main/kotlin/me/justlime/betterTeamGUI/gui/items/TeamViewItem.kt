@@ -13,7 +13,6 @@ object TeamViewItem {
     var infoItem = config.loadItem(JGui.TeamView.INFO)
     var homeItem = config.loadItem(JGui.TeamView.HOME)
 
-
     var chatItem = config.loadItem(JGui.TeamView.GLOBAL_CHAT)
     var teamChatItem = config.loadItem(JGui.TeamView.TEAM_CHAT) ?: config.loadItem(JGui.TeamView.GLOBAL_CHAT)
     var allyChatItem = config.loadItem(JGui.TeamView.ALLY_CHAT) ?: config.loadItem(JGui.TeamView.GLOBAL_CHAT)

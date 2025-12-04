@@ -5,9 +5,6 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import com.booksaw.betterTeams.Warp
-import com.booksaw.betterTeams.commands.team.DelwarpCommand
-import com.booksaw.betterTeams.commands.team.SetWarpCommand
-import com.booksaw.betterTeams.commands.team.WarpCommand
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
@@ -24,7 +21,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Player): ChestGUI = ChestGUI(guiSetting.rows, guiSetting.title) {
+fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Player): ChestGUI = ChestGUI(setting) {
     onClick { it.isCancelled = true }
 
     // Background & Static Items
@@ -70,7 +67,7 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
                             }, 2)
                             GUIManager.closeInventory(player)
                         } else {
-                            validateAndTeleport(player, teamPlayer, team, warp)
+                            validateAndTeleport(player, warp)
                         }
                     }
                 }
@@ -100,7 +97,10 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
                         } else arrayOf(warpInput)
 
                         TeamService.setWarp(player, args[0], args.getOrNull(1))
-                        reopenGUI()
+                        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                            reopenGUI()
+                        }, 2)
+
                     }
                 }
             }
@@ -133,17 +133,16 @@ fun teamWarp(guiSetting: GUISetting, team: Team, teamPlayer: TeamPlayer, player:
     }
 }
 
-fun validateAndTeleport(player: Player, teamPlayer: TeamPlayer, team: Team, warp: Warp) {
+fun validateAndTeleport(player: Player, warp: Warp) {
     val title = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportTitle ?: "")
     val label = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportLabel ?: "")
-    println(label)
     val inputItem = TeamWarpItem.enterWarpPasswordToTeleportInputItem ?: GuiItem(Material.STONE)
     val outputItem = TeamWarpItem.enterWarpPasswordToTeleportOutputItem ?: GuiItem(Material.STONE)
-    val onInvalidInput = { GUIManager.openTeamWarpGUI(player) }
+    val onInvalidInput = { }
     val onCancel = { GUIManager.openTeamWarpGUI(player) }
 
 
-    openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput = onInvalidInput, onCancel = onCancel) { password ->
+    openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel) { password ->
         if (warp.isCorrectPassword(password)) {
             Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
                 TeamService.warp(player, warp.name, password)

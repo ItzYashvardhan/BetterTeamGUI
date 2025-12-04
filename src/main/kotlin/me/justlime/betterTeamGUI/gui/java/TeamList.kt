@@ -26,7 +26,7 @@ data class TeamListState(
     val searchQuery: String? = null
 )
 
-fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): ChestGUI = ChestGUI(setting.rows, setting.title) {
+fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): ChestGUI = ChestGUI(setting) {
 
     onClick { it.isCancelled = true }
     nav {
@@ -65,14 +65,12 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
         teams = teams.reversed()
     }
 
-    // Sort Order Button (Toggle ASC/DESC)
     val currentOrderIcon = if (state.sortOrder == SortOrder.ASC) TeamListItem.sortOrderAsc else TeamListItem.sortOrderDesc
-    currentOrderIcon?.let { item ->
-        setItem(item) { click ->
-            val newOrder = if (state.sortOrder == SortOrder.ASC) SortOrder.DESC else SortOrder.ASC
-            val newState = state.copy(sortOrder = newOrder)
-            teamList(setting, newState).open(click.whoClicked as Player)
-        }
+
+    setItem(currentOrderIcon) { click ->
+        val newOrder = if (state.sortOrder == SortOrder.ASC) SortOrder.DESC else SortOrder.ASC
+        val newState = state.copy(sortOrder = newOrder)
+        teamList(setting, newState).open(click.whoClicked as Player)
     }
 
     // Sort Type Button (Cycle: Score -> Money -> Level -> Members -> Score)
@@ -83,18 +81,16 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
         SortType.MEMBERS -> TeamListItem.sortTypeMembers
     }
 
-    currentTypeIcon?.let { item ->
-        setItem(item) { click ->
-            // Cycle to next type
-            val nextType = when (state.sortType) {
-                SortType.SCORE -> SortType.MONEY
-                SortType.MONEY -> SortType.LEVEL
-                SortType.LEVEL -> SortType.MEMBERS
-                SortType.MEMBERS -> SortType.SCORE
-            }
-            val newState = state.copy(sortType = nextType)
-            teamList(setting, newState).open(click.whoClicked as Player)
+
+    setItem(currentTypeIcon) { click ->
+        val nextType = when (state.sortType) {
+            SortType.SCORE -> SortType.MONEY
+            SortType.MONEY -> SortType.LEVEL
+            SortType.LEVEL -> SortType.MEMBERS
+            SortType.MEMBERS -> SortType.SCORE
         }
+        val newState = state.copy(sortType = nextType)
+        teamList(setting, newState).open(click.whoClicked as Player)
     }
 
     val filterIcon = when (state.filter) {
@@ -104,22 +100,19 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
         FilterType.NONE -> TeamListItem.filterDefault
     }
 
-    filterIcon?.let { item ->
 
-        setItem(item) { click ->
-            val nextFilter = when (state.filter) {
-                FilterType.NONE -> FilterType.OPEN_ONLY
-                FilterType.OPEN_ONLY -> FilterType.CURRENTLY_ONLINE
-                FilterType.CURRENTLY_ONLINE -> FilterType.NOT_FULL
-                FilterType.NOT_FULL -> FilterType.NONE
-            }
-            val newState = state.copy(filter = nextFilter)
-            teamList(setting, newState).open(click.whoClicked as Player)
+    setItem(filterIcon) { click ->
+        val nextFilter = when (state.filter) {
+            FilterType.NONE -> FilterType.OPEN_ONLY
+            FilterType.OPEN_ONLY -> FilterType.CURRENTLY_ONLINE
+            FilterType.CURRENTLY_ONLINE -> FilterType.NOT_FULL
+            FilterType.NOT_FULL -> FilterType.NONE
         }
+        val newState = state.copy(filter = nextFilter)
+        teamList(setting, newState).open(click.whoClicked as Player)
     }
 
-    val searchItem = TeamListItem.searchItem ?: GuiItem(Material.STONE)
-    setItem(searchItem) { click ->
+    setItem(TeamListItem.searchItem) { click ->
         if (click.isShiftClick || click.isRightClick) {
             //clear search
             GUIManager.openTeamListGUI(click.whoClicked as Player)

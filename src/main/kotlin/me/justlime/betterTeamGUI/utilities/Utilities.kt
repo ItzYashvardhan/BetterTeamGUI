@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
+import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.pluginInstance
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -32,11 +33,26 @@ fun isBedrockPlayer(player: Player): Boolean {
 
 fun teamToPlaceholderMap(team: Team): Map<String, String> {
     return mapOf(
-        "%betterteams_name%" to (team.name ?: "N/A"),
-        "%betterteams_members%" to team.members.size().toString(),
-        "%betterteams_maxmembers%" to team.teamLimit.toString(),
-        "%betterteams_level%" to team.level.toString(),
-        "%betterteams_score%" to team.score.toString(),
-        "%betterteams_money%" to team.money.toString()
+        "{team}" to (team.name ?: "N/A"),
+        "{team_size}" to team.members.size().toString(),
+        "{team_limit}" to team.teamLimit.toString(),
+        "{team_level}" to team.level.toString(),
+        "{team_score}" to team.score.toString(),
+        "{team_money}" to team.money.toString(),
     )
 }
+
+fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
+    return mapOf(
+        "{rank}" to teamPlayer.rank.name,
+        "{player}" to (teamPlayer.player.name ?: ""),
+    )
+}
+
+fun applyBetterTeamPlaceholderMap(team: Team,teamPlayer: TeamPlayer): Map<String, String> {
+    val map = mutableMapOf<String, String>()
+    map.putAll(teamToPlaceholderMap(team))
+    map.putAll(teamPlayerToPlaceholderMap(teamPlayer))
+    return map
+}
+

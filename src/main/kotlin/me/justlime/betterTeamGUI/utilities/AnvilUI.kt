@@ -57,7 +57,7 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
         if (userInput.isEmpty()) {
             onInvalidInput()
             val msg = ConfigManager.messages.getString("empty-input.chat") ?: ""
-            val componentMsg = legacySerializer.deserialize(msg)
+            val componentMsg = applyMiniColor(msg)
             adventure.player(player).sendMessage(componentMsg)
             Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
                 openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel, onConfirm)

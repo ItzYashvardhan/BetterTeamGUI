@@ -33,7 +33,6 @@ class InviteGUI(rows: Int, title: String, val team: Team, val teamPlayer: TeamPl
             team.invite(clickedPlayer.uniqueId)
             player.sendMessage("§aInvited ${clickedPlayer.name}")
             clickedPlayer.sendMessage("§aYou have been invited to ${team.name}")
-            GUIManager.openTeamMemberGUI(player, team, teamPlayer)
             return
         } else {
             player.sendMessage("§cPlayer in Currently not online")

@@ -1,9 +1,9 @@
 main:
   title: "<bold>%betterteams_name% Team Warp's</bold>"
   row: 6
-  font-title: true # Weather to enabled font for title
-  font-name: true # Weather to enabled font for name
-  font-lore: true # Whether to enabled font for lore
+  font-title: false
+  font-name: true
+  font-lore: true
   background:
     0:
       name: " "
@@ -19,7 +19,7 @@ main:
 
 claimable-warp:
   item: GREEN_STAINED_GLASS_PANE
-  name: "<green>Create Warp</green>"
+  name: "<b><green>Create Warp</green></b>"
   lore:
     - "<gray>Click to set new warp at current location.</gray>"
     - ""
@@ -37,7 +37,7 @@ occupied-warp:
 ##red glass it will unlock when required {level} is reached
 locked-warp:
   item: RED_STAINED_GLASS_PANE
-  name: "<red>Locked</red>"
+  name: "<b><red>Locked</red></b>"
   lore:
     - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this warp.</gray>"
 

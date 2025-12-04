@@ -1,16 +1,18 @@
 main:
   title: "<bold>Team List (Page - {page})</bold>"
   row: 6
-  font-title: true # Weather to enabled font for title
-  font-name: true # Weather to enabled font for name
-  font-lore: true # Whether to enabled font for lore
+  font-title: false
+  font-name: false
+  font-lore: true
   background:
     0:
+      name: " "
       item: LIGHT_BLUE_STAINED_GLASS_PANE
       slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
       flags:
         - HIDE_ATTRIBUTES
     1:
+      name: " "
       item: PURPLE_STAINED_GLASS_PANE
       slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
   slot:
@@ -21,22 +23,30 @@ main:
 
 
 team-item:
-  name: "<yellow>%betterteams_name% <#D6BA5B>(%betterteams_members%/%betterteams_maxmembers%)"
+  name: "<b><yellow>{team} <#D6BA5B></b><gray>({team_size}/{team_limit})</gray>"
+
   lore:
-    - "<#5BD686>Level:</#5BD686> <#D6BA5B>%betterteams_level%"
-    - "<#5BD686>Score:</#5BD686> <#D6BA5B>%betterteams_score%"
-    - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
+    - "<#5BD686>Level:</#5BD686> <#D6BA5B>{team_level}"
+    - "<#5BD686>Score:</#5BD686> <#D6BA5B>{team_score}"
+    - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
+
+search-item:
+  name: "<caps><b><#00FFC7>Search by Name"
+  lore:
+    - "<gray>Click to search for a team by its name.</gray>"
+  item: OAK_SIGN
+  slot: 45
 
 sort:
   order:
     ASC:
       item: LEVER
       slot: 50
-      name: "<green>Order: <white>Ascending"
+      name: "<caps><green>Order: <white>Ascending"
       lore:
         - "<gray>Sorts the list from lowest to highest.</gray>"
         - ""
@@ -44,7 +54,7 @@ sort:
     DESC:
       item: REDSTONE_TORCH
       slot: 50
-      name: "<green>Order: <white>Descending"
+      name: "<caps><green>Order: <white>Descending"
       lore:
         - "<gray>Sorts the list from highest to lowest.</gray>"
         - ""
@@ -53,7 +63,7 @@ sort:
     MONEY:
       item: SUNFLOWER
       slot: 49
-      name: "<aqua>Sort By: <white>Money"
+      name: "<caps><aqua>Sort By: <white>Money"
       lore:
         - "<gray>Currently sorting by team balance.</gray>"
         - ""
@@ -61,7 +71,7 @@ sort:
     SCORE:
       item: NETHER_STAR
       slot: 49
-      name: "<aqua>Sort By: <white>Score"
+      name: "<caps><aqua>Sort By: <white>Score"
       lore:
         - "<gray>Currently sorting by team score.</gray>"
         - ""
@@ -69,7 +79,7 @@ sort:
     LEVEL:
       item: EXPERIENCE_BOTTLE
       slot: 49
-      name: "<aqua>Sort By: <white>Level"
+      name: "<caps><aqua>Sort By: <white>Level"
       lore:
         - "<gray>Currently sorting by team level.</gray>"
         - ""
@@ -77,7 +87,7 @@ sort:
     MEMBERS:
       item: PLAYER_HEAD
       slot: 49
-      name: "<aqua>Sort By: <white>Members"
+      name: "<caps><aqua>Sort By: <white>Members"
       lore:
         - "<gray>Currently sorting by member count.</gray>"
         - ""
@@ -87,7 +97,7 @@ filter:
   DEFAULT:
     item: HOPPER
     slot: 48
-    name: "<gold>Filter: <white>None"
+    name: "<caps><gold>Filter: <white>None"
     lore:
       - "<gray>Showing all teams.</gray>"
       - ""
@@ -96,7 +106,7 @@ filter:
   OPEN_ONLY:
     item: OAK_DOOR
     slot: 48
-    name: "<gold>Filter: <white>Open Teams"
+    name: "<caps><gold>Filter: <white>Open Teams"
     lore:
       - "<gray>Only showing teams that are open.</gray>"
       - ""
@@ -104,7 +114,7 @@ filter:
   CURRENTLY_ONLINE:
     item: LIME_DYE
     slot: 48
-    name: "<gold>Filter: <white>Online Now"
+    name: "<caps><gold>Filter: <white>Online Now"
     lore:
       - "<gray>Only showing teams with online members.</gray>"
       - ""
@@ -112,18 +122,12 @@ filter:
   NOT_FULL:
     item: CHEST
     slot: 48
-    name: "<gold>Filter: <white>Not Full"
+    name: "<caps><gold>Filter: <white>Not Full"
     lore:
       - "<gray>Only showing teams with available slots.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
 
-search-item:
-  item: OAK_SIGN
-  slot: 45
-  name: "<blue>Search by Name"
-  lore:
-    - "<gray>Click to search for a team by its name.</gray>"
 
 anvil-ui:
   search-team:

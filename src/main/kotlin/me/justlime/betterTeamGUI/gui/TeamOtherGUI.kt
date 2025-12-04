@@ -45,7 +45,6 @@ class TeamOtherGUI(row: Int, val title: String, private val otherTeam: Team, val
             }
 
             memberSlot -> {
-                GUIManager.openTeamMemberGUI(player, otherTeam, teamPlayer)
             }
 
             in backSlots, backSlot -> {

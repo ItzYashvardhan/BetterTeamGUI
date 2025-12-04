@@ -82,12 +82,8 @@ sealed interface JGui {
             const val SEARCH_LABEL = "anvil-ui.search-team.label"
             const val SEARCH_INPUT_ITEM = "anvil-ui.search-team.input-item"
             const val SEARCH_OUTPUT_ITEM = "anvil-ui.search-team.output-item"
-
         }
-
-
     }
-
 
     sealed interface WarpView : JGui {
         companion object {
@@ -121,6 +117,14 @@ sealed interface JGui {
         }
     }
 
-
+    sealed interface MemberView : JGui{
+        companion object{
+            const val SETTING = "main"
+            const val BACKGROUND = "${SETTING}.background"
+            const val BACK_SLOT = "${SETTING}.slot.back"
+            const val HOME_SLOT = "${SETTING}.slot.home"
+            const val MEMBER_ITEM = "member-item"
+        }
+    }
 
 }

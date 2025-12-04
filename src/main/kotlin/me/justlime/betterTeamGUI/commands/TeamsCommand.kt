@@ -51,12 +51,8 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             GUIManager.openTeamWarpGUI(sender)
             return true
         }
-        if (args[0] == "balance" && sender.hasPermission("betterteamgui.use.balance")) {
-            GUIManager.openTeamBalanceGUI(sender)
-            return true
-        }
         if (args[0] == "members" && sender.hasPermission("betterteamgui.use.members")) {
-            GUIManager.openTeamMemberGUI(sender, team, playerTeam)
+            GUIManager.openTeamMemberGUI(sender,team)
             return true
         }
         if (args[0] == "ally" && sender.hasPermission("betterteamgui.use.ally")) {

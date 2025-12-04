@@ -1,7 +1,9 @@
 main:
   title: "<bold>Leave Team?</bold>"
   row: 3
-  font-title: true
+  font-title: false
+  font-name: false
+  font-lore: true
   background:
     0:
       name: " "
@@ -19,14 +21,14 @@ main:
         - HIDE_ADDITIONAL_TOOLTIP
 
 confirm:
-  name: "<b><gradient:#00FF00:#00AA00>Confirm</gradient></b>"
+  name: "<b><gradient:#00FF00:#00AA00>CONFIRM</gradient></b>"
   lore:
     - "<gray>Click to confirm leaving your team.</gray>"
   item: LIME_WOOL
   slot: 11
 
 cancel:
-  name: "<b><gradient:#FF0000:#AA0000>Cancel</gradient></b>"
+  name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
   lore:
     - "<gray>Click to cancel and return to the team menu.</gray>"
   item: RED_WOOL

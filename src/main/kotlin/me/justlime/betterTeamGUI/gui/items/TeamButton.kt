@@ -7,9 +7,10 @@ import net.justlime.limeframegui.impl.ConfigHandler
 object TeamButton {
 
     private val config = ConfigHandler(JFiles.BUTTONS.filename)
-    val back = config.loadItem("back")
-    val home = config.loadItem("home")
-    val next = config.loadItem("next")
-    val prev = config.loadItem("prev")
+    val back = config.loadItem(JGui.TeamButton.BACK)
+    val home = config.loadItem(JGui.TeamButton.HOME)
+    val next = config.loadItem(JGui.TeamButton.NEXT)
+    val prev = config.loadItem(JGui.TeamButton.PREV)
+    val noPermission = config.loadItem(JGui.TeamButton.NO_PERMISSION_ITEM)
 
 }

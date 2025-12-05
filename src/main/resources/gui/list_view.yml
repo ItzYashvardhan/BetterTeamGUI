@@ -1,5 +1,5 @@
 main:
-  title: "<bold>Team List (Page - {page})</bold>"
+  title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
   row: 6
   font-title: false
   font-name: false
@@ -143,4 +143,27 @@ anvil-ui:
       item: ANVIL
       lore:
         - "<gray>Click to search for the team.</gray>"
+  create-team:
+    title: "<bold>Create Team</bold>"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Enter Team Name</green>"
+      item: PAPER
+      lore:
+        - "<gray>Enter the name of your new team.</gray>"
+    output-item:
+      name: "<green>Create</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click to create your team.</gray>"
+
+
+create:
+  item:
+    name: "<b><gradient:#00FFC7:#00BC92>Create Team</gradient></b>"
+    lore:
+      - "<gray>Click to create a new team.</gray>"
+    item: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTIyYTJhNTExY2IyOWRlZmJlNzg1YjhjMjI2NTRmNDZmYzgyNWJhMjUyODZjM2U4OGIzZDg2YjE1YzljIn19fQ=="
+    slot: 53
 

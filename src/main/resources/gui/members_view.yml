@@ -22,7 +22,7 @@ main:
 
 member-item:
   item: PLAYER_HEAD
-  name: "<aqua>{player}"
+  name: "<aqua>{team_player}"
   lore:
     - "<gray>Rank: <yellow>{rank}"
     - ""

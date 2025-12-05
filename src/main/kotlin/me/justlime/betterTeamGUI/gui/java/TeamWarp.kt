@@ -14,6 +14,7 @@ import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.adventure
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
+import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -51,11 +52,17 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
 
             addItem(warpItemCopy) { clickEvent ->
                 // Shift-Click Delete Logic
-                if (clickEvent.click.isShiftClick && teamPlayer.rank != PlayerRank.DEFAULT) {
+                if (clickEvent.click.isShiftClick) {
+                    if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                        permissionDenied(clickEvent)
+                        return@addItem
+                    }
                     TeamService.delWarp(clickEvent.whoClicked as Player, warp.name)
                     Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
                         GUIManager.openTeamWarpGUI(clickEvent.whoClicked as Player)
                     }, 2)
+                    return@addItem
+
                 }
 
                 // Teleport Logic
@@ -83,6 +90,11 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
     if (availableSlots > 0 && claimableWarpItem != null) {
         repeat(availableSlots) {
             addItem(claimableWarpItem) { clickEvent ->
+                if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                    permissionDenied(clickEvent)
+                    return@addItem
+                }
+
                 (clickEvent.whoClicked as? Player)?.let { player ->
                     val title = applyMiniColor(TeamWarpItem.setWarpNameTitle ?: "")
                     val label = applyMiniColor(TeamWarpItem.setWarpNameLabel ?: "")

@@ -14,3 +14,13 @@ prev:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGExZDU1YjNmOTg5NDEwYTM0NzUyNjUwZTI0OGM5YjZjMTc4M2E3ZWMyYWEzZmQ3Nzg3YmRjNGQwZTYzN2QzOSJ9fX0
   name: '<caps><bold><green>Previous</caps>'
+
+no-permission:
+  name: "<red><bold>NO PERMISSION</bold>"
+  lore:
+    - "<gray>You do not have permission to</gray>"
+    - "<gray>interact with this button.</gray>"
+  item: BARRIER
+  glow: true
+  flags:
+    - HIDE_ATTRIBUTES

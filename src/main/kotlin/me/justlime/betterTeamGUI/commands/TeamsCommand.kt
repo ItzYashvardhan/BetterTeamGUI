@@ -31,8 +31,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         }
 
         if (args[0] == "lb") {
-            val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
-            GUIManager.openTeamLeaderBoardGUI(sender, teamPlayer)
+
         }
         val team = Team.getTeam(sender.name) ?: return true
         val playerTeam = team.getTeamPlayer(sender) ?: return true
@@ -52,7 +51,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             return true
         }
         if (args[0] == "members" && sender.hasPermission("betterteamgui.use.members")) {
-            GUIManager.openTeamMemberGUI(sender,team)
+            GUIManager.openTeamMemberGUI(sender, team)
             return true
         }
         if (args[0] == "ally" && sender.hasPermission("betterteamgui.use.ally")) {

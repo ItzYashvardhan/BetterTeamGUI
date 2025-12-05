@@ -1,5 +1,5 @@
 main:
-  title: "<bold>%betterteams_name% Team</bold>"
+  title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team</bold>"
   row: 4
   font-title: false # Weather to enabled font for title
   font-name: false # Weather to enabled font for name

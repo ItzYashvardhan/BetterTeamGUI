@@ -20,12 +20,15 @@ sealed interface JGui {
         }
 
     }
-    sealed interface TeamButton: JGui{
+
+    sealed interface TeamButton : JGui {
         companion object {
             const val BACK = "back"
             const val HOME = "home"
             const val NEXT = "next"
             const val PREV = "prev"
+
+            const val NO_PERMISSION_ITEM = "no-permission"
         }
 
     }
@@ -50,8 +53,8 @@ sealed interface JGui {
         }
     }
 
-    sealed interface MoneyView : JGui{
-        companion object{
+    sealed interface MoneyView : JGui {
+        companion object {
             const val DEPOSIT_TITLE = "anvil-ui.deposit.title"
             const val DEPOSIT_LABEL = "anvil-ui.deposit.label"
             const val DEPOSIT_INPUT_ITEM = "anvil-ui.deposit.input-item"
@@ -67,21 +70,30 @@ sealed interface JGui {
     sealed interface ListView : JGui {
         companion object {
             const val TEAM_ITEM = "team-item"
-            const val SEARCH_ITEM = "search-item"
+
             const val SORT_ORDER_ASC = "sort.order.ASC"
             const val SORT_ORDER_DESC = "sort.order.DESC"
             const val SORT_TYPE_MONEY = "sort.type.MONEY"
             const val SORT_TYPE_SCORE = "sort.type.SCORE"
             const val SORT_TYPE_LEVEL = "sort.type.LEVEL"
             const val SORT_TYPE_MEMBERS = "sort.type.MEMBERS"
+
             const val FILTER_DEFAULT = "filter.DEFAULT"
             const val FILTER_OPEN_ONLY = "filter.OPEN_ONLY"
             const val FILTER_CURRENTLY_ONLINE = "filter.CURRENTLY_ONLINE"
             const val FILTER_NOT_FULL = "filter.NOT_FULL"
+
+            const val SEARCH_ITEM = "search-item"
             const val SEARCH_TITLE = "anvil-ui.search-team.title"
             const val SEARCH_LABEL = "anvil-ui.search-team.label"
             const val SEARCH_INPUT_ITEM = "anvil-ui.search-team.input-item"
             const val SEARCH_OUTPUT_ITEM = "anvil-ui.search-team.output-item"
+
+            const val CREATE_TEAM_ITEM = "create.item"
+            const val CREATE_TEAM_TITLE = "anvil-ui.create-team.title"
+            const val CREATE_TEAM_LABEL = "anvil-ui.create-team.label"
+            const val CREATE_TEAM_INPUT_ITEM = "anvil-ui.create-team.input-item"
+            const val CREATE_TEAM_OUTPUT_ITEM = "anvil-ui.create-team.output-item"
         }
     }
 
@@ -110,20 +122,60 @@ sealed interface JGui {
         }
     }
 
-    sealed interface LeaveView : JGui{
-        companion object{
-            const val CONFIRM_ITEM = "confirm"
-            const val CANCEL_ITEM = "cancel"
+    sealed interface DialogView : JGui {
+        companion object {
+            const val LEAVE_VIEW = "leave-view."
+            const val LEAVE_VIEW_MAIN = LEAVE_VIEW + Main.SETTING
+            const val LEAVE_VIEW_BACKGROUND = LEAVE_VIEW + Main.BACKGROUND
+            const val LEAVE_CONFIRM_ITEM = LEAVE_VIEW + "confirm"
+            const val LEAVE_CANCEL_ITEM = LEAVE_VIEW + "cancel"
+            const val DISBAND_VIEW = "disband-view."
+            const val DISBAND_VIEW_MAIN = DISBAND_VIEW + Main.SETTING
+            const val DISBAND_VIEW_BACKGROUND = DISBAND_VIEW + Main.BACKGROUND
+            const val DISBAND_CONFIRM_ITEM = DISBAND_VIEW + "confirm"
+            const val DISBAND_CANCEL_ITEM = DISBAND_VIEW + "cancel"
+
         }
     }
 
-    sealed interface MemberView : JGui{
-        companion object{
+    sealed interface MemberView : JGui {
+        companion object {
             const val SETTING = "main"
             const val BACKGROUND = "${SETTING}.background"
             const val BACK_SLOT = "${SETTING}.slot.back"
             const val HOME_SLOT = "${SETTING}.slot.home"
             const val MEMBER_ITEM = "member-item"
+        }
+    }
+
+    sealed interface SettingView : JGui {
+        companion object {
+            const val COLOR_PICKER = "color-picker"
+            const val DESCRIPTION = "description"
+            const val TAG = "tag"
+            const val STATUS_OPEN = "status-open"
+            const val STATUS_CLOSED = "status-closed"
+            const val ANCHOR = "anchor"
+            const val TITLE = "title"
+            const val PVP = "pvp"
+            const val BAN_LIST = "ban-list"
+            const val DISBAND = "disband"
+
+            const val DESCRIPTION_TITLE = "anvil-ui.description.title"
+            const val DESCRIPTION_LABEL = "anvil-ui.description.label"
+            const val DESCRIPTION_INPUT_ITEM = "anvil-ui.description.input-item"
+            const val DESCRIPTION_OUTPUT_ITEM = "anvil-ui.description.output-item"
+
+            const val TAG_TITLE = "anvil-ui.tag.title"
+            const val TAG_LABEL = "anvil-ui.tag.label"
+            const val TAG_INPUT_ITEM = "anvil-ui.tag.input-item"
+            const val TAG_OUTPUT_ITEM = "anvil-ui.tag.output-item"
+
+            const val TITLE_TITLE = "anvil-ui.title.title"
+            const val TITLE_LABEL = "anvil-ui.title.label"
+            const val TITLE_INPUT_ITEM = "anvil-ui.title.input-item"
+            const val TITLE_OUTPUT_ITEM = "anvil-ui.title.output-item"
+
         }
     }
 

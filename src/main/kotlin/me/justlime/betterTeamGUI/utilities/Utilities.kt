@@ -2,11 +2,18 @@ package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
+import me.justlime.betterTeamGUI.gui.items.TeamButton
+import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
+import me.justlime.betterTeamGUI.gui.items.TeamSettingItem.setting
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.utilities.item
+import net.justlime.limeframegui.utilities.update
 import net.kyori.adventure.text.Component
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
+import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.geysermc.floodgate.api.FloodgateApi
@@ -39,13 +46,14 @@ fun teamToPlaceholderMap(team: Team): Map<String, String> {
         "{team_level}" to team.level.toString(),
         "{team_score}" to team.score.toString(),
         "{team_money}" to team.money.toString(),
+        "{anchor}" to team.isAnchored.toString(),
     )
 }
 
 fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
     return mapOf(
         "{rank}" to teamPlayer.rank.name,
-        "{player}" to (teamPlayer.player.name ?: ""),
+        "{team_player}" to (teamPlayer.player.name ?: ""),
     )
 }
 
@@ -56,3 +64,15 @@ fun applyBetterTeamPlaceholderMap(team: Team,teamPlayer: TeamPlayer): Map<String
     return map
 }
 
+fun permissionDenied(event: InventoryClickEvent) {
+    val oldItem = event.item ?: return
+    val noPermissionItem = TeamButton.noPermission ?: return
+    event.item = noPermissionItem
+    event.item?.smallCapsName = setting.smallCapsItemName
+    event.item?.smallCapsLore = setting.smallCapsItemLore
+    event.update()
+    Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        event.item = oldItem
+        event.update()
+    }, 30)
+}

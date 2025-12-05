@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI.gui.java
 
+import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
@@ -46,6 +47,8 @@ fun teamView(setting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI 
             teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
             else -> TeamViewItem.chatItem
         }
+        event.item?.smallCapsName = setting.smallCapsItemName
+        event.item?.smallCapsLore = setting.smallCapsItemLore
         event.update()
     }
 
@@ -83,6 +86,7 @@ fun teamView(setting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI 
 
     setItem(TeamViewItem.allyItem) {}
 
+    if (teamPlayer.rank != PlayerRank.OWNER)
     setItem(TeamViewItem.leaveItem) {
         GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
     }
@@ -91,7 +95,9 @@ fun teamView(setting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI 
         GUIManager.openTeamListGUI(it.whoClicked as Player)
     }
 
-    setItem(TeamViewItem.settingItem) {}
+    setItem(TeamViewItem.settingItem) {
+        GUIManager.openTeamSettingGUI(it.whoClicked as Player)
+    }
 
 }
 

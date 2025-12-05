@@ -51,7 +51,7 @@ object ConfigManager {
         warpForm = loadConfig(JFiles.WARP_FORM)
         membersView = loadConfig(JFiles.MEMBERS_VIEW)
         otherTeamView = loadConfig(JFiles.OTHER_TEAM_VIEW)
-        leaveView = loadConfig(JFiles.LEAVE_VIEW)
+        leaveView = loadConfig(JFiles.DIALOG_VIEW)
         leaveForm = loadConfig(JFiles.LEAVE_FORM)
         moneyView = loadConfig(JFiles.MONEY_VIEW)
         balanceForm = loadConfig(JFiles.BALANCE_FORM)
@@ -103,7 +103,7 @@ object ConfigManager {
                 JFiles.INVITE_FORM -> inviteForm
                 JFiles.OTHER_TEAM_VIEW -> otherTeamView
                 JFiles.OTHER_TEAM_FORM -> otherTeamForm
-                JFiles.LEAVE_VIEW -> leaveView
+                JFiles.DIALOG_VIEW -> leaveView
                 JFiles.LEAVE_FORM -> leaveForm
                 JFiles.MONEY_VIEW -> moneyView
                 JFiles.BALANCE_FORM -> balanceForm

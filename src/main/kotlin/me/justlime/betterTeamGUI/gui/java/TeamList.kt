@@ -5,6 +5,8 @@ import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
+import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
@@ -26,7 +28,7 @@ data class TeamListState(
     val searchQuery: String? = null
 )
 
-fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): ChestGUI = ChestGUI(setting) {
+fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamListState()): ChestGUI = ChestGUI(setting) {
 
     onClick { it.isCancelled = true }
     nav {
@@ -37,7 +39,7 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
     }
     TeamListItem.background.forEach { setItem(it) }
 
-    setItem(TeamButton.back, TeamListItem.backSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
+//    setItem(TeamButton.back, TeamListItem.backSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
     setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
     var teams: List<Team> = Team.getTeamManager().sortTeamsByMembers().map { Team.getTeam(it) }
@@ -70,7 +72,7 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
     setItem(currentOrderIcon) { click ->
         val newOrder = if (state.sortOrder == SortOrder.ASC) SortOrder.DESC else SortOrder.ASC
         val newState = state.copy(sortOrder = newOrder)
-        teamList(setting, newState).open(click.whoClicked as Player)
+        teamList(setting, player, newState).open(click.whoClicked as Player)
     }
 
     // Sort Type Button (Cycle: Score -> Money -> Level -> Members -> Score)
@@ -90,7 +92,7 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
             SortType.MEMBERS -> SortType.SCORE
         }
         val newState = state.copy(sortType = nextType)
-        teamList(setting, newState).open(click.whoClicked as Player)
+        teamList(setting, player, newState).open(click.whoClicked as Player)
     }
 
     val filterIcon = when (state.filter) {
@@ -109,7 +111,7 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
             FilterType.NOT_FULL -> FilterType.NONE
         }
         val newState = state.copy(filter = nextFilter)
-        teamList(setting, newState).open(click.whoClicked as Player)
+        teamList(setting, player, newState).open(click.whoClicked as Player)
     }
 
     setItem(TeamListItem.searchItem) { click ->
@@ -128,10 +130,28 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
                 onCancel = { GUIManager.openTeamListGUI(player) },
                 onConfirm = { query ->
                     val newState = state.copy(searchQuery = query)
-                    teamList(setting, newState).open(player)
+                    teamList(setting, player, newState).open(player)
                 })
         }
     }
+    if (!Team.getTeamManager().isInTeam(player)) setItem(TeamListItem.createTeamItem) { click ->
+        val player = click.whoClicked as Player
+        openAnvilGUI(
+            player = player,
+            title = applyMiniColor(TeamListItem.createTeamTitle),
+            label = applyMiniColor(TeamListItem.createTeamLabel),
+            inputItem = TeamListItem.createTeamInputItem ?: GuiItem(Material.STONE),
+            outputItem = TeamListItem.createTeamOutputItem ?: GuiItem(Material.STONE),
+            onInvalidInput = { },
+            onCancel = { GUIManager.openTeamListGUI(player) },
+            onConfirm = { teamName ->
+                TeamService.createTeam(player, teamName)
+                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable{
+                    GUIManager.openTeamGUI(player)
+                },4)
+            })
+    }
+
 
     addPage {
         teams.forEach { team ->
@@ -152,4 +172,5 @@ fun teamList(setting: GUISetting, state: TeamListState = TeamListState()): Chest
             }
         }
     }
+
 }

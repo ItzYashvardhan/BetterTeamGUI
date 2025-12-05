@@ -14,7 +14,7 @@ import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamMemberView(setting: GUISetting, team: Team): ChestGUI = ChestGUI(setting) {
+fun teamMemberView(setting: GUISetting, team: Team): ChestGUI = ChestGUI(setting.copy()) {
 
     onClick { it.isCancelled = true }
 

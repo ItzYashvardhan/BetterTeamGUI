@@ -4,6 +4,8 @@ enum class JFiles(val filename: String) {
     CONFIG("config.yml"),
     MESSAGES("messages.yml"),
     BUTTONS("gui/buttons.yml"),
+    COLORS("gui/color_picker.yml"),
+
 
 
     //Java Config

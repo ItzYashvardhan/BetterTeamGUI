@@ -35,7 +35,8 @@ sealed interface JGui {
 
     sealed interface TeamView : JGui {
         companion object {
-            const val INFO = "info"
+            const val INFO_WITH_DESC = "info-with-description"
+            const val INFO_WITHOUT_DESC = "info-without-description"
             const val HOME = "home"
             const val BALANCE = "balance"
             const val WARP = "warps"
@@ -69,7 +70,8 @@ sealed interface JGui {
 
     sealed interface ListView : JGui {
         companion object {
-            const val TEAM_ITEM = "team-item"
+            const val TEAM_ITEM_WITH_DESC = "team-item-with-description"
+            const val TEAM_ITEM_WITHOUT_DESC = "team-item-without-description"
 
             const val SORT_ORDER_ASC = "sort.order.ASC"
             const val SORT_ORDER_DESC = "sort.order.DESC"
@@ -134,6 +136,17 @@ sealed interface JGui {
             const val DISBAND_VIEW_BACKGROUND = DISBAND_VIEW + Main.BACKGROUND
             const val DISBAND_CONFIRM_ITEM = DISBAND_VIEW + "confirm"
             const val DISBAND_CANCEL_ITEM = DISBAND_VIEW + "cancel"
+            const val DELETE_HOME_VIEW = "delete-home-view."
+            const val DELETE_HOME_VIEW_MAIN = DELETE_HOME_VIEW + Main.SETTING
+            const val DELETE_HOME_VIEW_BACKGROUND = DELETE_HOME_VIEW + Main.BACKGROUND
+            const val DELETE_HOME_CONFIRM_ITEM = DELETE_HOME_VIEW + "confirm"
+            const val DELETE_HOME_CANCEL_ITEM = DELETE_HOME_VIEW + "cancel"
+            const val UPDATE_HOME_VIEW = "update-home-view."
+            const val UPDATE_HOME_VIEW_MAIN = UPDATE_HOME_VIEW + Main.SETTING
+            const val UPDATE_HOME_VIEW_BACKGROUND = UPDATE_HOME_VIEW + Main.BACKGROUND
+            const val UPDATE_HOME_CONFIRM_ITEM = UPDATE_HOME_VIEW + "confirm"
+            const val UPDATE_HOME_CANCEL_ITEM = UPDATE_HOME_VIEW + "cancel"
+
 
         }
     }
@@ -178,5 +191,28 @@ sealed interface JGui {
 
         }
     }
+    sealed interface ColorPicker : JGui {
+        companion object {
+
+            const val COLORS = "colors"
+            const val AQUA = "${COLORS}.aqua"
+            const val BLACK = "${COLORS}.black"
+            const val BLUE = "${COLORS}.blue"
+            const val DARK_AQUA = "${COLORS}.dark_aqua"
+            const val DARK_BLUE = "${COLORS}.dark_blue"
+            const val DARK_GRAY = "${COLORS}.dark_gray"
+            const val DARK_GREEN = "${COLORS}.dark_green"
+            const val DARK_PURPLE = "${COLORS}.dark_purple"
+            const val DARK_RED = "${COLORS}.dark_red"
+            const val GOLD = "${COLORS}.gold"
+            const val GRAY = "${COLORS}.gray"
+            const val GREEN = "${COLORS}.green"
+            const val RED = "${COLORS}.red"
+            const val STRIKETHROUGH = "${COLORS}.strikethrough"
+            const val WHITE = "${COLORS}.white"
+            const val YELLOW = "${COLORS}.yellow"
+        }
+    }
+
 
 }

@@ -1,5 +1,5 @@
 main:
-  title: "<bold>%betterteams_name% Team</bold>"
+  title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team Member's</bold>"
   row: 6
   font-title: false
   font-name: true

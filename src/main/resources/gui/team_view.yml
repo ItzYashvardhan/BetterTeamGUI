@@ -20,28 +20,58 @@ main:
         - HIDE_ATTRIBUTES
         - HIDE_ADDITIONAL_TOOLTIP
 
-team-setting:
-  name: "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
+leave:
+  name: "<b><gradient:#FF0000:#FF7878>Leave Team</gradient></b>"
   lore:
-    - "<gray>Manage your team's options.</gray>"
+    - "<gray>Leave your current team.</gray>"
     - ""
-    - "<yellow>Left-Click</yellow> <gray>to view settings</gray>"
-
+    - "<red>Left-Click</red> <gray>to leave</gray>"
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliOTkyMzhkOWY4MTM0MDE1ZDc0MzQxYjE3MTE1YmUzMGYxMjVhMzdlYTQ5MDMyYjhjOWUzYjc2OWNmN2VlMSJ9fX0=
-  slot: 24
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkzYjhkYzkzZjAxODY2MGFhOTI1NmI5MWJiNzcwY2JjYmNjNjJhZTYxZTdhNjcxYzc1ZGM1NDQ1NjljMWE3OCJ9fX0=
+  slot: 8
 
-info:
-  name: "<b><#5BD686>%betterteams_displayname% Team (<#D6BA5B>%betterteams_members%/%betterteams_maxmembers%)</b>"
+info-with-description:
+  name: "<b><#5BD686>%betterteams_displayname% Team</b> <gray>(%betterteams_members%/%betterteams_maxmembers%)</gray>"
   lore:
-    - "<#5BD686>Level:</#5BD686> <#D6BA5B>%betterteams_level%"
-    - "<#5BD686>Score:</#5BD686> <#D6BA5B>%betterteams_score%"
-    - "<#5BD686>Active:</#5BD686> <#D6BA5B>%betterteams_online%"
+    - "<white><italic>%betterteams_description%</italic></white>"
+    - " "
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view LeaderBoards</gray>"
   slot: 10
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
+
+info-without-description:
+  name: "<b><#5BD686>%betterteams_displayname% Team</b> <gray>(%betterteams_members%/%betterteams_maxmembers%)</gray>"
+  lore:
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to view LeaderBoards</gray>"
+  slot: 10
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
+
+
+home:
+  name: "<gradient:#00CACA:#00EAEA><b>Team Home</b>"
+  lore:
+    - "<gray>Teleport to your team's home.</gray>"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
+    - "<yellow>Right-Click</yellow> <gray>to set new home</gray>"
+    - "<yellow>Shift-Click</yellow> <gray>to remove home</gray>"
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU1MzE4MjRjMzA1MjQ2YzhkNTUwYjRlZjk3MzJlMzg1M2NkMDkwM2YyODE3MTMxMDdlZTgwNjFkZTQ2ZGZhMyJ9fX0=
+  slot: 12
+
+
 
 list:
   name: "<b><gradient:#FFDAB4:#FFD2D2>Team List</gradient></b>"
@@ -53,26 +83,6 @@ list:
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkzZGZiM2FlODE3Nzc4NGE2NDU3NzlkY2EyYzEyZGZiYTEyNThjMjAyYWZkYzA0ZDg3ZDgwZjJjZWNlYTFkNyJ9fX0=
   slot: 19
 
-home:
-  name: "<gradient:#00CACA:#00EAEA><b>Team Home</b>"
-  lore:
-    - "<gray>Teleport to your team's home.</gray>"
-    - ""
-    - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
-  item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU1MzE4MjRjMzA1MjQ2YzhkNTUwYjRlZjk3MzJlMzg1M2NkMDkwM2YyODE3MTMxMDdlZTgwNjFkZTQ2ZGZhMyJ9fX0=
-  slot: 12
-
-warps:
-  name: "<gradient:#00CACA:#00EAEA><b>Team Warps</b>"
-  lore:
-    - "<gray>View all available team warps.</gray>"
-    - ""
-    - "<yellow>Left-Click</yellow> <gray>to open warps</gray>"
-  item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhiZThhYmQ2NmQwOWE1OGNlMTJkMzc3NTQ0ZDcyNmQyNWNhZDdlOTc5ZThjMjQ4MTg2NmJlOTRkM2IzMmYifX19
-  slot: 21
-
 allies:
   name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
   lore:
@@ -82,18 +92,6 @@ allies:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
   slot: 13
-
-balance:
-  name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
-  lore:
-    - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
-    - ""
-    - "<green>Left-Click</green> <gray>to deposit</gray>"
-    - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
-
-  item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
-  slot: 22
 
 members:
   global:
@@ -114,6 +112,40 @@ members:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
     slot: 14
+
+team-chest:
+  name: "<b><gradient:#5349FF:#60BEFF>Team Chest</gradient></b>"
+  lore:
+    - "<gray>Access your team's shared chest.</gray>"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to open</gray>"
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI0ODZmMjg1OTE2OWM4YmZiNjZhNjg3YmNmNGM2OTkzNDE3ZjU4NGI1OGJiZmRiMzM2NDY0ZDUyMDcxY2NkNyJ9fX0=
+  slot: 15
+
+warps:
+  name: "<gradient:#00CACA:#00EAEA><b>Team Warps</b>"
+  lore:
+    - "<gray>View all available team warps.</gray>"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to open warps</gray>"
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhiZThhYmQ2NmQwOWE1OGNlMTJkMzc3NTQ0ZDcyNmQyNWNhZDdlOTc5ZThjMjQ4MTg2NmJlOTRkM2IzMmYifX19
+  slot: 21
+
+
+balance:
+  name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
+  lore:
+    - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
+    - ""
+    - "<yellow>Left-Click</green> <gray>to deposit</gray>"
+    - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
+
+  item: PLAYER_HEAD
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
+  slot: 22
+
 
 chat:
   global:
@@ -148,22 +180,13 @@ chat:
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmOGQyNDQ4YTNiZDI4ZmZiNDNjYmZlMGMwNmQ1NzQxYzZkZmEyN2YzYzI5YjhkMDdjYTIxZTVkNjdjNjFiZCJ9fX0=
     slot: 23
 
-team-chest:
-  name: "<b><gradient:#5349FF:#60BEFF>Team Chest</gradient></b>"
+team-setting:
+  name: "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
   lore:
-    - "<gray>Access your team's shared chest.</gray>"
+    - "<gray>Manage your team's options.</gray>"
     - ""
-    - "<yellow>Left-Click</yellow> <gray>to open</gray>"
-  item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI0ODZmMjg1OTE2OWM4YmZiNjZhNjg3YmNmNGM2OTkzNDE3ZjU4NGI1OGJiZmRiMzM2NDY0ZDUyMDcxY2NkNyJ9fX0=
-  slot: 15
+    - "<yellow>Left-Click</yellow> <gray>to view settings</gray>"
 
-leave:
-  name: "<b><gradient:#FF0000:#FF7878>Leave Team</gradient></b>"
-  lore:
-    - "<gray>Leave your current team.</gray>"
-    - ""
-    - "<red>Left-Click</red> <gray>to leave</gray>"
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkzYjhkYzkzZjAxODY2MGFhOTI1NmI5MWJiNzcwY2JjYmNjNjJhZTYxZTdhNjcxYzc1ZGM1NDQ1NjljMWE3OCJ9fX0=
-  slot: 8
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliOTkyMzhkOWY4MTM0MDE1ZDc0MzQxYjE3MTE1YmUzMGYxMjVhMzdlYTQ5MDMyYjhjOWUzYjc2OWNmN2VlMSJ9fX0=
+  slot: 24

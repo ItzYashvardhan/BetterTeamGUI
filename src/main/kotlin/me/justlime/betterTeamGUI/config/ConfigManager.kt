@@ -12,6 +12,7 @@ object ConfigManager {
     lateinit var config: FileConfiguration
     lateinit var messages: FileConfiguration
     lateinit var buttons: FileConfiguration
+    lateinit var colorsView: FileConfiguration
     lateinit var font: FileConfiguration
     lateinit var teamCreateForm: FileConfiguration
     lateinit var listView: FileConfiguration
@@ -41,6 +42,7 @@ object ConfigManager {
         config = loadConfig(JFiles.CONFIG)
         messages = loadConfig(JFiles.MESSAGES)
         buttons = loadConfig(JFiles.BUTTONS)
+        colorsView = loadConfig(JFiles.COLORS)
         font = loadConfig(JFiles.FONT)
         teamCreateForm = loadConfig(JFiles.TEAM_CREATE_FORM)
         listView = loadConfig(JFiles.LIST_VIEW)
@@ -91,6 +93,7 @@ object ConfigManager {
                 JFiles.MESSAGES -> messages
                 JFiles.BUTTONS -> buttons
                 JFiles.FONT -> font
+                JFiles.COLORS -> colorsView
                 JFiles.TEAM_CREATE_FORM -> teamCreateForm
                 JFiles.LIST_VIEW -> listView
                 JFiles.LIST_FORM -> listForm

@@ -21,7 +21,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
+fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting.copy()) {
     onClick {
         it.isCancelled = true
 
@@ -32,14 +32,14 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(TeamButton.home, TeamSettingItem.homeSlot) { GUIManager.openTeamGUI(player) }
 
     // Color Picker
-
-    setItem(TeamSettingItem.colorPicker) { event ->
+    setItem(TeamSettingItem.colorPicker.apply {
+        this?.customPlaceholder = mapOf("{color}" to team.color.name)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
             permissionDenied(event)
             return@setItem
         }
-        // Open color picker GUI
-//        GUIManager.openColorPickerGUI(player)
+        GUIManager.openColorPickerGUI(player)
     }
 
     // Description
@@ -168,12 +168,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
 
     // Disband
-    setItem(TeamSettingItem.disband) { event ->
-        if (teamPlayer.rank != PlayerRank.OWNER) {
-            permissionDenied(event)
-            return@setItem
-        }
-
+    if (teamPlayer.rank == PlayerRank.OWNER) setItem(TeamSettingItem.disband) {
         // Open disband confirmation GUI
         GUIManager.openTeamDisbandGUI(player)
     }

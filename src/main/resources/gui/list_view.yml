@@ -22,17 +22,32 @@ main:
     next: 51
 
 
-team-item:
+team-item-with-description:
   name: "<b><yellow>{team} <#D6BA5B></b><gray>({team_size}/{team_limit})</gray>"
-
   lore:
-    - "<#5BD686>Level:</#5BD686> <#D6BA5B>{team_level}"
-    - "<#5BD686>Score:</#5BD686> <#D6BA5B>{team_score}"
-    - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
+    - "<white><italic>%betterteams_description%</italic></white>"
+    - " "
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
+
+team-item-without-description:
+  name: "<b><yellow>{team} <#D6BA5B></b><gray>({team_size}/{team_limit})</gray>"
+  lore:
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+  item: PLAYER_HEAD
+  texture: ""
+
 
 search-item:
   name: "<caps><b><#00FFC7>Search by Name"

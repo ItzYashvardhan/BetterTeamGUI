@@ -10,7 +10,8 @@ object TeamViewItem {
     val setting = config.loadInventorySetting(JGui.Main.SETTING)
     val background = config.loadItems(JGui.Main.BACKGROUND)
 
-    var infoItem = config.loadItem(JGui.TeamView.INFO)
+    var infoItemWithDesc = config.loadItem(JGui.TeamView.INFO_WITH_DESC)
+    var infoItemWithoutDesc = config.loadItem(JGui.TeamView.INFO_WITHOUT_DESC)
     var homeItem = config.loadItem(JGui.TeamView.HOME)
 
     var chatItem = config.loadItem(JGui.TeamView.GLOBAL_CHAT)

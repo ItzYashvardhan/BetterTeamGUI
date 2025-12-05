@@ -6,17 +6,21 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
+import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
+import me.justlime.betterTeamGUI.gui.java.colorPickerView
+import me.justlime.betterTeamGUI.gui.java.teamDeleteHomeDialog
 import me.justlime.betterTeamGUI.gui.java.teamDisbandDialog
 import me.justlime.betterTeamGUI.gui.java.teamLeaveDialog
 import me.justlime.betterTeamGUI.gui.java.teamList
 import me.justlime.betterTeamGUI.gui.java.teamMemberView
 import me.justlime.betterTeamGUI.gui.java.teamSettingView
+import me.justlime.betterTeamGUI.gui.java.teamUpdateHomeDialog
 import me.justlime.betterTeamGUI.gui.java.teamView
 import me.justlime.betterTeamGUI.gui.java.teamWarp
 import me.justlime.betterTeamGUI.pluginInstance
@@ -58,7 +62,7 @@ object GUIManager {
             }
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamView(TeamViewItem.setting, team, teamPlayer).open(player)
+            teamView(TeamViewItem.setting,player, team, teamPlayer)
             return
         }
         if (isBedrockPlayer(player)) {
@@ -167,7 +171,7 @@ object GUIManager {
         }
 
         TeamListItem.setting.placeholderPlayer = player
-        teamList(TeamListItem.setting, player).open(player)
+        teamList(TeamListItem.setting, player)
     }
 
     fun openTeamMemberGUI(player: Player, team: Team) {
@@ -252,6 +256,30 @@ object GUIManager {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         teamSettingView(TeamSettingItem.setting, player, team, teamPlayer).open(player)
+    }
+
+    fun openTeamDeleteHomeGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for delete home
+            return
+        }
+        teamDeleteHomeDialog(TeamDialogItem.deleteHomeSetting).open(player)
+    }
+
+    fun openTeamUpdateHomeGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for update home
+            return
+        }
+        teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting).open(player)
+    }
+
+    fun openColorPickerGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for color picker
+            return
+        }
+       colorPickerView(ColorPickerItem.setting, player).open(player)
     }
 
 }

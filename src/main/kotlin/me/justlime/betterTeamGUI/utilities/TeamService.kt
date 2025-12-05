@@ -1,8 +1,10 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Main
+import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
 object TeamService {
@@ -38,6 +40,15 @@ object TeamService {
         player.performCommand("$teamCommandPrefix home")
     }
 
+    fun setHome(player: Player) {
+        player.performCommand("$teamCommandPrefix sethome")
+    }
+
+    fun removeHome(player: Player) {
+        player.performCommand("$teamCommandPrefix delhome")
+    }
+
+
     fun openTeamEnderChest(player: Player) {
         player.performCommand("$teamCommandPrefix echest")
     }
@@ -49,11 +60,6 @@ object TeamService {
     fun setTitle(player: Player, title: String) {
         if (title.isBlank()) player.performCommand("$teamCommandPrefix title")
         else player.performCommand("$teamCommandPrefix title $title")
-    }
-
-    fun setAnchor(player: Player, bool: Boolean) {
-
-        player.performCommand("$teamCommandPrefix anchor $bool")
     }
 
     fun togglePvp(player: Player) {
@@ -80,4 +86,15 @@ object TeamService {
     fun createTeam(player: Player, teamName: String) {
         player.performCommand("$teamCommandPrefix create $teamName")
     }
+
+    fun setTeamColor(player: Player, color: String) {
+        //string get like blue, red
+        player.performCommand("$teamCommandPrefix color $color")
+        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+            GUIManager.openTeamSettingGUI(player)
+        }, 4)
+    }
+
+
+
 }

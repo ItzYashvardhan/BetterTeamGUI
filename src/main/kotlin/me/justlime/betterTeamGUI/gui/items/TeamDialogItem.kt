@@ -22,13 +22,31 @@ object TeamDialogItem {
     var disbandConfirmItem = config.loadItem(JGui.DialogView.DISBAND_CONFIRM_ITEM)
     var disbandCancelItem = config.loadItem(JGui.DialogView.DISBAND_CANCEL_ITEM)
 
+    val deleteHomeSetting = config.loadInventorySetting(JGui.DialogView.DELETE_HOME_VIEW_MAIN)
+    val deleteHomeBackground = config.loadItems(JGui.DialogView.DELETE_HOME_VIEW_BACKGROUND)
+    var deleteHomeConfirmItem = config.loadItem(JGui.DialogView.DELETE_HOME_CONFIRM_ITEM)
+    var deleteHomeCancelItem = config.loadItem(JGui.DialogView.DELETE_HOME_CANCEL_ITEM)
+
+    val updateHomeSetting = config.loadInventorySetting(JGui.DialogView.UPDATE_HOME_VIEW_MAIN)
+    val updateHomeBackground = config.loadItems(JGui.DialogView.UPDATE_HOME_VIEW_BACKGROUND)
+    var updateHomeConfirmItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CONFIRM_ITEM)
+    var updateHomeCancelItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CANCEL_ITEM)
+
 
     fun reload() {
         config.reload()
         leaveConfirmItem = config.loadItem(JGui.DialogView.LEAVE_CONFIRM_ITEM)
         leaveCancelItem = config.loadItem(JGui.DialogView.LEAVE_CANCEL_ITEM)
+
         disbandConfirmItem = config.loadItem(JGui.DialogView.DISBAND_CONFIRM_ITEM)
         disbandCancelItem = config.loadItem(JGui.DialogView.DISBAND_CANCEL_ITEM)
+
+        deleteHomeConfirmItem = config.loadItem(JGui.DialogView.DELETE_HOME_CONFIRM_ITEM)
+        deleteHomeCancelItem = config.loadItem(JGui.DialogView.DELETE_HOME_CANCEL_ITEM)
+
+        updateHomeConfirmItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CONFIRM_ITEM)
+        updateHomeCancelItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CANCEL_ITEM)
+
     }
 
 }

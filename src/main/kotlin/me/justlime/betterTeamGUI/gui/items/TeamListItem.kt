@@ -16,7 +16,8 @@ object TeamListItem {
     val prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
     val nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
 
-    var teamItem = config.loadItem(JGui.ListView.TEAM_ITEM)
+    var teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
+    var teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
 
     var sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
     var sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)
@@ -45,7 +46,8 @@ object TeamListItem {
 
     fun reload() {
         config.reload()
-        teamItem = config.loadItem(JGui.ListView.TEAM_ITEM)
+        teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
+        teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
 
         sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
         sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)

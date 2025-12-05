@@ -17,91 +17,112 @@ import net.justlime.limeframegui.utilities.item
 import net.justlime.limeframegui.utilities.update
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.inventory.ClickType
 
-fun teamView(setting: GUISetting, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
+fun teamView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer) {
+    ChestGUI(setting.copy()) {
+        onClick { it.isCancelled = true }
+        TeamViewItem.background.forEach { setItem(it) }
 
-    onClick { it.isCancelled = true }
-    TeamViewItem.background.forEach { setItem(it) }
-
-    val chatItem = when {
-        teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
-        teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
-        else -> TeamViewItem.chatItem
-    }
-    setItem(chatItem) { event ->
-        if (event.click.isRightClick) {
-            // Toggle Ally Chat
-            val newState = !teamPlayer.isInAllyChat
-            teamPlayer.setAllyChat(newState)
-            teamPlayer.setTeamChat(false)
-        }
-        if (event.click.isLeftClick) {
-            // Toggle Team Chat
-            val newState = !teamPlayer.isInTeamChat
-            teamPlayer.setTeamChat(newState)
-            teamPlayer.setAllyChat(false)
-        }
-
-        event.item = when {
+        val chatItem = when {
             teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
             teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
             else -> TeamViewItem.chatItem
         }
-        event.item?.smallCapsName = setting.smallCapsItemName
-        event.item?.smallCapsLore = setting.smallCapsItemLore
-        event.update()
-    }
+        setItem(chatItem) { event ->
+            if (event.click.isRightClick) {
+                // Toggle Ally Chat
+                val newState = !teamPlayer.isInAllyChat
+                teamPlayer.setAllyChat(newState)
+                teamPlayer.setTeamChat(false)
+            }
+            if (event.click.isLeftClick) {
+                // Toggle Team Chat
+                val newState = !teamPlayer.isInTeamChat
+                teamPlayer.setTeamChat(newState)
+                teamPlayer.setAllyChat(false)
+            }
 
-    setItem(TeamViewItem.infoItem)
-
-    setItem(TeamViewItem.homeItem) {
-        val player = it.whoClicked as? Player ?: return@setItem
-        if (!it.click.isShiftClick) {
-            TeamService.teleportToHome(player)
-            player.closeInventory()
+            event.item = when {
+                teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
+                teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
+                else -> TeamViewItem.chatItem
+            }
+            event.item?.smallCapsName = setting.smallCapsItemName
+            event.item?.smallCapsLore = setting.smallCapsItemLore
+            event.update()
         }
-    }
 
-    setItem(TeamViewItem.balanceItem) { clickEvent ->
-        if (clickEvent.isLeftClick) {
-            depositOrWithdrawMoneyAnvilUI(team, teamPlayer, clickEvent.whoClicked as Player, true)
+//    setItem(TeamViewItem.infoItem)
+        val infoItem = if (team.description.isBlank()) TeamViewItem.infoItemWithoutDesc else TeamViewItem.infoItemWithDesc
+        setItem(infoItem)
+
+
+        setItem(TeamViewItem.homeItem) {
+            when (it.click) {
+                ClickType.LEFT -> {
+                    TeamService.teleportToHome(player)
+                    player.closeInventory()
+                }
+
+                ClickType.RIGHT -> {
+                    if (team.teamHome != null) GUIManager.openTeamUpdateHomeGUI(player)
+                    else {
+                        TeamService.setHome(player)
+                        player.closeInventory()
+                    }
+                }
+
+                ClickType.SHIFT_LEFT, ClickType.SHIFT_RIGHT -> {
+                    GUIManager.openTeamDeleteHomeGUI(player)
+                }
+
+                else -> Unit
+
+            }
+
         }
-        if (clickEvent.isRightClick) {
-            depositOrWithdrawMoneyAnvilUI(team, teamPlayer, clickEvent.whoClicked as Player, false)
+
+        setItem(TeamViewItem.balanceItem) { clickEvent ->
+            if (clickEvent.isLeftClick) {
+                depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, true)
+            }
+            if (clickEvent.isRightClick) {
+                depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, false)
+            }
         }
-    }
 
-    setItem(TeamViewItem.warpItem) {
-        val player = it.whoClicked as? Player ?: return@setItem
-        GUIManager.openTeamWarpGUI(player)
-    }
+        setItem(TeamViewItem.warpItem) {
+            val player = it.whoClicked as? Player ?: return@setItem
+            GUIManager.openTeamWarpGUI(player)
+        }
 
-    setItem(TeamViewItem.membersItem) {
-        GUIManager.openTeamMemberGUI(it.whoClicked as Player, team)
-    }
+        setItem(TeamViewItem.membersItem) {
+            GUIManager.openTeamMemberGUI(it.whoClicked as Player, team)
+        }
 
-    setItem(TeamViewItem.enderChestItem) {
-        TeamService.openTeamEnderChest(it.whoClicked as Player)
-    }
+        setItem(TeamViewItem.enderChestItem) {
+            TeamService.openTeamEnderChest(it.whoClicked as Player)
+        }
 
-    setItem(TeamViewItem.allyItem) {}
+        setItem(TeamViewItem.allyItem) {}
 
-    if (teamPlayer.rank != PlayerRank.OWNER)
-    setItem(TeamViewItem.leaveItem) {
-        GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
-    }
+        if (teamPlayer.rank != PlayerRank.OWNER) setItem(TeamViewItem.leaveItem) {
+            GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
+        }
 
-    setItem(TeamViewItem.listItem) {
-        GUIManager.openTeamListGUI(it.whoClicked as Player)
-    }
+        setItem(TeamViewItem.listItem) {
+            GUIManager.openTeamListGUI(it.whoClicked as Player)
+        }
 
-    setItem(TeamViewItem.settingItem) {
-        GUIManager.openTeamSettingGUI(it.whoClicked as Player)
-    }
+        setItem(TeamViewItem.settingItem) {
+            GUIManager.openTeamSettingGUI(it.whoClicked as Player)
+        }
 
+    }.open(player)
 }
 
-fun depositOrWithdrawMoneyAnvilUI(team: Team, teamPlayer: TeamPlayer, player: Player, isReceiving: Boolean = false) {
+fun depositOrWithdrawMoneyAnvilUI(player: Player, isReceiving: Boolean = false) {
     val title = applyMiniColor((if (isReceiving) TeamMoneyItem.depositTitle else TeamMoneyItem.withdrawTitle) ?: "")
     val label = applyMiniColor((if (isReceiving) TeamMoneyItem.depositLabel else TeamMoneyItem.withdrawLabel) ?: "")
     val inputItem = if (isReceiving) TeamMoneyItem.depositInputItem else TeamMoneyItem.withdrawInputItem

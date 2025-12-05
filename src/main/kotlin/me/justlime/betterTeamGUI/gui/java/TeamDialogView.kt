@@ -7,7 +7,7 @@ import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.leaveBackground.forEach { setItem(it) }
@@ -35,7 +35,7 @@ fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
 
 }
 
-fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.disbandBackground.forEach { setItem(it) }
@@ -60,4 +60,58 @@ fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
         }
     }
 
+}
+
+fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+    onClick { it.isCancelled = true }
+    // Background & Static Items
+    TeamDialogItem.deleteHomeBackground.forEach { setItem(it) }
+
+    // Confirm Item
+    val confirmItem = TeamDialogItem.deleteHomeConfirmItem
+    if (confirmItem != null) {
+        setItem(confirmItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                TeamService.removeHome(p)
+                GUIManager.closeInventory(p)
+            }
+        }
+    }
+
+    // Cancel Item
+    val cancelItem = TeamDialogItem.deleteHomeCancelItem
+    if (cancelItem != null) {
+        setItem(cancelItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                GUIManager.openTeamGUI(p)
+            }
+        }
+    }
+}
+
+fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+    onClick { it.isCancelled = true }
+    // Background & Static Items
+    TeamDialogItem.updateHomeBackground.forEach { setItem(it) }
+
+    // Confirm Item
+    val confirmItem = TeamDialogItem.updateHomeConfirmItem
+    if (confirmItem != null) {
+        setItem(confirmItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                TeamService.setHome(p)
+                GUIManager.closeInventory(p)
+            }
+        }
+    }
+
+    // Cancel Item
+    val cancelItem = TeamDialogItem.updateHomeCancelItem
+    if (cancelItem != null) {
+        setItem(cancelItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                GUIManager.openTeamGUI(p)
+            }
+        }
+    }
 }

@@ -30,7 +30,7 @@ color-picker:
   lore:
     - "<gray>Change your team's chat color.</gray>"
     - ""
-    - "<gray>Current: <white>%betterteams_color%</white></gray>"
+    - "<gray>Current: %betterteams_color%{color}</gray>"
     - ""
     - "<yellow>Click to select color ➤</yellow>"
   item: PLAYER_HEAD

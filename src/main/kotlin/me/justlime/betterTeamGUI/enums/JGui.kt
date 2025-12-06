@@ -70,8 +70,10 @@ sealed interface JGui {
 
     sealed interface ListView : JGui {
         companion object {
-            const val TEAM_ITEM_WITH_DESC = "team-item-with-description"
-            const val TEAM_ITEM_WITHOUT_DESC = "team-item-without-description"
+            const val TEAM_ITEM_WITH_DESC = "team-item-with-description-in-team"
+            const val TEAM_ITEM_WITHOUT_DESC = "team-item-without-description-in-team"
+            const val TEAM_ITEM_WITH_DESC_NO_TEAM = "team-item-with-description-no-team"
+            const val TEAM_ITEM_WITHOUT_DESC_NO_TEAM = "team-item-without-description-no-team"
 
             const val SORT_ORDER_ASC = "sort.order.ASC"
             const val SORT_ORDER_DESC = "sort.order.DESC"
@@ -131,22 +133,61 @@ sealed interface JGui {
             const val LEAVE_VIEW_BACKGROUND = LEAVE_VIEW + Main.BACKGROUND
             const val LEAVE_CONFIRM_ITEM = LEAVE_VIEW + "confirm"
             const val LEAVE_CANCEL_ITEM = LEAVE_VIEW + "cancel"
+
             const val DISBAND_VIEW = "disband-view."
             const val DISBAND_VIEW_MAIN = DISBAND_VIEW + Main.SETTING
             const val DISBAND_VIEW_BACKGROUND = DISBAND_VIEW + Main.BACKGROUND
             const val DISBAND_CONFIRM_ITEM = DISBAND_VIEW + "confirm"
             const val DISBAND_CANCEL_ITEM = DISBAND_VIEW + "cancel"
+
             const val DELETE_HOME_VIEW = "delete-home-view."
             const val DELETE_HOME_VIEW_MAIN = DELETE_HOME_VIEW + Main.SETTING
             const val DELETE_HOME_VIEW_BACKGROUND = DELETE_HOME_VIEW + Main.BACKGROUND
             const val DELETE_HOME_CONFIRM_ITEM = DELETE_HOME_VIEW + "confirm"
             const val DELETE_HOME_CANCEL_ITEM = DELETE_HOME_VIEW + "cancel"
+
             const val UPDATE_HOME_VIEW = "update-home-view."
             const val UPDATE_HOME_VIEW_MAIN = UPDATE_HOME_VIEW + Main.SETTING
             const val UPDATE_HOME_VIEW_BACKGROUND = UPDATE_HOME_VIEW + Main.BACKGROUND
             const val UPDATE_HOME_CONFIRM_ITEM = UPDATE_HOME_VIEW + "confirm"
             const val UPDATE_HOME_CANCEL_ITEM = UPDATE_HOME_VIEW + "cancel"
 
+            const val PROMOTE_TO_OWNER_VIEW = "promote-to-owner-view."
+            const val PROMOTE_TO_OWNER_VIEW_MAIN = PROMOTE_TO_OWNER_VIEW + Main.SETTING
+            const val PROMOTE_TO_OWNER_VIEW_BACKGROUND = PROMOTE_TO_OWNER_VIEW + Main.BACKGROUND
+            const val PROMOTE_TO_OWNER_CONFIRM_ITEM = PROMOTE_TO_OWNER_VIEW + "confirm"
+            const val PROMOTE_TO_OWNER_CANCEL_ITEM = PROMOTE_TO_OWNER_VIEW + "cancel"
+
+            const val PROMOTE_TO_ADMIN_VIEW = "promote-to-admin-view."
+            const val PROMOTE_TO_ADMIN_VIEW_MAIN = PROMOTE_TO_ADMIN_VIEW + Main.SETTING
+            const val PROMOTE_TO_ADMIN_VIEW_BACKGROUND = PROMOTE_TO_ADMIN_VIEW + Main.BACKGROUND
+            const val PROMOTE_TO_ADMIN_CONFIRM_ITEM = PROMOTE_TO_ADMIN_VIEW + "confirm"
+            const val PROMOTE_TO_ADMIN_CANCEL_ITEM = PROMOTE_TO_ADMIN_VIEW + "cancel"
+
+            const val DEMOTE_TO_ADMIN_VIEW = "demote-to-admin-view."
+            const val DEMOTE_TO_ADMIN_VIEW_MAIN = DEMOTE_TO_ADMIN_VIEW + Main.SETTING
+            const val DEMOTE_TO_ADMIN_VIEW_BACKGROUND = DEMOTE_TO_ADMIN_VIEW + Main.BACKGROUND
+            const val DEMOTE_TO_ADMIN_CONFIRM_ITEM = DEMOTE_TO_ADMIN_VIEW + "confirm"
+            const val DEMOTE_TO_ADMIN_CANCEL_ITEM = DEMOTE_TO_ADMIN_VIEW + "cancel"
+
+
+            const val DEMOTE_TO_DEFAULT_VIEW = "demote-to-default-view."
+            const val DEMOTE_TO_DEFAULT_VIEW_MAIN = DEMOTE_TO_DEFAULT_VIEW + Main.SETTING
+            const val DEMOTE_TO_DEFAULT_VIEW_BACKGROUND = DEMOTE_TO_DEFAULT_VIEW + Main.BACKGROUND
+            const val DEMOTE_TO_DEFAULT_CONFIRM_ITEM = DEMOTE_TO_DEFAULT_VIEW + "confirm"
+            const val DEMOTE_TO_DEFAULT_CANCEL_ITEM = DEMOTE_TO_DEFAULT_VIEW + "cancel"
+
+            const val KICK_VIEW = "kick-view."
+            const val KICK_VIEW_MAIN = KICK_VIEW + Main.SETTING
+            const val KICK_VIEW_BACKGROUND = KICK_VIEW + Main.BACKGROUND
+            const val KICK_CONFIRM_ITEM = KICK_VIEW + "confirm"
+            const val KICK_CANCEL_ITEM = KICK_VIEW + "cancel"
+
+            const val BAN_VIEW = "ban-view."
+            const val BAN_VIEW_MAIN = BAN_VIEW + Main.SETTING
+            const val BAN_VIEW_BACKGROUND = BAN_VIEW + Main.BACKGROUND
+            const val BAN_CONFIRM_ITEM = BAN_VIEW + "confirm"
+            const val BAN_CANCEL_ITEM = BAN_VIEW + "cancel"
 
         }
     }
@@ -154,10 +195,16 @@ sealed interface JGui {
     sealed interface MemberView : JGui {
         companion object {
             const val SETTING = "main"
-            const val BACKGROUND = "${SETTING}.background"
-            const val BACK_SLOT = "${SETTING}.slot.back"
-            const val HOME_SLOT = "${SETTING}.slot.home"
             const val MEMBER_ITEM = "member-item"
+            const val MEMBER_ITEM_NO_ADMIN = "member-item-no-admin"
+            const val INVITE = "invite"
+            const val LOCKED_INVITE = "locked-invite"
+
+            const val INVITE_TITLE = "anvil-ui.invite.title"
+            const val INVITE_LABEL = "anvil-ui.invite.label"
+            const val INVITE_INPUT_ITEM = "anvil-ui.invite.input-item"
+            const val INVITE_OUTPUT_ITEM = "anvil-ui.invite.output-item"
+
         }
     }
 
@@ -214,5 +261,15 @@ sealed interface JGui {
         }
     }
 
-
+    sealed interface MemberManagement : JGui {
+        companion object {
+            const val PLAYER_INFO = "player-info"
+            const val PROMOTE_TO_OWNER = "promote-to-owner"
+            const val PROMOTE_TO_ADMIN = "promote-to-admin"
+            const val DEMOTE_TO_ADMIN = "demote-to-admin"
+            const val DEMOTE_TO_DEFAULT = "demote-to-default"
+            const val KICK = "kick"
+            const val BAN = "ban"
+        }
+    }
 }

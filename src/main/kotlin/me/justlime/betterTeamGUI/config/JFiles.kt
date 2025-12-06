@@ -13,7 +13,7 @@ enum class JFiles(val filename: String) {
     LIST_VIEW("gui/list_view.yml"),
     TEAM_VIEW("gui/team_view.yml"),
     WARPS_VIEW("gui/warps_view.yml"),
-    MEMBER_MANAGEMENT_VIEW("member_management_view.yml"),
+    MEMBER_MANAGEMENT_VIEW("gui/management_view.yml"),
     MEMBERS_VIEW("gui/members_view.yml"),
     OTHER_TEAM_VIEW("other_team_view.yml"),
     DIALOG_VIEW("gui/dialog_view.yml"),

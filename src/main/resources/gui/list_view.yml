@@ -1,3 +1,4 @@
+# Team List View
 main:
   title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
   row: 6
@@ -26,7 +27,7 @@ main:
 # Our custom placeholders ensure that team information is always displayed correctly.
 # Note: It may not work for every item
 
-team-item-with-description:
+team-item-with-description-in-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
     - "<white><italic>{team_description}</italic></white>"
@@ -40,7 +41,7 @@ team-item-with-description:
   item: PLAYER_HEAD
   texture: ""
 
-team-item-without-description:
+team-item-without-description-in-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
     - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
@@ -49,6 +50,34 @@ team-item-without-description:
     - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+  item: PLAYER_HEAD
+  texture: ""
+
+team-item-with-description-no-team:
+  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+  lore:
+    - "<white><italic>{team_description}</italic></white>"
+    - " "
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+    - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
+  item: PLAYER_HEAD
+  texture: ""
+
+team-item-without-description-no-team:
+  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+  lore:
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
+    - ""
+    - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+    - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
   item: PLAYER_HEAD
   texture: ""
 

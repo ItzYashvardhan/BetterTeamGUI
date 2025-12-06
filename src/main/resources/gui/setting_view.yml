@@ -185,3 +185,4 @@ anvil-ui:
     output-item:
       name: "<gray>New Title: <white>%input%</white></gray>"
       item: PAPER
+

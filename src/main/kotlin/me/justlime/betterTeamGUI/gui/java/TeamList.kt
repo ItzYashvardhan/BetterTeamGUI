@@ -1,7 +1,9 @@
 package me.justlime.betterTeamGUI.gui.java
 
+import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
+import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
@@ -152,27 +154,43 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                 })
         }
 
+        val isInTeam = Team.getTeamManager().isInTeam(player)
+
+
+        Main.plugin.teamCommand
 
         addPage {
+
+
             teams.forEach { team ->
+                val isTeamOpen = team.isOpen
+                val isInvited = team.isInvited(player.uniqueId)
 
                 val ownerRank = team.members.getRank(PlayerRank.OWNER)
                 if (ownerRank.isNotEmpty()) {
                     val owner = ownerRank.random()
                     val offlinePlayer = Bukkit.getOfflinePlayer(owner.playerUUID)
+                    val item = when {
+                        team.description.isNotBlank() && isInTeam -> TeamListItem.teamItemWithDescription
 
-                    val item = if (team.description.isNotBlank()) TeamListItem.teamItemWithDescription.apply {
-                        this?.texture = "[${offlinePlayer.uniqueId}]"
-                        this?.placeholderOfflinePlayer = offlinePlayer
-                        this?.customPlaceholder = teamToPlaceholderMap(team)
-                    } ?: GuiItem(Material.STONE) else TeamListItem.teamItemWithoutDescription.apply {
+                        team.description.isNotBlank() && !isInTeam && (isTeamOpen || isInvited) -> TeamListItem.teamItemWithDescriptionNoTeam
+
+                        !isInTeam && (isTeamOpen || isInvited) -> TeamListItem.teamItemWithoutDescriptionNoTeam
+
+                        else -> TeamListItem.teamItemWithoutDescription
+                    }
+
+                    val finalItem = item.apply {
                         this?.texture = "[${offlinePlayer.uniqueId}]"
                         this?.placeholderOfflinePlayer = offlinePlayer
                         this?.customPlaceholder = teamToPlaceholderMap(team)
                     } ?: GuiItem(Material.STONE)
 
-                    addItem(item) {
-                        // TODO: Action when clicking a specific team
+                    addItem(finalItem) {
+                        if (!isInTeam and it.click.isRightClick) {
+                            TeamService.joinTeam(player, team.name)
+                            player.closeInventory()
+                        }
                     }
                 }
             }

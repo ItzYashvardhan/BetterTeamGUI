@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Main
+import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
@@ -10,7 +11,11 @@ object TeamService {
     private val commandConfig = Main.plugin.config.getConfigurationSection("command")
     const val PREFIX = "betterteams:"
     const val COMMAND = "team"
-    const val TEAM_COMMAND: String = PREFIX + COMMAND
+    const val TEAM_COMMAND: String = COMMAND
+
+    fun joinTeam(player: Player, teamName: String) {
+        player.performCommand("$TEAM_COMMAND join $teamName")
+    }
 
     fun depositAmount(player: Player, amount: String) {
         player.performCommand("$TEAM_COMMAND deposit $amount")
@@ -93,6 +98,30 @@ object TeamService {
         Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
             GUIManager.openTeamSettingGUI(player)
         }, 4)
+    }
+
+    fun promote(player: Player, targetPlayer: TeamPlayer) {
+        player.performCommand("$TEAM_COMMAND promote ${targetPlayer.player.name}")
+    }
+
+    fun demote(player: Player, targetPlayer: TeamPlayer) {
+        player.performCommand("$TEAM_COMMAND demote ${targetPlayer.player.name}")
+    }
+
+    fun kick(player: Player, targetPlayer: TeamPlayer) {
+        player.performCommand("$TEAM_COMMAND kick ${targetPlayer.player.name}")
+    }
+
+    fun ban(player: Player, targetPlayer: TeamPlayer) {
+        player.performCommand("$TEAM_COMMAND ban ${targetPlayer.player.name}")
+    }
+
+    fun unban(player: Player, targetPlayer: TeamPlayer) {
+        player.performCommand("$TEAM_COMMAND unban ${targetPlayer.player.name}")
+    }
+
+    fun invitePlayer(player: Player, invitedPlayerName: String) {
+        player.performCommand("$TEAM_COMMAND invite $invitedPlayerName")
     }
 
 }

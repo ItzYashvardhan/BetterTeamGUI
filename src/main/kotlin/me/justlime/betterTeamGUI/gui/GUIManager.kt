@@ -10,19 +10,11 @@ import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
+import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
-import me.justlime.betterTeamGUI.gui.java.colorPickerView
-import me.justlime.betterTeamGUI.gui.java.teamDeleteHomeDialog
-import me.justlime.betterTeamGUI.gui.java.teamDisbandDialog
-import me.justlime.betterTeamGUI.gui.java.teamLeaveDialog
-import me.justlime.betterTeamGUI.gui.java.teamList
-import me.justlime.betterTeamGUI.gui.java.teamMemberView
-import me.justlime.betterTeamGUI.gui.java.teamSettingView
-import me.justlime.betterTeamGUI.gui.java.teamUpdateHomeDialog
-import me.justlime.betterTeamGUI.gui.java.teamView
-import me.justlime.betterTeamGUI.gui.java.teamWarp
+import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.getPlayerHead
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
@@ -129,13 +121,6 @@ object GUIManager {
         return playerHeadItem
     }
 
-    fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
-        if (isBedrockPlayer(sender)) {
-            BForm.openTeamMemberForm(sender, team)
-            return
-        }
-    }
-
     fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamAllyForm(sender, team)
@@ -176,7 +161,7 @@ object GUIManager {
             }
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamView(TeamViewItem.setting.copy(),player, team, teamPlayer)
+            teamView(TeamViewItem.setting.copy(), player, team, teamPlayer)
             return
         }
         if (isBedrockPlayer(player)) {
@@ -211,6 +196,7 @@ object GUIManager {
         }
         teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting.copy()).open(player)
     }
+
     fun openTeamDeleteHomeGUI(player: Player) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for delete home
@@ -235,8 +221,67 @@ object GUIManager {
             BForm.openTeamMemberForm(player, team)
             return
         }
-        teamMemberView(TeamMemberItem.setting.copy(), team).open(player)
+        teamMemberView(TeamMemberItem.setting.copy(),player ,team).open(player)
     }
+
+    fun openTeamMemberManagementGUI(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
+
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamMemberForm(player, team)
+            return
+        }
+        teamMemberManagement(TeamMemberManagementItem.setting.copy(), player, targetTeamPlayer, team)
+    }
+
+    fun openTeamPromoteToOwnerDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for promote to owner
+            return
+        }
+        teamPromoteToOwnerDialog(TeamDialogItem.promoteToOwnerSetting.copy(), targetTeamPlayer).open(player)
+    }
+
+    fun openTeamPromoteToAdminDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for promote to admin
+            return
+        }
+        teamPromoteToAdminDialog(TeamDialogItem.promoteToAdminSetting.copy(), targetTeamPlayer).open(player)
+    }
+
+    fun openTeamDemoteToAdminDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for demote to admin
+            return
+        }
+        teamDemoteToAdminDialog(TeamDialogItem.demoteToAdminSetting.copy(), targetTeamPlayer).open(player)
+    }
+
+
+    fun openTeamDemoteToDefaultDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for demote to default
+            return
+        }
+        teamDemoteToDefaultDialog(TeamDialogItem.demoteToDefaultSetting.copy(), targetTeamPlayer).open(player)
+    }
+
+    fun openTeamKickDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for kick
+            return
+        }
+        teamKickDialog(TeamDialogItem.kickSetting.copy(), targetTeamPlayer).open(player)
+    }
+
+    fun openTeamBanDialog(player: Player, targetTeamPlayer: TeamPlayer) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for ban
+            return
+        }
+        teamBanDialog(TeamDialogItem.banSetting.copy(), targetTeamPlayer).open(player)
+    }
+
 
     //Setting
     fun openTeamSettingGUI(player: Player) {
@@ -244,6 +289,7 @@ object GUIManager {
         val teamPlayer = team.getTeamPlayer(player) ?: return
         teamSettingView(TeamSettingItem.setting.copy(), player, team, teamPlayer).open(player)
     }
+
     fun openColorPickerGUI(player: Player) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for color picker
@@ -251,6 +297,7 @@ object GUIManager {
         }
         colorPickerView(ColorPickerItem.setting.copy(), player).open(player)
     }
+
     fun openTeamDisbandGUI(player: Player) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for disband

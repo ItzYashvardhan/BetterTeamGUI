@@ -41,8 +41,6 @@ locked-warp:
   lore:
     - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this warp.</gray>"
 
-
-
 no-permission:
   name: "<red>No Permission</red>"
   item: BARRIER

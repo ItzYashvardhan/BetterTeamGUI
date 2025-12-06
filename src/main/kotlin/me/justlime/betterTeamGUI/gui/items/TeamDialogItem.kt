@@ -32,6 +32,38 @@ object TeamDialogItem {
     var updateHomeConfirmItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CONFIRM_ITEM)
     var updateHomeCancelItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CANCEL_ITEM)
 
+    val promoteToOwnerSetting = config.loadInventorySetting(JGui.DialogView.PROMOTE_TO_OWNER_VIEW_MAIN)
+    val promoteToOwnerBackground = config.loadItems(JGui.DialogView.PROMOTE_TO_OWNER_VIEW_BACKGROUND)
+    var promoteToOwnerConfirmItem = config.loadItem(JGui.DialogView.PROMOTE_TO_OWNER_CONFIRM_ITEM)
+    var promoteToOwnerCancelItem = config.loadItem(JGui.DialogView.PROMOTE_TO_OWNER_CANCEL_ITEM)
+
+    val promoteToAdminSetting = config.loadInventorySetting(JGui.DialogView.PROMOTE_TO_ADMIN_VIEW_MAIN)
+    val promoteToAdminBackground = config.loadItems(JGui.DialogView.PROMOTE_TO_ADMIN_VIEW_BACKGROUND)
+    var promoteToAdminConfirmItem = config.loadItem(JGui.DialogView.PROMOTE_TO_ADMIN_CONFIRM_ITEM)
+    var promoteToAdminCancelItem = config.loadItem(JGui.DialogView.PROMOTE_TO_ADMIN_CANCEL_ITEM)
+
+    val demoteToAdminSetting = config.loadInventorySetting(JGui.DialogView.DEMOTE_TO_ADMIN_VIEW_MAIN)
+    val demoteToAdminBackground = config.loadItems(JGui.DialogView.DEMOTE_TO_ADMIN_VIEW_BACKGROUND)
+    var demoteToAdminConfirmItem = config.loadItem(JGui.DialogView.DEMOTE_TO_ADMIN_CONFIRM_ITEM)
+    var demoteToAdminCancelItem = config.loadItem(JGui.DialogView.DEMOTE_TO_ADMIN_CANCEL_ITEM)
+
+
+    val demoteToDefaultSetting = config.loadInventorySetting(JGui.DialogView.DEMOTE_TO_DEFAULT_VIEW_MAIN)
+    val demoteToDefaultBackground = config.loadItems(JGui.DialogView.DEMOTE_TO_DEFAULT_VIEW_BACKGROUND)
+    var demoteToDefaultConfirmItem = config.loadItem(JGui.DialogView.DEMOTE_TO_DEFAULT_CONFIRM_ITEM)
+    var demoteToDefaultCancelItem = config.loadItem(JGui.DialogView.DEMOTE_TO_DEFAULT_CANCEL_ITEM)
+
+    val kickSetting = config.loadInventorySetting(JGui.DialogView.KICK_VIEW_MAIN)
+    val kickBackground = config.loadItems(JGui.DialogView.KICK_VIEW_BACKGROUND)
+    var kickConfirmItem = config.loadItem(JGui.DialogView.KICK_CONFIRM_ITEM)
+    var kickCancelItem = config.loadItem(JGui.DialogView.KICK_CANCEL_ITEM)
+
+    val banSetting = config.loadInventorySetting(JGui.DialogView.BAN_VIEW_MAIN)
+    val banBackground = config.loadItems(JGui.DialogView.BAN_VIEW_BACKGROUND)
+    var banConfirmItem = config.loadItem(JGui.DialogView.BAN_CONFIRM_ITEM)
+    var banCancelItem = config.loadItem(JGui.DialogView.BAN_CANCEL_ITEM)
+
+
 
     fun reload() {
         config.reload()
@@ -46,6 +78,22 @@ object TeamDialogItem {
 
         updateHomeConfirmItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CONFIRM_ITEM)
         updateHomeCancelItem = config.loadItem(JGui.DialogView.UPDATE_HOME_CANCEL_ITEM)
+
+        promoteToOwnerConfirmItem = config.loadItem(JGui.DialogView.PROMOTE_TO_OWNER_CONFIRM_ITEM)
+        promoteToOwnerCancelItem = config.loadItem(JGui.DialogView.PROMOTE_TO_OWNER_CANCEL_ITEM)
+
+        promoteToAdminConfirmItem = config.loadItem(JGui.DialogView.PROMOTE_TO_ADMIN_CONFIRM_ITEM)
+        promoteToAdminCancelItem = config.loadItem(JGui.DialogView.PROMOTE_TO_ADMIN_CANCEL_ITEM)
+
+        demoteToDefaultConfirmItem = config.loadItem(JGui.DialogView.DEMOTE_TO_DEFAULT_CONFIRM_ITEM)
+        demoteToDefaultCancelItem = config.loadItem(JGui.DialogView.DEMOTE_TO_DEFAULT_CANCEL_ITEM)
+
+        kickConfirmItem = config.loadItem(JGui.DialogView.KICK_CONFIRM_ITEM)
+        kickCancelItem = config.loadItem(JGui.DialogView.KICK_CANCEL_ITEM)
+
+        banConfirmItem = config.loadItem(JGui.DialogView.BAN_CONFIRM_ITEM)
+        banCancelItem = config.loadItem(JGui.DialogView.BAN_CANCEL_ITEM)
+
 
     }
 

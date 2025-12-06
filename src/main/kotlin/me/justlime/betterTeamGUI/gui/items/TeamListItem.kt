@@ -18,6 +18,8 @@ object TeamListItem {
 
     var teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
     var teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
+    var teamItemWithDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC_NO_TEAM)
+    var teamItemWithoutDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC_NO_TEAM)
 
     var sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
     var sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)
@@ -48,6 +50,8 @@ object TeamListItem {
         config.reload()
         teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
         teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
+        teamItemWithDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC_NO_TEAM)
+        teamItemWithoutDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC_NO_TEAM)
 
         sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
         sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)

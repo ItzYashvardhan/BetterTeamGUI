@@ -32,7 +32,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
 
     // Calculate Limits
     val warps = team.warps.get()
-    // You confirmed team.maxWarps is the limit for the CURRENT level
+
     val currentMaxWarps = team.maxWarps
 
     val levelsSection = Main.plugin.config.getConfigurationSection("levels")
@@ -126,11 +126,14 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
         for (slotIndex in currentMaxWarps until ultimateMaxWarps) {
 
             val requiredLevelNum = levelsSection.getKeys(false).mapNotNull { key ->
+
                 // Parse "l1" -> 1
                 val levelNum = key.removePrefix("l").toIntOrNull() ?: return@mapNotNull null
                 val maxAtLevel = levelsSection.getInt("$key.maxWarps")
+
                 // Return pair of (LevelNumber, MaxWarpsAtThatLevel)
                 levelNum to maxAtLevel
+
             }.sortedBy { it.first }.firstOrNull { (_, maxAtLevel) -> maxAtLevel > slotIndex } // Find first level that unlocks this slot
                 ?.first ?: (team.level + 1)
 
@@ -138,7 +141,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                 name = name.replace("{level}", requiredLevelNum.toString())
                 lore = lore.map { it.replace("{level}", requiredLevelNum.toString()) }.toMutableList()
             }
-            addItem(lockedItemCopy) {}
+            addItem(lockedItemCopy)
         }
     }
 }

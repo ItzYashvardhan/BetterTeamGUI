@@ -139,7 +139,7 @@ balance:
   lore:
     - "<b><gradient:#E2FF8D:#E2FF8D>₹%betterteams_money%</gradient></b>"
     - ""
-    - "<yellow>Left-Click</green> <gray>to deposit</gray>"
+    - "<yellow>Left-Click</yellow> <gray>to deposit</gray>"
     - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
 
   item: PLAYER_HEAD

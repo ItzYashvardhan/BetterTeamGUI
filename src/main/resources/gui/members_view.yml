@@ -16,8 +16,8 @@ main:
   slot:
     back: 52
     home: 53
-    next: 47
-    prev: 51
+    prev: 47
+    next: 51
 
 
 member-item:
@@ -27,3 +27,38 @@ member-item:
     - "<gray>Rank: <yellow>{rank}"
     - ""
     - "<green>Click to manage this member."
+
+member-item-no-admin:
+  item: PLAYER_HEAD
+  name: "<aqua>{team_player}"
+  lore:
+    - "<gray>Rank: <yellow>{rank}"
+
+invite:
+  name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
+  lore:
+    - "<gray>Click to invite player to your team.</gray>"
+  item: LIME_STAINED_GLASS_PANE
+
+locked-invite:
+  name: "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
+  lore:
+    - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this warp.</gray>"
+  item: RED_STAINED_GLASS_PANE
+
+anvil-ui:
+  invite:
+    title: "Invite Player"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Enter Player Name</green>"
+      lore:
+        - "<gray>Enter the name of the player you want to invite.</gray>"
+      item: PAPER
+    output-item:
+      name: "<green>Invite Player</green>"
+      lore:
+        - "<gray>Click to invite this player.</gray>"
+      item: LIME_DYE
+
+

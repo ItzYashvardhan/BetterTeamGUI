@@ -29,7 +29,7 @@ data class TeamListState(
 )
 
 fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamListState()) {
-    ChestGUI(setting.copy()) {
+    ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
         nav {
@@ -42,7 +42,7 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
 
         setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
-        var teams: List<Team> = Team.getTeamManager().sortTeamsByMembers().map { Team.getTeam(it) }
+        var teams: List<Team> = Team.getTeamManager().sortTeamsByMembers().mapNotNull { Team.getTeam(it) }
 
         teams = when (state.filter) {
             FilterType.OPEN_ONLY -> teams.filter { it.isOpen }

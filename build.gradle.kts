@@ -22,7 +22,7 @@ repositories {
 dependencies {
     //Core
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
-    compileOnly("com.github.booksaw:BetterTeams:4.13.4")
+    compileOnly("com.github.booksaw:BetterTeams:4.15.2")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     //Metrics

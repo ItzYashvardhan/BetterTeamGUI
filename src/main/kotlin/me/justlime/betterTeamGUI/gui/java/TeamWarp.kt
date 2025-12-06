@@ -35,11 +35,10 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
     // You confirmed team.maxWarps is the limit for the CURRENT level
     val currentMaxWarps = team.maxWarps
 
-    // Calculate the Ultimate Max Warps from Config
     val levelsSection = Main.plugin.config.getConfigurationSection("levels")
     val ultimateMaxWarps = levelsSection?.getKeys(false)?.maxOfOrNull { key ->
         levelsSection.getInt("$key.maxWarps")
-    } ?: currentMaxWarps // Fallback to current if config fails
+    } ?: currentMaxWarps
 
     // Display Claimed (Occupied) Warps
     val warpItemTemplate = TeamWarpItem.occupiedWarpItem
@@ -51,7 +50,6 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
             }
 
             addItem(warpItemCopy) { clickEvent ->
-                // Shift-Click Delete Logic
                 if (clickEvent.click.isShiftClick) {
                     if (teamPlayer.rank == PlayerRank.DEFAULT) {
                         permissionDenied(clickEvent)

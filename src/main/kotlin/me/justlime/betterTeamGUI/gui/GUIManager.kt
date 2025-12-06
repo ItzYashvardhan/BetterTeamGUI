@@ -52,28 +52,6 @@ object GUIManager {
         }
     }
 
-    fun openTeamGUI(player: Player) {
-        val isInTeam = Team.getTeamManager().isInTeam(player)
-
-        if (isInTeam) {
-            if (isBedrockPlayer(player)) {
-                BForm.openTeamForm(player)
-                return
-            }
-            val team = Team.getTeam(player.name) ?: return
-            val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamView(TeamViewItem.setting,player, team, teamPlayer)
-            return
-        }
-        if (isBedrockPlayer(player)) {
-            BForm.openTeamListForm(player)
-            return
-        }
-        //TODO "Add Team Create Option"
-        openTeamListGUI(player)
-
-    }
-
     fun createItem(material: Material, name: String, lore: List<String>, glint: Boolean, flags: MutableList<String>): ItemStack {
         return ItemStack(material).apply {
             itemMeta = itemMeta?.apply {
@@ -151,45 +129,6 @@ object GUIManager {
         return playerHeadItem
     }
 
-    fun createCertainItem(itemConfiguration: ConfigurationSection, itemSlot: Int, itemSlots: List<Int>, inventory: Inventory) {
-        val backMaterial = Material.valueOf(itemConfiguration.getString("item") ?: "PAPER")
-        val backName = Service.applyColors(itemConfiguration.getString("name") ?: " ")
-        val backLore = itemConfiguration.getStringList("lore").map { Service.applyColors(it) }
-        val backGlow = itemConfiguration.getBoolean("glow")
-        val flags = itemConfiguration.getStringList("flags")
-        if (itemSlots.isNotEmpty()) {
-            itemSlots.forEach { inventory.setItem(it, createItem(backMaterial, backName, backLore, backGlow, flags)) }
-        }
-        inventory.setItem(itemSlot, createItem(backMaterial, backName, backLore, backGlow, flags))
-
-    }
-
-    fun openTeamListGUI(player: Player) {
-        if (isBedrockPlayer(player)) {
-            BForm.openTeamListForm(player)
-            return
-        }
-
-        TeamListItem.setting.placeholderPlayer = player
-        teamList(TeamListItem.setting, player)
-    }
-
-    fun openTeamMemberGUI(player: Player, team: Team) {
-        if (isBedrockPlayer(player)) {
-            BForm.openTeamMemberForm(player, team)
-            return
-        }
-        teamMemberView(TeamMemberItem.setting, team).open(player)
-    }
-
-    fun openTeamInviteGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
-        if (isBedrockPlayer(sender)) {
-            BForm.openTeamMemberForm(sender, team)
-            return
-        }
-
-    }
-
     fun openTeamMemberManagementGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamMemberForm(sender, team)
@@ -206,33 +145,6 @@ object GUIManager {
         val row = Config.TeamAllyView.row
         val allyInventory = TeamAllyGUI(row, title, team, teamPlayer)
         sender.openInventory(allyInventory.inventory)
-    }
-
-    fun openTeamWarpGUI(player: Player) {
-        val team = Team.getTeam(player.name) ?: return
-        val teamPlayer = team.getTeamPlayer(player) ?: return
-        if (isBedrockPlayer(player)) {
-            BForm.openTeamWarpForm(team, teamPlayer)
-            return
-        }
-        TeamWarpItem.setting.placeholderPlayer = player
-        teamWarp(TeamWarpItem.setting, team, teamPlayer, player).open(player)
-    }
-
-    fun openTeamLeaveGUI(player: Player) {
-        if (isBedrockPlayer(player)) {
-            BForm.openTeamLeaveForm(player)
-            return
-        }
-        teamLeaveDialog(TeamDialogItem.leaveSetting).open(player)
-    }
-
-    fun openTeamDisbandGUI(player: Player) {
-        if (isBedrockPlayer(player)) {
-            // TODO: Add Bedrock form for disband
-            return
-        }
-        teamDisbandDialog(setting = TeamDialogItem.disbandSetting).open(player)
     }
 
     fun openTeamOtherGUI(sender: Player, oTeam: Team, teamPlayer: TeamPlayer) {
@@ -252,18 +164,44 @@ object GUIManager {
         }, 2)
     }
 
-    fun openTeamSettingGUI(player: Player) {
-        val team = Team.getTeam(player.name) ?: return
-        val teamPlayer = team.getTeamPlayer(player) ?: return
-        teamSettingView(TeamSettingItem.setting, player, team, teamPlayer).open(player)
-    }
+    //USING New LimeFrameGUI
 
-    fun openTeamDeleteHomeGUI(player: Player) {
-        if (isBedrockPlayer(player)) {
-            // TODO: Add Bedrock form for delete home
+    fun openTeamGUI(player: Player) {
+        val isInTeam = Team.getTeamManager().isInTeam(player)
+
+        if (isInTeam) {
+            if (isBedrockPlayer(player)) {
+                BForm.openTeamForm(player)
+                return
+            }
+            val team = Team.getTeam(player.name) ?: return
+            val teamPlayer = team.getTeamPlayer(player) ?: return
+            teamView(TeamViewItem.setting.copy(),player, team, teamPlayer)
             return
         }
-        teamDeleteHomeDialog(TeamDialogItem.deleteHomeSetting).open(player)
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamListForm(player)
+            return
+        }
+        //TODO "Add Team Create Option"
+        openTeamListGUI(player)
+
+    }
+
+    fun openTeamListGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamListForm(player)
+            return
+        }
+        teamList(TeamListItem.setting.copy(), player)
+    }
+
+    fun openTeamLeaveGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamLeaveForm(player)
+            return
+        }
+        teamLeaveDialog(TeamDialogItem.leaveSetting.copy()).open(player)
     }
 
     fun openTeamUpdateHomeGUI(player: Player) {
@@ -271,15 +209,54 @@ object GUIManager {
             // TODO: Add Bedrock form for update home
             return
         }
-        teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting).open(player)
+        teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting.copy()).open(player)
+    }
+    fun openTeamDeleteHomeGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for delete home
+            return
+        }
+        teamDeleteHomeDialog(TeamDialogItem.deleteHomeSetting.copy()).open(player)
     }
 
+    fun openTeamWarpGUI(player: Player) {
+        val team = Team.getTeam(player.name) ?: return
+        val teamPlayer = team.getTeamPlayer(player) ?: return
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamWarpForm(team, teamPlayer)
+            return
+        }
+        TeamWarpItem.setting.placeholderPlayer = player
+        teamWarp(TeamWarpItem.setting.copy(), team, teamPlayer, player).open(player)
+    }
+
+    fun openTeamMemberGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamMemberForm(player, team)
+            return
+        }
+        teamMemberView(TeamMemberItem.setting.copy(), team).open(player)
+    }
+
+    //Setting
+    fun openTeamSettingGUI(player: Player) {
+        val team = Team.getTeam(player.name) ?: return
+        val teamPlayer = team.getTeamPlayer(player) ?: return
+        teamSettingView(TeamSettingItem.setting.copy(), player, team, teamPlayer).open(player)
+    }
     fun openColorPickerGUI(player: Player) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for color picker
             return
         }
-       colorPickerView(ColorPickerItem.setting, player).open(player)
+        colorPickerView(ColorPickerItem.setting.copy(), player).open(player)
+    }
+    fun openTeamDisbandGUI(player: Player) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for disband
+            return
+        }
+        teamDisbandDialog(setting = TeamDialogItem.disbandSetting.copy()).open(player)
     }
 
 }

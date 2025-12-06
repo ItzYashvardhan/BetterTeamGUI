@@ -20,7 +20,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 
 fun teamView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer) {
-    ChestGUI(setting.copy()) {
+    ChestGUI(setting) {
         onClick { it.isCancelled = true }
         TeamViewItem.background.forEach { setItem(it) }
 

@@ -21,7 +21,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting.copy()) {
+fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
     onClick {
         it.isCancelled = true
 

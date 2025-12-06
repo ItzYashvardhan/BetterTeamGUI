@@ -7,7 +7,7 @@ import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.leaveBackground.forEach { setItem(it) }
@@ -35,7 +35,7 @@ fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
 
 }
 
-fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.disbandBackground.forEach { setItem(it) }
@@ -62,7 +62,7 @@ fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
 
 }
 
-fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.deleteHomeBackground.forEach { setItem(it) }
@@ -89,7 +89,7 @@ fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
     }
 }
 
-fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting.copy()) {
+fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.updateHomeBackground.forEach { setItem(it) }

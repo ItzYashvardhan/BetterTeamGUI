@@ -47,6 +47,9 @@ fun teamToPlaceholderMap(team: Team): Map<String, String> {
         "{team_score}" to team.score.toString(),
         "{team_money}" to team.money.toString(),
         "{anchor}" to team.isAnchored.toString(),
+        "{team_description}" to team.description,
+        "{team_color_code}" to "<" + team.color.name + ">",
+        "{/team_color_code}" to "</" + team.color.name + ">",
     )
 }
 
@@ -57,7 +60,7 @@ fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
     )
 }
 
-fun applyBetterTeamPlaceholderMap(team: Team,teamPlayer: TeamPlayer): Map<String, String> {
+fun applyBetterTeamPlaceholderMap(team: Team, teamPlayer: TeamPlayer): Map<String, String> {
     val map = mutableMapOf<String, String>()
     map.putAll(teamToPlaceholderMap(team))
     map.putAll(teamPlayerToPlaceholderMap(teamPlayer))

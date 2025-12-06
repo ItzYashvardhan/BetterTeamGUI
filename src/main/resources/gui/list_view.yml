@@ -21,28 +21,32 @@ main:
     prev: 47
     next: 51
 
+# We use custom placeholders because BetterTeams placeholders do not work when the entire team is offline.
+# For example, %betterteams_description% would return nothing if the team is offline.
+# Our custom placeholders ensure that team information is always displayed correctly.
+# Note: It may not work for every item
 
 team-item-with-description:
-  name: "<b><yellow>{team} <#D6BA5B></b><gray>({team_size}/{team_limit})</gray>"
+  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
-    - "<white><italic>%betterteams_description%</italic></white>"
+    - "<white><italic>{team_description}</italic></white>"
     - " "
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
-    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
-    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
 
 team-item-without-description:
-  name: "<b><yellow>{team} <#D6BA5B></b><gray>({team_size}/{team_limit})</gray>"
+  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>%betterteams_tag%</bold></white>"
-    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>%betterteams_level%"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>%betterteams_score%"
-    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>%betterteams_online%"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD

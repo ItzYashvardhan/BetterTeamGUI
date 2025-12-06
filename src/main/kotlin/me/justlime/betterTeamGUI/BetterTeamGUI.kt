@@ -1,7 +1,9 @@
 package me.justlime.betterTeamGUI
 
+import com.booksaw.betterTeams.BooksawCommand
 import me.clip.placeholderapi.metrics.bukkit.Metrics
 import me.justlime.betterTeamGUI.commands.CommandManager
+import me.justlime.betterTeamGUI.commands.subcommand.TeamCommandProxy
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.config.JFiles
@@ -26,6 +28,8 @@ class BetterTeamGUI : JavaPlugin() {
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
 
+        TeamCommandProxy.inject()
+//        setupMainCommand()
         CommandManager.register() //Initialize
         ListenerManager.register(this) //Initialize
         Metrics(this, 24705)
@@ -59,6 +63,24 @@ class BetterTeamGUI : JavaPlugin() {
         ItemFlag.HIDE_ATTRIBUTES
     }
 
+    fun setupMainCommand() {
+//        val command = "team"
+//        val teamCommand = Main.plugin.getCommand(command)
+//        if (teamCommand != null) {
+//            val originalExecutor = teamCommand.executor
+//
+//            // Safety check: ensure we don't wrap our own proxy if reload happens
+//            if (originalExecutor !is TeamCommandProxy) {
+//                val proxy = TeamCommandProxy(originalExecutor)
+//                teamCommand.setExecutor(proxy)
+//                teamCommand.tabCompleter = proxy
+//                logger.info("Successfully hooked into /team command!")
+//            }
+//        } else {
+//            logger.warning("Could not find '$command' command to hook into. Is BetterTeams loaded?")
+//        }
+//    }
+    }
 }
 
 

@@ -6,19 +6,21 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
-import me.justlime.betterTeamGUI.utilities.applyBetterTeamPlaceholderMap
+import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamMemberManagement(setting: GUISetting, player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
+fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
+
+    val setting = TeamMemberManagementItem.setting.copy()
+    setting.styleSheet?.placeholder = TeamService.applyPlaceHolder(team, targetTeamPlayer)
+
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
 
         val playerInfo = TeamMemberManagementItem.playerInfo?.clone().apply {
             this?.texture = "[${targetTeamPlayer.player.uniqueId}]"
-            this?.customPlaceholder = applyBetterTeamPlaceholderMap(team, targetTeamPlayer)
         }
 
         TeamMemberManagementItem.background.forEach { setItem(it) }

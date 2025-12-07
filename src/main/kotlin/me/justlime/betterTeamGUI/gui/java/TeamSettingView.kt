@@ -12,6 +12,7 @@ import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
 import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
+import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -33,7 +34,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
     // Color Picker
     setItem(TeamSettingItem.colorPicker.apply {
-        this?.customPlaceholder = mapOf("{color}" to team.color.name)
+        this?.styleSheet?.placeholder = mapOf("{color}" to team.color.name)
     }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
             permissionDenied(event)
@@ -97,14 +98,14 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
         team.isOpen = !team.isOpen
         event.item = if (team.isOpen) TeamSettingItem.statusOpen else TeamSettingItem.statusClosed
-        event.item?.smallCapsName = setting.smallCapsItemName
-        event.item?.smallCapsLore = setting.smallCapsItemLore
+        event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
+        event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishName
         event.update()
     }
 
     // Anchor
     val anchorItem = TeamSettingItem.anchor.apply {
-        this?.customPlaceholder = teamToPlaceholderMap(team)
+        this?.styleSheet?.placeholder = teamToPlaceholderMap(team)
     }
     setItem(anchorItem) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {

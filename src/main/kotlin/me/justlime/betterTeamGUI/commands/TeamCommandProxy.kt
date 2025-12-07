@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.commands.subcommand
+package me.justlime.betterTeamGUI.commands
 
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
@@ -8,9 +8,11 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.jetbrains.annotations.ApiStatus
 import java.lang.reflect.Field
 import kotlin.collections.iterator
 
+@ApiStatus.Experimental
 //Note: Generated from Gemini Model 3.0
 /**
  * Acts as a middle-man between Bukkit and the original BetterTeams command.

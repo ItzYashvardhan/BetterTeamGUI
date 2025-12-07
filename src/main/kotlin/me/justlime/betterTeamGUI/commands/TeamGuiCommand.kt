@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.commands.subcommand
+package me.justlime.betterTeamGUI.commands
 
 import com.booksaw.betterTeams.CommandResponse
 import com.booksaw.betterTeams.commands.SubCommand

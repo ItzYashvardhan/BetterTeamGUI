@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Main
+import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
@@ -12,6 +13,37 @@ object TeamService {
     const val PREFIX = "betterteams:"
     const val COMMAND = "team"
     const val TEAM_COMMAND: String = COMMAND
+
+    fun teamToPlaceholderMap(team: Team): Map<String, String> {
+        return mapOf(
+            "{team}" to (team.name ?: "N/A"),
+            "{team_size}" to team.members.size().toString(),
+            "{team_limit}" to team.teamLimit.toString(),
+            "{team_level}" to team.level.toString(),
+            "{team_score}" to team.score.toString(),
+            "{team_money}" to team.money.toString(),
+            "{anchor}" to team.isAnchored.toString(),
+            "{team_description}" to team.description,
+            "{team_color_code}" to "<" + team.color.name + ">",
+            "{/team_color_code}" to "</" + team.color.name + ">",
+        )
+    }
+
+    fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
+        return mapOf(
+            "{rank}" to teamPlayer.rank.name,
+            "{team_player}" to (teamPlayer.player.name ?: ""),
+        )
+    }
+
+    fun applyPlaceHolder(team: Team, teamPlayer: TeamPlayer): Map<String, String> {
+        val map = mutableMapOf<String, String>()
+        map.putAll(teamToPlaceholderMap(team))
+        map.putAll(teamPlayerToPlaceholderMap(teamPlayer))
+        return map
+    }
+
+
 
     fun joinTeam(player: Player, teamName: String) {
         player.performCommand("$TEAM_COMMAND join $teamName")

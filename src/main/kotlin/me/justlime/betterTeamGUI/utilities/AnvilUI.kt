@@ -29,10 +29,10 @@ val miniMessage = MiniMessage.miniMessage()
  * @param onConfirm A lambda that is called with the valid text input when the player confirms.
  */
 fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: GuiItem, outputItem: GuiItem, onInvalidInput: () -> Unit, onCancel: () -> Unit = {}, onConfirm: (String) -> Unit) {
-    if (inputItem.smallCapsLore == null) inputItem.smallCapsLore = true
-    if (inputItem.smallCapsName == null) inputItem.smallCapsName = true
-    if (outputItem.smallCapsLore == null) outputItem.smallCapsLore = true
-    if (outputItem.smallCapsName == null) outputItem.smallCapsName = true
+//    if (inputItem.smallCapsLore == null) inputItem.smallCapsLore = true
+//    if (inputItem.smallCapsName == null) inputItem.smallCapsName = true
+//    if (outputItem.smallCapsLore == null) outputItem.smallCapsLore = true
+//    if (outputItem.smallCapsName == null) outputItem.smallCapsName = true
 
     val jsonString: String = GsonComponentSerializer.gson().serialize(title)
     val displayPlaceholder = legacySerializer.serialize(label)

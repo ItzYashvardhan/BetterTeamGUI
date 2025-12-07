@@ -29,7 +29,8 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.1.0")
 
     //GUI
-    implementation("com.github.ItzYashvardhan:LimeFrameGUI:dc97b44f63")
+//    implementation("com.github.ItzYashvardhan:LimeFrameGUI:a26eec125f")
+    implementation("net.justlime.limeframegui:LimeFrameGUI")
     implementation("net.wesjd:anvilgui:1.10.10-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
 

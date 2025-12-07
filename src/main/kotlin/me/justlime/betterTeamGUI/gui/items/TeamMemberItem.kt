@@ -1,7 +1,7 @@
 package me.justlime.betterTeamGUI.gui.items
 
 import me.justlime.betterTeamGUI.config.ConfigManager
-import me.justlime.betterTeamGUI.config.JFiles
+import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
 import net.justlime.limeframegui.impl.ConfigHandler
 

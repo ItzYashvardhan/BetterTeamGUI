@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI.config
 
+import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import org.bukkit.configuration.file.FileConfiguration

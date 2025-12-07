@@ -3,7 +3,6 @@ package me.justlime.betterTeamGUI.gui.java
 import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
-import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
@@ -161,7 +160,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
 
         addPage {
 
-
             teams.forEach { team ->
                 val isTeamOpen = team.isOpen
                 val isInvited = team.isInvited(player.uniqueId)
@@ -182,8 +180,8 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
 
                     val finalItem = item.apply {
                         this?.texture = "[${offlinePlayer.uniqueId}]"
-                        this?.placeholderOfflinePlayer = offlinePlayer
-                        this?.customPlaceholder = teamToPlaceholderMap(team)
+                        this?.styleSheet?.offlinePlayer = offlinePlayer
+                        this?.styleSheet?.placeholder = teamToPlaceholderMap(team)
                     } ?: GuiItem(Material.STONE)
 
                     addItem(finalItem) {

@@ -3,12 +3,11 @@ package me.justlime.betterTeamGUI.utilities
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.items.TeamButton
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem.setting
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.utilities.item
 import net.justlime.limeframegui.utilities.update
-import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
@@ -60,19 +59,12 @@ fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
     )
 }
 
-fun applyBetterTeamPlaceholderMap(team: Team, teamPlayer: TeamPlayer): Map<String, String> {
-    val map = mutableMapOf<String, String>()
-    map.putAll(teamToPlaceholderMap(team))
-    map.putAll(teamPlayerToPlaceholderMap(teamPlayer))
-    return map
-}
-
 fun permissionDenied(event: InventoryClickEvent) {
     val oldItem = event.item ?: return
     val noPermissionItem = TeamButton.noPermission ?: return
     event.item = noPermissionItem
-    event.item?.smallCapsName = setting.smallCapsItemName
-    event.item?.smallCapsLore = setting.smallCapsItemLore
+    event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
+    event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishLore
     event.update()
     Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
         event.item = oldItem

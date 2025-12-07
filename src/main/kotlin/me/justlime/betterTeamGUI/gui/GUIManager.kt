@@ -1,26 +1,21 @@
 package me.justlime.betterTeamGUI.gui
 
-import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
-import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
-import me.justlime.betterTeamGUI.utilities.getPlayerHead
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
-import org.bukkit.OfflinePlayer
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
@@ -29,20 +24,6 @@ import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
 object GUIManager {
-
-    fun insertBackground(inventory: Inventory) {
-        val item = Material.valueOf(Config.background.name)
-        val itemStack = ItemStack(item)
-        val itemMeta = itemStack.itemMeta.apply {
-            this?.itemFlags?.clear()
-        }
-        itemStack.itemMeta = itemMeta
-        for (i in 0 until inventory.size) {
-            if (i in 0..8 || i >= inventory.size - 9 || i % 9 == 0 || (i + 1) % 9 == 0) {
-                inventory.setItem(i, itemStack)
-            }
-        }
-    }
 
     fun createItem(material: Material, name: String, lore: List<String>, glint: Boolean, flags: MutableList<String>): ItemStack {
         return ItemStack(material).apply {
@@ -58,7 +39,7 @@ object GUIManager {
                     flags.forEach {
                         try {
                             addItemFlags(ItemFlag.valueOf(it))
-                        } catch (e: IllegalArgumentException) {
+                        } catch (_: IllegalArgumentException) {
                             pluginInstance.logger.warning("Unknown flag: $it at item: $name")
                         }
                     }
@@ -74,7 +55,7 @@ object GUIManager {
         val flags = section.getStringList("flags")
         val material = try {
             Material.valueOf(section.getString("item") ?: "PAPER")
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             pluginInstance.logger.warning("Invalid material: ${section.getString("item")} at item: ${section.getString("name")}")
             Material.PAPER
         }
@@ -93,54 +74,32 @@ object GUIManager {
                     inventory.setItem(it, item)
                 }
                 return slotList
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 pluginInstance.logger.warning("Invalid slot: $slotList at item: $name")
             }
         }
         try {
-            val slot = section.getString("slot", " ")?.toIntOrNull()
-            if (slot == null) return listOf()
+            val slot = section.getString("slot", " ")?.toIntOrNull() ?: return listOf()
             inventory.setItem(slot, item)
             return listOf(slot)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             pluginInstance.logger.warning("Invalid slot: ${section.getString("slot")} at item: ${section.getString("name")}")
             return listOf()
         }
     }
 
-    fun createHeadItem(team: Team, offlinePlayer: OfflinePlayer, itemLore: MutableList<String> = mutableListOf()): ItemStack {
-        val playerHeadItem = getPlayerHead(offlinePlayer)
-        val meta = playerHeadItem.itemMeta
-
-        // Update meta properties
-        meta?.setDisplayName(Service.applyLocalPlaceHolder(Config.TeamInfo.teamName, team, team.members.getRank(PlayerRank.OWNER).first()))
-
-        meta?.lore = itemLore
-        playerHeadItem.itemMeta = meta
-
-        return playerHeadItem
-    }
-
-    fun openTeamAllyGUI(sender: Player, team: Team, teamPlayer: TeamPlayer) {
+    fun openTeamAllyGUI(sender: Player, team: Team) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamAllyForm(sender, team)
             return
         }
-        val title = Service.applyLocalPlaceHolder(Config.TeamAllyView.title, team, teamPlayer)
-        val row = Config.TeamAllyView.row
-        val allyInventory = TeamAllyGUI(row, title, team, teamPlayer)
-        sender.openInventory(allyInventory.inventory)
     }
 
-    fun openTeamOtherGUI(sender: Player, oTeam: Team, teamPlayer: TeamPlayer) {
+    fun openTeamOtherGUI(sender: Player, oTeam: Team) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamOtherForm(sender, oTeam)
             return
         }
-        val title = Service.applyLocalPlaceHolder(Config.TeamOtherView.title, oTeam, teamPlayer)
-        val row = Config.TeamOtherView.row
-        val otherInventory = TeamOtherGUI(row, title, oTeam, teamPlayer)
-        sender.openInventory(otherInventory.inventory)
     }
 
     fun closeInventory(player: Player) {
@@ -161,7 +120,7 @@ object GUIManager {
             }
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamView(TeamViewItem.setting.copy(), player, team, teamPlayer)
+            teamDashboard(TeamViewItem.setting, player, team, teamPlayer)
             return
         }
         if (isBedrockPlayer(player)) {
@@ -178,7 +137,7 @@ object GUIManager {
             BForm.openTeamListForm(player)
             return
         }
-        teamList(TeamListItem.setting.copy(), player)
+        teamList(TeamListItem.setting, player)
     }
 
     fun openTeamLeaveGUI(player: Player) {
@@ -186,7 +145,7 @@ object GUIManager {
             BForm.openTeamLeaveForm(player)
             return
         }
-        teamLeaveDialog(TeamDialogItem.leaveSetting.copy()).open(player)
+        teamLeaveDialog(TeamDialogItem.leaveSetting).open(player)
     }
 
     fun openTeamUpdateHomeGUI(player: Player) {
@@ -194,7 +153,7 @@ object GUIManager {
             // TODO: Add Bedrock form for update home
             return
         }
-        teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting.copy()).open(player)
+        teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting).open(player)
     }
 
     fun openTeamDeleteHomeGUI(player: Player) {
@@ -202,7 +161,7 @@ object GUIManager {
             // TODO: Add Bedrock form for delete home
             return
         }
-        teamDeleteHomeDialog(TeamDialogItem.deleteHomeSetting.copy()).open(player)
+        teamDeleteHomeDialog(TeamDialogItem.deleteHomeSetting).open(player)
     }
 
     fun openTeamWarpGUI(player: Player) {
@@ -212,8 +171,7 @@ object GUIManager {
             BForm.openTeamWarpForm(team, teamPlayer)
             return
         }
-        TeamWarpItem.setting.placeholderPlayer = player
-        teamWarp(TeamWarpItem.setting.copy(), team, teamPlayer, player).open(player)
+        teamWarp(TeamWarpItem.setting, team, teamPlayer, player).open(player)
     }
 
     fun openTeamMemberGUI(player: Player, team: Team) {
@@ -221,7 +179,8 @@ object GUIManager {
             BForm.openTeamMemberForm(player, team)
             return
         }
-        teamMemberView(TeamMemberItem.setting.copy(),player ,team).open(player)
+        val setting = TeamMemberItem.setting
+        teamMemberView(setting,player, team)
     }
 
     fun openTeamMemberManagementGUI(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
@@ -230,7 +189,7 @@ object GUIManager {
             BForm.openTeamMemberForm(player, team)
             return
         }
-        teamMemberManagement(TeamMemberManagementItem.setting.copy(), player, targetTeamPlayer, team)
+        teamMemberManagement(player, targetTeamPlayer, team)
     }
 
     fun openTeamPromoteToOwnerDialog(player: Player, targetTeamPlayer: TeamPlayer) {
@@ -238,7 +197,7 @@ object GUIManager {
             // TODO: Add Bedrock form for promote to owner
             return
         }
-        teamPromoteToOwnerDialog(TeamDialogItem.promoteToOwnerSetting.copy(), targetTeamPlayer).open(player)
+        teamPromoteToOwnerDialog(TeamDialogItem.promoteToOwnerSetting.clone(), targetTeamPlayer).open(player)
     }
 
     fun openTeamPromoteToAdminDialog(player: Player, targetTeamPlayer: TeamPlayer) {
@@ -246,7 +205,7 @@ object GUIManager {
             // TODO: Add Bedrock form for promote to admin
             return
         }
-        teamPromoteToAdminDialog(TeamDialogItem.promoteToAdminSetting.copy(), targetTeamPlayer).open(player)
+        teamPromoteToAdminDialog(TeamDialogItem.promoteToAdminSetting.clone(), targetTeamPlayer).open(player)
     }
 
     fun openTeamDemoteToAdminDialog(player: Player, targetTeamPlayer: TeamPlayer) {
@@ -254,16 +213,15 @@ object GUIManager {
             // TODO: Add Bedrock form for demote to admin
             return
         }
-        teamDemoteToAdminDialog(TeamDialogItem.demoteToAdminSetting.copy(), targetTeamPlayer).open(player)
+        teamDemoteToAdminDialog(TeamDialogItem.demoteToAdminSetting.clone(), targetTeamPlayer).open(player)
     }
-
 
     fun openTeamDemoteToDefaultDialog(player: Player, targetTeamPlayer: TeamPlayer) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for demote to default
             return
         }
-        teamDemoteToDefaultDialog(TeamDialogItem.demoteToDefaultSetting.copy(), targetTeamPlayer).open(player)
+        teamDemoteToDefaultDialog(TeamDialogItem.demoteToDefaultSetting.clone(), targetTeamPlayer).open(player)
     }
 
     fun openTeamKickDialog(player: Player, targetTeamPlayer: TeamPlayer) {
@@ -271,7 +229,7 @@ object GUIManager {
             // TODO: Add Bedrock form for kick
             return
         }
-        teamKickDialog(TeamDialogItem.kickSetting.copy(), targetTeamPlayer).open(player)
+        teamKickDialog(TeamDialogItem.kickSetting.clone(), targetTeamPlayer).open(player)
     }
 
     fun openTeamBanDialog(player: Player, targetTeamPlayer: TeamPlayer) {
@@ -279,15 +237,14 @@ object GUIManager {
             // TODO: Add Bedrock form for ban
             return
         }
-        teamBanDialog(TeamDialogItem.banSetting.copy(), targetTeamPlayer).open(player)
+        teamBanDialog(TeamDialogItem.banSetting.clone(), targetTeamPlayer).open(player)
     }
-
 
     //Setting
     fun openTeamSettingGUI(player: Player) {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
-        teamSettingView(TeamSettingItem.setting.copy(), player, team, teamPlayer).open(player)
+        teamSettingView(TeamSettingItem.setting.clone(), player, team, teamPlayer).open(player)
     }
 
     fun openColorPickerGUI(player: Player) {
@@ -295,7 +252,7 @@ object GUIManager {
             // TODO: Add Bedrock form for color picker
             return
         }
-        colorPickerView(ColorPickerItem.setting.copy(), player).open(player)
+        colorPickerView(ColorPickerItem.setting.clone(), player).open(player)
     }
 
     fun openTeamDisbandGUI(player: Player) {
@@ -303,7 +260,7 @@ object GUIManager {
             // TODO: Add Bedrock form for disband
             return
         }
-        teamDisbandDialog(setting = TeamDialogItem.disbandSetting.copy()).open(player)
+        teamDisbandDialog(setting = TeamDialogItem.disbandSetting.clone()).open(player)
     }
 
 }

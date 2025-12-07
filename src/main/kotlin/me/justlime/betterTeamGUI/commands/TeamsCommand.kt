@@ -26,7 +26,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             val teamName = args.getOrNull(1) ?: return true
             val teamToView = Team.getTeam(teamName) ?: return true
             val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
-            GUIManager.openTeamOtherGUI(sender, teamToView, teamPlayer)
+            GUIManager.openTeamOtherGUI(sender, teamToView)
             return true
         }
 
@@ -55,7 +55,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             return true
         }
         if (args[0] == "ally" && sender.hasPermission("betterteamgui.use.ally")) {
-            GUIManager.openTeamAllyGUI(sender, team, playerTeam)
+            GUIManager.openTeamAllyGUI(sender, team)
             return true
         }
 

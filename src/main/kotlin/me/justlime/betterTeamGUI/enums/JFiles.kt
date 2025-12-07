@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.config
+package me.justlime.betterTeamGUI.enums
 
 enum class JFiles(val filename: String) {
     CONFIG("config.yml"),
@@ -11,14 +11,14 @@ enum class JFiles(val filename: String) {
     //Java Config
     FONT("gui/font.yml"),
     LIST_VIEW("gui/list_view.yml"),
-    TEAM_VIEW("gui/team_view.yml"),
+    TEAM_VIEW("gui/dashboard_view.yml"),
     WARPS_VIEW("gui/warps_view.yml"),
-    MEMBER_MANAGEMENT_VIEW("gui/management_view.yml"),
+    MEMBER_MANAGEMENT_VIEW("gui/members_control_view.yml"),
     MEMBERS_VIEW("gui/members_view.yml"),
     OTHER_TEAM_VIEW("other_team_view.yml"),
     DIALOG_VIEW("gui/dialog_view.yml"),
     MONEY_VIEW("gui/money_view.yml"),
-    ALLY_VIEW("gui/ally_view.yml"),
+    ALLY_VIEW("gui/allies_view.yml"),
     TEAM_LEADERBOARD_VIEW("team_lb.yml"),
     SETTING_VIEW("gui/setting_view.yml"),
 

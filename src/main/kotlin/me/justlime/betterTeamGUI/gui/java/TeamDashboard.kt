@@ -10,7 +10,6 @@ import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
-import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -49,9 +48,9 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
                 teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
                 else -> TeamViewItem.chatItem
             }
-            event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
-            event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishLore
-            event.update()
+//            event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
+//            event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishLore
+            event.update(setting.style)
         }
 
 //    setItem(TeamViewItem.infoItem)

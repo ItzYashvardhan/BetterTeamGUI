@@ -34,7 +34,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
     // Color Picker
     setItem(TeamSettingItem.colorPicker.apply {
-        this?.styleSheet?.placeholder = mapOf("{color}" to team.color.name)
+        this?.style?.placeholder = mapOf("{color}" to team.color.name)
     }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
             permissionDenied(event)
@@ -98,14 +98,14 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
         team.isOpen = !team.isOpen
         event.item = if (team.isOpen) TeamSettingItem.statusOpen else TeamSettingItem.statusClosed
-        event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
-        event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishName
+        event.item?.style?.stylishName = setting.style?.stylishName ?: LimeFrameAPI.keys.stylishName
+        event.item?.style?.stylishLore = setting.style?.stylishLore ?: LimeFrameAPI.keys.stylishName
         event.update()
     }
 
     // Anchor
     val anchorItem = TeamSettingItem.anchor.apply {
-        this?.styleSheet?.placeholder = teamToPlaceholderMap(team)
+        this?.style?.placeholder = teamToPlaceholderMap(team)
     }
     setItem(anchorItem) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {

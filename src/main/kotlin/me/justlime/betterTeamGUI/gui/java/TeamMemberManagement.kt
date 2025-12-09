@@ -14,7 +14,7 @@ import org.bukkit.entity.Player
 fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
 
     val setting = TeamMemberManagementItem.setting.copy()
-    setting.styleSheet?.placeholder = TeamService.applyPlaceHolder(team, targetTeamPlayer)
+    setting.style?.placeholder = TeamService.applyPlaceHolder(team, targetTeamPlayer)
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }

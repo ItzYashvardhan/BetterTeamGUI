@@ -18,7 +18,7 @@ import org.bukkit.entity.Player
 
 fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
     val teamPlayer = team.getTeamPlayer(player) ?: return
-    setting.styleSheet?.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    setting.style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
@@ -36,13 +36,13 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
         addPage {
 
             team.members.get().forEach { member ->
-                setting.styleSheet?.offlinePlayer = member.player
+                setting.style.offlinePlayer = member.player
 //                setting.styleSheet?.placeholder = TeamService.applyPlaceHolder(team, member)
 
                 val item = if (teamPlayer.rank == PlayerRank.OWNER && member.rank == PlayerRank.ADMIN) TeamMemberItem.memberItem else TeamMemberItem.memberItemNoAdmin
                 val finalItem = item?.apply {
                     texture = "[${member.player.uniqueId}]"
-                    styleSheet?.placeholder = TeamService.applyPlaceHolder(team, member)
+                    style.placeholder = TeamService.applyPlaceHolder(team, member)
                 } ?: GuiItem(Material.PLAYER_HEAD)
 
                 addItem(finalItem) { click ->

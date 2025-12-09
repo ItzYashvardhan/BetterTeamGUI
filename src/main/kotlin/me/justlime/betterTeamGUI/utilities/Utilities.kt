@@ -63,8 +63,8 @@ fun permissionDenied(event: InventoryClickEvent) {
     val oldItem = event.item ?: return
     val noPermissionItem = TeamButton.noPermission ?: return
     event.item = noPermissionItem
-    event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
-    event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishLore
+    event.item?.style?.stylishName = setting.style?.stylishName ?: LimeFrameAPI.keys.stylishName
+    event.item?.style?.stylishLore = setting.style?.stylishLore ?: LimeFrameAPI.keys.stylishLore
     event.update()
     Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
         event.item = oldItem

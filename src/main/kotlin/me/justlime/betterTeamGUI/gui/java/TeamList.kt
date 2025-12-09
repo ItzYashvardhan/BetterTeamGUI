@@ -180,8 +180,8 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
 
                     val finalItem = item.apply {
                         this?.texture = "[${offlinePlayer.uniqueId}]"
-                        this?.styleSheet?.offlinePlayer = offlinePlayer
-                        this?.styleSheet?.placeholder = teamToPlaceholderMap(team)
+                        this?.style?.offlinePlayer = offlinePlayer
+                        this?.style?.placeholder = teamToPlaceholderMap(team)
                     } ?: GuiItem(Material.STONE)
 
                     addItem(finalItem) {

@@ -26,7 +26,7 @@ class BetterTeamGUI : JavaPlugin() {
         Config.reload()
         TeamCommandProxy.inject() //Experimental
         CommandManager.register() //Initialize
-        LimeFrameAPI.debugging = true
+        LimeFrameAPI.debugging = false
 
         Metrics(this, 24705)
         setupLimeFrameGUI()

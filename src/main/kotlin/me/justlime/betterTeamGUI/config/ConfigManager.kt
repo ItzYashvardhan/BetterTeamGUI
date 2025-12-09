@@ -37,6 +37,8 @@ object ConfigManager {
     lateinit var memberManagementForm: FileConfiguration
     lateinit var teamLBView: FileConfiguration
     lateinit var settingView: FileConfiguration
+    lateinit var banView: FileConfiguration
+
 
 
     fun load() {
@@ -67,6 +69,7 @@ object ConfigManager {
         memberManagementForm = loadConfig(JFiles.TEAM_MEMBER_MANAGEMENT_FORM)
         inviteForm = loadConfig(JFiles.INVITE_FORM)
         settingView = loadConfig(JFiles.SETTING_VIEW)
+        banView = loadConfig(JFiles.BAN_VIEW)
     }
 
     private fun getFile(configFile: JFiles): File {
@@ -117,6 +120,7 @@ object ConfigManager {
                 JFiles.TEAM_MEMBER_MANAGEMENT_FORM -> memberManagementForm
                 JFiles.TEAM_LEADERBOARD_VIEW -> teamLBView
                 JFiles.SETTING_VIEW -> settingView
+                JFiles.BAN_VIEW -> banView
             }.save(File(pluginInstance.dataFolder, configFile.filename))
             true
         } catch (e: Exception) {

@@ -17,21 +17,6 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.geysermc.floodgate.api.FloodgateApi
 
-fun getPlayerHead(offlinePlayer: OfflinePlayer): ItemStack {
-
-    // Create the player head item
-    val playerHead = ItemStack(Material.PLAYER_HEAD, 1)
-
-    // Set the head's meta to the player's information
-    val meta = playerHead.itemMeta as? SkullMeta
-    if (meta != null) {
-        meta.owningPlayer = offlinePlayer // Assign the player to the head
-        meta.setDisplayName("§a${offlinePlayer.name}'s Head") // Optional: Add a custom name
-        playerHead.itemMeta = meta
-    }
-    return playerHead
-}
-
 fun isBedrockPlayer(player: Player): Boolean {
     return if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
     else false
@@ -40,6 +25,7 @@ fun isBedrockPlayer(player: Player): Boolean {
 fun teamToPlaceholderMap(team: Team): Map<String, String> {
     return mapOf(
         "{team}" to (team.name ?: "N/A"),
+        "{tag}" to (team.tag ?: "N/A"),
         "{team_size}" to team.members.size().toString(),
         "{team_limit}" to team.teamLimit.toString(),
         "{team_level}" to team.level.toString(),
@@ -71,3 +57,30 @@ fun permissionDenied(event: InventoryClickEvent) {
         event.update()
     }, 30)
 }
+
+val Team.bannedPlayersList: List<String>
+    get() {
+        return try {
+            // 1. Get the private 'bannedPlayers' field (which is a BanSetComponent)
+            val field = Team::class.java.getDeclaredField("bannedPlayers")
+            field.isAccessible = true
+            val component = field.get(this) // This is the BanSetComponent object
+
+            if (component == null) return emptyList()
+
+            // 2. The component likely wraps the data. We need to call its get() method.
+            val getMethod = component.javaClass.getMethod("get")
+
+            // 3. Invoke .get().
+            // FIX: We cast to Collection<*> (wildcard) instead of Collection<String>.
+            // This prevents the ClassCastException because we aren't asserting the content type yet.
+            val rawCollection = getMethod.invoke(component) as? Collection<*>
+
+            // 4. Safely map whatever is inside (UUIDs or Strings) to String using .toString()
+            rawCollection?.map { it.toString() } ?: emptyList()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }

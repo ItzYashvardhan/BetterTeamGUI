@@ -6,6 +6,7 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
+import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 
 object TeamService {
@@ -148,8 +149,8 @@ object TeamService {
         player.performCommand("$TEAM_COMMAND ban ${targetPlayer.player.name}")
     }
 
-    fun unban(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$TEAM_COMMAND unban ${targetPlayer.player.name}")
+    fun unban(player: Player, targetPlayer: OfflinePlayer) {
+        player.performCommand("$TEAM_COMMAND unban ${targetPlayer.player?.name}")
     }
 
     fun invitePlayer(player: Player, invitedPlayerName: String) {

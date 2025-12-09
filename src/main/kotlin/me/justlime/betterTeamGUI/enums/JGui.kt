@@ -272,4 +272,11 @@ sealed interface JGui {
             const val BAN = "ban"
         }
     }
+
+    sealed interface BanList : JGui {
+        companion object {
+            const val BANNED_PLAYER_ITEM = "banned-player-item"
+        }
+    }
+
 }

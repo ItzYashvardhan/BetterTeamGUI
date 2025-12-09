@@ -21,6 +21,8 @@ enum class JFiles(val filename: String) {
     ALLY_VIEW("gui/allies_view.yml"),
     TEAM_LEADERBOARD_VIEW("team_lb.yml"),
     SETTING_VIEW("gui/setting_view.yml"),
+    BAN_VIEW("gui/ban_view.yml"),
+
 
     //Bedrock Config
     TEAM_CREATE_FORM("form/create_form.yml"),

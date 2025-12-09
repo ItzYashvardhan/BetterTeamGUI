@@ -32,7 +32,7 @@ team-item-with-description-in-team:
   lore:
     - "<white><italic>{team_description}</italic></white>"
     - " "
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
     - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
     - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
@@ -44,7 +44,7 @@ team-item-with-description-in-team:
 team-item-without-description-in-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
     - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
     - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
@@ -58,7 +58,7 @@ team-item-with-description-no-team:
   lore:
     - "<white><italic>{team_description}</italic></white>"
     - " "
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
     - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
     - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
@@ -71,7 +71,7 @@ team-item-with-description-no-team:
 team-item-without-description-no-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
   lore:
-    - " <#5BD686>• Tag:</#5BD686> <white><bold>{team}</bold></white>"
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
     - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
     - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
@@ -154,7 +154,7 @@ filter:
   OPEN_ONLY:
     item: OAK_DOOR
     slot: 48
-    name: "<caps><gold>Filter: <white>Open Teams"
+    name: "<caps><gold>Filter: <white>Joinable"
     lore:
       - "<gray>Only showing teams that are open.</gray>"
       - ""
@@ -162,7 +162,7 @@ filter:
   CURRENTLY_ONLINE:
     item: LIME_DYE
     slot: 48
-    name: "<caps><gold>Filter: <white>Online Now"
+    name: "<caps><gold>Filter: <white>Online"
     lore:
       - "<gray>Only showing teams with online members.</gray>"
       - ""
@@ -170,9 +170,9 @@ filter:
   NOT_FULL:
     item: CHEST
     slot: 48
-    name: "<caps><gold>Filter: <white>Not Full"
+    name: "<caps><gold>Filter: <white>Spacious"
     lore:
-      - "<gray>Only showing teams with available slots.</gray>"
+      - "<gray>Only showing teams with available seats.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
 

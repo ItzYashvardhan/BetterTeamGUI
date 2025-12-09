@@ -4,6 +4,7 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
+import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
@@ -262,5 +263,11 @@ object GUIManager {
         }
         teamDisbandDialog(setting = TeamDialogItem.disbandSetting.clone()).open(player)
     }
+
+    fun openTeamBanListGUI(player: Player) {
+        val team = Team.getTeam(player.name) ?: return
+        teamBanList(setting = BanListItem.setting.clone(), player, team)
+    }
+
 
 }

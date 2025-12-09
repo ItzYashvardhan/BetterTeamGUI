@@ -165,7 +165,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         }
 
         // Open ban list management GUI
-//        GUIManager.openBanListGUI(player)
+        GUIManager.openTeamBanListGUI(player)
     }
 
     // Disband

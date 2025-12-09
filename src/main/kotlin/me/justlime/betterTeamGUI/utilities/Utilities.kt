@@ -3,18 +3,15 @@ package me.justlime.betterTeamGUI.utilities
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.items.TeamButton
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem.setting
 import me.justlime.betterTeamGUI.pluginInstance
-import net.justlime.limeframegui.api.LimeFrameAPI
+import net.justlime.limeframegui.models.GuiItem
+import net.justlime.limeframegui.models.LimeStyleSheet
 import net.justlime.limeframegui.utilities.item
 import net.justlime.limeframegui.utilities.update
 import org.bukkit.Bukkit
 import org.bukkit.Material
-import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.SkullMeta
 import org.geysermc.floodgate.api.FloodgateApi
 
 fun isBedrockPlayer(player: Player): Boolean {
@@ -35,6 +32,7 @@ fun teamToPlaceholderMap(team: Team): Map<String, String> {
         "{team_description}" to team.description,
         "{team_color_code}" to "<" + team.color.name + ">",
         "{/team_color_code}" to "</" + team.color.name + ">",
+        "{allies_request}" to team.allyRequests.size.toString(),
     )
 }
 
@@ -45,16 +43,14 @@ fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
     )
 }
 
-fun permissionDenied(event: InventoryClickEvent) {
+fun permissionDenied(event: InventoryClickEvent, style: LimeStyleSheet) {
     val oldItem = event.item ?: return
-    val noPermissionItem = TeamButton.noPermission ?: return
+    val noPermissionItem = TeamButton.noPermission ?: GuiItem(Material.BARRIER)
     event.item = noPermissionItem
-    event.item?.style?.stylishName = setting.style?.stylishName ?: LimeFrameAPI.keys.stylishName
-    event.item?.style?.stylishLore = setting.style?.stylishLore ?: LimeFrameAPI.keys.stylishLore
-    event.update()
+    event.update(style)
     Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
         event.item = oldItem
-        event.update()
+        event.update(style)
     }, 30)
 }
 
@@ -64,9 +60,7 @@ val Team.bannedPlayersList: List<String>
             // 1. Get the private 'bannedPlayers' field (which is a BanSetComponent)
             val field = Team::class.java.getDeclaredField("bannedPlayers")
             field.isAccessible = true
-            val component = field.get(this) // This is the BanSetComponent object
-
-            if (component == null) return emptyList()
+            val component = field.get(this) ?: return emptyList() // This is the BanSetComponent object
 
             // 2. The component likely wraps the data. We need to call its get() method.
             val getMethod = component.javaClass.getMethod("get")

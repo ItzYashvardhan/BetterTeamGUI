@@ -12,7 +12,6 @@ import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
 import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
-import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -23,9 +22,10 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 
 fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
+
+    setting.style.player = player
     onClick {
         it.isCancelled = true
-
     }
 
     TeamSettingItem.background.forEach { setItem(it) }
@@ -37,7 +37,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         this?.style?.placeholder = mapOf("{color}" to team.color.name)
     }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
         GUIManager.openColorPickerGUI(player)
@@ -46,7 +46,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     // Description
     setItem(TeamSettingItem.description) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
@@ -68,7 +68,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     // Tag
     setItem(TeamSettingItem.tag) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
@@ -92,15 +92,13 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(statusItem) { event ->
         // Toggle status
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
 
         team.isOpen = !team.isOpen
         event.item = if (team.isOpen) TeamSettingItem.statusOpen else TeamSettingItem.statusClosed
-        event.item?.style?.stylishName = setting.style?.stylishName ?: LimeFrameAPI.keys.stylishName
-        event.item?.style?.stylishLore = setting.style?.stylishLore ?: LimeFrameAPI.keys.stylishName
-        event.update()
+        event.update(setting.style)
     }
 
     // Anchor
@@ -109,7 +107,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
     setItem(anchorItem) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
 
@@ -123,7 +121,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     // Title
     setItem(TeamSettingItem.title) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
 
@@ -147,7 +145,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     // PvP
     setItem(TeamSettingItem.pvp) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+            permissionDenied(event,setting.style)
             return@setItem
         }
         // Toggle friendly fire
@@ -157,15 +155,31 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         }, 2)
     }
 
-    // Ban List
-    setItem(TeamSettingItem.banList) { event ->
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event)
+    // Rename
+    val renameItem = TeamSettingItem.rename?.apply {
+        style.placeholder =  teamToPlaceholderMap(team)
+    }
+    setItem(renameItem) { event ->
+        if (teamPlayer.rank != PlayerRank.OWNER) {
+            permissionDenied(event,setting.style)
             return@setItem
         }
 
-        // Open ban list management GUI
-        GUIManager.openTeamBanListGUI(player)
+        (event.whoClicked as? Player)?.let { player ->
+            val title = applyMiniColor(TeamSettingItem.renameTitle ?: "")
+            val label = applyMiniColor(TeamSettingItem.renameLabel ?: "")
+            val inputItem = TeamSettingItem.renameInputItem ?: GuiItem(Material.ANVIL)
+            val outputItem = TeamSettingItem.renameOutputItem ?: GuiItem(Material.ANVIL)
+
+            val reopenGUI = { GUIManager.openTeamSettingGUI(player) }
+
+            openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newName ->
+                TeamService.rename(player, newName)
+                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                    reopenGUI()
+                }, 2)
+            }
+        }
     }
 
     // Disband

@@ -5,8 +5,8 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
 import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
-import me.justlime.betterTeamGUI.gui.items.TeamViewItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
@@ -22,12 +22,12 @@ import org.bukkit.event.inventory.ClickType
 fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
-        TeamViewItem.background.forEach { setItem(it) }
+        TeamDashboardItem.background.forEach { setItem(it) }
 
         val chatItem = when {
-            teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
-            teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
-            else -> TeamViewItem.chatItem
+            teamPlayer.isInAllyChat -> TeamDashboardItem.allyChatItem
+            teamPlayer.isInTeamChat -> TeamDashboardItem.teamChatItem
+            else -> TeamDashboardItem.chatItem
         }
         setItem(chatItem) { event ->
             if (event.click.isRightClick) {
@@ -44,21 +44,19 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
             }
 
             event.item = when {
-                teamPlayer.isInAllyChat -> TeamViewItem.allyChatItem
-                teamPlayer.isInTeamChat -> TeamViewItem.teamChatItem
-                else -> TeamViewItem.chatItem
+                teamPlayer.isInAllyChat -> TeamDashboardItem.allyChatItem
+                teamPlayer.isInTeamChat -> TeamDashboardItem.teamChatItem
+                else -> TeamDashboardItem.chatItem
             }
-//            event.item?.styleSheet?.stylishName = setting.styleSheet?.stylishName ?: LimeFrameAPI.keys.stylishName
-//            event.item?.styleSheet?.stylishLore = setting.styleSheet?.stylishLore ?: LimeFrameAPI.keys.stylishLore
             event.update(setting.style)
         }
 
 //    setItem(TeamViewItem.infoItem)
-        val infoItem = if (team.description.isBlank()) TeamViewItem.infoItemWithoutDesc else TeamViewItem.infoItemWithDesc
+        val infoItem = if (team.description.isBlank()) TeamDashboardItem.infoItemWithoutDesc else TeamDashboardItem.infoItemWithDesc
         setItem(infoItem)
 
 
-        setItem(TeamViewItem.homeItem) {
+        setItem(TeamDashboardItem.homeItem) {
             when (it.click) {
                 ClickType.LEFT -> {
                     TeamService.teleportToHome(player)
@@ -83,7 +81,7 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
 
         }
 
-        setItem(TeamViewItem.balanceItem) { clickEvent ->
+        setItem(TeamDashboardItem.balanceItem) { clickEvent ->
             if (clickEvent.isLeftClick) {
                 depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, true)
             }
@@ -92,30 +90,32 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
             }
         }
 
-        setItem(TeamViewItem.warpItem) {
+        setItem(TeamDashboardItem.warpItem) {
             val player = it.whoClicked as? Player ?: return@setItem
             GUIManager.openTeamWarpGUI(player)
         }
 
-        setItem(TeamViewItem.membersItem) {
+        setItem(TeamDashboardItem.membersItem) {
             GUIManager.openTeamMemberGUI(it.whoClicked as Player, team)
         }
 
-        setItem(TeamViewItem.enderChestItem) {
+        setItem(TeamDashboardItem.enderChestItem) {
             TeamService.openTeamEnderChest(it.whoClicked as Player)
         }
 
-        setItem(TeamViewItem.allyItem) {}
+        setItem(TeamDashboardItem.allyItem) {
+            GUIManager.openTeamAlliesListGUI(player, team)
+        }
 
-        if (teamPlayer.rank != PlayerRank.OWNER) setItem(TeamViewItem.leaveItem) {
+        if (teamPlayer.rank != PlayerRank.OWNER) setItem(TeamDashboardItem.leaveItem) {
             GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
         }
 
-        setItem(TeamViewItem.listItem) {
+        setItem(TeamDashboardItem.listItem) {
             GUIManager.openTeamListGUI(it.whoClicked as Player)
         }
 
-        setItem(TeamViewItem.settingItem) {
+        setItem(TeamDashboardItem.settingItem) {
             GUIManager.openTeamSettingGUI(it.whoClicked as Player)
         }
 

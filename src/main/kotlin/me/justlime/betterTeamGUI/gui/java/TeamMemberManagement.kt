@@ -14,7 +14,7 @@ import org.bukkit.entity.Player
 fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
 
     val setting = TeamMemberManagementItem.setting.copy()
-    setting.style?.placeholder = TeamService.applyPlaceHolder(team, targetTeamPlayer)
+    setting.style.placeholder = TeamService.applyPlaceHolder(team, targetTeamPlayer)
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -34,7 +34,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if ((teamPlayer.rank == PlayerRank.OWNER && teamPlayer.playerUUID == targetTeamPlayer.playerUUID)) {
             setItem(TeamMemberManagementItem.demoteToAdmin) {
                 if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamDemoteToAdminDialog(player, targetTeamPlayer)
@@ -45,7 +45,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if (teamPlayer.rank == PlayerRank.OWNER && targetTeamPlayer.rank == PlayerRank.ADMIN) {
             setItem(TeamMemberManagementItem.demoteToDefault) {
                 if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamDemoteToDefaultDialog(player, targetTeamPlayer)
@@ -55,7 +55,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if (teamPlayer.rank == PlayerRank.OWNER && targetTeamPlayer.rank == PlayerRank.DEFAULT) {
             setItem(TeamMemberManagementItem.promoteToAdmin) {
                 if (targetTeamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamPromoteToAdminDialog(player, targetTeamPlayer)
@@ -65,7 +65,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if (teamPlayer.rank == PlayerRank.OWNER && targetTeamPlayer.rank == PlayerRank.ADMIN) {
             setItem(TeamMemberManagementItem.promoteToOwner) {
                 if (targetTeamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamPromoteToOwnerDialog(player, targetTeamPlayer)
@@ -75,7 +75,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if (teamPlayer.rank != PlayerRank.DEFAULT && teamPlayer.rank != targetTeamPlayer.rank && targetTeamPlayer.rank != PlayerRank.OWNER) {
             setItem(TeamMemberManagementItem.kick) {
                 if (targetTeamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamKickDialog(player, targetTeamPlayer)
@@ -85,7 +85,7 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
         if (teamPlayer.rank != PlayerRank.DEFAULT && teamPlayer.rank != targetTeamPlayer.rank && targetTeamPlayer.rank != PlayerRank.OWNER) {
             setItem(TeamMemberManagementItem.ban) {
                 if (targetTeamPlayer.rank == PlayerRank.OWNER || teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(it)
+                    permissionDenied(it,setting.style)
                     return@setItem
                 }
                 GUIManager.openTeamBanDialog(player, targetTeamPlayer)

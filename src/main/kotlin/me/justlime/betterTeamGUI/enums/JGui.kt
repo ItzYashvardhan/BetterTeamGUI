@@ -199,6 +199,7 @@ sealed interface JGui {
             const val MEMBER_ITEM_NO_ADMIN = "member-item-no-admin"
             const val INVITE = "invite"
             const val LOCKED_INVITE = "locked-invite"
+            const val BAN_LIST = "ban-list"
 
             const val INVITE_TITLE = "anvil-ui.invite.title"
             const val INVITE_LABEL = "anvil-ui.invite.label"
@@ -218,8 +219,9 @@ sealed interface JGui {
             const val ANCHOR = "anchor"
             const val TITLE = "title"
             const val PVP = "pvp"
-            const val BAN_LIST = "ban-list"
             const val DISBAND = "disband"
+            const val RENAME = "rename"
+
 
             const val DESCRIPTION_TITLE = "anvil-ui.description.title"
             const val DESCRIPTION_LABEL = "anvil-ui.description.label"
@@ -235,6 +237,12 @@ sealed interface JGui {
             const val TITLE_LABEL = "anvil-ui.title.label"
             const val TITLE_INPUT_ITEM = "anvil-ui.title.input-item"
             const val TITLE_OUTPUT_ITEM = "anvil-ui.title.output-item"
+
+            const val RENAME_TITLE = "anvil-ui.rename.title"
+            const val RENAME_LABEL = "anvil-ui.rename.label"
+            const val RENAME_INPUT_ITEM = "anvil-ui.rename.input-item"
+            const val RENAME_OUTPUT_ITEM = "anvil-ui.rename.output-item"
+
 
         }
     }
@@ -276,6 +284,14 @@ sealed interface JGui {
     sealed interface BanList : JGui {
         companion object {
             const val BANNED_PLAYER_ITEM = "banned-player-item"
+        }
+    }
+
+    sealed interface AllyView : JGui {
+        companion object {
+            const val ALLY_ITEM = "ally-item"
+            const val ALLY_REQUEST_INBOX = "ally-request-inbox"
+            const val ALLY_REQUEST_ITEM = "ally-request-item"
         }
     }
 

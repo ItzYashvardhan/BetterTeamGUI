@@ -44,8 +44,6 @@ object TeamService {
         return map
     }
 
-
-
     fun joinTeam(player: Player, teamName: String) {
         player.performCommand("$TEAM_COMMAND join $teamName")
     }
@@ -114,6 +112,10 @@ object TeamService {
         else player.performCommand("$TEAM_COMMAND tag $tag")
     }
 
+    fun rename(player: Player, newName: String) {
+        player.performCommand("$TEAM_COMMAND name $newName")
+    }
+
     fun disbandTeam(player: Player) {
         player.performCommand("$TEAM_COMMAND disband")
         Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
@@ -156,5 +158,14 @@ object TeamService {
     fun invitePlayer(player: Player, invitedPlayerName: String) {
         player.performCommand("$TEAM_COMMAND invite $invitedPlayerName")
     }
+
+    fun addAlly(player: Player, allyTeam: Team) {
+        player.performCommand("$TEAM_COMMAND ally ${allyTeam.name}")
+    }
+
+    fun removeAlly(player: Player, allyTeam: Team) {
+        player.performCommand("$TEAM_COMMAND neutral ${allyTeam.name}")
+    }
+
 
 }

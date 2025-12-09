@@ -52,7 +52,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
             addItem(warpItemCopy) { clickEvent ->
                 if (clickEvent.click.isShiftClick) {
                     if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                        permissionDenied(clickEvent)
+                        permissionDenied(clickEvent,setting.style)
                         return@addItem
                     }
                     TeamService.delWarp(clickEvent.whoClicked as Player, warp.name)
@@ -89,7 +89,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
         repeat(availableSlots) {
             addItem(claimableWarpItem) { clickEvent ->
                 if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                    permissionDenied(clickEvent)
+                    permissionDenied(clickEvent,setting.style)
                     return@addItem
                 }
 

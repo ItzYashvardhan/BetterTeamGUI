@@ -21,8 +21,8 @@ object TeamSettingItem {
     val anchor = config.loadItem(JGui.SettingView.ANCHOR)
     val title = config.loadItem(JGui.SettingView.TITLE)
     val pvp = config.loadItem(JGui.SettingView.PVP)
-    val banList = config.loadItem(JGui.SettingView.BAN_LIST)
     val disband = config.loadItem(JGui.SettingView.DISBAND)
+    val rename = config.loadItem(JGui.SettingView.RENAME)
 
     val descriptionTitle = ConfigManager.settingView.getString(JGui.SettingView.DESCRIPTION_TITLE)
     val descriptionLabel = ConfigManager.settingView.getString(JGui.SettingView.DESCRIPTION_LABEL)
@@ -38,6 +38,12 @@ object TeamSettingItem {
     val titleLabel = ConfigManager.settingView.getString(JGui.SettingView.TITLE_LABEL)
     val titleInputItem = config.loadItem(JGui.SettingView.TITLE_INPUT_ITEM)
     val titleOutputItem = config.loadItem(JGui.SettingView.TITLE_OUTPUT_ITEM)
+
+    val renameTitle = ConfigManager.settingView.getString(JGui.SettingView.RENAME_TITLE)
+    val renameLabel = ConfigManager.settingView.getString(JGui.SettingView.RENAME_LABEL)
+    val renameInputItem = config.loadItem(JGui.SettingView.RENAME_INPUT_ITEM)
+    val renameOutputItem = config.loadItem(JGui.SettingView.RENAME_OUTPUT_ITEM)
+
 
 
     fun reload() {

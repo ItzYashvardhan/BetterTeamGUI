@@ -6,11 +6,12 @@ import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
+import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.gui.items.TeamViewItem
+import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
@@ -88,14 +89,6 @@ object GUIManager {
             return listOf()
         }
     }
-
-    fun openTeamAllyGUI(sender: Player, team: Team) {
-        if (isBedrockPlayer(sender)) {
-            BForm.openTeamAllyForm(sender, team)
-            return
-        }
-    }
-
     fun openTeamOtherGUI(sender: Player, oTeam: Team) {
         if (isBedrockPlayer(sender)) {
             BForm.openTeamOtherForm(sender, oTeam)
@@ -121,7 +114,7 @@ object GUIManager {
             }
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamDashboard(TeamViewItem.setting, player, team, teamPlayer)
+            teamDashboard(TeamDashboardItem.setting, player, team, teamPlayer)
             return
         }
         if (isBedrockPlayer(player)) {
@@ -269,5 +262,12 @@ object GUIManager {
         teamBanList(setting = BanListItem.setting.clone(), player, team)
     }
 
-
+    fun openTeamAlliesListGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            BForm.openTeamAllyForm(player, team)
+            return
+        }
+        val team = Team.getTeam(player.name) ?: return
+        teamAlliesList(setting = TeamAlliesItem.setting.clone(), player, team)
+    }
 }

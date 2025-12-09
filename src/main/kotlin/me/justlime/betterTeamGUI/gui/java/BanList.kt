@@ -24,7 +24,7 @@ fun teamBanList(setting: GUISetting, player: Player, team: Team) {
 
         BanListItem.backSlot.forEach { slot ->
             setItem(TeamButton.back, slot) {
-                GUIManager.openTeamSettingGUI(it.whoClicked as Player)
+                GUIManager.openTeamMemberGUI(it.whoClicked as Player,team)
             }
         }
 

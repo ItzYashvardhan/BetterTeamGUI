@@ -4,7 +4,7 @@ import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
 import net.justlime.limeframegui.impl.ConfigHandler
 
-object TeamViewItem {
+object TeamDashboardItem {
 
     val config = ConfigHandler(JFiles.TEAM_VIEW.filename)
     val setting = config.loadInventorySetting(JGui.Main.SETTING)

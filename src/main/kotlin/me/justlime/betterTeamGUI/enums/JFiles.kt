@@ -18,7 +18,7 @@ enum class JFiles(val filename: String) {
     OTHER_TEAM_VIEW("other_team_view.yml"),
     DIALOG_VIEW("gui/dialog_view.yml"),
     MONEY_VIEW("gui/money_view.yml"),
-    ALLY_VIEW("gui/allies_view.yml"),
+    ALLIES_VIEW("gui/allies_view.yml"),
     TEAM_LEADERBOARD_VIEW("team_lb.yml"),
     SETTING_VIEW("gui/setting_view.yml"),
     BAN_VIEW("gui/ban_view.yml"),

@@ -5,7 +5,7 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.gui.items.TeamViewItem
+import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -42,7 +42,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
             Config.reload()
-            TeamViewItem.reload()
+            TeamDashboardItem.reload()
 
             return true
         }
@@ -55,7 +55,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             return true
         }
         if (args[0] == "ally" && sender.hasPermission("betterteamgui.use.ally")) {
-            GUIManager.openTeamAllyGUI(sender, team)
+            GUIManager.openTeamAlliesListGUI(sender, team)
             return true
         }
 

@@ -21,6 +21,7 @@ object TeamMemberItem {
     val memberItemNoAdmin = config.loadItem(JGui.MemberView.MEMBER_ITEM_NO_ADMIN)
     val invite = config.loadItem(JGui.MemberView.INVITE)
     val lockedInvite = config.loadItem(JGui.MemberView.LOCKED_INVITE)
+    val banList = config.loadItem(JGui.MemberView.BAN_LIST)
 
     val inviteTitle = ConfigManager.membersView.getString(JGui.MemberView.INVITE_TITLE)
     val inviteLabel = ConfigManager.membersView.getString(JGui.MemberView.INVITE_LABEL)

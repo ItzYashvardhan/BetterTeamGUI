@@ -33,6 +33,18 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
         setItem(TeamButton.home, TeamMemberItem.home) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
         val teamPlayer = team.getTeamPlayer(player) ?: return@ChestGUI
+
+        // Ban List
+        setItem(TeamMemberItem.banList) { event ->
+            if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                permissionDenied(event,setting.style)
+                return@setItem
+            }
+
+            // Open ban list management GUI
+            GUIManager.openTeamBanListGUI(player)
+        }
+
         addPage {
 
             team.members.get().forEach { member ->
@@ -48,7 +60,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
                 addItem(finalItem) { click ->
                     val teamPlayer = team.getTeamPlayer(click.whoClicked as Player) ?: return@addItem
                     if (teamPlayer.rank == PlayerRank.DEFAULT || (member.rank == PlayerRank.OWNER && teamPlayer.rank == PlayerRank.OWNER && member.player.name != teamPlayer.player.name)) {
-                        permissionDenied(click)
+                        permissionDenied(click,setting.style)
                         return@addItem
                     }
                     GUIManager.openTeamMemberManagementGUI(click.whoClicked as Player, member, team)
@@ -62,7 +74,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
                     val player = click.whoClicked as Player
                     val teamPlayer = team.getTeamPlayer(player) ?: return@addItem
                     if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                        permissionDenied(click)
+                        permissionDenied(click,setting.style)
                         return@addItem
                     }
                     openAnvilInviteGUI(player)
@@ -104,6 +116,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
 
         }
     }.open(player)
+
 }
 
 fun openAnvilInviteGUI(player: Player) {

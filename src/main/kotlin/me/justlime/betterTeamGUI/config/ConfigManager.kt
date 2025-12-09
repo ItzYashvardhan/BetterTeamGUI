@@ -31,7 +31,7 @@ object ConfigManager {
     lateinit var leaveForm: FileConfiguration
     lateinit var moneyView: FileConfiguration
     lateinit var balanceForm: FileConfiguration
-    lateinit var allyView: FileConfiguration
+    lateinit var alliesView: FileConfiguration
     lateinit var allyForm: FileConfiguration
     lateinit var memberManagementView: FileConfiguration
     lateinit var memberManagementForm: FileConfiguration
@@ -60,7 +60,7 @@ object ConfigManager {
         leaveForm = loadConfig(JFiles.LEAVE_FORM)
         moneyView = loadConfig(JFiles.MONEY_VIEW)
         balanceForm = loadConfig(JFiles.BALANCE_FORM)
-        allyView = loadConfig(JFiles.ALLY_VIEW)
+        alliesView = loadConfig(JFiles.ALLIES_VIEW)
         allyForm = loadConfig(JFiles.ALLY_FORM)
         memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW)
         teamLBView = loadConfig(JFiles.TEAM_LEADERBOARD_VIEW)
@@ -114,7 +114,7 @@ object ConfigManager {
                 JFiles.LEAVE_FORM -> leaveForm
                 JFiles.MONEY_VIEW -> moneyView
                 JFiles.BALANCE_FORM -> balanceForm
-                JFiles.ALLY_VIEW -> allyView
+                JFiles.ALLIES_VIEW -> alliesView
                 JFiles.ALLY_FORM -> allyForm
                 JFiles.MEMBER_MANAGEMENT_VIEW -> memberManagementView
                 JFiles.TEAM_MEMBER_MANAGEMENT_FORM -> memberManagementForm

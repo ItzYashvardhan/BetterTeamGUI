@@ -44,7 +44,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
         setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
         var teams: List<Team> = Team.getTeamManager().sortTeamsByMembers().mapNotNull { Team.getTeam(it) }
-
         teams = when (state.filter) {
             FilterType.OPEN_ONLY -> teams.filter { it.isOpen }
             FilterType.CURRENTLY_ONLINE -> teams.filter { it.onlineMembers.isNotEmpty() }
@@ -185,10 +184,14 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                     } ?: GuiItem(Material.STONE)
 
                     addItem(finalItem) {
+                        if (it.click.isLeftClick) {
+                            GUIManager.openTeamViewerGUI(player, team)
+                        }
                         if (!isInTeam and it.click.isRightClick) {
                             TeamService.joinTeam(player, team.name)
                             player.closeInventory()
                         }
+
                     }
                 }
             }

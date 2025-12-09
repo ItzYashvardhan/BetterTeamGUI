@@ -6,12 +6,14 @@ import me.justlime.betterTeamGUI.config.Service
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
+import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
 import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
+import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
@@ -270,4 +272,47 @@ object GUIManager {
         val team = Team.getTeam(player.name) ?: return
         teamAlliesList(setting = TeamAlliesItem.setting.clone(), player, team)
     }
+
+    fun openTeamNeutralDialog(player: Player, targetTeam: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for neutral
+            return
+        }
+        teamNeutralDialog(TeamDialogItem.neutralSetting.clone(), targetTeam).open(player)
+    }
+
+    fun openTeamLeaderBoardGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for leaderboard
+            return
+        }
+        teamLeaderBoard(setting = LeaderBoardItem.setting.clone(), player, team)
+    }
+
+    fun openTeamViewerGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for team viewer
+            return
+        }
+        teamViewer(setting = TeamViewerItems.teamViewerSetting.clone(), player, team)
+    }
+
+    fun openTeamViewerMembersGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for team viewer members
+            return
+        }
+        teamViewerMembers(setting = TeamViewerItems.teamViewerMembersSetting.clone(), player, team)
+    }
+
+    fun openTeamViewerAlliesGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for team viewer allies
+            return
+        }
+        teamViewerAllies(setting = TeamViewerItems.teamViewerAlliesSetting.clone(), player, team)
+    }
+
+
+
 }

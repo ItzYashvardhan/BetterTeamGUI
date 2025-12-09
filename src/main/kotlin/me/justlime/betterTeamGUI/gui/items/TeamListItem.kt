@@ -7,14 +7,14 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object TeamListItem {
 
-    val config = ConfigHandler(JFiles.LIST_VIEW.filename)
-    val setting = config.loadInventorySetting(JGui.Main.SETTING)
-    val background = config.loadItems(JGui.Main.BACKGROUND)
+    var config = ConfigHandler(JFiles.LIST_VIEW.filename)
+    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var background = config.loadItems(JGui.Main.BACKGROUND)
 
-    val backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
-    val homeSlot = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
-    val prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
-    val nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
+    var backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
+    var homeSlot = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
+    var prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
+    var nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
 
     var teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
     var teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
@@ -48,6 +48,15 @@ object TeamListItem {
 
     fun reload() {
         config.reload()
+        config = ConfigHandler(JFiles.LIST_VIEW.filename)
+        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        background = config.loadItems(JGui.Main.BACKGROUND)
+
+        backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
+        homeSlot = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
+        prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
+        nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
+
         teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
         teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
         teamItemWithDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC_NO_TEAM)
@@ -76,7 +85,6 @@ object TeamListItem {
         createTeamLabel = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_LABEL) ?: ""
         createTeamInputItem = config.loadItem(JGui.ListView.CREATE_TEAM_INPUT_ITEM)
         createTeamOutputItem = config.loadItem(JGui.ListView.CREATE_TEAM_OUTPUT_ITEM)
-
     }
 
 }

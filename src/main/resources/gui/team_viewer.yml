@@ -1,0 +1,144 @@
+team:
+  main:
+    title: "<bold><gradient:#C45700:#FF7608>{team_name} Team</bold>"
+    row: 3
+    font-title: false # Weather to enabled font for title
+    font-name: false # Weather to enabled font for name
+    font-lore: true # Whether to enabled font for lore
+    background:
+        0:
+          name: " "
+          item: LIGHT_BLUE_STAINED_GLASS_PANE
+          slot: [ 0,2,4,6,8,9,11,13,15,17,18,20,22,24,26 ]
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_ADDITIONAL_TOOLTIP
+        1:
+          name: " "
+          item: PURPLE_STAINED_GLASS_PANE
+          slot: [ 1,3,5,7,10,12,14,16,19,21,23,25 ]
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_ADDITIONAL_TOOLTIP
+    slot:
+      back: 25
+      home: 26
+
+  info-with-description:
+    name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+    lore:
+      - "<white><italic>{team_description}</italic></white>"
+      - " "
+      - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+      - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
+    slot: 10
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
+
+  info-without-description:
+    name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+    lore:
+      - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+      - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
+    slot: 10
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
+
+  balance:
+    name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
+    lore:
+      - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
+    slot: 13
+
+  members:
+    name: "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
+    lore:
+      - "<gray>View this team's members.</gray>"
+      - ""
+      - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
+    slot: 14
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
+
+  allies:
+    name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
+    lore:
+      - "<gray>View this team's allies.</gray>"
+      - ""
+      - "<yellow>Left-Click</yellow> <gray>to view allies</gray>"
+    slot: 15
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
+
+members:
+  main:
+    title: "<bold><gradient:#C45700:#FF7608>{team_name} Members (Page - {page})</bold>"
+    row: 6
+    font-title: false
+    font-name: false
+    font-lore: true
+    background:
+      0:
+        name: " "
+        item: LIGHT_BLUE_STAINED_GLASS_PANE
+        slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
+        flags:
+          - HIDE_ATTRIBUTES
+      1:
+        name: " "
+        item: PURPLE_STAINED_GLASS_PANE
+        slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
+    slot:
+      back: 52
+      home: 53
+      prev: 47
+      next: 51
+
+  member-item:
+    name: "<b>{team_player_name}</b> <gray>({team_player_rank})</gray>"
+    item: PLAYER_HEAD
+    texture: "{team_player_head}"
+
+allies:
+  main:
+    title: "<bold><gradient:#C45700:#FF7608>{team_name} Allies (Page - {page})</bold>"
+    row: 6
+    font-title: false
+    font-name: false
+    font-lore: true
+    background:
+      0:
+        name: " "
+        item: LIGHT_BLUE_STAINED_GLASS_PANE
+        slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
+        flags:
+          - HIDE_ATTRIBUTES
+      1:
+        name: " "
+        item: PURPLE_STAINED_GLASS_PANE
+        slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
+    slot:
+      back: 52
+      home: 53
+      prev: 47
+      next: 51
+
+  ally-item:
+    name: "<b>{team_color_code}{team}{/team_color_code}</b>"
+    lore:
+      - " "
+      - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+      - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - ""
+      - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
+
+

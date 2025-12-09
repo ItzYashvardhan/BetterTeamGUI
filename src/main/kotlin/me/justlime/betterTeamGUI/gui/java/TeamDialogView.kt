@@ -298,3 +298,34 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
         }
     }
 }
+
+fun teamNeutralDialog(setting: GUISetting, targetTeam: Team) = ChestGUI(setting) {
+    onClick { it.isCancelled = true }
+    // Background & Static Items
+    TeamDialogItem.neutralBackground.forEach { setItem(it) }
+
+    // Confirm Item
+    val confirmItem = TeamDialogItem.neutralConfirmItem?.clone().apply {
+        this?.style?.placeholder = mapOf("{team_ally}" to (targetTeam.name ?: "Unknown"))
+    }
+    if (confirmItem != null) {
+        setItem(confirmItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                TeamService.removeAlly(p, targetTeam)
+                GUIManager.closeInventory(p)
+            }
+        }
+    }
+
+    // Cancel Item
+    val cancelItem = TeamDialogItem.neutralCancelItem
+    if (cancelItem != null) {
+        setItem(cancelItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                val team = Team.getTeam(p.name) ?: return@let
+                GUIManager.openTeamAlliesListGUI(p, team)
+            }
+        }
+    }
+}
+

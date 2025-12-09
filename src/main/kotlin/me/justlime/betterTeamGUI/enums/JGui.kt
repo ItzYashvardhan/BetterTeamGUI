@@ -189,6 +189,13 @@ sealed interface JGui {
             const val BAN_CONFIRM_ITEM = BAN_VIEW + "confirm"
             const val BAN_CANCEL_ITEM = BAN_VIEW + "cancel"
 
+            const val NEUTRAL_VIEW = "neutral-view."
+            const val NEUTRAL_VIEW_MAIN = NEUTRAL_VIEW + Main.SETTING
+            const val NEUTRAL_VIEW_BACKGROUND = NEUTRAL_VIEW + Main.BACKGROUND
+            const val NEUTRAL_CONFIRM_ITEM = NEUTRAL_VIEW + "confirm"
+            const val NEUTRAL_CANCEL_ITEM = NEUTRAL_VIEW + "cancel"
+
+
         }
     }
 
@@ -293,6 +300,48 @@ sealed interface JGui {
             const val ALLY_REQUEST_INBOX = "ally-request-inbox"
             const val ALLY_REQUEST_ITEM = "ally-request-item"
         }
+    }
+
+    sealed interface LeaderBoardView : JGui {
+        companion object {
+            const val TEAM_LEADERBOARD_ITEM = "team-leaderboard-item"
+        }
+    }
+    sealed interface TeamViewer : JGui {
+        companion object {
+            const val MAIN = "team.main"
+            const val BACKGROUND = "team.main.background"
+            const val BACK_SLOT = "team.main.slot.back"
+            const val HOME_SLOT = "team.main.slot.home"
+            const val INFO_WITH_DESC = "team.info-with-description"
+            const val INFO_WITHOUT_DESC = "team.info-without-description"
+            const val BALANCE = "team.balance"
+            const val MEMBERS = "team.members"
+            const val ALLIES = "team.allies"
+        }
+        sealed interface Allies: TeamViewer{
+            companion object {
+                const val MAIN = "allies.main"
+                const val ALLY_ITEM = "allies.ally-item"
+                const val BACKGROUND = "allies.main.background"
+                const val BACK_SLOT = "allies.main.slot.back"
+                const val HOME_SLOT = "allies.main.slot.home"
+                const val PREV_SLOT = "allies.main.slot.prev"
+                const val NEXT_SLOT = "allies.main.slot.next"
+            }
+        }
+        sealed interface Members: TeamViewer{
+            companion object {
+                const val MAIN = "members.main"
+                const val MEMBER_ITEM = "members.member-item"
+                const val BACKGROUND = "members.main.background"
+                const val BACK_SLOT = "members.main.slot.back"
+                const val HOME_SLOT = "members.main.slot.home"
+                const val PREV_SLOT = "members.main.slot.prev"
+                const val NEXT_SLOT = "members.slot.next"
+            }
+        }
+
     }
 
 }

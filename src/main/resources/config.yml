@@ -1,21 +1,6 @@
-background:
-  0:
-    item: WHITE_STAINED_GLASS_PANE
-    slot: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]
-##Display on Main GUI
 
-#For Java GUI
-back-item:
-  item: FLOWER_BANNER_PATTERN
-  name: "&cBack"
-  glow: true
-  lore:
-    - "&7Click to Back"
-  #Hide flags option
-  flags:
-    - HIDE_ADDITIONAL_TOOLTIP
-    - HIDE_ENCHANTS
-
+# This allow player to directly open gui through /team command or its aliases
+use-native-command: true # Required Server Restart to apply changes
 
 #For Bedrock Form
 back-button:
@@ -29,11 +14,7 @@ back-button:
 #Possible Placeholder [{player},{uuid}]
 # Avatar: "https://crafatar.com/avatars/{uuid}?size=128&overlay"
 Avatar: "https://mc-heads.net/avatar/%skinsrestorer_texture_id_or_steve%.png"
-# Note It is recommemded to use %skinsrestorer_texture_id_or_steve% as placeholder for avatar
-
-team-join: "&aYou have joined {team} Team"
-team-closed: "&cYou are not invited to join {team} team"
-team-already-joined: "&cYou are already in {team} Team"
+# Note It is recommended to use %skinsrestorer_texture_id_or_steve% as placeholder for avatar
 
 #Don't change this value unless you know what it means
-version: 1.4
+version: 2.0

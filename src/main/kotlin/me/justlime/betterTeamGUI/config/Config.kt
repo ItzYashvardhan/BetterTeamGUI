@@ -1,5 +1,15 @@
 package me.justlime.betterTeamGUI.config
 
+import me.justlime.betterTeamGUI.gui.items.BanListItem
+import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
+import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
+import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
+import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
+import me.justlime.betterTeamGUI.gui.items.TeamListItem
+import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
+import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
+import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
+import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import org.bukkit.Material
 import org.bukkit.configuration.file.FileConfiguration
 
@@ -20,6 +30,8 @@ object Config {
 
     fun reload() {
         ConfigManager.load()
+
+
     }
 
     val backButton get() = config.getConfigurationSection("back-button") ?: config.createSection("back-button")

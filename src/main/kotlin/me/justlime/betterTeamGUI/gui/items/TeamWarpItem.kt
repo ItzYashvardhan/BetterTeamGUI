@@ -6,18 +6,16 @@ import me.justlime.betterTeamGUI.enums.JGui
 import net.justlime.limeframegui.impl.ConfigHandler
 
 object TeamWarpItem {
-    val config = ConfigHandler(JFiles.WARPS_VIEW.filename)
-    val setting = config.loadInventorySetting(JGui.Main.SETTING)
-    val background = config.loadItems(JGui.Main.BACKGROUND)
-    val backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
-    val homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)
-
+    var config = ConfigHandler(JFiles.WARPS_VIEW.filename)
+    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var background = config.loadItems(JGui.Main.BACKGROUND)
+    var backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
+    var homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)
 
     var occupiedWarpItem = config.loadItem(JGui.WarpView.OCCUPIED_WARP)
     var claimableWarpItem = config.loadItem(JGui.WarpView.CLAIMABLE_WARP)
     var noPermissionItem = config.loadItem(JGui.WarpView.NO_PERMISSION)
     var lockedWarpItem = config.loadItem(JGui.WarpView.LOCKED_WARP)
-
 
     var setWarpNameTitle = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_TITLE)
     var setWarpNameLabel = ConfigManager.warpsView.getString(JGui.WarpView.SET_WARP_NAME_LABEL)
@@ -37,6 +35,13 @@ object TeamWarpItem {
 
     fun reload() {
         config.reload()
+
+        config = ConfigHandler(JFiles.WARPS_VIEW.filename)
+        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        background = config.loadItems(JGui.Main.BACKGROUND)
+        backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
+        homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)
+
         occupiedWarpItem = config.loadItem(JGui.WarpView.OCCUPIED_WARP)
         claimableWarpItem = config.loadItem(JGui.WarpView.CLAIMABLE_WARP)
         noPermissionItem = config.loadItem(JGui.WarpView.NO_PERMISSION)

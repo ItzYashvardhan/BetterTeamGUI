@@ -5,7 +5,16 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.BanListItem
+import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
+import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
+import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
+import me.justlime.betterTeamGUI.gui.items.TeamListItem
+import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
+import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
+import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
+import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -43,6 +52,16 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             pluginInstance.reloadConfig()
             Config.reload()
             TeamDashboardItem.reload()
+            TeamListItem.reload()
+            TeamWarpItem.reload()
+            TeamMemberItem.reload()
+            TeamMemberManagementItem.reload()
+            TeamSettingItem.reload()
+            ColorPickerItem.reload()
+            TeamDialogItem.reload()
+            BanListItem.reload()
+            TeamAlliesItem.reload()
+
 
             return true
         }

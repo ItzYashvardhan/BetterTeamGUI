@@ -51,9 +51,10 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
             event.update(setting.style)
         }
 
-//    setItem(TeamViewItem.infoItem)
         val infoItem = if (team.description.isBlank()) TeamDashboardItem.infoItemWithoutDesc else TeamDashboardItem.infoItemWithDesc
-        setItem(infoItem)
+        setItem(infoItem) {
+            if (it.click.isLeftClick) GUIManager.openTeamLeaderBoardGUI(it.whoClicked as Player, team)
+        }
 
 
         setItem(TeamDashboardItem.homeItem) {

@@ -63,11 +63,12 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
 
                     if (item != null) {
                         addItem(item) { clickEvent ->
-                            val clickedPlayer = clickEvent.whoClicked as Player
                             if (clickEvent.isShiftClick) {
-                                // Remove ally logic
-                                TeamService.removeAlly(player, allyTeam)
-                                clickedPlayer.closeInventory()
+                                if (teamPlayer?.rank != PlayerRank.OWNER) {
+                                    permissionDenied(clickEvent, setting.style)
+                                    return@addItem
+                                }
+                                GUIManager.openTeamNeutralDialog(player, allyTeam)
                             } else {
                                 // View ally team logic
 //                            GUIManager.openTeamViewGUI(clickedPlayer, allyTeam)
@@ -75,9 +76,7 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
                         }
                     }
                 }
-
             }
-
         }
     }.open(player)
 }
@@ -123,9 +122,14 @@ fun teamAllyRequests(setting: GUISetting, player: Player, team: Team) {
                             allyRequestTeam.allyRequests.remove(uuid)
                             GUIManager.openTeamAlliesListGUI(clickEvent.whoClicked as Player, team)
                         } else {
-                            // Accept ally request logic
-                            TeamService.addAlly(player, allyRequestTeam)
-                            clickedPlayer.closeInventory()
+                            if (clickEvent.click.isRightClick) {
+                                GUIManager.openTeamViewerGUI(player, team)
+                            }
+                            if (clickEvent.click.isLeftClick) {
+                                // Accept ally request logic
+                                TeamService.addAlly(player, allyRequestTeam)
+                                clickedPlayer.closeInventory()
+                            }
                         }
                     }
                 }

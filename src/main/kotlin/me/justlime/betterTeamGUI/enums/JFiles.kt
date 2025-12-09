@@ -6,8 +6,6 @@ enum class JFiles(val filename: String) {
     BUTTONS("gui/buttons.yml"),
     COLORS("gui/color_picker.yml"),
 
-
-
     //Java Config
     FONT("gui/font.yml"),
     LIST_VIEW("gui/list_view.yml"),
@@ -15,14 +13,13 @@ enum class JFiles(val filename: String) {
     WARPS_VIEW("gui/warps_view.yml"),
     MEMBER_MANAGEMENT_VIEW("gui/members_control_view.yml"),
     MEMBERS_VIEW("gui/members_view.yml"),
-    OTHER_TEAM_VIEW("other_team_view.yml"),
+    TEAM_VIEWER("gui/team_viewer.yml"),
     DIALOG_VIEW("gui/dialog_view.yml"),
     MONEY_VIEW("gui/money_view.yml"),
     ALLIES_VIEW("gui/allies_view.yml"),
-    TEAM_LEADERBOARD_VIEW("team_lb.yml"),
+    LEADERBOARD_VIEW("gui/leaderboard_view.yml"),
     SETTING_VIEW("gui/setting_view.yml"),
     BAN_VIEW("gui/ban_view.yml"),
-
 
     //Bedrock Config
     TEAM_CREATE_FORM("form/create_form.yml"),

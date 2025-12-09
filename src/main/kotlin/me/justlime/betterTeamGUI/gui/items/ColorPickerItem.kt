@@ -6,11 +6,11 @@ import me.justlime.betterTeamGUI.enums.JGui
 import net.justlime.limeframegui.impl.ConfigHandler
 
 object ColorPickerItem {
-    private val config = ConfigHandler(JFiles.COLORS.filename)
-    val setting = config.loadInventorySetting(JGui.Main.SETTING)
+    private var config = ConfigHandler(JFiles.COLORS.filename)
+    var setting = config.loadInventorySetting(JGui.Main.SETTING)
     var background = config.loadItems(JGui.Main.BACKGROUND)
-    val backSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.BACK_SLOT)) }
-    val homeSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.HOME_SLOT)) }
+    var backSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.BACK_SLOT)) }
+    var homeSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.HOME_SLOT)) }
 
     var aqua = config.loadItem(JGui.ColorPicker.AQUA)
     var black = config.loadItem(JGui.ColorPicker.BLACK)
@@ -30,6 +30,13 @@ object ColorPickerItem {
     var yellow = config.loadItem(JGui.ColorPicker.YELLOW)
 
     fun reload() {
+        config.reload()
+        config = ConfigHandler(JFiles.COLORS.filename)
+        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        background = config.loadItems(JGui.Main.BACKGROUND)
+        backSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.BACK_SLOT)) }
+        homeSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.HOME_SLOT)) }
+
         aqua = config.loadItem(JGui.ColorPicker.AQUA)
         black = config.loadItem(JGui.ColorPicker.BLACK)
         blue = config.loadItem(JGui.ColorPicker.BLUE)

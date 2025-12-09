@@ -25,7 +25,7 @@ object ConfigManager {
     lateinit var membersView: FileConfiguration
     lateinit var memberForm: FileConfiguration
     lateinit var inviteForm: FileConfiguration
-    lateinit var otherTeamView: FileConfiguration
+    lateinit var teamViewer: FileConfiguration
     lateinit var otherTeamForm: FileConfiguration
     lateinit var leaveView: FileConfiguration
     lateinit var leaveForm: FileConfiguration
@@ -35,7 +35,7 @@ object ConfigManager {
     lateinit var allyForm: FileConfiguration
     lateinit var memberManagementView: FileConfiguration
     lateinit var memberManagementForm: FileConfiguration
-    lateinit var teamLBView: FileConfiguration
+    lateinit var leaderBoardView: FileConfiguration
     lateinit var settingView: FileConfiguration
     lateinit var banView: FileConfiguration
 
@@ -55,7 +55,7 @@ object ConfigManager {
         warpsView = loadConfig(JFiles.WARPS_VIEW)
         warpForm = loadConfig(JFiles.WARP_FORM)
         membersView = loadConfig(JFiles.MEMBERS_VIEW)
-        otherTeamView = loadConfig(JFiles.OTHER_TEAM_VIEW)
+        teamViewer = loadConfig(JFiles.TEAM_VIEWER)
         leaveView = loadConfig(JFiles.DIALOG_VIEW)
         leaveForm = loadConfig(JFiles.LEAVE_FORM)
         moneyView = loadConfig(JFiles.MONEY_VIEW)
@@ -63,7 +63,7 @@ object ConfigManager {
         alliesView = loadConfig(JFiles.ALLIES_VIEW)
         allyForm = loadConfig(JFiles.ALLY_FORM)
         memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW)
-        teamLBView = loadConfig(JFiles.TEAM_LEADERBOARD_VIEW)
+        leaderBoardView = loadConfig(JFiles.LEADERBOARD_VIEW)
         otherTeamForm = loadConfig(JFiles.OTHER_TEAM_FORM)
         memberForm = loadConfig(JFiles.TEAM_MEMBER)
         memberManagementForm = loadConfig(JFiles.TEAM_MEMBER_MANAGEMENT_FORM)
@@ -108,7 +108,7 @@ object ConfigManager {
                 JFiles.MEMBERS_VIEW -> membersView
                 JFiles.TEAM_MEMBER -> memberForm
                 JFiles.INVITE_FORM -> inviteForm
-                JFiles.OTHER_TEAM_VIEW -> otherTeamView
+                JFiles.TEAM_VIEWER -> teamViewer
                 JFiles.OTHER_TEAM_FORM -> otherTeamForm
                 JFiles.DIALOG_VIEW -> leaveView
                 JFiles.LEAVE_FORM -> leaveForm
@@ -118,7 +118,7 @@ object ConfigManager {
                 JFiles.ALLY_FORM -> allyForm
                 JFiles.MEMBER_MANAGEMENT_VIEW -> memberManagementView
                 JFiles.TEAM_MEMBER_MANAGEMENT_FORM -> memberManagementForm
-                JFiles.TEAM_LEADERBOARD_VIEW -> teamLBView
+                JFiles.LEADERBOARD_VIEW -> leaderBoardView
                 JFiles.SETTING_VIEW -> settingView
                 JFiles.BAN_VIEW -> banView
             }.save(File(pluginInstance.dataFolder, configFile.filename))

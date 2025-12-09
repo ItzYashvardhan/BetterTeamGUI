@@ -92,4 +92,6 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
             }
         }
     }.open(player)
+
+
 }

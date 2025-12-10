@@ -9,9 +9,9 @@ enum class JFiles(val filename: String) {
     //Java Config
     FONT("gui/font.yml"),
     LIST_VIEW("gui/list_view.yml"),
-    TEAM_VIEW("gui/dashboard_view.yml"),
+    DASHBOARD_VIEW("gui/dashboard_view.yml"),
     WARPS_VIEW("gui/warps_view.yml"),
-    MEMBER_MANAGEMENT_VIEW("gui/members_control_view.yml"),
+    MEMBER_MANAGEMENT_VIEW("gui/members_management_view.yml"),
     MEMBERS_VIEW("gui/members_view.yml"),
     TEAM_VIEWER("gui/team_viewer.yml"),
     DIALOG_VIEW("gui/dialog_view.yml"),

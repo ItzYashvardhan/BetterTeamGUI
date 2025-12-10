@@ -88,7 +88,7 @@ object ConsoleMessage {
     // Modern Header/Footer (no indentation)
     private val modernHeader = """
 ┌──────────────────────────────────────────────────────────────┐
-│${Color.RESET}${Color.BOLD}${Color.LIGHT_BLUE}Redeem${Color.ORANGE}CodeX ${Color.RESET}${Color.GRAY}- ${Color.GREEN}Powering your codes, rewards, and magic${Color.RESET}         │
+│${Color.RESET}${Color.BOLD}${Color.ORANGE} BetterTeamGUI ${Color.RESET}${Color.GRAY}- ${Color.CYAN}Redefining Team Interaction${Color.RESET}                  │
 ├──────────────────────────────────────────────────────────────┤
 """.trimIndent()
 
@@ -133,7 +133,7 @@ ${Color.RESET}""".trimIndent()
     fun printHeader() {
         if (majorJavaVersion < 11) {
             println("+------------------------------------------------------+")
-            println("RedeemCodeX - Powering your codes, rewards, magic    ")
+            println("BetterTeamGUI - Redefining Team Interaction")
             println("+------------------------------------------------------+")
         } else println(modernHeader)
     }

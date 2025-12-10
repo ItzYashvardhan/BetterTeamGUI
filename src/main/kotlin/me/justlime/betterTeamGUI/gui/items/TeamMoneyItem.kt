@@ -8,14 +8,26 @@ import net.justlime.limeframegui.impl.ConfigHandler
 object TeamMoneyItem {
     val config = ConfigHandler(JFiles.MONEY_VIEW.filename)
 
-    val depositTitle = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_TITLE)
-    val depositLabel = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_LABEL)
-    val depositInputItem = config.loadItem(JGui.MoneyView.DEPOSIT_INPUT_ITEM)
-    val depositOutputItem = config.loadItem(JGui.MoneyView.DEPOSIT_OUTPUT_ITEM)
+    var depositTitle = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_TITLE)
+    var depositLabel = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_LABEL)
+    var depositInputItem = config.loadItem(JGui.MoneyView.DEPOSIT_INPUT_ITEM)
+    var depositOutputItem = config.loadItem(JGui.MoneyView.DEPOSIT_OUTPUT_ITEM)
 
-    val withdrawTitle = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_TITLE)
-    val withdrawLabel = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_LABEL)
-    val withdrawInputItem = config.loadItem(JGui.MoneyView.WITHDRAW_INPUT_ITEM)
-    val withdrawOutputItem = config.loadItem(JGui.MoneyView.WITHDRAW_OUTPUT_ITEM)
+    var withdrawTitle = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_TITLE)
+    var withdrawLabel = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_LABEL)
+    var withdrawInputItem = config.loadItem(JGui.MoneyView.WITHDRAW_INPUT_ITEM)
+    var withdrawOutputItem = config.loadItem(JGui.MoneyView.WITHDRAW_OUTPUT_ITEM)
 
+    fun reload() {
+        config.reload()
+        depositTitle = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_TITLE)
+        depositLabel = ConfigManager.moneyView.getString(JGui.MoneyView.DEPOSIT_LABEL)
+        depositInputItem = config.loadItem(JGui.MoneyView.DEPOSIT_INPUT_ITEM)
+        depositOutputItem = config.loadItem(JGui.MoneyView.DEPOSIT_OUTPUT_ITEM)
+
+        withdrawTitle = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_TITLE)
+        withdrawLabel = ConfigManager.moneyView.getString(JGui.MoneyView.WITHDRAW_LABEL)
+        withdrawInputItem = config.loadItem(JGui.MoneyView.WITHDRAW_INPUT_ITEM)
+        withdrawOutputItem = config.loadItem(JGui.MoneyView.WITHDRAW_OUTPUT_ITEM)
+    }
 }

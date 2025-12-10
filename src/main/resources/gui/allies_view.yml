@@ -43,7 +43,7 @@ ally-request-inbox:
 ally-request-item:
   name: "<b>{team_color_code}{team}{/team_color_code}</b>"
   lore:
-    - "".
+    - ""
     - "<green>Left-Click</green> <gray>to accept request</gray>"
     - "<green>Right-Click</green> <gray>to view team</gray>"
     - "<red>Shift-Click</red> <gray>to deny request</gray>"

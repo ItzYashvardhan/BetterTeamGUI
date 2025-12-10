@@ -6,7 +6,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object TeamDashboardItem {
 
-    var config = ConfigHandler(JFiles.TEAM_VIEW.filename)
+    var config = ConfigHandler(JFiles.DASHBOARD_VIEW.filename)
     var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
@@ -28,7 +28,7 @@ object TeamDashboardItem {
 
     fun reload() {
         config.reload()
-        config = ConfigHandler(JFiles.TEAM_VIEW.filename)
+        config = ConfigHandler(JFiles.DASHBOARD_VIEW.filename)
         setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
 

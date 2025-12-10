@@ -3,8 +3,8 @@ package me.justlime.betterTeamGUI.commands
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.utilities.TeamService
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -31,23 +31,20 @@ class TeamsCommand : CommandExecutor, TabCompleter {
 
 
         if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin.reload")) {
-            sender.sendMessage("Config Reloaded")
-            pluginInstance.saveDefaultConfig()
-            pluginInstance.reloadConfig()
-            Config.reload()
-            TeamService.reload()
-            TeamDashboardItem.reload()
-            TeamListItem.reload()
-            TeamWarpItem.reload()
-            TeamMemberItem.reload()
-            TeamMemberManagementItem.reload()
-            TeamSettingItem.reload()
-            ColorPickerItem.reload()
-            TeamDialogItem.reload()
-            BanListItem.reload()
-            TeamAlliesItem.reload()
+            ConsoleMessage.printHeader()
+            try {
+                pluginInstance.saveDefaultConfig()
+                pluginInstance.reloadConfig()
+                Config.reload(sender)
+                TeamService.reload()
+                sender.sendMessage("[BetterTeamGUI] §aSuccessfully Reloaded Configs")
+                ConsoleMessage.printStep("Config Reloaded")
+            } catch (e: Exception) {
+                ConsoleMessage.printStep("Failed to Reload Config", ConsoleMessage.Color.RED)
+                ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
+            }
 
-
+            ConsoleMessage.printFooter()
             return true
         }
         if (args[0] == "warp" && sender.hasPermission("betterteamgui.use.warps")) {

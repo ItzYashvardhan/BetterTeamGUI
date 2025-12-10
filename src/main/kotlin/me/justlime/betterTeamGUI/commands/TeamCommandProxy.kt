@@ -2,6 +2,7 @@ package me.justlime.betterTeamGUI.commands
 
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.utilities.TeamService
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
@@ -60,16 +61,16 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
                         // "betterteams" is the fallback prefix, but it will take precedence for "team" because we removed the old one
                         commandMap.register(commandName, proxy)
 
-                        pluginInstance.logger.info("Successfully hooked into /team command via CommandMap injection!")
+                        ConsoleMessage.printStep("Successfully hooked into \"/team\" via CommandMap injection!", ConsoleMessage.Color.GREEN)
                     } else {
-                        pluginInstance.logger.warning("Failed to unregister original /team command. Proxy injection aborted.")
+                        ConsoleMessage.printStep("Failed to unregister original /team command. Proxy injection aborted.", ConsoleMessage.Color.BRIGHT_RED)
                     }
                 } else {
-                    pluginInstance.logger.warning("Could not find 'team' command in CommandMap. Is BetterTeams loaded?")
+                    ConsoleMessage.printStep("Could not find 'team' command in CommandMap. Is BetterTeams loaded?", ConsoleMessage.Color.BRIGHT_RED)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                pluginInstance.logger.severe("Failed to inject TeamCommandProxy!")
+                ConsoleMessage.printStep("Failed to inject TeamCommandProxy!", ConsoleMessage.Color.RED)
             }
         }
 

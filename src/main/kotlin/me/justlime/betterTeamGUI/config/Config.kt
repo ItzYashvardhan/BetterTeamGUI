@@ -1,6 +1,8 @@
 package me.justlime.betterTeamGUI.config
 
+import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Material
+import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 
 object Config {
@@ -17,8 +19,8 @@ object Config {
     lateinit var allyForm: FileConfiguration
     lateinit var memberManagementForm: FileConfiguration
 
-    fun reload() {
-        ConfigManager.load()
+    fun reload(sender: CommandSender = pluginInstance.server.consoleSender) {
+        ConfigManager.load(sender)
     }
 
     val backButton get() = ConfigManager.config.getConfigurationSection("back-button") ?: ConfigManager.config.createSection("back-button")

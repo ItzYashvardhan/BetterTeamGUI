@@ -23,9 +23,9 @@ class BetterTeamGUI : JavaPlugin() {
         ConsoleMessage.printHeader()
         ConsoleMessage.printStep("Enabling BetterTeamGUI")
         pluginInstance = this
-        LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
+        LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
 
         if (!this.server.pluginManager.isPluginEnabled("BetterTeams")) {
@@ -48,6 +48,7 @@ class BetterTeamGUI : JavaPlugin() {
         ConsoleMessage.printStep("Successfully Registered Commands")
         Metrics(this, 24705)
         setupLimeFrameGUI()
+        Config.reload()
         ConsoleMessage.printStep("LimeFrame Setup Completed")
         ConsoleMessage.printStep("Successfully Enabled BetterTeamsGUI - ${this.description.version} by ${this.description.authors.first()}", ConsoleMessage.Color.BRIGHT_GREEN)
         ConsoleMessage.printFooter()

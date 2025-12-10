@@ -23,7 +23,7 @@ dependencies {
     //Core
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
     compileOnly("com.github.booksaw:BetterTeams:4.15.2")
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     //Metrics
     implementation("org.bstats:bstats-bukkit:3.1.0")
@@ -82,6 +82,7 @@ tasks.register<Copy>("copyToServerPlugins") {
     dependsOn("shadowJar")  // Ensure shadowJar completes before copying
     from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
     into("E:/Minecraft/servers/Development/PaperMC-1.21.10/plugins")
+//    into("E:/Minecraft/servers/PaperMc-1.20.4/plugins")
 }
 
 // Combined task to build and copy

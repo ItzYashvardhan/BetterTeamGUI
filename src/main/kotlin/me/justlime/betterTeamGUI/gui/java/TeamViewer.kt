@@ -6,7 +6,6 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
 import me.justlime.betterTeamGUI.utilities.TeamService
-import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
@@ -17,7 +16,7 @@ fun teamViewer(setting: GUISetting, player: Player, team: Team) = ChestGUI(setti
 
     val infoItem = if (team.description.isBlank()) TeamViewerItems.teamViewerInfoWithoutDescription else TeamViewerItems.teamViewerInfoWithDescription
     setItem(infoItem?.apply {
-        style.placeholder = teamToPlaceholderMap(team)
+        style.placeholder = TeamService.teamToPlaceholderMap(team)
     })
     setItem(TeamButton.back, TeamViewerItems.teamViewerBackSlot) {
         GUIManager.openTeamGUI(it.whoClicked as Player)
@@ -27,17 +26,17 @@ fun teamViewer(setting: GUISetting, player: Player, team: Team) = ChestGUI(setti
     setItem(TeamButton.home, TeamViewerItems.teamViewerHomeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
     setItem(TeamViewerItems.teamViewerBalance?.apply {
-        style.placeholder = teamToPlaceholderMap(team)
+        style.placeholder = TeamService.teamToPlaceholderMap(team)
     })
 
     setItem(TeamViewerItems.teamViewerMembers?.apply {
-        style.placeholder = teamToPlaceholderMap(team)
+        style.placeholder = TeamService.teamToPlaceholderMap(team)
     }) {
         GUIManager.openTeamViewerMembersGUI(player, team)
     }
 
     setItem(TeamViewerItems.teamViewerAllies?.apply {
-        style.placeholder = teamToPlaceholderMap(team)
+        style.placeholder = TeamService.teamToPlaceholderMap(team)
 
     }) {
         GUIManager.openTeamViewerAlliesGUI(player, team)
@@ -105,7 +104,7 @@ fun teamViewerAllies(setting: GUISetting, player: Player, team: Team) {
                     val owner = ownerRank.random()
                     val item = TeamViewerItems.teamViewerAllyItem?.copy()?.apply {
                         texture = "[${owner.playerUUID}]"
-                        val placeholder = teamToPlaceholderMap(allyTeam).toMutableMap()
+                        val placeholder = TeamService.teamToPlaceholderMap(allyTeam).toMutableMap()
                         placeholder["{team_ally}"] = (allyTeam.name ?: "Unknown")
                         style.placeholder = placeholder
                     }

@@ -11,7 +11,6 @@ import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -103,7 +102,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
     // Anchor
     val anchorItem = TeamSettingItem.anchor.apply {
-        this?.style?.placeholder = teamToPlaceholderMap(team)
+        this?.style?.placeholder = TeamService.teamToPlaceholderMap(team)
     }
     setItem(anchorItem) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
@@ -157,7 +156,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
     // Rename
     val renameItem = TeamSettingItem.rename?.apply {
-        style.placeholder =  teamToPlaceholderMap(team)
+        style.placeholder =  TeamService.teamToPlaceholderMap(team)
     }
     setItem(renameItem) { event ->
         if (teamPlayer.rank != PlayerRank.OWNER) {

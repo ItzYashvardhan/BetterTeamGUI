@@ -7,7 +7,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object TeamWarpItem {
     var config = ConfigHandler(JFiles.WARPS_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
     var backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
     var homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)
@@ -37,7 +37,7 @@ object TeamWarpItem {
         config.reload()
 
         config = ConfigHandler(JFiles.WARPS_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
         backSlot = ConfigManager.warpsView.getInt(JGui.Main.BACK_SLOT)
         homeSlot = ConfigManager.warpsView.getInt(JGui.Main.HOME_SLOT)

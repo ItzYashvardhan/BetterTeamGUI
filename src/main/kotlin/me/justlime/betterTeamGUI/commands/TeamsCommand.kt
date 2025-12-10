@@ -1,21 +1,11 @@
 package me.justlime.betterTeamGUI.commands
 
-import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
-import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.gui.items.BanListItem
-import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
-import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
-import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
-import me.justlime.betterTeamGUI.gui.items.TeamListItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
+import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -34,16 +24,10 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         if (args[0] == "view" && sender.hasPermission("betterteamgui.use.view")) {
             val teamName = args.getOrNull(1) ?: return true
             val teamToView = Team.getTeam(teamName) ?: return true
-            val teamPlayer = Team.getTeam(sender.name)?.getTeamPlayer(sender) ?: TeamPlayer(sender, PlayerRank.DEFAULT)
             GUIManager.openTeamOtherGUI(sender, teamToView)
             return true
         }
-
-        if (args[0] == "lb") {
-
-        }
         val team = Team.getTeam(sender.name) ?: return true
-        val playerTeam = team.getTeamPlayer(sender) ?: return true
 
 
         if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin.reload")) {
@@ -51,6 +35,7 @@ class TeamsCommand : CommandExecutor, TabCompleter {
             pluginInstance.saveDefaultConfig()
             pluginInstance.reloadConfig()
             Config.reload()
+            TeamService.reload()
             TeamDashboardItem.reload()
             TeamListItem.reload()
             TeamWarpItem.reload()

@@ -7,7 +7,6 @@ import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -36,7 +35,7 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
         }
 
         val alliesRequestInbox = TeamAlliesItem.allyRequestInbox?.apply {
-            style.placeholder = teamToPlaceholderMap(team)
+            style.placeholder = TeamService.teamToPlaceholderMap(team)
         }
         val teamPlayer = team.getTeamPlayer(player)
         setItem(alliesRequestInbox) { clickEvent ->
@@ -56,7 +55,7 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
                     val owner = ownerRank.random()
                     val item = TeamAlliesItem.allyItem?.copy()?.apply {
                         texture = "[${owner.playerUUID}]"
-                        val placeholder = teamToPlaceholderMap(allyTeam).toMutableMap()
+                        val placeholder = TeamService.teamToPlaceholderMap(allyTeam).toMutableMap()
                         placeholder["{team_ally}"] = (allyTeam.name ?: "Unknown")
                         style.placeholder = placeholder
                     }
@@ -111,7 +110,7 @@ fun teamAllyRequests(setting: GUISetting, player: Player, team: Team) {
                     val owner = ownerRank.random()
                     val item = TeamAlliesItem.allyRequestItem?.copy()?.apply {
                         texture = "[${owner.playerUUID}]"
-                        val placeholder = teamToPlaceholderMap(allyRequestTeam).toMutableMap()
+                        val placeholder = TeamService.teamToPlaceholderMap(allyRequestTeam).toMutableMap()
                         placeholder["{team_ally}"] = (allyRequestTeam.name ?: "Unknown")
                         style.placeholder = placeholder
                     } ?: GuiItem(Material.PAPER)

@@ -5,7 +5,6 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.utilities.TeamService
-import me.justlime.betterTeamGUI.utilities.teamPlayerToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
@@ -126,7 +125,7 @@ fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
 
     // Confirm Item
     val confirmItem = TeamDialogItem.promoteToOwnerConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->
@@ -156,7 +155,7 @@ fun teamPromoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
 
     // Confirm Item
     val confirmItem = TeamDialogItem.promoteToAdminConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->
@@ -186,7 +185,7 @@ fun teamDemoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) =
 
     // Confirm Item
     val confirmItem = TeamDialogItem.demoteToAdminConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->
@@ -216,7 +215,7 @@ fun teamDemoteToDefaultDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer)
 
     // Confirm Item
     val confirmItem = TeamDialogItem.demoteToDefaultConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->
@@ -246,7 +245,7 @@ fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI
 
     // Confirm Item
     val confirmItem = TeamDialogItem.kickConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->
@@ -276,7 +275,7 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
 
     // Confirm Item
     val confirmItem = TeamDialogItem.banConfirmItem?.clone().apply {
-        this?.style?.placeholder = teamPlayerToPlaceholderMap(targetTeamPlayer)
+        this?.style?.placeholder = TeamService.teamPlayerToPlaceholderMap(targetTeamPlayer)
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->

@@ -7,7 +7,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object LeaderBoardItem {
     var config = ConfigHandler(JFiles.LEADERBOARD_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
     var backSlot = ConfigManager.leaderBoardView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.leaderBoardView.getInt(JGui.Main.BACK_SLOT)) }
@@ -20,7 +20,7 @@ object LeaderBoardItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.LEADERBOARD_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
 
         backSlot = ConfigManager.leaderBoardView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.leaderBoardView.getInt(JGui.Main.BACK_SLOT)) }

@@ -8,7 +8,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 object TeamMemberManagementItem {
     // Main
     var config = ConfigHandler(JFiles.MEMBER_MANAGEMENT_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
     var homeSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.HOME_SLOT)) }
@@ -26,7 +26,7 @@ object TeamMemberManagementItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.MEMBER_MANAGEMENT_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
         homeSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.HOME_SLOT)) }
         backSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.BACK_SLOT)) }

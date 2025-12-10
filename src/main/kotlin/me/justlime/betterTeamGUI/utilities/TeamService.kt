@@ -1,8 +1,9 @@
 package me.justlime.betterTeamGUI.utilities
 
-import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
+import me.justlime.betterTeamGUI.config.Config
+import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
@@ -10,14 +11,12 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 
 object TeamService {
-    private val commandConfig = Main.plugin.config.getConfigurationSection("command")
-    const val PREFIX = "betterteams:"
-    const val COMMAND = "team"
-    const val TEAM_COMMAND: String = COMMAND
+    var command: String = Config.config.getString(JGui.Config.PREFIX) ?: "team"
 
     fun teamToPlaceholderMap(team: Team): Map<String, String> {
         return mapOf(
             "{team}" to (team.name ?: "N/A"),
+            "{tag}" to (team.tag ?: "N/A"),
             "{team_size}" to team.members.size().toString(),
             "{team_limit}" to team.teamLimit.toString(),
             "{team_level}" to team.level.toString(),
@@ -27,6 +26,7 @@ object TeamService {
             "{team_description}" to team.description,
             "{team_color_code}" to "<" + team.color.name + ">",
             "{/team_color_code}" to "</" + team.color.name + ">",
+            "{allies_request}" to team.allyRequests.size.toString(),
         )
     }
 
@@ -45,127 +45,130 @@ object TeamService {
     }
 
     fun joinTeam(player: Player, teamName: String) {
-        player.performCommand("$TEAM_COMMAND join $teamName")
+        player.performCommand("$command join $teamName")
     }
 
     fun depositAmount(player: Player, amount: String) {
-        player.performCommand("$TEAM_COMMAND deposit $amount")
+        player.performCommand("$command deposit $amount")
     }
 
     fun withdrawAmount(player: Player, amount: String) {
-        player.performCommand("$TEAM_COMMAND withdraw $amount")
+        player.performCommand("$command withdraw $amount")
     }
 
     fun setWarp(player: Player, warpName: String, password: String? = null) {
-        if (password != null) player.performCommand("$TEAM_COMMAND setwarp $warpName $password")
-        else player.performCommand("$TEAM_COMMAND setwarp $warpName")
+        if (password != null) player.performCommand("$command setwarp $warpName $password")
+        else player.performCommand("$command setwarp $warpName")
     }
 
     fun delWarp(player: Player, warpName: String) {
-        player.performCommand("$TEAM_COMMAND delwarp $warpName")
+        player.performCommand("$command delwarp $warpName")
     }
 
     fun warp(player: Player, warpName: String) {
-        player.performCommand("$TEAM_COMMAND warp $warpName")
+        player.performCommand("$command warp $warpName")
     }
 
     fun warp(player: Player, warpName: String, password: String) {
-        player.performCommand("$TEAM_COMMAND warp $warpName $password")
+        player.performCommand("$command warp $warpName $password")
     }
 
     fun teleportToHome(player: Player) {
-        player.performCommand("$TEAM_COMMAND home")
+        player.performCommand("$command home")
     }
 
     fun setHome(player: Player) {
-        player.performCommand("$TEAM_COMMAND sethome")
+        player.performCommand("$command sethome")
     }
 
     fun removeHome(player: Player) {
-        player.performCommand("$TEAM_COMMAND delhome")
+        player.performCommand("$command delhome")
     }
 
     fun openTeamEnderChest(player: Player) {
-        player.performCommand("$TEAM_COMMAND echest")
+        player.performCommand("$command echest")
     }
 
     fun leaveTeam(player: Player) {
-        player.performCommand("$TEAM_COMMAND leave")
+        player.performCommand("$command leave")
     }
 
     fun setTitle(player: Player, title: String) {
-        if (title.isBlank()) player.performCommand("$TEAM_COMMAND title")
-        else player.performCommand("$TEAM_COMMAND title $title")
+        if (title.isBlank()) player.performCommand("$command title")
+        else player.performCommand("$command title $title")
     }
 
     fun togglePvp(player: Player) {
-        player.performCommand("$TEAM_COMMAND pvp")
+        player.performCommand("$command pvp")
     }
 
     fun setDescription(player: Player, description: String) {
-        if (description.isBlank()) player.performCommand("$TEAM_COMMAND description")
-        else player.performCommand("$TEAM_COMMAND description $description")
+        if (description.isBlank()) player.performCommand("$command description")
+        else player.performCommand("$command description $description")
     }
 
     fun setTag(player: Player, tag: String) {
-        if (tag.isBlank()) player.performCommand("$TEAM_COMMAND tag")
-        else player.performCommand("$TEAM_COMMAND tag $tag")
+        if (tag.isBlank()) player.performCommand("$command tag")
+        else player.performCommand("$command tag $tag")
     }
 
     fun rename(player: Player, newName: String) {
-        player.performCommand("$TEAM_COMMAND name $newName")
+        player.performCommand("$command name $newName")
     }
 
     fun disbandTeam(player: Player) {
-        player.performCommand("$TEAM_COMMAND disband")
+        player.performCommand("$command disband")
         Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-            player.performCommand("$TEAM_COMMAND disband")
+            player.performCommand("$command disband")
         }, 4)
     }
 
     fun createTeam(player: Player, teamName: String) {
-        player.performCommand("$TEAM_COMMAND create $teamName")
+        player.performCommand("$command create $teamName")
     }
 
     fun setTeamColor(player: Player, color: String) {
         //string get like blue, red
-        player.performCommand("$TEAM_COMMAND color $color")
+        player.performCommand("$command color $color")
         Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
             GUIManager.openTeamSettingGUI(player)
         }, 4)
     }
 
     fun promote(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$TEAM_COMMAND promote ${targetPlayer.player.name}")
+        player.performCommand("$command promote ${targetPlayer.player.name}")
     }
 
     fun demote(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$TEAM_COMMAND demote ${targetPlayer.player.name}")
+        player.performCommand("$command demote ${targetPlayer.player.name}")
     }
 
     fun kick(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$TEAM_COMMAND kick ${targetPlayer.player.name}")
+        player.performCommand("$command kick ${targetPlayer.player.name}")
     }
 
     fun ban(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$TEAM_COMMAND ban ${targetPlayer.player.name}")
+        player.performCommand("$command ban ${targetPlayer.player.name}")
     }
 
     fun unban(player: Player, targetPlayer: OfflinePlayer) {
-        player.performCommand("$TEAM_COMMAND unban ${targetPlayer.player?.name}")
+        player.performCommand("$command unban ${targetPlayer.player?.name}")
     }
 
     fun invitePlayer(player: Player, invitedPlayerName: String) {
-        player.performCommand("$TEAM_COMMAND invite $invitedPlayerName")
+        player.performCommand("$command invite $invitedPlayerName")
     }
 
     fun addAlly(player: Player, allyTeam: Team) {
-        player.performCommand("$TEAM_COMMAND ally ${allyTeam.name}")
+        player.performCommand("$command ally ${allyTeam.name}")
     }
 
     fun removeAlly(player: Player, allyTeam: Team) {
-        player.performCommand("$TEAM_COMMAND neutral ${allyTeam.name}")
+        player.performCommand("$command neutral ${allyTeam.name}")
     }
 
+    fun reload() {
+        command = Config.config.getString(JGui.Config.PREFIX) ?: "team"
+    }
 
 }

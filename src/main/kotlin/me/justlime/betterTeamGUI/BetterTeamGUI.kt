@@ -6,6 +6,7 @@ import me.justlime.betterTeamGUI.commands.TeamCommandProxy
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JFiles
+import me.justlime.betterTeamGUI.enums.JGui
 import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.color.FontLoader
 import net.justlime.limeframegui.enums.ColorType
@@ -24,7 +25,7 @@ class BetterTeamGUI : JavaPlugin() {
         pluginInstance = this
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
-        TeamCommandProxy.inject() //Experimental
+        if (Config.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) TeamCommandProxy.inject() //Experimental
         CommandManager.register() //Initialize
         LimeFrameAPI.debugging = false
 

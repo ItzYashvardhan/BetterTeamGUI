@@ -10,7 +10,6 @@ import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
-import me.justlime.betterTeamGUI.utilities.teamToPlaceholderMap
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -180,7 +179,7 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                     val finalItem = item?.apply {
                         texture = "[${offlinePlayer.uniqueId}]"
                         style.offlinePlayer = offlinePlayer
-                        style.placeholder = teamToPlaceholderMap(team)
+                        style.placeholder = TeamService.teamToPlaceholderMap(team)
                     } ?: GuiItem(Material.STONE)
 
                     addItem(finalItem) {

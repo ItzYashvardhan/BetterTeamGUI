@@ -7,7 +7,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object TeamAlliesItem {
     var config = ConfigHandler(JFiles.ALLIES_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
     var backSlot = ConfigManager.alliesView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.alliesView.getInt(JGui.Main.BACK_SLOT)) }
@@ -22,7 +22,7 @@ object TeamAlliesItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.ALLIES_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
 
         backSlot = ConfigManager.alliesView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.alliesView.getInt(JGui.Main.BACK_SLOT)) }

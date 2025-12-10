@@ -8,7 +8,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 object TeamListItem {
 
     var config = ConfigHandler(JFiles.LIST_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
     var backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
@@ -49,7 +49,7 @@ object TeamListItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.LIST_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
 
         backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }

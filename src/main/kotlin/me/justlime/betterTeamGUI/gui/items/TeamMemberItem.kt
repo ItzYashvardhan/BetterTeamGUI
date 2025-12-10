@@ -8,7 +8,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 object TeamMemberItem {
 
     var config = ConfigHandler(JFiles.MEMBERS_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
 
     var next = ConfigManager.membersView.getInt(JGui.Main.NEXT_SLOT)
@@ -30,7 +30,7 @@ object TeamMemberItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.MEMBERS_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
 
         next = ConfigManager.membersView.getInt(JGui.Main.NEXT_SLOT)

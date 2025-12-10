@@ -2,6 +2,10 @@
 # This allow player to directly open gui through /team command or its aliases
 use-native-command: true # Required Server Restart to apply changes
 
+# # This is the prefix for all commands executed by the plugin.
+# For example, if you set it to "team", then all commands will be executed as "/team <command>".
+command-prefix: "team"
+
 #For Bedrock Form
 back-button:
   lines:

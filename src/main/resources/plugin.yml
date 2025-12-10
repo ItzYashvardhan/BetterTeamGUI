@@ -1,8 +1,8 @@
 name: BetterTeamGUI
-version: '1.4'
+version: '2.0'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
-api-version: '1.13'
-description: "A Addon plugin for BetterTeams of (v4.10.0)"
+api-version: '1.16'
+description: "A Addon plugin for BetterTeams (v4.15.2)"
 author: ItsJustLime
 website: https://discord.gg/rVsUJ4keZN
 

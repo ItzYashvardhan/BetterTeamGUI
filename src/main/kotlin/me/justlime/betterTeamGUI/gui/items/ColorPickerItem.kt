@@ -7,7 +7,7 @@ import net.justlime.limeframegui.impl.ConfigHandler
 
 object ColorPickerItem {
     private var config = ConfigHandler(JFiles.COLORS.filename)
-    var setting = config.loadInventorySetting(JGui.Main.SETTING)
+    var setting = config.loadInventorySetting(JGui.Main.MAIN)
     var background = config.loadItems(JGui.Main.BACKGROUND)
     var backSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.BACK_SLOT)) }
     var homeSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.HOME_SLOT)) }
@@ -32,7 +32,7 @@ object ColorPickerItem {
     fun reload() {
         config.reload()
         config = ConfigHandler(JFiles.COLORS.filename)
-        setting = config.loadInventorySetting(JGui.Main.SETTING)
+        setting = config.loadInventorySetting(JGui.Main.MAIN)
         background = config.loadItems(JGui.Main.BACKGROUND)
         backSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.BACK_SLOT)) }
         homeSlot = ConfigManager.colorsView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.colorsView.getInt(JGui.Main.HOME_SLOT)) }

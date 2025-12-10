@@ -1,6 +1,5 @@
 package me.justlime.betterTeamGUI.gui.java
 
-import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
@@ -67,7 +66,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
         }
 
         val currentOrderIcon = if (state.sortOrder == SortOrder.ASC) TeamListItem.sortOrderAsc else TeamListItem.sortOrderDesc
-
         setItem(currentOrderIcon) {
             val newOrder = if (state.sortOrder == SortOrder.ASC) SortOrder.DESC else SortOrder.ASC
             val newState = state.copy(sortOrder = newOrder)
@@ -81,8 +79,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
             SortType.LEVEL -> TeamListItem.sortTypeLevel
             SortType.MEMBERS -> TeamListItem.sortTypeMembers
         }
-
-
         setItem(currentTypeIcon) {
             val nextType = when (state.sortType) {
                 SortType.SCORE -> SortType.MONEY
@@ -100,8 +96,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
             FilterType.NOT_FULL -> TeamListItem.filterNotFull
             FilterType.NONE -> TeamListItem.filterDefault
         }
-
-
         setItem(filterIcon) {
             val nextFilter = when (state.filter) {
                 FilterType.NONE -> FilterType.OPEN_ONLY
@@ -133,28 +127,47 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                     })
             }
         }
-        if (!Team.getTeamManager().isInTeam(player)) setItem(TeamListItem.createTeamItem) { click ->
-            val player = click.whoClicked as Player
-            openAnvilGUI(
-                player = player,
-                title = applyMiniColor(TeamListItem.createTeamTitle),
-                label = applyMiniColor(TeamListItem.createTeamLabel),
-                inputItem = TeamListItem.createTeamInputItem ?: GuiItem(Material.STONE),
-                outputItem = TeamListItem.createTeamOutputItem ?: GuiItem(Material.STONE),
-                onInvalidInput = { },
-                onCancel = { GUIManager.openTeamListGUI(player) },
-                onConfirm = { teamName ->
-                    TeamService.createTeam(player, teamName)
-                    Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-                        GUIManager.openTeamGUI(player)
-                    }, 4)
-                })
-        }
 
         val isInTeam = Team.getTeamManager().isInTeam(player)
+        if (!isInTeam) {
 
+            val invitedTeams = mutableListOf<Team>()
+            Team.getTeamManager().loadedTeamListClone.forEach { (_, team) ->
+                if (team.isInvited(player.uniqueId)) {
+                    invitedTeams.add(team)
+                }
+            }
 
-        Main.plugin.teamCommand
+            val hasInvitation = invitedTeams.isNotEmpty()
+            val invitationItem = TeamListItem.invitationItem?.apply {
+                style.placeholder = mutableMapOf("{invites}" to invitedTeams.size.toString())
+            }?.clone()
+            val noInvitationItem = TeamListItem.noInvitationItem?.apply {
+                style.placeholder = mutableMapOf("{invites}" to invitedTeams.size.toString())
+            }?.clone()
+
+            if (hasInvitation && invitationItem != null) setItem(invitationItem) {
+                openTeamInvites(setting, player, invitedTeams)
+            } else setItem(noInvitationItem)
+
+            setItem(TeamListItem.createTeamItem) { click ->
+                val player = click.whoClicked as Player
+                openAnvilGUI(
+                    player = player,
+                    title = applyMiniColor(TeamListItem.createTeamTitle),
+                    label = applyMiniColor(TeamListItem.createTeamLabel),
+                    inputItem = TeamListItem.createTeamInputItem ?: GuiItem(Material.STONE),
+                    outputItem = TeamListItem.createTeamOutputItem ?: GuiItem(Material.STONE),
+                    onInvalidInput = { },
+                    onCancel = { GUIManager.openTeamListGUI(player) },
+                    onConfirm = { teamName ->
+                        TeamService.createTeam(player, teamName)
+                        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                            GUIManager.openTeamGUI(player)
+                        }, 4)
+                    })
+            }
+        }
 
         addPage {
 
@@ -191,6 +204,43 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                             player.closeInventory()
                         }
 
+                    }
+                }
+            }
+        }
+    }.open(player)
+}
+
+fun openTeamInvites(setting: GUISetting, player: Player, invitedTeams: MutableList<Team>) {
+    ChestGUI(setting) {
+        onClick { it.isCancelled = true }
+        nav {
+            prevSlot = TeamListItem.prevSlot
+            nextSlot = TeamListItem.nextSlot
+            nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
+            prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+        }
+        TeamListItem.background.forEach { setItem(it) }
+
+        setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamListGUI(it.whoClicked as Player) }
+
+        addPage {
+            invitedTeams.forEach { team ->
+                val ownerRank = team.members.getRank(PlayerRank.OWNER)
+                if (ownerRank.isNotEmpty()) {
+                    val owner = ownerRank.random()
+                    val offlinePlayer = Bukkit.getOfflinePlayer(owner.playerUUID)
+                    val item = TeamListItem.invitationTeamItem?.apply {
+                        texture = "[${offlinePlayer.uniqueId}]"
+                        style.offlinePlayer = offlinePlayer
+                        style.placeholder = TeamService.teamToPlaceholderMap(team)
+                    } ?: GuiItem(Material.STONE)
+
+                    addItem(item) {
+                        if (it.click.isLeftClick) {
+                            TeamService.joinTeam(player, team.name)
+                            player.closeInventory()
+                        }
                     }
                 }
             }

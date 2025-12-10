@@ -1,6 +1,6 @@
 team:
   main:
-    title: "<bold><gradient:#C45700:#FF7608>{team_name} Team</bold>"
+    title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
     row: 3
     font-title: false # Weather to enabled font for title
     font-name: false # Weather to enabled font for name
@@ -31,18 +31,18 @@ team:
       - " "
       - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
       - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
       - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
     slot: 10
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
 
   info-without-description:
-    name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+    name: "<b>{team_color_code}{team}{/team_color_code}</b>"
     lore:
       - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
       - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
       - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
     slot: 10
     item: PLAYER_HEAD
@@ -60,6 +60,7 @@ team:
     name: "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
     lore:
       - "<gray>View this team's members.</gray>"
+      - "<#5BD686>• Size:</#5BD686> <b><white>{team_size}/{team_limit}</white></b>"
       - ""
       - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
     slot: 14
@@ -78,7 +79,7 @@ team:
 
 members:
   main:
-    title: "<bold><gradient:#C45700:#FF7608>{team_name} Members (Page - {page})</bold>"
+    title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
     row: 6
     font-title: false
     font-name: false
@@ -101,13 +102,14 @@ members:
       next: 51
 
   member-item:
-    name: "<b>{team_player_name}</b> <gray>({team_player_rank})</gray>"
     item: PLAYER_HEAD
-    texture: "{team_player_head}"
+    name: "<aqua>{team_player}"
+    lore:
+      - "<gray>Rank: <yellow>{rank}"
 
 allies:
   main:
-    title: "<bold><gradient:#C45700:#FF7608>{team_name} Allies (Page - {page})</bold>"
+    title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
     row: 6
     font-title: false
     font-name: false
@@ -135,7 +137,7 @@ allies:
       - " "
       - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
       - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+      - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
       - ""
       - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
     item: PLAYER_HEAD

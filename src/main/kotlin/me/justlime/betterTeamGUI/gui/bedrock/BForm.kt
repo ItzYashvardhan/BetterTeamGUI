@@ -4,7 +4,7 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
-import me.justlime.betterTeamGUI.config.Service
+import me.justlime.betterTeamGUI.config.FormService
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
@@ -21,7 +21,7 @@ object BForm {
 
     private fun avatarUrl(player: OfflinePlayer?): String {
         var url = Config.avatarUrl.replace("{playername}", player?.name.toString()).replace("{uuid}", player?.uniqueId.toString())
-        url = if (player != null) Service.applyPlaceHolder(url, player) else url
+        url = if (player != null) FormService.applyPlaceHolder(url, player) else url
         return url
     }
 
@@ -34,7 +34,7 @@ object BForm {
         val labelPlaceholder = Config.TeamCreateForm.placeholder
 
         // Build the custom form.
-        val form = CustomForm.builder().title(Service.applyColors(title)).input(Service.applyColors(label), labelPlaceholder)
+        val form = CustomForm.builder().title(FormService.applyColors(title)).input(FormService.applyColors(label), labelPlaceholder)
 
         // Handle the response.
         form.validResultHandler { response ->
@@ -59,10 +59,10 @@ object BForm {
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val title = Config.TeamLeaveForm.title
         val text = Config.TeamLeaveForm.text
-        val confirm = Config.TeamLeaveForm.confirm.getStringList("lines").joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) }
-        val cancel = Config.TeamLeaveForm.cancel.getStringList("lines").joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) }
-        val form = ModalForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).content(
-            text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) }).button1(confirm).button2(cancel)
+        val confirm = Config.TeamLeaveForm.confirm.getStringList("lines").joinToString("\n") { FormService.applyLocalPlaceHolder(it, team, teamPlayer) }
+        val cancel = Config.TeamLeaveForm.cancel.getStringList("lines").joinToString("\n") { FormService.applyLocalPlaceHolder(it, team, teamPlayer) }
+        val form = ModalForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).content(
+            text.joinToString("\n") { FormService.applyLocalPlaceHolder(it, team, teamPlayer) }).button1(confirm).button2(cancel)
         form.validResultHandler { response ->
             if (response.clickedButtonId() == 0) {
                 player.performCommand("team leave")
@@ -76,7 +76,7 @@ object BForm {
     fun openTeamListForm(player: Player) {
         val title = Config.TeamListForm.title
         val text = Config.TeamListForm.text
-        val form = SimpleForm.builder().title(Service.applyColors(title)).content(text.joinToString("\n") { Service.applyColors(it) })
+        val form = SimpleForm.builder().title(FormService.applyColors(title)).content(text.joinToString("\n") { FormService.applyColors(it) })
         val teams = Team.getTeamManager().loadedTeamListClone.values.filterNotNull()
         val actions = mutableListOf<() -> Unit>()
         teams.forEach { team ->
@@ -110,7 +110,7 @@ object BForm {
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val title = Config.TeamSelfForm.title
         val text = Config.TeamSelfForm.text
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, teamPlayer) })
+        val form = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") { FormService.applyLocalPlaceHolder(it, team, teamPlayer) })
         val actions = mutableListOf<() -> Unit>()
 
         createButton(form, Config.TeamSelfForm.chat, team, teamPlayer, player) {
@@ -170,8 +170,8 @@ object BForm {
         val title = Config.otherTeamForm.getString("main.title", "Team Other") ?: ""
         val text = Config.otherTeamForm.getStringList("main.text")
         val teamPlayer = teamToView.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT)
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, teamToView, teamPlayer)).content(
-            text.joinToString("\n") { Service.applyLocalPlaceHolder(it, teamToView, teamPlayer) })
+        val form = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, teamToView, teamPlayer)).content(
+            text.joinToString("\n") { FormService.applyLocalPlaceHolder(it, teamToView, teamPlayer) })
         val actions = mutableListOf<() -> Unit>()
 
         createButton(form, Config.TeamOtherForm.ally, teamToView, teamPlayer) {
@@ -204,9 +204,9 @@ object BForm {
         val title = Config.TeamAllyForm.title
         val text = Config.TeamAllyForm.text
         val teamAlly = team.allies.get().toMutableList()
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT))).content(
+        val form = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT))).content(
             text.joinToString("\n") {
-                Service.applyLocalPlaceHolder(
+                FormService.applyLocalPlaceHolder(
                     it, team, team.getTeamPlayer(player) ?: TeamPlayer(player, PlayerRank.DEFAULT)
                 )
             })
@@ -284,8 +284,8 @@ object BForm {
 
     fun openTeamMemberManagementForm(player: Player, member: TeamPlayer, team: Team) {
         fun openConfirmedModal(section: ConfigurationSection, action: () -> Unit) {
-            val title = Service.applyLocalPlaceHolder(section.getString("title") ?: "Confirmed", team, member)
-            val text = Service.applyLocalPlaceHolder(section.getString("text") ?: "Are you sure?", team, member)
+            val title = FormService.applyLocalPlaceHolder(section.getString("title") ?: "Confirmed", team, member)
+            val text = FormService.applyLocalPlaceHolder(section.getString("text") ?: "Are you sure?", team, member)
             val confirmSection = Config.TeamMemberManagementForm.confirm
             val btn1 = confirmSection.getString("button1") ?: "Yes"
             val btn2 = confirmSection.getString("button2") ?: "No"
@@ -306,7 +306,7 @@ object BForm {
         val title = Config.TeamMemberManagementForm.title
         val text = Config.TeamMemberManagementForm.text
         val actions = mutableListOf<() -> Unit>()
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, member)).content(text.joinToString("\n") { Service.applyLocalPlaceHolder(it, team, member) })
+        val form = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, team, member)).content(text.joinToString("\n") { FormService.applyLocalPlaceHolder(it, team, member) })
 
         createButton(form, Config.TeamMemberManagementForm.demote, team, member) {
             openConfirmedModal(Config.TeamMemberManagementForm.demote) {
@@ -347,8 +347,8 @@ object BForm {
         val title = Config.TeamWarpForm.title
         val text = Config.TeamWarpForm.text
         val warps = team.warps.get().sortedBy { it.name }
-        val form = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") {
-            Service.applyLocalPlaceHolder(it, team, teamPlayer)
+        val form = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") {
+            FormService.applyLocalPlaceHolder(it, team, teamPlayer)
         })
         warps.forEach { warp ->
             createButton(form, Config.TeamWarpForm.warpBtn, team, teamPlayer, null, { lines ->
@@ -381,8 +381,8 @@ object BForm {
         val text = Config.TeamBalanceForm.text
         val actions = mutableListOf<() -> Unit>()
         val player = teamPlayer.player as Player
-        val transactionForm = SimpleForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") {
-            Service.applyLocalPlaceHolder(it, team, teamPlayer)
+        val transactionForm = SimpleForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).content(text.joinToString("\n") {
+            FormService.applyLocalPlaceHolder(it, team, teamPlayer)
         })
         createButton(transactionForm, Config.TeamBalanceForm.withdraw, team, teamPlayer) {
             openTeamWithdrawForm(team, teamPlayer)
@@ -404,8 +404,7 @@ object BForm {
         val player = teamPlayer.player as Player
         val label = Config.TeamBalanceForm.label
         val placeholder = Config.TeamBalanceForm.placeholder
-        val withdraw = Config.TeamBalanceForm.withdraw
-        val form = CustomForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).input(label, placeholder)
+        val form = CustomForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).input(label, placeholder)
         form.validResultHandler { response ->
             val price = response.next<String>()?.toIntOrNull()
             if (price != null) {
@@ -420,8 +419,7 @@ object BForm {
         val player = teamPlayer.player as Player
         val label = Config.TeamBalanceForm.label
         val placeholder = Config.TeamBalanceForm.placeholder
-        val deposit = Config.TeamBalanceForm.deposit
-        val form = CustomForm.builder().title(Service.applyLocalPlaceHolder(title, team, teamPlayer)).input(label, placeholder)
+        val form = CustomForm.builder().title(FormService.applyLocalPlaceHolder(title, team, teamPlayer)).input(label, placeholder)
         form.validResultHandler { response ->
             val price = response.next<String>()?.toIntOrNull()
             if (price != null) {
@@ -437,8 +435,8 @@ object BForm {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
         val onlinePlayers = Bukkit.getOnlinePlayers().sortedBy { it.name }.filter { !Team.getTeamManager().isInTeam(it) }
-        val tile = Service.applyLocalPlaceHolder(Config.TeamInviteForm.title, team, teamPlayer)
-        val text = Service.applyLocalPlaceHolder(Config.TeamInviteForm.text.joinToString("\n"), team, teamPlayer)
+        val tile = FormService.applyLocalPlaceHolder(Config.TeamInviteForm.title, team, teamPlayer)
+        val text = FormService.applyLocalPlaceHolder(Config.TeamInviteForm.text.joinToString("\n"), team, teamPlayer)
         val actions = mutableListOf<() -> Unit>()
         val form = SimpleForm.builder().title(tile).content(text)
         onlinePlayers.forEach { activePlayer ->
@@ -473,7 +471,7 @@ object BForm {
         if (!enabled) {
             return null
         }
-        val lines = section.getStringList("lines").joinToString("\n §r") { Service.applyLocalPlaceHolder(it, team, teamPlayer) }
+        val lines = section.getStringList("lines").joinToString("\n §r") { FormService.applyLocalPlaceHolder(it, team, teamPlayer) }
 
         val image = section.getConfigurationSection("image")?.takeIf { it.getBoolean("enabled", false) }
 
@@ -488,14 +486,14 @@ object BForm {
         if (!enabled) {
             return null
         }
-        val lines = section.getStringList("lines").joinToString("\n §r") { Service.applyColors(it) }
+        val lines = section.getStringList("lines").joinToString("\n §r") { FormService.applyColors(it) }
         val image = section.getConfigurationSection("image")?.takeIf { it.getBoolean("enabled", false) }
         createImageButton(form, editLines(lines), image, playerHead)
         return action
     }
 
     private fun createBackButton(form: SimpleForm.Builder, actions: () -> Unit): (() -> Unit) {
-        val lines = Config.backButton.getStringList("lines").joinToString("\n §r") { Service.applyColors(it) }
+        val lines = Config.backButton.getStringList("lines").joinToString("\n §r") { FormService.applyColors(it) }
         val image = Config.backButton.getConfigurationSection("image")
         createImageButton(form, lines, image, null)
         return actions
@@ -504,7 +502,7 @@ object BForm {
     private fun createImageButton(form: SimpleForm.Builder, lines: String, image: ConfigurationSection?, player: OfflinePlayer?) {
         val imageEnabled = image?.getBoolean("enabled", false) ?: false
         if (imageEnabled) {
-            var imageUrl = image?.getString("url", "") ?: ""
+            var imageUrl = image.getString("url", "") ?: ""
             if (imageUrl.isBlank()) imageUrl = avatarUrl(player)
             form.button(lines, FormImage.Type.URL, imageUrl)
         } else form.button(lines)

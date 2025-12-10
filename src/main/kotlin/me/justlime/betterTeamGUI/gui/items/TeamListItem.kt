@@ -39,6 +39,10 @@ object TeamListItem {
     var searchInputItem = config.loadItem(JGui.ListView.SEARCH_INPUT_ITEM)
     var searchOutputItem = config.loadItem(JGui.ListView.SEARCH_OUTPUT_ITEM)
 
+    var invitationItem = config.loadItem(JGui.ListView.INVITATION_ITEM)
+    var noInvitationItem = config.loadItem(JGui.ListView.NO_INVITATION_ITEM)
+    var invitationTeamItem = config.loadItem(JGui.ListView.INVITATION_TEAM_ITEM)
+
     var createTeamItem = config.loadItem(JGui.ListView.CREATE_TEAM_ITEM)
     var createTeamTitle = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_TITLE) ?: ""
     var createTeamLabel = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_LABEL) ?: ""
@@ -79,6 +83,10 @@ object TeamListItem {
         searchLabel = ConfigManager.listView.getString(JGui.ListView.SEARCH_LABEL) ?: ""
         searchInputItem = config.loadItem(JGui.ListView.SEARCH_INPUT_ITEM)
         searchOutputItem = config.loadItem(JGui.ListView.SEARCH_OUTPUT_ITEM)
+
+        invitationItem = config.loadItem(JGui.ListView.INVITATION_ITEM)
+        noInvitationItem = config.loadItem(JGui.ListView.NO_INVITATION_ITEM)
+        invitationTeamItem = config.loadItem(JGui.ListView.INVITATION_TEAM_ITEM)
 
         createTeamItem = config.loadItem(JGui.ListView.CREATE_TEAM_ITEM)
         createTeamTitle = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_TITLE) ?: ""

@@ -1,21 +1,10 @@
 package me.justlime.betterTeamGUI.config
 
-import me.justlime.betterTeamGUI.gui.items.BanListItem
-import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
-import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
-import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
-import me.justlime.betterTeamGUI.gui.items.TeamListItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import org.bukkit.Material
 import org.bukkit.configuration.file.FileConfiguration
 
 object Config {
 
-    lateinit var config: FileConfiguration
     lateinit var teamCreateForm: FileConfiguration
     lateinit var listForm: FileConfiguration
     lateinit var teamForm: FileConfiguration
@@ -30,13 +19,11 @@ object Config {
 
     fun reload() {
         ConfigManager.load()
-
-
     }
 
-    val backButton get() = config.getConfigurationSection("back-button") ?: config.createSection("back-button")
+    val backButton get() = ConfigManager.config.getConfigurationSection("back-button") ?: ConfigManager.config.createSection("back-button")
 
-    val avatarUrl get() = config.getString("Avatar") ?: "https://mc-heads.net/avatar/{playername}"
+    val avatarUrl get() = ConfigManager.config.getString("Avatar") ?: "https://mc-heads.net/avatar/{playername}"
 
     object TeamCreateForm {
         val title get() = teamCreateForm.getString("main.title", "Create Team") ?: ""
@@ -133,6 +120,6 @@ object Config {
     }
 
     val background: Material
-        get() = Material.valueOf(config.getString("background.yml") ?: "WHITE_STAINED_GLASS_PANE")
+        get() = Material.valueOf(ConfigManager.config.getString("background.yml") ?: "WHITE_STAINED_GLASS_PANE")
 
 }

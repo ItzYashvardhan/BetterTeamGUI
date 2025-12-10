@@ -1,6 +1,6 @@
 # Team Leaderboard View
 main:
-  title: "<bold><gradient:#C45700:#FF7608>Team Leaderboard (Page - {page})</bold>"
+  title: "<bold><gradient:#C45700:#FF7608>Leaderboard (Page - {page})</bold>"
   row: 6
   font-title: false
   font-name: false

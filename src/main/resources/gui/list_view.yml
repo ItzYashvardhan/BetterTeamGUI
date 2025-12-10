@@ -28,24 +28,24 @@ main:
 # Note: It may not work for every item
 
 team-item-with-description-in-team:
-  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
   lore:
     - "<white><italic>{team_description}</italic></white>"
     - " "
     - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
 
 team-item-without-description-in-team:
-  name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
+  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
   lore:
     - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
@@ -58,7 +58,7 @@ team-item-with-description-no-team:
     - " "
     - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
     - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
@@ -70,7 +70,7 @@ team-item-without-description-no-team:
   lore:
     - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
     - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_limit}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
     - ""
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
     - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
@@ -201,6 +201,34 @@ anvil-ui:
       lore:
         - "<gray>Click to create your team.</gray>"
 
+invitation:
+  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> ({invites})"
+  lore:
+    - "<gray>View pending team invitations</gray>"
+    - " "
+    - "<green>Left-Click</green> <gray>to view</gray>"
+  item: CHEST
+  slot: 52
+
+no-invitation:
+  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> ({invites})"
+  lore:
+    - "<gray>You have no pending team invitations</gray>"
+  item: CHEST
+  slot: 52
+
+invitation-team-item:
+  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
+  lore:
+    - "<white><italic>{team_description}</italic></white>"
+    - " "
+    - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+    - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
+    - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
+    - ""
+    - "<green>Left-Click</green> <gray>to accept invitation</gray>"
+  item: PLAYER_HEAD
+  texture: ""
 
 create:
   item:

@@ -17,18 +17,23 @@ lateinit var pluginInstance: BetterTeamGUI
 
 class BetterTeamGUI : JavaPlugin() {
     override fun onEnable() {
-        if (this.server.pluginManager.isPluginEnabled("BetterTeams")) {
-            this.logger.info("Successfully Enabled BetterTeamsGUI")
-        } else this.server.pluginManager.disablePlugin(this)
+
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         pluginInstance = this
-        LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
-        if (Config.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) TeamCommandProxy.inject() //Experimental
-        CommandManager.register() //Initialize
-        LimeFrameAPI.debugging = false
 
+        if (this.server.pluginManager.isPluginEnabled("BetterTeams")) {
+            this.logger.info("Successfully Enabled BetterTeamsGUI")
+        } else {
+            this.logger.warning { "BETTERTEAMS PLUGIN REQUIRED" }
+            this.logger.info("Disabling BetterTeamsGUI")
+            this.server.pluginManager.disablePlugin(this)
+        }
+
+        LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
+        if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) TeamCommandProxy.inject() //Experimental
+        CommandManager.register() //Initialize
         Metrics(this, 24705)
         setupLimeFrameGUI()
     }

@@ -34,16 +34,18 @@ ally-item:
 ally-request-inbox:
   name: "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
   lore:
-    - ""
-    - "<gray>Click to view pending ally requests</gray>"
+    - "<gray>View pending ally requests</gray>"
+    - " "
+    - "<green>Left-Click</green> <gray>to view</gray>"
   item: CHEST
   slot: 49
 
 ally-request-item:
   name: "<b>{team_color_code}{team}{/team_color_code}</b>"
   lore:
-    - ""
+    - "".
     - "<green>Left-Click</green> <gray>to accept request</gray>"
+    - "<green>Right-Click</green> <gray>to view team</gray>"
     - "<red>Shift-Click</red> <gray>to deny request</gray>"
   item: PLAYER_HEAD
   texture: ""

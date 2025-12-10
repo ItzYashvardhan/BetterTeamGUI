@@ -2,7 +2,7 @@ package me.justlime.betterTeamGUI.gui
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
-import me.justlime.betterTeamGUI.config.Service
+import me.justlime.betterTeamGUI.config.FormService
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
@@ -17,6 +17,7 @@ import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -63,8 +64,8 @@ object GUIManager {
             pluginInstance.logger.warning("Invalid material: ${section.getString("item")} at item: ${section.getString("name")}")
             Material.PAPER
         }
-        val name = Service.applyLocalPlaceHolder(section.getString("name") ?: "&aItem", team, player)
-        val newLore = if (lore.isEmpty()) section.getStringList("lore").map { Service.applyLocalPlaceHolder(it, team, player) } else lore
+        val name = FormService.applyLocalPlaceHolder(section.getString("name") ?: "&aItem", team, player)
+        val newLore = if (lore.isEmpty()) section.getStringList("lore").map { FormService.applyLocalPlaceHolder(it, team, player) } else lore
         val glow = section.getBoolean("glow")
         val slotList = section.getIntegerList("slot")
         val item = createItem(material, name, newLore, glow, flags)
@@ -294,7 +295,8 @@ object GUIManager {
             // TODO: Add Bedrock form for team viewer
             return
         }
-        teamViewer(setting = TeamViewerItems.teamViewerSetting.clone(), player, team)
+        val  setting = TeamViewerItems.teamViewerSetting.clone()
+        teamViewer(setting = setting, player, team)
     }
 
     fun openTeamViewerMembersGUI(player: Player, team: Team) {

@@ -94,6 +94,10 @@ sealed interface JGui {
             const val SEARCH_INPUT_ITEM = "anvil-ui.search-team.input-item"
             const val SEARCH_OUTPUT_ITEM = "anvil-ui.search-team.output-item"
 
+            const val INVITATION_ITEM = "invitation"
+            const val NO_INVITATION_ITEM = "no-invitation"
+            const val INVITATION_TEAM_ITEM = "invitation-team-item"
+
             const val CREATE_TEAM_ITEM = "create.item"
             const val CREATE_TEAM_TITLE = "anvil-ui.create-team.title"
             const val CREATE_TEAM_LABEL = "anvil-ui.create-team.label"

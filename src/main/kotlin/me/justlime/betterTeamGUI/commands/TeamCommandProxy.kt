@@ -47,7 +47,7 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
                 val commandMap = commandMapField.get(server) as CommandMap
 
                 val commandNameWithPrefix = "team:team"
-                val commandName = TeamService.COMMAND
+                val commandName = TeamService.command
                 val originalCommand = commandMap.getCommand(commandNameWithPrefix)
 
                 if (originalCommand != null) {

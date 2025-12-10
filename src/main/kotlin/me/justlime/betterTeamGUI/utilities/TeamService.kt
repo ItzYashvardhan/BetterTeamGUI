@@ -2,7 +2,7 @@ package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
-import me.justlime.betterTeamGUI.config.Config
+import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
@@ -11,7 +11,7 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 
 object TeamService {
-    var command: String = Config.config.getString(JGui.Config.PREFIX) ?: "team"
+    var command: String = ConfigManager.config.getString(JGui.Config.PREFIX) ?: "team"
 
     fun teamToPlaceholderMap(team: Team): Map<String, String> {
         return mapOf(
@@ -46,6 +46,10 @@ object TeamService {
 
     fun joinTeam(player: Player, teamName: String) {
         player.performCommand("$command join $teamName")
+    }
+
+    fun invitePlayer(player: Player, invitedPlayerName: String) {
+        player.performCommand("$command invite $invitedPlayerName")
     }
 
     fun depositAmount(player: Player, amount: String) {
@@ -155,10 +159,6 @@ object TeamService {
         player.performCommand("$command unban ${targetPlayer.player?.name}")
     }
 
-    fun invitePlayer(player: Player, invitedPlayerName: String) {
-        player.performCommand("$command invite $invitedPlayerName")
-    }
-
     fun addAlly(player: Player, allyTeam: Team) {
         player.performCommand("$command ally ${allyTeam.name}")
     }
@@ -168,7 +168,7 @@ object TeamService {
     }
 
     fun reload() {
-        command = Config.config.getString(JGui.Config.PREFIX) ?: "team"
+        command = ConfigManager.config.getString(JGui.Config.PREFIX) ?: "team"
     }
 
 }

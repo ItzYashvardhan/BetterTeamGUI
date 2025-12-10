@@ -9,7 +9,7 @@ import org.bukkit.ChatColor
 import org.bukkit.OfflinePlayer
 import java.util.regex.Pattern
 
-object Service {
+object FormService {
 
     fun applyLocalPlaceHolder(value: String, team: Team, teamPlayer: TeamPlayer): String {
         val ownerName = team.members.getRank(PlayerRank.OWNER).firstOrNull()?.player?.name ?: "N/A"
@@ -34,31 +34,10 @@ object Service {
         return coloredMessage
     }
 
-    fun removeColors(message: String): String {
-        // Regex to match Minecraft color codes (§x§r§g§b§x§x§r) and simpler §x formats, as well as formatting codes like §l, §n, etc.
-        val colorAndFormatCodePattern = Regex("\u00A7[x0-9a-fA-F](\u00A7[0-9a-fA-F]){5}|\u00A7[0-9a-fk-orA-FK-OR]")
-
-        // Remove any color or formatting codes
-        var plainMessage = message.replace(colorAndFormatCodePattern, "")
-
-        // Remove alternate color codes like &#FFFFFF or &x
-        plainMessage = plainMessage.replace(Regex("&[0-9a-fA-F]|&#[a-fA-F0-9]{6}"), "")
-
-        return plainMessage
-    }
-
     fun applyPlaceHolder(text: String, player: OfflinePlayer): String {
         if (pluginInstance.server.pluginManager.getPlugin("PlaceholderAPI") != null) {
             return PlaceholderAPI.setPlaceholders(player, text)
         }
         return text
     }
-
-    fun applyPlaceHolder(text: MutableList<String>, player: OfflinePlayer): MutableList<String> {
-        if (pluginInstance.server.pluginManager.getPlugin("PlaceholderAPI") != null) {
-            return PlaceholderAPI.setPlaceholders(player, text)
-        }
-        return text
-    }
-
 }

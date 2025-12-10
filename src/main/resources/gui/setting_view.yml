@@ -1,7 +1,7 @@
 main:
   title: "<b><gradient:#C45700:#FF7608>%betterteams_name% Team Setting's</gradient>"
   row: 4
-  font-title: true
+  font-title: false
   font-name: true
   font-lore: true
   background:

@@ -10,41 +10,32 @@ import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamViewer(setting: GUISetting, player: Player, team: Team) = ChestGUI(setting) {
-    onClick { it.isCancelled = true }
-    TeamViewerItems.teamViewerBackground.forEach { setItem(it) }
+fun teamViewer(setting: GUISetting, player: Player, targetTeam: Team) {
+    setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
+    ChestGUI(setting) {
+        onClick { it.isCancelled = true }
+        TeamViewerItems.teamViewerBackground.forEach { setItem(it) }
 
-    val infoItem = if (team.description.isBlank()) TeamViewerItems.teamViewerInfoWithoutDescription else TeamViewerItems.teamViewerInfoWithDescription
-    setItem(infoItem?.apply {
-        style.placeholder = TeamService.teamToPlaceholderMap(team)
-    })
-    setItem(TeamButton.back, TeamViewerItems.teamViewerBackSlot) {
-        GUIManager.openTeamGUI(it.whoClicked as Player)
-        //Back Tracking TODO
-    }
+        val infoItem = if (targetTeam.description.isBlank()) TeamViewerItems.teamViewerInfoWithoutDescription else TeamViewerItems.teamViewerInfoWithDescription
+        setItem(infoItem)
+        setItem(TeamButton.back, TeamViewerItems.teamViewerBackSlot) {
+            GUIManager.openTeamGUI(it.whoClicked as Player)
+            //Back Tracking TODO
+        }
 
-    setItem(TeamButton.home, TeamViewerItems.teamViewerHomeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
+        setItem(TeamButton.home, TeamViewerItems.teamViewerHomeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
-    setItem(TeamViewerItems.teamViewerBalance?.apply {
-        style.placeholder = TeamService.teamToPlaceholderMap(team)
-    })
+        setItem(TeamViewerItems.teamViewerBalance)
 
-    setItem(TeamViewerItems.teamViewerMembers?.apply {
-        style.placeholder = TeamService.teamToPlaceholderMap(team)
-    }) {
-        GUIManager.openTeamViewerMembersGUI(player, team)
-    }
+        setItem(TeamViewerItems.teamViewerMembers) { GUIManager.openTeamViewerMembersGUI(player, targetTeam) }
 
-    setItem(TeamViewerItems.teamViewerAllies?.apply {
-        style.placeholder = TeamService.teamToPlaceholderMap(team)
+        setItem(TeamViewerItems.teamViewerAllies) { GUIManager.openTeamViewerAlliesGUI(player, targetTeam) }
 
-    }) {
-        GUIManager.openTeamViewerAlliesGUI(player, team)
-    }
+    }.open(player)
+}
 
-}.open(player)
-
-fun teamViewerMembers(setting: GUISetting, player: Player, team: Team) {
+fun teamViewerMembers(setting: GUISetting, player: Player, targetTeam: Team) {
+    setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
         nav {
@@ -56,7 +47,7 @@ fun teamViewerMembers(setting: GUISetting, player: Player, team: Team) {
         TeamViewerItems.teamViewerMembersBackground.forEach { setItem(it) }
 
         setItem(TeamButton.back, TeamViewerItems.teamViewerMembersBackSlot) {
-            GUIManager.openTeamViewerGUI(it.whoClicked as Player, team)
+            GUIManager.openTeamViewerGUI(it.whoClicked as Player, targetTeam)
         }
 
         setItem(TeamButton.home, TeamViewerItems.teamViewerMembersHomeSlot) {
@@ -64,10 +55,11 @@ fun teamViewerMembers(setting: GUISetting, player: Player, team: Team) {
         }
 
         addPage {
-            team.members.get().forEach { teamPlayer ->
+            targetTeam.members.get().forEach { teamPlayer ->
                 val item = TeamViewerItems.teamViewerMemberItem?.clone()?.apply {
                     style.offlinePlayer = teamPlayer.player
-                    style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+                    style.placeholder = TeamService.applyPlaceHolder(targetTeam, teamPlayer)
+                    texture = "[${teamPlayer.playerUUID}]"
                 }
                 if (item != null) {
                     addItem(item)
@@ -77,7 +69,8 @@ fun teamViewerMembers(setting: GUISetting, player: Player, team: Team) {
     }.open(player)
 }
 
-fun teamViewerAllies(setting: GUISetting, player: Player, team: Team) {
+fun teamViewerAllies(setting: GUISetting, player: Player, targetTeam: Team) {
+    setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
         nav {
@@ -89,7 +82,7 @@ fun teamViewerAllies(setting: GUISetting, player: Player, team: Team) {
         TeamViewerItems.teamViewerAlliesBackground.forEach { setItem(it) }
 
         setItem(TeamButton.back, TeamViewerItems.teamViewerAlliesBackSlot) {
-            GUIManager.openTeamViewerGUI(it.whoClicked as Player, team)
+            GUIManager.openTeamViewerGUI(it.whoClicked as Player, targetTeam)
         }
 
         setItem(TeamButton.home, TeamViewerItems.teamViewerAlliesHomeSlot) {
@@ -97,9 +90,9 @@ fun teamViewerAllies(setting: GUISetting, player: Player, team: Team) {
         }
 
         addPage {
-            team.allies.get().forEach { uuid ->
+            targetTeam.allies.get().forEach { uuid ->
                 val allyTeam = Team.getTeam(uuid) ?: return@forEach
-                val ownerRank = team.members.getRank(PlayerRank.OWNER)
+                val ownerRank = allyTeam.members.getRank(PlayerRank.OWNER)
                 if (ownerRank.isNotEmpty()) {
                     val owner = ownerRank.random()
                     val item = TeamViewerItems.teamViewerAllyItem?.copy()?.apply {

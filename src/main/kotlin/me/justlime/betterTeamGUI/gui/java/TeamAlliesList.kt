@@ -50,9 +50,9 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
         addPage {
             team.allies.get().forEach { uuid ->
                 val allyTeam = Team.getTeam(uuid) ?: return@forEach
-                val ownerRank = team.members.getRank(PlayerRank.OWNER)
-                if (ownerRank.isNotEmpty()) {
-                    val owner = ownerRank.random()
+                val owners = allyTeam.members.getRank(PlayerRank.OWNER)
+                if (owners.isNotEmpty()) {
+                    val owner = owners.random()
                     val item = TeamAlliesItem.allyItem?.copy()?.apply {
                         texture = "[${owner.playerUUID}]"
                         val placeholder = TeamService.teamToPlaceholderMap(allyTeam).toMutableMap()
@@ -69,8 +69,7 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
                                 }
                                 GUIManager.openTeamNeutralDialog(player, allyTeam)
                             } else {
-                                // View ally team logic
-//                            GUIManager.openTeamViewGUI(clickedPlayer, allyTeam)
+                                GUIManager.openTeamViewerGUI(player, allyTeam)
                             }
                         }
                     }
@@ -105,7 +104,7 @@ fun teamAllyRequests(setting: GUISetting, player: Player, team: Team) {
         addPage {
             team.allyRequests.forEach { uuid ->
                 val allyRequestTeam = Team.getTeam(uuid) ?: return@forEach
-                val ownerRank = team.members.getRank(PlayerRank.OWNER)
+                val ownerRank = allyRequestTeam.members.getRank(PlayerRank.OWNER)
                 if (ownerRank.isNotEmpty()) {
                     val owner = ownerRank.random()
                     val item = TeamAlliesItem.allyRequestItem?.copy()?.apply {

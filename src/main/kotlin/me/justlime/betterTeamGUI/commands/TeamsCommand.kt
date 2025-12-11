@@ -24,11 +24,10 @@ class TeamsCommand : CommandExecutor, TabCompleter {
         if (args[0] == "view" && sender.hasPermission("betterteamgui.use.view")) {
             val teamName = args.getOrNull(1) ?: return true
             val teamToView = Team.getTeam(teamName) ?: return true
-            GUIManager.openTeamOtherGUI(sender, teamToView)
+            GUIManager.openTeamViewerGUI(sender, teamToView)
             return true
         }
         val team = Team.getTeam(sender.name) ?: return true
-
 
         if (args[0] == "reload" && sender.hasPermission("betterteamgui.admin.reload")) {
             ConsoleMessage.printHeader()

@@ -178,7 +178,7 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                 val ownerRank = team.members.getRank(PlayerRank.OWNER)
                 if (ownerRank.isNotEmpty()) {
                     val owner = ownerRank.random()
-                    val offlinePlayer = Bukkit.getOfflinePlayer(owner.playerUUID)
+                    val ownerPlayer = Bukkit.getOfflinePlayer(owner.playerUUID)
                     val item = when {
                         team.description.isNotBlank() && isInTeam -> TeamListItem.teamItemWithDescription
 
@@ -188,12 +188,11 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
 
                         else -> TeamListItem.teamItemWithoutDescription
                     }
-
                     val finalItem = item?.apply {
-                        texture = "[${offlinePlayer.uniqueId}]"
-                        style.offlinePlayer = offlinePlayer
+                        texture = "[${ownerPlayer.uniqueId}]"
+                        style.offlinePlayer = ownerPlayer
                         style.placeholder = TeamService.teamToPlaceholderMap(team)
-                    } ?: GuiItem(Material.STONE)
+                    }?.copy() ?: GuiItem(Material.STONE)
 
                     addItem(finalItem) {
                         if (it.click.isLeftClick) {

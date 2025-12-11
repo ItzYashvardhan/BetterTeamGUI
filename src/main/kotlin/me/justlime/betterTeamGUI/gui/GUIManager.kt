@@ -17,7 +17,6 @@ import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
-import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -90,12 +89,6 @@ object GUIManager {
         } catch (_: Exception) {
             pluginInstance.logger.warning("Invalid slot: ${section.getString("slot")} at item: ${section.getString("name")}")
             return listOf()
-        }
-    }
-    fun openTeamOtherGUI(sender: Player, oTeam: Team) {
-        if (isBedrockPlayer(sender)) {
-            BForm.openTeamOtherForm(sender, oTeam)
-            return
         }
     }
 
@@ -290,13 +283,13 @@ object GUIManager {
         teamLeaderBoard(setting = LeaderBoardItem.setting.clone(), player, team)
     }
 
-    fun openTeamViewerGUI(player: Player, team: Team) {
+    fun openTeamViewerGUI(player: Player, targetTeam: Team) {
         if (isBedrockPlayer(player)) {
-            // TODO: Add Bedrock form for team viewer
+            BForm.openTeamOtherForm(player, targetTeam)
             return
         }
         val  setting = TeamViewerItems.teamViewerSetting.clone()
-        teamViewer(setting = setting, player, team)
+        teamViewer(setting = setting, player, targetTeam)
     }
 
     fun openTeamViewerMembersGUI(player: Player, team: Team) {

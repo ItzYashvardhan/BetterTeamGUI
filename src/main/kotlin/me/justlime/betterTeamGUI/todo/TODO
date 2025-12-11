@@ -1,0 +1,14 @@
+
+Bug
+
+
+
+Todo
+- shift reload, view to '/team gui' and remove /teams command
+
+
+2.1 Changelog
+- Added head texture support for offline cracked players
+- Fix wrong head texture in ally view
+- Fix Team View in ally view
+- Fix view sub-command in /teams

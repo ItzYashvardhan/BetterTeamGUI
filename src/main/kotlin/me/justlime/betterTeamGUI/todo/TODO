@@ -8,7 +8,7 @@ Todo
 
 
 2.1 Changelog
-- Added head texture support for offline cracked players
+- Added head texture support for offline cracked players via skin restorer
 - Fix wrong head texture in ally view
-- Fix Team View in ally view
+- Fix click to Team View in ally view
 - Fix view sub-command in /teams

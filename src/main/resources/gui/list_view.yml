@@ -202,7 +202,7 @@ anvil-ui:
         - "<gray>Click to create your team.</gray>"
 
 invitation:
-  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> ({invites})"
+  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({invites})</gray>"
   lore:
     - "<gray>View pending team invitations</gray>"
     - " "
@@ -211,7 +211,7 @@ invitation:
   slot: 52
 
 no-invitation:
-  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> ({invites})"
+  name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({invites})</gray>"
   lore:
     - "<gray>You have no pending team invitations</gray>"
   item: CHEST

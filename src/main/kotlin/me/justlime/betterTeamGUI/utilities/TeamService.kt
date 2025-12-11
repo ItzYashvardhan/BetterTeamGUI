@@ -6,6 +6,8 @@ import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.handler.GUIEventHandler
+import net.justlime.limeframegui.utilities.FrameAdapter
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
@@ -147,12 +149,12 @@ object TeamService {
         player.performCommand("$command demote ${targetPlayer.player.name}")
     }
 
-    fun kick(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$command kick ${targetPlayer.player.name}")
+    fun kick(player: Player, targetTeamPlayer: TeamPlayer) {
+        player.performCommand("$command kick ${targetTeamPlayer.player.name}")
     }
 
-    fun ban(player: Player, targetPlayer: TeamPlayer) {
-        player.performCommand("$command ban ${targetPlayer.player.name}")
+    fun ban(player: Player, targetTeamPlayer: TeamPlayer) {
+        player.performCommand("$command ban ${targetTeamPlayer.player.name}")
     }
 
     fun unban(player: Player, targetPlayer: OfflinePlayer) {

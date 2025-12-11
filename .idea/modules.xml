@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BetterTeamGUI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BetterTeamGUI.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BetterTeamGUI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/BetterTeamGUI.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2096452119/LimeFrameGUI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-2096452119/LimeFrameGUI.main.iml" />
     </modules>
   </component>
 </project>

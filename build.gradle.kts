@@ -42,9 +42,11 @@ dependencies {
 
     //Placeholder
     compileOnly("me.clip:placeholderapi:2.11.6")
+
+    //Other
+    compileOnly("com.google.code.gson:gson:2.10.1")
+
 }
-
-
 
 kotlin {
     jvmToolchain(8)

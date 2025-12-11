@@ -13,6 +13,8 @@ import net.justlime.limeframegui.enums.ColorType
 import org.bstats.bukkit.Metrics
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.plugin.java.JavaPlugin
+import java.net.HttpURLConnection
+import java.net.URL
 
 lateinit var pluginInstance: BetterTeamGUI
 
@@ -37,8 +39,6 @@ class BetterTeamGUI : JavaPlugin() {
         if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
             try {
                 TeamCommandProxy.inject() //Experimental}
-                ConsoleMessage.printStep("Successfully Injected GUI Commands")
-
             } catch (e: Exception) {
                 ConsoleMessage.printStep("Failed to Inject GUI Commands", ConsoleMessage.Color.RED)
                 ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
@@ -50,7 +50,9 @@ class BetterTeamGUI : JavaPlugin() {
         setupLimeFrameGUI()
         Config.reload()
         ConsoleMessage.printStep("LimeFrame Setup Completed")
-        ConsoleMessage.printStep("Successfully Enabled BetterTeamsGUI - ${this.description.version} by ${this.description.authors.first()}", ConsoleMessage.Color.BRIGHT_GREEN)
+        ConsoleMessage.printStep("Checking for Updates..")
+        checkVersionFromBetterTeamGUIRepo()
+        ConsoleMessage.printStep("Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}", ConsoleMessage.Color.BRIGHT_GREEN)
         ConsoleMessage.printFooter()
     }
 
@@ -79,6 +81,42 @@ class BetterTeamGUI : JavaPlugin() {
         ItemFlag.HIDE_ATTRIBUTES
     }
 
+}
+
+private fun checkVersionFromBetterTeamGUIRepo() {
+    try {
+        val url = URL("https://api.github.com/repos/ItzYashvardhan/BetterTeamGUI/tags")
+        val conn = url.openConnection() as HttpURLConnection
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0")
+        conn.connectTimeout = 5000
+        conn.readTimeout = 5000
+
+        val response = conn.inputStream.bufferedReader().readText()
+
+        val versionPattern = Regex("\"name\"\\s*:\\s*\"([^\"]+)\"")
+        val match = versionPattern.find(response) ?: return
+
+        val latestTag = match.groupValues[1].removePrefix("v")
+        val currentVersion = pluginInstance.description.version
+
+        if (currentVersion != latestTag) {
+            ConsoleMessage.printStep(
+                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag", ConsoleMessage.Color.BRIGHT_YELLOW
+            )
+            ConsoleMessage.printStep("Modrinth", ConsoleMessage.Color.LIGHT_BLUE)
+            ConsoleMessage.printStep("https://modrinth.com/plugin/betterteamsgui/versions", ConsoleMessage.Color.WHITE)
+            ConsoleMessage.printStep("Download the latest version from above link", ConsoleMessage.Color.BRIGHT_PURPLE)
+
+        } else {
+            ConsoleMessage.printStep(
+                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)", ConsoleMessage.Color.GREEN
+            )
+        }
+
+    } catch (e: Exception) {
+        ConsoleMessage.printStep("Failed to check for updates", ConsoleMessage.Color.RED)
+        ConsoleMessage.printStep(e.message ?: "Unidentified Version Error")
+    }
 }
 
 

@@ -5,6 +5,8 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.utilities.TeamService
+import net.justlime.limeframegui.LimeFrameGUI
+import net.justlime.limeframegui.handler.GUIEventHandler
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
@@ -252,6 +254,9 @@ fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.kick(p, targetTeamPlayer)
                 GUIManager.closeInventory(p)
+                (targetTeamPlayer.player as? Player)?.let {
+                    GUIManager.closeInventory(it)
+                }
             }
         }
     }
@@ -282,6 +287,10 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.ban(p, targetTeamPlayer)
                 GUIManager.closeInventory(p)
+                GUIManager.closeInventory(p)
+                (targetTeamPlayer.player as? Player)?.let {
+                    GUIManager.closeInventory(it)
+                }
             }
         }
     }

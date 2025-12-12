@@ -19,7 +19,6 @@ import java.net.URL
 lateinit var pluginInstance: BetterTeamGUI
 
 class BetterTeamGUI : JavaPlugin() {
-
     override fun onEnable() {
 
         ConsoleMessage.printHeader()

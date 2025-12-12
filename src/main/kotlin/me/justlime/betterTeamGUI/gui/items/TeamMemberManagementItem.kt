@@ -1,36 +1,23 @@
 package me.justlime.betterTeamGUI.gui.items
 
-import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
-import net.justlime.limeframegui.impl.ConfigHandler
+import net.justlime.limeframegui.models.GuiItem
 
-object TeamMemberManagementItem {
-    // Main
-    var config = ConfigHandler(JFiles.MEMBER_MANAGEMENT_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.MAIN)
-    var background = config.loadItems(JGui.Main.BACKGROUND)
+object TeamMemberManagementItem : BaseGuiItem(JFiles.MEMBER_MANAGEMENT_VIEW.filename) {
+    var playerInfo: GuiItem? = null
+    var promoteToOwner: GuiItem? = null
+    var promoteToAdmin: GuiItem? = null
+    var demoteToAdmin: GuiItem? = null
+    var demoteToDefault: GuiItem? = null
+    var kick: GuiItem? = null
+    var ban: GuiItem? = null
 
-    var homeSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.HOME_SLOT)) }
-    var backSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.BACK_SLOT)) }
+    init {
+        reloadItems()
+    }
 
-    // Items
-    var playerInfo = config.loadItem(JGui.MemberManagement.PLAYER_INFO)
-    var promoteToOwner = config.loadItem(JGui.MemberManagement.PROMOTE_TO_OWNER)
-    var promoteToAdmin = config.loadItem(JGui.MemberManagement.PROMOTE_TO_ADMIN)
-    var demoteToAdmin = config.loadItem(JGui.MemberManagement.DEMOTE_TO_ADMIN)
-    var demoteToDefault = config.loadItem(JGui.MemberManagement.DEMOTE_TO_DEFAULT)
-    var kick = config.loadItem(JGui.MemberManagement.KICK)
-    var ban = config.loadItem(JGui.MemberManagement.BAN)
-
-    fun reload() {
-        config.reload()
-        config = ConfigHandler(JFiles.MEMBER_MANAGEMENT_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.MAIN)
-        background = config.loadItems(JGui.Main.BACKGROUND)
-        homeSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.HOME_SLOT)) }
-        backSlot = ConfigManager.memberManagementView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.memberManagementView.getInt(JGui.Main.BACK_SLOT)) }
-
+    override fun reloadItems() {
         playerInfo = config.loadItem(JGui.MemberManagement.PLAYER_INFO)
         promoteToOwner = config.loadItem(JGui.MemberManagement.PROMOTE_TO_OWNER)
         promoteToAdmin = config.loadItem(JGui.MemberManagement.PROMOTE_TO_ADMIN)

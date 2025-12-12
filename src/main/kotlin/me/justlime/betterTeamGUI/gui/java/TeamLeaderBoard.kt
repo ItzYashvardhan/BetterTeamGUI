@@ -4,9 +4,8 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
-import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -16,17 +15,9 @@ import org.bukkit.entity.Player
 fun teamLeaderBoard(setting: GUISetting, player: Player, team: Team) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
-        nav {
-            prevSlot = TeamListItem.prevSlot
-            nextSlot = TeamListItem.nextSlot
-            nextItem = TeamButton.next!!
-            prevItem = TeamButton.prev!!
+        applyBackground(LeaderBoardItem, this) {
+            GUIManager.openTeamGUI(player)
         }
-        TeamListItem.background.forEach { setItem(it) }
-
-        setItem(TeamButton.back, TeamListItem.backSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
-        setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
-
         addPage {
             val teams = Team.getTeamManager().sortTeamsByScore().mapNotNull { Team.getTeam(it) }
             teams.forEachIndexed { index, team ->

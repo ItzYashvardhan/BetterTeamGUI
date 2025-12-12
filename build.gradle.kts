@@ -15,7 +15,8 @@ repositories {
     maven("https://repo.codemc.org/repository/maven-public/") { name = "codemc" }
     maven("https://jitpack.io")
     maven("https://repo.opencollab.dev/main/")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/"){ name = "extendedclip" }
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") { name = "extendedclip" }
+    maven("https://repo.tcoded.com/releases") { name = "tcoded-releases" }
 
 }
 
@@ -29,7 +30,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.1.0")
 
     //GUI
-//    implementation("com.github.ItzYashvardhan:LimeFrameGUI:a26eec125f")
+//    implementation("com.github.ItzYashvardhan:LimeFrameGUI:VERSION")
     implementation("net.justlime.limeframegui:LimeFrameGUI")
     implementation("net.wesjd:anvilgui:1.10.10-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
@@ -52,7 +53,7 @@ kotlin {
     jvmToolchain(8)
 }
 
-tasks.withType<ShadowJar>{
+tasks.withType<ShadowJar> {
     manifest {
         attributes["paperweight-mappings-namespace"] = "spigot"
     }
@@ -84,6 +85,7 @@ tasks.register<Copy>("copyToServerPlugins") {
     dependsOn("shadowJar")  // Ensure shadowJar completes before copying
     from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
     into("E:/Minecraft/servers/Development/PaperMC-1.21.10/plugins")
+//    into("E:/Minecraft/servers/Folia-1.21.8/plugins")
 //    into("E:/Minecraft/servers/PaperMc-1.20.4/plugins")
 }
 

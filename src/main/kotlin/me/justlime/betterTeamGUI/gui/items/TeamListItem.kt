@@ -3,64 +3,47 @@ package me.justlime.betterTeamGUI.gui.items
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
-import net.justlime.limeframegui.impl.ConfigHandler
+import net.justlime.limeframegui.models.GuiItem
 
-object TeamListItem {
+object TeamListItem : BaseGuiItem(JFiles.LIST_VIEW.filename) {
+    var teamItemWithDescription: GuiItem? = null
+    var teamItemWithoutDescription: GuiItem? = null
+    var teamItemWithDescriptionNoTeam: GuiItem? = null
+    var teamItemWithoutDescriptionNoTeam: GuiItem? = null
 
-    var config = ConfigHandler(JFiles.LIST_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.MAIN)
-    var background = config.loadItems(JGui.Main.BACKGROUND)
+    var sortOrderAsc: GuiItem? = null
+    var sortOrderDesc: GuiItem? = null
+    var sortTypeMoney: GuiItem? = null
+    var sortTypeScore: GuiItem? = null
+    var sortTypeLevel: GuiItem? = null
+    var sortTypeMembers: GuiItem? = null
 
-    var backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
-    var homeSlot = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
-    var prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
-    var nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
+    var filterDefault: GuiItem? = null
+    var filterOpenOnly: GuiItem? = null
+    var filterCurrentlyOnline: GuiItem? = null
+    var filterNotFull: GuiItem? = null
 
-    var teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
-    var teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
-    var teamItemWithDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC_NO_TEAM)
-    var teamItemWithoutDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC_NO_TEAM)
+    var searchItem: GuiItem? = null
+    var searchTitle: String = ""
+    var searchLabel: String = ""
+    var searchInputItem: GuiItem? = null
+    var searchOutputItem: GuiItem? = null
 
-    var sortOrderAsc = config.loadItem(JGui.ListView.SORT_ORDER_ASC)
-    var sortOrderDesc = config.loadItem(JGui.ListView.SORT_ORDER_DESC)
-    var sortTypeMoney = config.loadItem(JGui.ListView.SORT_TYPE_MONEY)
-    var sortTypeScore = config.loadItem(JGui.ListView.SORT_TYPE_SCORE)
-    var sortTypeLevel = config.loadItem(JGui.ListView.SORT_TYPE_LEVEL)
-    var sortTypeMembers = config.loadItem(JGui.ListView.SORT_TYPE_MEMBERS)
+    var invitationItem: GuiItem? = null
+    var noInvitationItem: GuiItem? = null
+    var invitationTeamItem: GuiItem? = null
 
-    var filterDefault = config.loadItem(JGui.ListView.FILTER_DEFAULT)
-    var filterOpenOnly = config.loadItem(JGui.ListView.FILTER_OPEN_ONLY)
-    var filterCurrentlyOnline = config.loadItem(JGui.ListView.FILTER_CURRENTLY_ONLINE)
-    var filterNotFull = config.loadItem(JGui.ListView.FILTER_NOT_FULL)
+    var createTeamItem: GuiItem? = null
+    var createTeamTitle: String = ""
+    var createTeamLabel: String = ""
+    var createTeamInputItem: GuiItem? = null
+    var createTeamOutputItem: GuiItem? = null
 
-    var searchItem = config.loadItem(JGui.ListView.SEARCH_ITEM)
-    var searchTitle = ConfigManager.listView.getString(JGui.ListView.SEARCH_TITLE) ?: ""
-    var searchLabel = ConfigManager.listView.getString(JGui.ListView.SEARCH_LABEL) ?: ""
-    var searchInputItem = config.loadItem(JGui.ListView.SEARCH_INPUT_ITEM)
-    var searchOutputItem = config.loadItem(JGui.ListView.SEARCH_OUTPUT_ITEM)
+    init {
+        reloadItems()
+    }
 
-    var invitationItem = config.loadItem(JGui.ListView.INVITATION_ITEM)
-    var noInvitationItem = config.loadItem(JGui.ListView.NO_INVITATION_ITEM)
-    var invitationTeamItem = config.loadItem(JGui.ListView.INVITATION_TEAM_ITEM)
-
-    var createTeamItem = config.loadItem(JGui.ListView.CREATE_TEAM_ITEM)
-    var createTeamTitle = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_TITLE) ?: ""
-    var createTeamLabel = ConfigManager.listView.getString(JGui.ListView.CREATE_TEAM_LABEL) ?: ""
-    var createTeamInputItem = config.loadItem(JGui.ListView.CREATE_TEAM_INPUT_ITEM)
-    var createTeamOutputItem = config.loadItem(JGui.ListView.CREATE_TEAM_OUTPUT_ITEM)
-
-
-    fun reload() {
-        config.reload()
-        config = ConfigHandler(JFiles.LIST_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.MAIN)
-        background = config.loadItems(JGui.Main.BACKGROUND)
-
-        backSlot = ConfigManager.listView.getIntegerList(JGui.Main.BACK_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.BACK_SLOT)) }
-        homeSlot = ConfigManager.listView.getIntegerList(JGui.Main.HOME_SLOT).ifEmpty { listOf(ConfigManager.listView.getInt(JGui.Main.HOME_SLOT)) }
-        prevSlot = ConfigManager.listView.getInt(JGui.Main.PREV_SLOT)
-        nextSlot = ConfigManager.listView.getInt(JGui.Main.NEXT_SLOT)
-
+    override fun reloadItems() {
         teamItemWithDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC)
         teamItemWithoutDescription = config.loadItem(JGui.ListView.TEAM_ITEM_WITHOUT_DESC)
         teamItemWithDescriptionNoTeam = config.loadItem(JGui.ListView.TEAM_ITEM_WITH_DESC_NO_TEAM)

@@ -14,7 +14,6 @@ main:
       item: PURPLE_STAINED_GLASS_PANE
       slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
   slot:
-    back: 52
     home: 53
 
 claimable-warp:
@@ -34,7 +33,7 @@ occupied-warp:
     - ""
     - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
     - "<yellow>Shift-Click</yellow> <gray>to delete warp</gray>"
-##red glass it will unlock when required {level} is reached
+
 locked-warp:
   item: RED_STAINED_GLASS_PANE
   name: "<b><red>Locked</red></b>"

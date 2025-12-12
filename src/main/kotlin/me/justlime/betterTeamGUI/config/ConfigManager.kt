@@ -4,6 +4,7 @@ import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
+import me.justlime.betterTeamGUI.gui.items.LevelItem
 import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
@@ -37,6 +38,7 @@ object ConfigManager {
     lateinit var dialogView: FileConfiguration
     lateinit var font: FileConfiguration
     lateinit var leaderBoardView: FileConfiguration
+    lateinit var levelsView: FileConfiguration
     lateinit var listView: FileConfiguration
     lateinit var memberManagementView: FileConfiguration
     lateinit var membersView: FileConfiguration
@@ -49,7 +51,6 @@ object ConfigManager {
     lateinit var allyForm: FileConfiguration
     lateinit var balanceForm: FileConfiguration
     lateinit var teamCreateForm: FileConfiguration
-
     lateinit var inviteForm: FileConfiguration
     lateinit var leaveForm: FileConfiguration
     lateinit var listForm: FileConfiguration
@@ -71,6 +72,7 @@ object ConfigManager {
         reloadSafely(JFiles.DIALOG_VIEW.filename, sender) { dialogView = loadConfig(JFiles.DIALOG_VIEW);TeamDialogItem.reload() }
         reloadSafely(JFiles.FONT.filename, sender) { font = loadConfig(JFiles.FONT) }
         reloadSafely(JFiles.LEADERBOARD_VIEW.filename, sender) { leaderBoardView = loadConfig(JFiles.LEADERBOARD_VIEW);LeaderBoardItem.reload() }
+        reloadSafely(JFiles.LEVELS_VIEW.filename, sender) { levelsView = loadConfig(JFiles.LEVELS_VIEW); LevelItem.reload() }
         reloadSafely(JFiles.LIST_VIEW.filename, sender) { listView = loadConfig(JFiles.LIST_VIEW);TeamListItem.reload() }
         reloadSafely(JFiles.MEMBER_MANAGEMENT_VIEW.filename, sender) { memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW);TeamMemberManagementItem.reload() }
         reloadSafely(JFiles.MEMBERS_VIEW.filename, sender) { membersView = loadConfig(JFiles.MEMBERS_VIEW);TeamMemberItem.reload() }

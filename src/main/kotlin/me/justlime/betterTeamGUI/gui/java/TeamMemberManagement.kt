@@ -4,9 +4,11 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
@@ -18,14 +20,14 @@ fun teamMemberManagement(player: Player, targetTeamPlayer: TeamPlayer, team: Tea
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
+        applyBackground(TeamMemberManagementItem, this, false){
+            GUIManager.openTeamMemberGUI(player,team)
+        }
 
         val playerInfo = TeamMemberManagementItem.playerInfo?.clone().apply {
             this?.texture = "[${targetTeamPlayer.player.uniqueId}]"
         }
 
-        TeamMemberManagementItem.background.forEach { setItem(it) }
-        setItem(TeamButton.back, TeamMemberManagementItem.backSlot) { GUIManager.openTeamMemberGUI(it.whoClicked as Player, team) }
-        setItem(TeamButton.home, TeamMemberManagementItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
         setItem(playerInfo)
         val teamPlayer = team.getTeamPlayer(player) ?: return@ChestGUI

@@ -7,6 +7,7 @@ import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import net.justlime.limeframegui.models.GUISetting
@@ -31,16 +32,9 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
     ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
-        nav {
-            prevSlot = TeamListItem.prevSlot
-            nextSlot = TeamListItem.nextSlot
-            nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
-            prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+        applyBackground(TeamListItem, this) {
+            GUIManager.openTeamGUI(player)
         }
-        TeamListItem.background.forEach { setItem(it) }
-
-        setItem(TeamButton.home, TeamListItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
-
         var teams: List<Team> = Team.getTeamManager().sortTeamsByMembers().mapNotNull { Team.getTeam(it) }
         teams = when (state.filter) {
             FilterType.OPEN_ONLY -> teams.filter { it.isOpen }
@@ -170,7 +164,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
         }
 
         addPage {
-
             teams.forEach { team ->
                 val isTeamOpen = team.isOpen
                 val isInvited = team.isInvited(player.uniqueId)
@@ -202,7 +195,6 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                             TeamService.joinTeam(player, team.name)
                             player.closeInventory()
                         }
-
                     }
                 }
             }

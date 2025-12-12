@@ -20,6 +20,7 @@ enum class JFiles(val filename: String) {
     LEADERBOARD_VIEW("gui/leaderboard_view.yml"),
     SETTING_VIEW("gui/setting_view.yml"),
     BAN_VIEW("gui/ban_view.yml"),
+    LEVELS_VIEW("gui/levels_view.yml"),
 
     //Bedrock Config
     TEAM_CREATE_FORM("form/create_form.yml"),

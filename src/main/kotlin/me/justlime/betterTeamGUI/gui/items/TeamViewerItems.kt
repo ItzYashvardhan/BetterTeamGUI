@@ -36,8 +36,6 @@ object TeamViewerItems {
 
     fun reload() {
         config.reload()
-        config = ConfigHandler(JFiles.TEAM_VIEWER.filename)
-
         teamViewerSetting = config.loadInventorySetting(JGui.TeamViewer.MAIN)
         teamViewerBackground = config.loadItems(JGui.TeamViewer.BACKGROUND)
         teamViewerBackSlot = ConfigManager.teamViewer.getIntegerList(JGui.TeamViewer.BACK_SLOT).ifEmpty { listOf(ConfigManager.teamViewer.getInt(JGui.TeamViewer.BACK_SLOT)) }

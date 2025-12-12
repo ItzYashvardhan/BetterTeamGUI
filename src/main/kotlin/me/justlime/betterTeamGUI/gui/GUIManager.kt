@@ -7,6 +7,7 @@ import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
+import me.justlime.betterTeamGUI.gui.items.LevelItem
 import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
@@ -281,6 +282,12 @@ object GUIManager {
             return
         }
         teamLeaderBoard(setting = LeaderBoardItem.setting.clone(), player, team)
+    }
+
+    fun openTeamLevelGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {}
+        val teamPlayer = team.getTeamPlayer(player) ?: return
+        teamLevel(LevelItem.setting.clone(),player,team,teamPlayer)
     }
 
     fun openTeamViewerGUI(player: Player, targetTeam: Team) {

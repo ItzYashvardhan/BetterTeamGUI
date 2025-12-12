@@ -20,7 +20,6 @@ main:
         - HIDE_ATTRIBUTES
         - HIDE_ADDITIONAL_TOOLTIP
   slot:
-    back: 34
     home: 35
 
 

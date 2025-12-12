@@ -4,6 +4,7 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.ChatColor
@@ -11,10 +12,9 @@ import org.bukkit.entity.Player
 
 fun colorPickerView(setting: GUISetting, player: Player) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
-    ColorPickerItem.background.forEach { setItem(it) }
-    setItem(TeamButton.back, ColorPickerItem.backSlot) { GUIManager.openTeamSettingGUI(player) }
-    setItem(TeamButton.home, ColorPickerItem.homeSlot) { GUIManager.openTeamGUI(player) }
-
+    applyBackground(ColorPickerItem, this, false){
+        GUIManager.openTeamSettingGUI(player)
+    }
     setItem(ColorPickerItem.aqua) { TeamService.setTeamColor(player, ChatColor.AQUA.name) }
     setItem(ColorPickerItem.black) { TeamService.setTeamColor(player, ChatColor.BLACK.name) }
     setItem(ColorPickerItem.blue) { TeamService.setTeamColor(player, ChatColor.BLUE.name) }

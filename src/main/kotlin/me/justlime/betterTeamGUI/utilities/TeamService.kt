@@ -21,6 +21,7 @@ object TeamService {
             "{tag}" to (team.tag ?: "N/A"),
             "{team_size}" to team.members.size().toString(),
             "{team_limit}" to team.teamLimit.toString(),
+            "{team_warps}" to team.maxWarps.toString(),
             "{team_level}" to team.level.toString(),
             "{team_score}" to team.score.toString(),
             "{team_money}" to team.money.toString(),
@@ -167,6 +168,10 @@ object TeamService {
 
     fun removeAlly(player: Player, allyTeam: Team) {
         player.performCommand("$command neutral ${allyTeam.name}")
+    }
+
+    fun promoteTeam(player: Player){
+        player.performCommand("$command rankup")
     }
 
     fun reload() {

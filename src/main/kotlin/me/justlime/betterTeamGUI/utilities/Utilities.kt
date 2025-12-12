@@ -1,9 +1,11 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
-import com.booksaw.betterTeams.TeamPlayer
+import me.justlime.betterTeamGUI.enums.TeamItem
+import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.impl.ChestGUIBuilder
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.models.LimeStyleSheet
 import net.justlime.limeframegui.utilities.item
@@ -17,17 +19,6 @@ import org.geysermc.floodgate.api.FloodgateApi
 fun isBedrockPlayer(player: Player): Boolean {
     return if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance().isFloodgatePlayer(player.uniqueId)
     else false
-}
-
-fun permissionDenied(event: InventoryClickEvent, style: LimeStyleSheet) {
-    val oldItem = event.item ?: return
-    val noPermissionItem = TeamButton.noPermission ?: GuiItem(Material.BARRIER)
-    event.item = noPermissionItem
-    event.update(style)
-    Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
-        event.item = oldItem
-        event.update(style)
-    }, 30)
 }
 
 val Team.bannedPlayersList: List<String>
@@ -54,3 +45,31 @@ val Team.bannedPlayersList: List<String>
             emptyList()
         }
     }
+
+//Utilities for GUI
+fun permissionDenied(event: InventoryClickEvent, style: LimeStyleSheet) {
+    val oldItem = event.item ?: return
+    val noPermissionItem = TeamButton.noPermission ?: GuiItem(Material.BARRIER)
+    event.item = noPermissionItem
+    event.update(style)
+    Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        event.item = oldItem
+        event.update(style)
+    }, 30)
+}
+
+fun applyBackground(teamItem: TeamItem, builder: ChestGUIBuilder, enableNav: Boolean = true, onBack: (InventoryClickEvent) -> Unit) {
+    builder.apply {
+        if (enableNav) nav {
+            this.prevSlot = teamItem.prevSlot
+            this.nextSlot = teamItem.nextSlot
+            this.nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
+            this.prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+        }
+
+        teamItem.background.forEach { setItem(it) }
+
+        setItem(TeamButton.back, teamItem.backSlot) { onBack(it) }
+        setItem(TeamButton.home, teamItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
+    }
+}

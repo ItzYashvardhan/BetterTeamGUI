@@ -6,6 +6,7 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
@@ -17,21 +18,8 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
-        nav {
-            prevSlot = TeamAlliesItem.prevSlot
-            nextSlot = TeamAlliesItem.nextSlot
-        }
-        TeamAlliesItem.background.forEach { setItem(it) }
-        TeamAlliesItem.backSlot.forEach { slot ->
-            setItem(TeamButton.back, slot) {
-                GUIManager.openTeamGUI(it.whoClicked as Player)
-            }
-        }
-
-        TeamAlliesItem.homeSlot.forEach { slot ->
-            setItem(TeamButton.home, slot) {
-                GUIManager.openTeamGUI(it.whoClicked as Player)
-            }
+        applyBackground(TeamAlliesItem, this) {
+            GUIManager.openTeamGUI(player)
         }
 
         val alliesRequestInbox = TeamAlliesItem.allyRequestInbox?.apply {
@@ -83,16 +71,8 @@ fun teamAllyRequests(setting: GUISetting, player: Player, team: Team) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
 
-        nav {
-            prevSlot = TeamAlliesItem.prevSlot
-            nextSlot = TeamAlliesItem.nextSlot
-        }
-
-        TeamAlliesItem.background.forEach { setItem(it) }
-        TeamAlliesItem.backSlot.forEach { slot ->
-            setItem(TeamButton.back, slot) {
-                GUIManager.openTeamAlliesListGUI(it.whoClicked as Player, team)
-            }
+        applyBackground(TeamAlliesItem, this) {
+            GUIManager.openTeamAlliesListGUI(it.whoClicked as Player, team)
         }
 
         TeamAlliesItem.homeSlot.forEach { slot ->

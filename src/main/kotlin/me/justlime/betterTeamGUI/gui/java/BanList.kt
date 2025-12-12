@@ -3,8 +3,8 @@ package me.justlime.betterTeamGUI.gui.java
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.BanListItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.bannedPlayersList
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
@@ -16,22 +16,8 @@ fun teamBanList(setting: GUISetting, player: Player, team: Team) {
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
-        nav {
-            prevSlot = BanListItem.prevSlot
-            nextSlot = BanListItem.nextSlot
-        }
-        BanListItem.background.forEach { setItem(it) }
-
-        BanListItem.backSlot.forEach { slot ->
-            setItem(TeamButton.back, slot) {
-                GUIManager.openTeamMemberGUI(it.whoClicked as Player,team)
-            }
-        }
-
-        BanListItem.homeSlot.forEach { slot ->
-            setItem(TeamButton.home, slot) {
-                GUIManager.openTeamGUI(it.whoClicked as Player)
-            }
+        applyBackground(BanListItem, this){
+            GUIManager.openTeamMemberGUI(player,team)
         }
 
         addPage {

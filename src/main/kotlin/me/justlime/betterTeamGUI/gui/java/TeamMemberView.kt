@@ -4,9 +4,11 @@ import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
@@ -22,22 +24,16 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
     ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
-        nav {
-            nextSlot = TeamMemberItem.next
-            prevSlot = TeamMemberItem.prev
-
+        applyBackground(TeamMemberItem, this){
+            GUIManager.openTeamGUI(player)
         }
-        TeamMemberItem.background.forEach { setItem(it) }
-
-        setItem(TeamButton.back, TeamMemberItem.back) { GUIManager.openTeamGUI(it.whoClicked as Player) }
-        setItem(TeamButton.home, TeamMemberItem.home) { GUIManager.openTeamGUI(it.whoClicked as Player) }
 
         val teamPlayer = team.getTeamPlayer(player) ?: return@ChestGUI
 
         // Ban List
         setItem(TeamMemberItem.banList) { event ->
             if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                permissionDenied(event,setting.style)
+                permissionDenied(event, setting.style)
                 return@setItem
             }
 
@@ -60,7 +56,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
                 addItem(finalItem) { click ->
                     val teamPlayer = team.getTeamPlayer(click.whoClicked as Player) ?: return@addItem
                     if (teamPlayer.rank == PlayerRank.DEFAULT || (member.rank == PlayerRank.OWNER && teamPlayer.rank == PlayerRank.OWNER && member.player.name != teamPlayer.player.name)) {
-                        permissionDenied(click,setting.style)
+                        permissionDenied(click, setting.style)
                         return@addItem
                     }
                     GUIManager.openTeamMemberManagementGUI(click.whoClicked as Player, member, team)
@@ -74,7 +70,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
                     val player = click.whoClicked as Player
                     val teamPlayer = team.getTeamPlayer(player) ?: return@addItem
                     if (teamPlayer.rank == PlayerRank.DEFAULT) {
-                        permissionDenied(click,setting.style)
+                        permissionDenied(click, setting.style)
                         return@addItem
                     }
                     openAnvilInviteGUI(player)

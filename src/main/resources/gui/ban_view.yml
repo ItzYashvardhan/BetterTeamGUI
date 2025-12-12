@@ -1,4 +1,3 @@
-# Ban List View
 main:
   title: "<bold><gradient:#C45700:#FF7608>Ban List (Page - {page})</bold>"
   row: 6

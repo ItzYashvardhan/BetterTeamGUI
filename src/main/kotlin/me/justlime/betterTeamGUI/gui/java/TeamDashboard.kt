@@ -54,6 +54,7 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
         val infoItem = if (team.description.isBlank()) TeamDashboardItem.infoItemWithoutDesc else TeamDashboardItem.infoItemWithDesc
         setItem(infoItem) {
             if (it.click.isLeftClick) GUIManager.openTeamLeaderBoardGUI(it.whoClicked as Player, team)
+            if (it.click.isRightClick) GUIManager.openTeamLevelGUI(player,team)
         }
 
 

@@ -4,10 +4,12 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
+import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
+import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
@@ -21,15 +23,12 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 
 fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer): ChestGUI = ChestGUI(setting) {
-
-    setting.style.player = player
     onClick {
         it.isCancelled = true
     }
-
-    TeamSettingItem.background.forEach { setItem(it) }
-    setItem(TeamButton.back, TeamSettingItem.backSlot) { GUIManager.openTeamGUI(player) }
-    setItem(TeamButton.home, TeamSettingItem.homeSlot) { GUIManager.openTeamGUI(player) }
+    applyBackground(TeamSettingItem, this, false){
+        GUIManager.openTeamGUI(player)
+    }
 
     // Color Picker
     setItem(TeamSettingItem.colorPicker.apply {

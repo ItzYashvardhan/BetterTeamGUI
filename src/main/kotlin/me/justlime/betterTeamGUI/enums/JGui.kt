@@ -2,7 +2,7 @@ package me.justlime.betterTeamGUI.enums
 
 sealed interface JGui {
 
-    sealed interface Config : JGui{
+    sealed interface Config : JGui {
         companion object {
             const val PREFIX = "command-prefix"
             const val USE_NATIVE_COMMAND = "use-native-command"
@@ -175,7 +175,6 @@ sealed interface JGui {
             const val DEMOTE_TO_ADMIN_CONFIRM_ITEM = DEMOTE_TO_ADMIN_VIEW + "confirm"
             const val DEMOTE_TO_ADMIN_CANCEL_ITEM = DEMOTE_TO_ADMIN_VIEW + "cancel"
 
-
             const val DEMOTE_TO_DEFAULT_VIEW = "demote-to-default-view."
             const val DEMOTE_TO_DEFAULT_VIEW_MAIN = DEMOTE_TO_DEFAULT_VIEW + Main.MAIN
             const val DEMOTE_TO_DEFAULT_VIEW_BACKGROUND = DEMOTE_TO_DEFAULT_VIEW + Main.BACKGROUND
@@ -199,7 +198,6 @@ sealed interface JGui {
             const val NEUTRAL_VIEW_BACKGROUND = NEUTRAL_VIEW + Main.BACKGROUND
             const val NEUTRAL_CONFIRM_ITEM = NEUTRAL_VIEW + "confirm"
             const val NEUTRAL_CANCEL_ITEM = NEUTRAL_VIEW + "cancel"
-
 
         }
     }
@@ -233,7 +231,6 @@ sealed interface JGui {
             const val DISBAND = "disband"
             const val RENAME = "rename"
 
-
             const val DESCRIPTION_TITLE = "anvil-ui.description.title"
             const val DESCRIPTION_LABEL = "anvil-ui.description.label"
             const val DESCRIPTION_INPUT_ITEM = "anvil-ui.description.input-item"
@@ -253,7 +250,6 @@ sealed interface JGui {
             const val RENAME_LABEL = "anvil-ui.rename.label"
             const val RENAME_INPUT_ITEM = "anvil-ui.rename.input-item"
             const val RENAME_OUTPUT_ITEM = "anvil-ui.rename.output-item"
-
 
         }
     }
@@ -325,7 +321,8 @@ sealed interface JGui {
             const val MEMBERS = "team.members"
             const val ALLIES = "team.allies"
         }
-        sealed interface Allies: TeamViewer{
+
+        sealed interface Allies : TeamViewer {
             companion object {
                 const val MAIN = "allies.main"
                 const val ALLY_ITEM = "allies.ally-item"
@@ -337,7 +334,7 @@ sealed interface JGui {
             }
         }
 
-        sealed interface Members: TeamViewer{
+        sealed interface Members : TeamViewer {
             companion object {
                 const val MAIN = "members.main"
                 const val MEMBER_ITEM = "members.member-item"
@@ -348,7 +345,17 @@ sealed interface JGui {
                 const val NEXT_SLOT = "members.slot.next"
             }
         }
+    }
 
+    sealed interface Levels : JGui {
+        companion object {
+            const val LEVEL_ITEM_DEFAULT_UNLOCKED = "level-item.default.unlocked"
+            const val LEVEL_ITEM_DEFAULT_CURRENT = "level-item.default.current"
+            const val LEVEL_ITEM_DEFAULT_PROGRESS = "level-item.default.progress"
+            const val LEVEL_ITEM_DEFAULT_PROGRESS_UNLOCKABLE = "level-item.default.progress-unlockable"
+            const val LEVEL_ITEM_DEFAULT_LOCKED = "level-item.default.locked"
+
+        }
     }
 
 }

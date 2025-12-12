@@ -2,39 +2,32 @@ package me.justlime.betterTeamGUI.gui.items
 
 import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
-import net.justlime.limeframegui.impl.ConfigHandler
+import net.justlime.limeframegui.models.GuiItem
 
-object TeamDashboardItem {
+object TeamDashboardItem : BaseGuiItem(JFiles.DASHBOARD_VIEW.filename) {
 
-    var config = ConfigHandler(JFiles.DASHBOARD_VIEW.filename)
-    var setting = config.loadInventorySetting(JGui.Main.MAIN)
-    var background = config.loadItems(JGui.Main.BACKGROUND)
+    var infoItemWithDesc: GuiItem? = null
+    var infoItemWithoutDesc: GuiItem? = null
+    var homeItem: GuiItem? = null
+    var chatItem: GuiItem? = null
+    var teamChatItem: GuiItem? = null
+    var allyChatItem: GuiItem? = null
+    var balanceItem: GuiItem? = null
+    var warpItem: GuiItem? = null
+    var membersItem: GuiItem? = null
+    var enderChestItem: GuiItem? = null
+    var allyItem: GuiItem? = null
+    var leaveItem: GuiItem? = null
+    var listItem: GuiItem? = null
+    var settingItem: GuiItem? = null
 
-    var infoItemWithDesc = config.loadItem(JGui.TeamView.INFO_WITH_DESC)
-    var infoItemWithoutDesc = config.loadItem(JGui.TeamView.INFO_WITHOUT_DESC)
-    var homeItem = config.loadItem(JGui.TeamView.HOME)
+    init {
+        reloadItems()
+    }
 
-    var chatItem = config.loadItem(JGui.TeamView.GLOBAL_CHAT)
-    var teamChatItem = config.loadItem(JGui.TeamView.TEAM_CHAT) ?: config.loadItem(JGui.TeamView.GLOBAL_CHAT)
-    var allyChatItem = config.loadItem(JGui.TeamView.ALLY_CHAT) ?: config.loadItem(JGui.TeamView.GLOBAL_CHAT)
-    var balanceItem = config.loadItem(JGui.TeamView.BALANCE)
-    var warpItem = config.loadItem(JGui.TeamView.WARP)
-    var membersItem = config.loadItem(JGui.TeamView.MEMBERS_GLOBAL)
-    var enderChestItem = config.loadItem(JGui.TeamView.TEAM_CHEST)
-    var allyItem = config.loadItem(JGui.TeamView.ALLY)
-    var leaveItem = config.loadItem(JGui.TeamView.LEAVE)
-    var listItem = config.loadItem(JGui.TeamView.LIST)
-    var settingItem = config.loadItem(JGui.TeamView.SETTING)
-
-    fun reload() {
-        config.reload()
-        config = ConfigHandler(JFiles.DASHBOARD_VIEW.filename)
-        setting = config.loadInventorySetting(JGui.Main.MAIN)
-        background = config.loadItems(JGui.Main.BACKGROUND)
-
+    override fun reloadItems() {
         infoItemWithDesc = config.loadItem(JGui.TeamView.INFO_WITH_DESC)
         infoItemWithoutDesc = config.loadItem(JGui.TeamView.INFO_WITHOUT_DESC)
-
         homeItem = config.loadItem(JGui.TeamView.HOME)
         chatItem = config.loadItem(JGui.TeamView.GLOBAL_CHAT)
         teamChatItem = config.loadItem(JGui.TeamView.TEAM_CHAT) ?: config.loadItem(JGui.TeamView.GLOBAL_CHAT)

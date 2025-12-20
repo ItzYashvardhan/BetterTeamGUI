@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.gui.java
 
 import com.booksaw.betterTeams.Main
+import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
@@ -9,6 +10,7 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.LevelItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
+import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
@@ -60,6 +62,10 @@ fun teamLevel(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamP
                 style.placeholder = getLevelPlaceHolder(nextLevel)
             }) {
                 if (canAfford) {
+                    if (teamPlayer.rank != PlayerRank.OWNER) {
+                        permissionDenied(it, setting.style)
+                        return@addItem
+                    }
                     TeamService.promoteTeam(player)
                     foliaLib.scheduler.runLater(Runnable {
                         GUIManager.openTeamLevelGUI(player, team)

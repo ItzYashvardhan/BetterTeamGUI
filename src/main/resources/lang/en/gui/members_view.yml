@@ -26,24 +26,28 @@ member-item:
     - "<gray>Rank: <yellow>{rank}"
     - ""
     - "<green>Click to manage this member."
+  click-sound: UI.BUTTON.CLICK,1.0
 
 member-item-no-admin:
   item: PLAYER_HEAD
   name: "<aqua>{team_player}"
   lore:
     - "<gray>Rank: <yellow>{rank}"
+  click-sound: UI.BUTTON.CLICK,1.0
 
 invite:
   name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
   lore:
     - "<gray>Click to invite player to your team.</gray>"
   item: LIME_STAINED_GLASS_PANE
+  click-sound: UI.BUTTON.CLICK,1.0
 
 locked-invite:
   name: "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
   lore:
     - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this member slot.</gray>"
   item: RED_STAINED_GLASS_PANE
+  click-sound: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE,0.1
 
 ban-list:
   name: "<#D6BA5B><bold>Banned Players</bold>"
@@ -55,6 +59,7 @@ ban-list:
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDkyZjA4YzEyOTQ4MjlkNDcxYThlMDEwOWEwNmZiNmFlNzE3ZTVmYWYzZTA4MDg0MDhhNjZkODg5MjI3ZGFjNyJ9fX0="
   slot: 45
+  click-sound: UI.BUTTON.CLICK,1.0
 
 anvil-ui:
   invite:

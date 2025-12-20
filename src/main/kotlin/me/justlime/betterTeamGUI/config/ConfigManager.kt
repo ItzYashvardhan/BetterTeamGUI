@@ -1,21 +1,7 @@
 package me.justlime.betterTeamGUI.config
 
 import me.justlime.betterTeamGUI.enums.JFiles
-import me.justlime.betterTeamGUI.gui.items.BanListItem
-import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
-import me.justlime.betterTeamGUI.gui.items.LevelItem
-import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
-import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
-import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
-import me.justlime.betterTeamGUI.gui.items.TeamListItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberManagementItem
-import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
-import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
+import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import org.bukkit.command.CommandSender
@@ -26,7 +12,9 @@ import org.bukkit.entity.Player
 import java.io.File
 
 object ConfigManager {
+
     lateinit var config: FileConfiguration
+    lateinit var sound: FileConfiguration
     lateinit var messages: FileConfiguration
 
     //GUI
@@ -63,23 +51,23 @@ object ConfigManager {
     fun load(sender: CommandSender) {
         reloadSafely(JFiles.CONFIG.filename, sender) { config = loadConfig(JFiles.CONFIG) }
         reloadSafely(JFiles.MESSAGES.filename, sender) { messages = loadConfig(JFiles.MESSAGES) }
-
+        reloadSafely(JFiles.SOUND.filename, sender) { sound = loadConfig(JFiles.SOUND) }
         reloadSafely(JFiles.ALLIES_VIEW.filename, sender) { alliesView = loadConfig(JFiles.ALLIES_VIEW); TeamAlliesItem.reload() }
         reloadSafely(JFiles.BAN_VIEW.filename, sender) { banView = loadConfig(JFiles.BAN_VIEW); BanListItem.reload() }
         reloadSafely(JFiles.BUTTONS.filename, sender) { buttons = loadConfig(JFiles.BUTTONS); TeamButton.reload() }
         reloadSafely(JFiles.COLORS.filename, sender) { colorsView = loadConfig(JFiles.COLORS); ColorPickerItem.reload() }
         reloadSafely(JFiles.DASHBOARD_VIEW.filename, sender) { dashBoardView = loadConfig(JFiles.DASHBOARD_VIEW); TeamDashboardItem.reload() }
-        reloadSafely(JFiles.DIALOG_VIEW.filename, sender) { dialogView = loadConfig(JFiles.DIALOG_VIEW);TeamDialogItem.reload() }
+        reloadSafely(JFiles.DIALOG_VIEW.filename, sender) { dialogView = loadConfig(JFiles.DIALOG_VIEW); TeamDialogItem.reload() }
         reloadSafely(JFiles.FONT.filename, sender) { font = loadConfig(JFiles.FONT) }
-        reloadSafely(JFiles.LEADERBOARD_VIEW.filename, sender) { leaderBoardView = loadConfig(JFiles.LEADERBOARD_VIEW);LeaderBoardItem.reload() }
+        reloadSafely(JFiles.LEADERBOARD_VIEW.filename, sender) { leaderBoardView = loadConfig(JFiles.LEADERBOARD_VIEW); LeaderBoardItem.reload() }
         reloadSafely(JFiles.LEVELS_VIEW.filename, sender) { levelsView = loadConfig(JFiles.LEVELS_VIEW); LevelItem.reload() }
-        reloadSafely(JFiles.LIST_VIEW.filename, sender) { listView = loadConfig(JFiles.LIST_VIEW);TeamListItem.reload() }
-        reloadSafely(JFiles.MEMBER_MANAGEMENT_VIEW.filename, sender) { memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW);TeamMemberManagementItem.reload() }
-        reloadSafely(JFiles.MEMBERS_VIEW.filename, sender) { membersView = loadConfig(JFiles.MEMBERS_VIEW);TeamMemberItem.reload() }
-        reloadSafely(JFiles.MONEY_VIEW.filename, sender) { moneyView = loadConfig(JFiles.MONEY_VIEW);TeamMoneyItem.reload() }
-        reloadSafely(JFiles.SETTING_VIEW.filename, sender) { settingView = loadConfig(JFiles.SETTING_VIEW);TeamSettingItem.reload() }
-        reloadSafely(JFiles.TEAM_VIEWER.filename, sender) { teamViewer = loadConfig(JFiles.TEAM_VIEWER);TeamViewerItems.reload() }
-        reloadSafely(JFiles.WARPS_VIEW.filename, sender) { warpsView = loadConfig(JFiles.WARPS_VIEW);TeamWarpItem.reload() }
+        reloadSafely(JFiles.LIST_VIEW.filename, sender) { listView = loadConfig(JFiles.LIST_VIEW); TeamListItem.reload() }
+        reloadSafely(JFiles.MEMBER_MANAGEMENT_VIEW.filename, sender) { memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW); TeamMemberManagementItem.reload() }
+        reloadSafely(JFiles.MEMBERS_VIEW.filename, sender) { membersView = loadConfig(JFiles.MEMBERS_VIEW); TeamMemberItem.reload() }
+        reloadSafely(JFiles.MONEY_VIEW.filename, sender) { moneyView = loadConfig(JFiles.MONEY_VIEW); TeamMoneyItem.reload() }
+        reloadSafely(JFiles.SETTING_VIEW.filename, sender) { settingView = loadConfig(JFiles.SETTING_VIEW); TeamSettingItem.reload() }
+        reloadSafely(JFiles.TEAM_VIEWER.filename, sender) { teamViewer = loadConfig(JFiles.TEAM_VIEWER); TeamViewerItems.reload() }
+        reloadSafely(JFiles.WARPS_VIEW.filename, sender) { warpsView = loadConfig(JFiles.WARPS_VIEW); TeamWarpItem.reload() }
 
         //Forms
         reloadSafely(JFiles.ALLY_FORM.filename, sender) { allyForm = loadConfig(JFiles.ALLY_FORM) }

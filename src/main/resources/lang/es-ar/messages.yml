@@ -1,0 +1,8 @@
+empty-input:
+  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>No podés dejar el campo vacío.</gradient>"
+warp-password-incorrect:
+  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>Contraseña incorrecta para este warp.</gradient>"
+
+## Used for {required_type} placeholder in levels_view.yml
+money: "Dinero"
+score: "Puntos"

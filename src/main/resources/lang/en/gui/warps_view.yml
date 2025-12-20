@@ -33,18 +33,14 @@ occupied-warp:
     - ""
     - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
     - "<yellow>Shift-Click</yellow> <gray>to delete warp</gray>"
+  click-sound: ENTITY.ENDERMAN.TELEPORT, 1.0
 
 locked-warp:
   item: RED_STAINED_GLASS_PANE
   name: "<b><red>Locked</red></b>"
   lore:
     - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this warp.</gray>"
-
-no-permission:
-  name: "<red>No Permission</red>"
-  item: BARRIER
-  lore:
-    - "<gray>You don't have permission to set new warp.</gray>"
+  click-sound: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE,0.1
 
 anvil-ui:
   set-warp-name:

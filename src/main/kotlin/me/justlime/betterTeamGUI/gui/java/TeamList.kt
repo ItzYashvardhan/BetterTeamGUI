@@ -210,6 +210,11 @@ fun openTeamInvites(setting: GUISetting, player: Player, invitedTeams: MutableLi
             nextSlot = TeamListItem.nextSlot
             nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
             prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+            buffer {
+                renderLimit = 10
+                margin = 3
+                cleanupMargin = 20
+            }
         }
         TeamListItem.background.forEach { setItem(it) }
 

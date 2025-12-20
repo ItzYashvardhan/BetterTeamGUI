@@ -1,10 +1,12 @@
 package me.justlime.betterTeamGUI.commands
 
+import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.utilities.TeamService
+import net.justlime.limeframegui.models.GuiSound
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
@@ -22,19 +24,20 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
     override fun execute(sender: CommandSender, label: String, args: Array<out String>): Boolean {
         //If it's a player running "/team" (booksaw original command) with no arguments
         if (args.isEmpty() && sender is Player) {
+            val sound = ConfigManager.sound.getString("open-gui", "BLOCK.NOTE_BLOCK.CHIME, 2.0") ?: "BLOCK.NOTE_BLOCK.CHIME, 2.0"
+            val finalSound = GuiSound.loadSound(sound)
             foliaLib.scheduler.runNextTick {
+                finalSound?.playSound(sender)
                 GUIManager.openTeamGUI(sender)
             }
 
             return true
         }
 
-        // If there are arguments, send it to BetterTeams
         return originalCommand.execute(sender, label, args)
     }
 
     override fun tabComplete(sender: CommandSender, alias: String, args: Array<out String>): MutableList<String> {
-        // Preserve original Tab Completion
         return originalCommand.tabComplete(sender, alias, args)
     }
 

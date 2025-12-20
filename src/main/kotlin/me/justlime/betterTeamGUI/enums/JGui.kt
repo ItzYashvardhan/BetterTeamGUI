@@ -6,6 +6,7 @@ sealed interface JGui {
         companion object {
             const val PREFIX = "command-prefix"
             const val USE_NATIVE_COMMAND = "use-native-command"
+            const val LANG = "lang"
         }
     }
 

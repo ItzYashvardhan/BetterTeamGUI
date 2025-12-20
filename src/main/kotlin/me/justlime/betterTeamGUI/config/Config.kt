@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.config
 
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration

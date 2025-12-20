@@ -10,6 +10,8 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 
 object TeamService {
+
+
     var command: String = ConfigManager.config.getString(JGui.Config.PREFIX) ?: "team"
 
     fun teamToPlaceholderMap(team: Team): Map<String, String> {

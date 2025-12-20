@@ -1,5 +1,7 @@
+#Supported language en,es-ar.
+lang: en # Required Server Restart to apply changes
 
-# This allow player to directly open gui through /team command or its aliases
+# This allows player to directly open gui through /team command or its aliases
 use-native-command: true # Required Server Restart to apply changes
 
 # # This is the prefix for all commands executed by the plugin.

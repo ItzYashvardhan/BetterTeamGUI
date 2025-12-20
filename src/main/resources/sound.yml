@@ -1,0 +1,7 @@
+# Play a Sound for first time when opening a team gui
+open-gui: BLOCK.NOTE_BLOCK.CHIME, 2.0
+
+anvil-ui:
+  cancel-sound: UI.BUTTON.CLICK, 1.0
+  invalid-sound: BLOCK.BELL.USE, 0.1
+  submit-sound: BLOCK.ANVIL.USE, 1.4

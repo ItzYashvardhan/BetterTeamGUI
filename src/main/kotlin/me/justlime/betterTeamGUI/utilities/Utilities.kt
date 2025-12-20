@@ -65,7 +65,13 @@ fun applyBackground(teamItem: TeamItem, builder: ChestGUIBuilder, enableNav: Boo
             this.nextSlot = teamItem.nextSlot
             this.nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
             this.prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+            buffer {
+                renderLimit = 10
+                margin = 3
+                cleanupMargin = 20
+            }
         }
+
 
         teamItem.background.forEach { setItem(it) }
 

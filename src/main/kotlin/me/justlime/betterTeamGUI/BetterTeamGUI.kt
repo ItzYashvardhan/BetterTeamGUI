@@ -7,6 +7,7 @@ import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
+import me.justlime.betterTeamGUI.listener.InventoryListener
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.color.FontLoader
@@ -22,6 +23,8 @@ lateinit var foliaLib: FoliaLib
 
 class BetterTeamGUI : JavaPlugin() {
 
+    var lang = "en"
+
     override fun onEnable() {
 
         ConsoleMessage.printHeader()
@@ -30,8 +33,11 @@ class BetterTeamGUI : JavaPlugin() {
         foliaLib = FoliaLib(this)
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
+        lang = this.config.getString("lang") ?: "en"
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
+        server.pluginManager.registerEvents(InventoryListener(), this)
+
 
         if (!this.server.pluginManager.isPluginEnabled("BetterTeams")) {
             ConsoleMessage.printStep("BETTERTEAMS PLUGIN REQUIRED", ConsoleMessage.Color.RED)

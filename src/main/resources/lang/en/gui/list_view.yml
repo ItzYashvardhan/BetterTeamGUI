@@ -38,6 +38,7 @@ team-item-with-description-in-team:
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
 
 team-item-without-description-in-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b>"
@@ -49,6 +50,7 @@ team-item-without-description-in-team:
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
 
 team-item-with-description-no-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
@@ -63,6 +65,7 @@ team-item-with-description-no-team:
     - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
 
 team-item-without-description-no-team:
   name: "<b>{team_color_code}{team}{/team_color_code}</b> <gray>({team_size}/{team_limit})</gray>"
@@ -75,6 +78,7 @@ team-item-without-description-no-team:
     - "<yellow>Right-Click</yellow> <gray>to join team</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
 
 
 search-item:
@@ -83,6 +87,7 @@ search-item:
     - "<gray>Click to search for a team by its name.</gray>"
   item: OAK_SIGN
   slot: 45
+  click-sound: UI.BUTTON.CLICK
 
 sort:
   order:
@@ -94,6 +99,7 @@ sort:
         - "<gray>Sorts the list from lowest to highest.</gray>"
         - ""
         - "<yellow>Click to switch to Descending ⬇</yellow>"
+      click-sound: UI.BUTTON.CLICK
     DESC:
       item: REDSTONE_TORCH
       slot: 50
@@ -102,6 +108,7 @@ sort:
         - "<gray>Sorts the list from highest to lowest.</gray>"
         - ""
         - "<yellow>Click to switch to Ascending ⬆</yellow>"
+      click-sound: UI.BUTTON.CLICK
   type:
     MONEY:
       item: SUNFLOWER
@@ -111,6 +118,7 @@ sort:
         - "<gray>Currently sorting by team balance.</gray>"
         - ""
         - "<yellow>Click to cycle sort mode ➤</yellow>"
+      click-sound: UI.BUTTON.CLICK
     SCORE:
       item: NETHER_STAR
       slot: 49
@@ -119,6 +127,7 @@ sort:
         - "<gray>Currently sorting by team score.</gray>"
         - ""
         - "<yellow>Click to cycle sort mode ➤</yellow>"
+      click-sound: UI.BUTTON.CLICK
     LEVEL:
       item: EXPERIENCE_BOTTLE
       slot: 49
@@ -127,6 +136,7 @@ sort:
         - "<gray>Currently sorting by team level.</gray>"
         - ""
         - "<yellow>Click to cycle sort mode ➤</yellow>"
+      click-sound: UI.BUTTON.CLICK
     MEMBERS:
       item: PLAYER_HEAD
       slot: 49
@@ -135,6 +145,7 @@ sort:
         - "<gray>Currently sorting by member count.</gray>"
         - ""
         - "<yellow>Click to cycle sort mode ➤</yellow>"
+      click-sound: UI.BUTTON.CLICK
 
 filter:
   DEFAULT:
@@ -145,6 +156,7 @@ filter:
       - "<gray>Showing all teams.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
+    click-sound: UI.BUTTON.CLICK
 
   OPEN_ONLY:
     item: OAK_DOOR
@@ -154,6 +166,7 @@ filter:
       - "<gray>Only showing teams that are open.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
+    click-sound: UI.BUTTON.CLICK
   CURRENTLY_ONLINE:
     item: LIME_DYE
     slot: 48
@@ -162,6 +175,7 @@ filter:
       - "<gray>Only showing teams with online members.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
+    click-sound: UI.BUTTON.CLICK
   NOT_FULL:
     item: CHEST
     slot: 48
@@ -170,6 +184,7 @@ filter:
       - "<gray>Only showing teams with available seats.</gray>"
       - ""
       - "<yellow>Click to change filter ➤</yellow>"
+    click-sound: UI.BUTTON.CLICK
 
 invitation:
   name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({invites})</gray>"
@@ -179,6 +194,8 @@ invitation:
     - "<green>Left-Click</green> <gray>to view</gray>"
   item: CHEST
   slot: 52
+  click-sound: UI.BUTTON.CLICK
+
 
 no-invitation:
   name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({invites})</gray>"
@@ -186,6 +203,7 @@ no-invitation:
     - "<gray>You have no pending team invitations</gray>"
   item: CHEST
   slot: 52
+  click-sound: UI.BUTTON.CLICK
 
 invitation-team-item:
   name: "<b>{team_color_code}{team}{/team_color_code}</b>"
@@ -199,6 +217,7 @@ invitation-team-item:
     - "<green>Left-Click</green> <gray>to accept invitation</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: UI.BUTTON.CLICK
 
 create:
   item:
@@ -208,6 +227,7 @@ create:
     item: PLAYER_HEAD
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTIyYTJhNTExY2IyOWRlZmJlNzg1YjhjMjI2NTRmNDZmYzgyNWJhMjUyODZjM2U4OGIzZDg2YjE1YzljIn19fQ=="
     slot: 53
+    click-sound: UI.BUTTON.CLICK
 
 anvil-ui:
   search-team:

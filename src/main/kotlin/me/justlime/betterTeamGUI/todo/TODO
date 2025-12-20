@@ -6,12 +6,7 @@ Todo
 - shift reload, view to '/team gui' and remove /teams command
 - add back tracking for team viewer
 
-2.1 Changelog
-- Added head texture support for offline cracked players via skin restorer
-- Added Team Level View
-- Fix wrong head texture in ally view
-- Fix click to Team View in ally view
-- Fix view sub-command in /teams
-- Fix showing warp instead of member slot in member view
-- Removed back in unnecessary view (only in config)
-- Refined and Reduced Vast Duplicate Code (Optimization)
+2.2 Changelog
+- Added Support for Folia Lib
+- Added Sounds
+- levelUp will show no-permission to member or admin

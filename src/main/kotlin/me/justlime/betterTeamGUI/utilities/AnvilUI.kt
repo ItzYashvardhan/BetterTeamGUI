@@ -4,6 +4,7 @@ import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.pluginInstance
 import net.justlime.limeframegui.models.GuiItem
+import net.justlime.limeframegui.models.GuiSound
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
@@ -37,17 +38,21 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
     val jsonString: String = GsonComponentSerializer.gson().serialize(title)
     val displayPlaceholder = legacySerializer.serialize(label)
     val plainPlaceholder = PlainTextComponentSerializer.plainText().serialize(label)
+    val cancelSoundPath = ConfigManager.sound.getString("anvil-ui.cancel-sound")
+    val cancelSound = if (cancelSoundPath != null) GuiSound.loadSound(cancelSoundPath) else null
+    val submitSoundPath = ConfigManager.sound.getString("anvil-ui.submit-sound")
+    val submitSound = if (submitSoundPath != null) GuiSound.loadSound(submitSoundPath) else null
 
     AnvilGUI.Builder().plugin(pluginInstance).jsonTitle(jsonString).text(displayPlaceholder).itemLeft(inputItem.toItemStack()).itemOutput(outputItem.toItemStack()).onClose {
         return@onClose
     }.onClick { slot, state ->
         if (slot != AnvilGUI.Slot.OUTPUT) {
+            cancelSound?.playSound(player)
             onCancel()
             return@onClick listOf(AnvilGUI.ResponseAction.close())
         }
 
         val fullInputText = state.text
-
         val userInput = if (fullInputText.startsWith(plainPlaceholder, ignoreCase = true)) {
             fullInputText.removePrefix(plainPlaceholder).trim()
         } else {
@@ -56,6 +61,8 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
 
         if (userInput.isEmpty()) {
             onInvalidInput()
+            player.closeInventory()
+            cancelSound?.playSound(player)
             val msg = ConfigManager.messages.getString("empty-input.chat") ?: ""
             val componentMsg = applyMiniColor(msg)
             adventure.player(player).sendMessage(componentMsg)
@@ -64,7 +71,7 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
             }, 30)
             return@onClick listOf(AnvilGUI.ResponseAction.close())
         }
-
+        submitSound?.playSound(player)
         onConfirm(userInput)
         return@onClick listOf(AnvilGUI.ResponseAction.close())
     }.open(player)

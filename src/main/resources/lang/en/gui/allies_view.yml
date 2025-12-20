@@ -29,6 +29,7 @@ ally-item:
     - "<red>Shift-Click</red> <gray>to remove ally</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: UI.BUTTON.CLICK
 
 ally-request-inbox:
   name: "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
@@ -38,6 +39,7 @@ ally-request-inbox:
     - "<green>Left-Click</green> <gray>to view</gray>"
   item: CHEST
   slot: 49
+  click-sound: UI.BUTTON.CLICK
 
 ally-request-item:
   name: "<b>{team_color_code}{team}{/team_color_code}</b>"
@@ -48,5 +50,6 @@ ally-request-item:
     - "<red>Shift-Click</red> <gray>to deny request</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: UI.BUTTON.CLICK
 
 

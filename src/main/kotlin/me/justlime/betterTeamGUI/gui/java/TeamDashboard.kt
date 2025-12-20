@@ -10,6 +10,7 @@ import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
+import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
@@ -54,7 +55,7 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
         val infoItem = if (team.description.isBlank()) TeamDashboardItem.infoItemWithoutDesc else TeamDashboardItem.infoItemWithDesc
         setItem(infoItem) {
             if (it.click.isLeftClick) GUIManager.openTeamLeaderBoardGUI(it.whoClicked as Player, team)
-            if (it.click.isRightClick) GUIManager.openTeamLevelGUI(player,team)
+            if (it.click.isRightClick) GUIManager.openTeamLevelGUI(player, team)
         }
 
 
@@ -88,6 +89,10 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
                 depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, true)
             }
             if (clickEvent.isRightClick) {
+                if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                    permissionDenied(clickEvent, setting.style)
+                    return@setItem
+                }
                 depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, false)
             }
         }

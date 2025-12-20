@@ -13,6 +13,7 @@ object TeamSettingItem : BaseGuiItem(JFiles.SETTING_VIEW.filename) {
     var statusOpen: GuiItem? = null
     var statusClosed: GuiItem? = null
     var anchor: GuiItem? = null
+    var noAnchor: GuiItem? = null
     var title: GuiItem? = null
     var pvp: GuiItem? = null
     var disband: GuiItem? = null
@@ -49,6 +50,7 @@ object TeamSettingItem : BaseGuiItem(JFiles.SETTING_VIEW.filename) {
         statusOpen = config.loadItem(JGui.SettingView.STATUS_OPEN)
         statusClosed = config.loadItem(JGui.SettingView.STATUS_CLOSED)
         anchor = config.loadItem(JGui.SettingView.ANCHOR)
+        noAnchor = config.loadItem(JGui.SettingView.NO_ANCHOR)
         title = config.loadItem(JGui.SettingView.TITLE)
         pvp = config.loadItem(JGui.SettingView.PVP)
         disband = config.loadItem(JGui.SettingView.DISBAND)

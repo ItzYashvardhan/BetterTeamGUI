@@ -8,6 +8,7 @@ import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
 import org.bukkit.Material
 import org.bukkit.configuration.ConfigurationSection
@@ -224,7 +225,9 @@ object GUIManager {
     fun openTeamSettingGUI(player: Player) {
         val team = Team.getTeam(player.name) ?: return
         val teamPlayer = team.getTeamPlayer(player) ?: return
-        teamSettingView(TeamSettingItem.setting.clone(), player, team, teamPlayer).open(player)
+        teamSettingView(TeamSettingItem.setting.clone().apply {
+            style.placeholder = TeamService.teamToPlaceholderMap(team)
+        }, player, team, teamPlayer).open(player)
     }
 
     fun openColorPickerGUI(player: Player) {

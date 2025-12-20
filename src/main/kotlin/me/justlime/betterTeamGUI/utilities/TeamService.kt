@@ -18,6 +18,7 @@ object TeamService {
         return mapOf(
             "{team}" to (team.name ?: "N/A"),
             "{tag}" to (team.tag ?: "N/A"),
+            "{pvp}" to (team.isPvp.toString()),
             "{team_size}" to team.members.size().toString(),
             "{team_limit}" to team.teamLimit.toString(),
             "{team_warps}" to team.maxWarps.toString(),
@@ -26,8 +27,7 @@ object TeamService {
             "{team_money}" to team.money.toString(),
             "{anchor}" to team.isAnchored.toString(),
             "{team_description}" to team.description,
-            "{team_color_code}" to "<" + team.color.name + ">",
-            "{/team_color_code}" to "</" + team.color.name + ">",
+            "{color}" to team.color.name,
             "{allies_request}" to team.allyRequests.size.toString(),
         )
     }
@@ -36,6 +36,7 @@ object TeamService {
         return mapOf(
             "{rank}" to teamPlayer.rank.name,
             "{team_player}" to (teamPlayer.player.name ?: ""),
+            "{title}" to (teamPlayer.title ?: "")
         )
     }
 

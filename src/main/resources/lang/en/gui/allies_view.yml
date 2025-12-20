@@ -22,7 +22,7 @@ main:
     next: 51
 
 ally-item:
-  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
+  name: "<b><{color}>{team}</{color}></b>"
   lore:
     - ""
     - "<green>Left-Click</green> <gray>to view team</gray>"
@@ -42,7 +42,7 @@ ally-request-inbox:
   click-sound: UI.BUTTON.CLICK
 
 ally-request-item:
-  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
+  name: "<b><{color}>{team}</{color}></b>"
   lore:
     - ""
     - "<green>Left-Click</green> <gray>to accept request</gray>"

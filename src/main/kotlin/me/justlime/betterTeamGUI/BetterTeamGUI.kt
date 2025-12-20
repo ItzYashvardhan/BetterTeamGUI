@@ -34,6 +34,15 @@ class BetterTeamGUI : JavaPlugin() {
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         lang = this.config.getString("lang") ?: "en"
+        when (lang) {
+            //Give credit to HATOR for providing this lang
+            "es-ar" -> {
+                ConsoleMessage.printStep("Language set to Spanish (Argentina)", ConsoleMessage.Color.YELLOW)
+                ConsoleMessage.printStep("Translated by HATOR", ConsoleMessage.Color.BRIGHT_GREEN)
+            }
+        }
+
+
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
         server.pluginManager.registerEvents(InventoryListener(), this)

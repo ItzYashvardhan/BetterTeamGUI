@@ -23,25 +23,28 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     onClick {
         it.isCancelled = true
     }
-    applyBackground(TeamSettingItem, this, false){
+    applyBackground(TeamSettingItem, this, false) {
         GUIManager.openTeamGUI(player)
     }
+    setting.style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer) // TODO ":( didn't work please someone fix it"
 
     // Color Picker
-    setItem(TeamSettingItem.colorPicker.apply {
-        this?.style?.placeholder = mapOf("{color}" to team.color.name)
+    setItem(TeamSettingItem.colorPicker?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
         GUIManager.openColorPickerGUI(player)
     }
 
     // Description
-    setItem(TeamSettingItem.description) { event ->
+    setItem(TeamSettingItem.description?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
@@ -53,7 +56,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, { }, reopenGUI) { newDescription ->
                 TeamService.setDescription(player, newDescription)
-                foliaLib.scheduler.runLater( Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -61,9 +64,11 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
 
     // Tag
-    setItem(TeamSettingItem.tag) { event ->
+    setItem(TeamSettingItem.tag?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
@@ -75,7 +80,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newTag ->
                 TeamService.setTag(player, newTag)
-                foliaLib.scheduler.runLater( Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -87,7 +92,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(statusItem) { event ->
         // Toggle status
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
 
@@ -97,12 +102,13 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
 
     // Anchor
-    val anchorItem = TeamSettingItem.anchor.apply {
-        this?.style?.placeholder = TeamService.teamToPlaceholderMap(team)
-    }
-    setItem(anchorItem) { event ->
+    val anchorItem = if (team.teamHome != null) TeamSettingItem.anchor else TeamSettingItem.noAnchor
+
+    setItem(anchorItem?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
 
@@ -114,9 +120,11 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
 
     // Title
-    setItem(TeamSettingItem.title) { event ->
+    setItem(TeamSettingItem.title?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
 
@@ -130,7 +138,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newTitle ->
                 TeamService.setTitle(player, newTitle)
-                foliaLib.scheduler.runLater( Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -138,25 +146,27 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     }
 
     // PvP
-    setItem(TeamSettingItem.pvp) { event ->
+    setItem(TeamSettingItem.pvp?.apply {
+        style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+    }) { event ->
         if (teamPlayer.rank == PlayerRank.DEFAULT) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
         // Toggle friendly fire
         TeamService.togglePvp(player)
-        foliaLib.scheduler.runLater( Runnable {
-            event.update()
-        }, 2)
+        foliaLib.scheduler.runLater(Runnable {
+            GUIManager.openTeamSettingGUI(player)
+        }, 4)
     }
 
     // Rename
     val renameItem = TeamSettingItem.rename?.apply {
-        style.placeholder =  TeamService.teamToPlaceholderMap(team)
+        style.placeholder = TeamService.teamToPlaceholderMap(team)
     }
     setItem(renameItem) { event ->
         if (teamPlayer.rank != PlayerRank.OWNER) {
-            permissionDenied(event,setting.style)
+            permissionDenied(event, setting.style)
             return@setItem
         }
 
@@ -170,7 +180,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newName ->
                 TeamService.rename(player, newName)
-                foliaLib.scheduler.runLater( Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     reopenGUI()
                 }, 2)
             }

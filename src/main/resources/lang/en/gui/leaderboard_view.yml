@@ -22,7 +22,7 @@ main:
     next: 51
 
 team-leaderboard-item:
-  name: "<b>{team_color_code}{team}{/team_color_code}</b>"
+  name: "<b><{color}>{team}</{color}></b>"
   lore:
     - " "
     - " <#5BD686>• Rank:</#5BD686> <white>#<bold>{team_position}</bold></white>"
@@ -31,3 +31,4 @@ team-leaderboard-item:
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
+  click-sound: UI.BUTTON.CLICK

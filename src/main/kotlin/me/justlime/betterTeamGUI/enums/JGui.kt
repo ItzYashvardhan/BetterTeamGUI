@@ -227,6 +227,7 @@ sealed interface JGui {
             const val STATUS_OPEN = "status-open"
             const val STATUS_CLOSED = "status-closed"
             const val ANCHOR = "anchor"
+            const val NO_ANCHOR = "no-anchor"
             const val TITLE = "title"
             const val PVP = "pvp"
             const val DISBAND = "disband"

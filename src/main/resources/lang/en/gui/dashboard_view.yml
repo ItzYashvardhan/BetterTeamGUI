@@ -29,6 +29,7 @@ leave:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkzYjhkYzkzZjAxODY2MGFhOTI1NmI5MWJiNzcwY2JjYmNjNjJhZTYxZTdhNjcxYzc1ZGM1NDQ1NjljMWE3OCJ9fX0=
   slot: 8
+  click-sound: UI.BUTTON.CLICK
 
 info-with-description:
   name: "<b><#5BD686>%betterteams_displayname% Team</b> <gray>(%betterteams_members%/%betterteams_maxmembers%)</gray>"

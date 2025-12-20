@@ -4,17 +4,17 @@ import me.justlime.betterTeamGUI.pluginInstance
 
 enum class JFiles(val filename: String) {
     CONFIG("config.yml"),
-    MESSAGES("lang/${pluginInstance.lang}/messages.yml"),
     SOUND("sound.yml"),
+    FONT("font.yml"),
 
     //Java Config
+    MESSAGES("lang/${pluginInstance.lang}/messages.yml"),
     ALLIES_VIEW("lang/${pluginInstance.lang}/gui/allies_view.yml"),
     BAN_VIEW("lang/${pluginInstance.lang}/gui/ban_view.yml"),
     BUTTONS("lang/${pluginInstance.lang}/gui/buttons.yml"),
     COLORS("lang/${pluginInstance.lang}/gui/color_picker.yml"),
     DASHBOARD_VIEW("lang/${pluginInstance.lang}/gui/dashboard_view.yml"),
     DIALOG_VIEW("lang/${pluginInstance.lang}/gui/dialog_view.yml"),
-    FONT("lang/${pluginInstance.lang}/gui/font.yml"),
     LEADERBOARD_VIEW("lang/${pluginInstance.lang}/gui/leaderboard_view.yml"),
     LEVELS_VIEW("lang/${pluginInstance.lang}/gui/levels_view.yml"),
     LIST_VIEW("lang/${pluginInstance.lang}/gui/list_view.yml"),

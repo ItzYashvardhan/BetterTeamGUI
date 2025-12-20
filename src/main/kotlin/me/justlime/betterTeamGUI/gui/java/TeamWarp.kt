@@ -156,7 +156,7 @@ fun validateAndTeleport(player: Player, warp: Warp) {
 
     openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel) { password ->
         if (warp.isCorrectPassword(password)) {
-            foliaLib.scheduler.runLater(Runnable {
+            foliaLib.scheduler.runAtEntityLater(player, Runnable {
                 TeamService.warp(player, warp.name, password)
             }, 2)
             GUIManager.closeInventory(player)

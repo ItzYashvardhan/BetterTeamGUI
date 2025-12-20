@@ -5,6 +5,7 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.Config
 import me.justlime.betterTeamGUI.config.FormService
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import org.bukkit.Bukkit
@@ -46,7 +47,7 @@ object BForm {
             } else {
                 // Execute the command with the provided team name.
                 player.performCommand("team create $teamName")
-                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     GUIManager.openTeamGUI(player)
                 }, 4)
             }
@@ -362,7 +363,7 @@ object BForm {
 
             val index = response.clickedButtonId()
             if (index in warps.indices) {
-                Bukkit.getScheduler().runTaskLater((pluginInstance), Runnable {
+                foliaLib.scheduler.runLater(Runnable {
                     (teamPlayer.player as Player).teleport(warps[index].location)
                 }, 4)
             }
@@ -465,7 +466,8 @@ object BForm {
      * @param action the lambda to execute if the button is pressed
      * @return the action lambda if the button was added; null otherwise.
      */
-    private fun createButton(form: SimpleForm.Builder, section: ConfigurationSection, team: Team, teamPlayer: TeamPlayer, player: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
+    private fun createButton(
+        form: SimpleForm.Builder, section: ConfigurationSection, team: Team, teamPlayer: TeamPlayer, player: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
     ): (() -> Unit)? {
         val enabled = section.getBoolean("enabled", true)
         if (!enabled) {
@@ -480,7 +482,8 @@ object BForm {
         return action
     }
 
-    private fun createButton(form: SimpleForm.Builder, section: ConfigurationSection, playerHead: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
+    private fun createButton(
+        form: SimpleForm.Builder, section: ConfigurationSection, playerHead: OfflinePlayer? = null, editLines: (String) -> String = { it }, action: () -> Unit
     ): (() -> Unit)? {
         val enabled = section.getBoolean("enabled", true)
         if (!enabled) {

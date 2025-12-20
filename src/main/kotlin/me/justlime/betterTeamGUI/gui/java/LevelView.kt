@@ -4,13 +4,13 @@ import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.LevelItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 private enum class RequiredType { MONEY, SCORE }
@@ -61,9 +61,9 @@ fun teamLevel(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamP
             }) {
                 if (canAfford) {
                     TeamService.promoteTeam(player)
-                    Bukkit.getScheduler().runTaskLater(Main.plugin, Runnable{
+                    foliaLib.scheduler.runLater(Runnable {
                         GUIManager.openTeamLevelGUI(player, team)
-                    },2)
+                    }, 2)
                 }
             }
         }

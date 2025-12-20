@@ -3,11 +3,9 @@ package me.justlime.betterTeamGUI.gui.java
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
@@ -18,7 +16,6 @@ import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import net.justlime.limeframegui.utilities.item
 import net.justlime.limeframegui.utilities.update
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
@@ -48,15 +45,15 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
-            val title = applyMiniColor(TeamSettingItem.descriptionTitle ?: "")
-            val label = applyMiniColor(TeamSettingItem.descriptionLabel ?: "")
+            val title = applyMiniColor(TeamSettingItem.descriptionTitle)
+            val label = applyMiniColor(TeamSettingItem.descriptionLabel)
             val inputItem = TeamSettingItem.descriptionInputItem ?: GuiItem(Material.PAPER)
             val outputItem = TeamSettingItem.descriptionOutputItem ?: GuiItem(Material.PAPER)
             val reopenGUI = { GUIManager.openTeamSettingGUI(player) }
 
             openAnvilGUI(player, title, label, inputItem, outputItem, { }, reopenGUI) { newDescription ->
                 TeamService.setDescription(player, newDescription)
-                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                foliaLib.scheduler.runLater( Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -70,15 +67,15 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
             return@setItem
         }
         (event.whoClicked as? Player)?.let { player ->
-            val title = applyMiniColor(TeamSettingItem.tagTitle ?: "")
-            val label = applyMiniColor(TeamSettingItem.tagLabel ?: "")
+            val title = applyMiniColor(TeamSettingItem.tagTitle)
+            val label = applyMiniColor(TeamSettingItem.tagLabel)
             val inputItem = TeamSettingItem.tagInputItem ?: GuiItem(Material.NAME_TAG)
             val outputItem = TeamSettingItem.tagOutputItem ?: GuiItem(Material.NAME_TAG)
             val reopenGUI = { GUIManager.openTeamSettingGUI(player) }
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newTag ->
                 TeamService.setTag(player, newTag)
-                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                foliaLib.scheduler.runLater( Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -124,8 +121,8 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         }
 
         (event.whoClicked as? Player)?.let { player ->
-            val title = applyMiniColor(TeamSettingItem.titleTitle ?: "")
-            val label = applyMiniColor(TeamSettingItem.titleLabel ?: "")
+            val title = applyMiniColor(TeamSettingItem.titleTitle)
+            val label = applyMiniColor(TeamSettingItem.titleLabel)
             val inputItem = TeamSettingItem.titleInputItem ?: GuiItem(Material.PAPER)
             val outputItem = TeamSettingItem.titleOutputItem ?: GuiItem(Material.PAPER)
 
@@ -133,7 +130,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newTitle ->
                 TeamService.setTitle(player, newTitle)
-                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                foliaLib.scheduler.runLater( Runnable {
                     reopenGUI()
                 }, 2)
             }
@@ -148,7 +145,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         }
         // Toggle friendly fire
         TeamService.togglePvp(player)
-        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        foliaLib.scheduler.runLater( Runnable {
             event.update()
         }, 2)
     }
@@ -164,8 +161,8 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
         }
 
         (event.whoClicked as? Player)?.let { player ->
-            val title = applyMiniColor(TeamSettingItem.renameTitle ?: "")
-            val label = applyMiniColor(TeamSettingItem.renameLabel ?: "")
+            val title = applyMiniColor(TeamSettingItem.renameTitle)
+            val label = applyMiniColor(TeamSettingItem.renameLabel)
             val inputItem = TeamSettingItem.renameInputItem ?: GuiItem(Material.ANVIL)
             val outputItem = TeamSettingItem.renameOutputItem ?: GuiItem(Material.ANVIL)
 
@@ -173,7 +170,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
             openAnvilGUI(player, title, label, inputItem, outputItem, {}, reopenGUI) { newName ->
                 TeamService.rename(player, newName)
-                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                foliaLib.scheduler.runLater( Runnable {
                     reopenGUI()
                 }, 2)
             }

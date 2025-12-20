@@ -4,8 +4,6 @@ import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
@@ -24,7 +22,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
     ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
-        applyBackground(TeamMemberItem, this){
+        applyBackground(TeamMemberItem, this) {
             GUIManager.openTeamGUI(player)
         }
 

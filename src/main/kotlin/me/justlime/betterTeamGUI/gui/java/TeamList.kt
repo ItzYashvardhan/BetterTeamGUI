@@ -2,10 +2,10 @@ package me.justlime.betterTeamGUI.gui.java
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamListItem
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
@@ -156,7 +156,7 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
                     onCancel = { GUIManager.openTeamListGUI(player) },
                     onConfirm = { teamName ->
                         TeamService.createTeam(player, teamName)
-                        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                        foliaLib.scheduler.runLater(Runnable {
                             GUIManager.openTeamGUI(player)
                         }, 4)
                     })

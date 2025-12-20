@@ -6,9 +6,9 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import com.booksaw.betterTeams.Warp
 import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.adventure
 import me.justlime.betterTeamGUI.utilities.applyBackground
@@ -18,13 +18,12 @@ import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
 fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Player): ChestGUI = ChestGUI(setting) {
     onClick { it.isCancelled = true }
-    applyBackground(TeamWarpItem, this){
+    applyBackground(TeamWarpItem, this) {
         GUIManager.openTeamGUI(player)
     }
     addPage {
@@ -54,7 +53,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                             return@addItem
                         }
                         TeamService.delWarp(clickEvent.whoClicked as Player, warp.name)
-                        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                        foliaLib.scheduler.runLater(Runnable {
                             GUIManager.openTeamWarpGUI(clickEvent.whoClicked as Player)
                         }, 2)
                         return@addItem
@@ -65,7 +64,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                     else {
                         (clickEvent.whoClicked as? Player)?.let { player ->
                             if (!warp.hasPassword()) {
-                                Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                                foliaLib.scheduler.runAtEntityLater(player, Runnable {
                                     TeamService.warp(player, warp.name)
                                 }, 2)
                                 GUIManager.closeInventory(player)
@@ -92,8 +91,8 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                     }
 
                     (clickEvent.whoClicked as? Player)?.let { player ->
-                        val title = applyMiniColor(TeamWarpItem.setWarpNameTitle ?: "")
-                        val label = applyMiniColor(TeamWarpItem.setWarpNameLabel ?: "")
+                        val title = applyMiniColor(TeamWarpItem.setWarpNameTitle)
+                        val label = applyMiniColor(TeamWarpItem.setWarpNameLabel)
                         val inputItem = TeamWarpItem.setWarpNameInputItem ?: GuiItem(Material.PAPER)
                         val outputItem = TeamWarpItem.setWarpNameOutputItem ?: GuiItem(Material.PAPER)
 
@@ -105,7 +104,7 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                             } else arrayOf(warpInput)
 
                             TeamService.setWarp(player, args[0], args.getOrNull(1))
-                            Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+                            foliaLib.scheduler.runLater(Runnable {
                                 reopenGUI()
                             }, 2)
 
@@ -147,8 +146,8 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
 }
 
 fun validateAndTeleport(player: Player, warp: Warp) {
-    val title = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportTitle ?: "")
-    val label = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportLabel ?: "")
+    val title = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportTitle)
+    val label = applyMiniColor(TeamWarpItem.enterWarpPasswordToTeleportLabel)
     val inputItem = TeamWarpItem.enterWarpPasswordToTeleportInputItem ?: GuiItem(Material.STONE)
     val outputItem = TeamWarpItem.enterWarpPasswordToTeleportOutputItem ?: GuiItem(Material.STONE)
     val onInvalidInput = { }
@@ -157,7 +156,7 @@ fun validateAndTeleport(player: Player, warp: Warp) {
 
     openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel) { password ->
         if (warp.isCorrectPassword(password)) {
-            Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+            foliaLib.scheduler.runLater(Runnable {
                 TeamService.warp(player, warp.name, password)
             }, 2)
             GUIManager.closeInventory(player)

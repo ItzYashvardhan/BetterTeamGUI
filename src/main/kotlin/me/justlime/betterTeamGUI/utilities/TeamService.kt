@@ -4,11 +4,8 @@ import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JGui
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.pluginInstance
-import net.justlime.limeframegui.handler.GUIEventHandler
-import net.justlime.limeframegui.utilities.FrameAdapter
-import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 
@@ -125,7 +122,7 @@ object TeamService {
 
     fun disbandTeam(player: Player) {
         player.performCommand("$command disband")
-        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        foliaLib.scheduler.runLater(Runnable {
             player.performCommand("$command disband")
         }, 4)
     }
@@ -137,7 +134,7 @@ object TeamService {
     fun setTeamColor(player: Player, color: String) {
         //string get like blue, red
         player.performCommand("$command color $color")
-        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        foliaLib.scheduler.runLater(Runnable {
             GUIManager.openTeamSettingGUI(player)
         }, 4)
     }
@@ -170,7 +167,7 @@ object TeamService {
         player.performCommand("$command neutral ${allyTeam.name}")
     }
 
-    fun promoteTeam(player: Player){
+    fun promoteTeam(player: Player) {
         player.performCommand("$command rankup")
     }
 

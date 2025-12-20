@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI
 
+import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.commands.TeamCommandProxy
 import me.justlime.betterTeamGUI.config.Config
@@ -17,13 +18,16 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 lateinit var pluginInstance: BetterTeamGUI
+lateinit var foliaLib: FoliaLib
 
 class BetterTeamGUI : JavaPlugin() {
+
     override fun onEnable() {
 
         ConsoleMessage.printHeader()
         ConsoleMessage.printStep("Enabling BetterTeamGUI")
         pluginInstance = this
+        foliaLib = FoliaLib(this)
         if (!this.dataFolder.exists()) this.dataFolder.mkdir()
         this.saveDefaultConfig()
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
@@ -78,6 +82,7 @@ class BetterTeamGUI : JavaPlugin() {
             stylishTitle = ConfigManager.font.getBoolean("small-caps", true)
         }
         ItemFlag.HIDE_ATTRIBUTES
+        LimeFrameAPI.enableFoliaLib()
     }
 
 }

@@ -3,23 +3,12 @@ package me.justlime.betterTeamGUI.gui
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.FormService
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
-import me.justlime.betterTeamGUI.gui.items.BanListItem
-import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
-import me.justlime.betterTeamGUI.gui.items.LevelItem
-import me.justlime.betterTeamGUI.gui.items.TeamAlliesItem
-import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
-import me.justlime.betterTeamGUI.gui.items.TeamListItem
-import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
-import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
-import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
-import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
-import me.justlime.betterTeamGUI.gui.items.TeamWarpItem
+import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.gui.java.*
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.enchantments.Enchantment
@@ -94,7 +83,7 @@ object GUIManager {
     }
 
     fun closeInventory(player: Player) {
-        Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+        foliaLib.scheduler.runLater(Runnable {
             player.closeInventory()
         }, 2)
     }
@@ -171,7 +160,7 @@ object GUIManager {
             return
         }
         val setting = TeamMemberItem.setting
-        teamMemberView(setting,player, team)
+        teamMemberView(setting, player, team)
     }
 
     fun openTeamMemberManagementGUI(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
@@ -285,9 +274,10 @@ object GUIManager {
     }
 
     fun openTeamLevelGUI(player: Player, team: Team) {
-        if (isBedrockPlayer(player)) {}
+        if (isBedrockPlayer(player)) {
+        }
         val teamPlayer = team.getTeamPlayer(player) ?: return
-        teamLevel(LevelItem.setting.clone(),player,team,teamPlayer)
+        teamLevel(LevelItem.setting.clone(), player, team, teamPlayer)
     }
 
     fun openTeamViewerGUI(player: Player, targetTeam: Team) {
@@ -295,7 +285,7 @@ object GUIManager {
             BForm.openTeamOtherForm(player, targetTeam)
             return
         }
-        val  setting = TeamViewerItems.teamViewerSetting.clone()
+        val setting = TeamViewerItems.teamViewerSetting.clone()
         teamViewer(setting = setting, player, targetTeam)
     }
 
@@ -314,7 +304,5 @@ object GUIManager {
         }
         teamViewerAllies(setting = TeamViewerItems.teamViewerAlliesSetting.clone(), player, team)
     }
-
-
 
 }

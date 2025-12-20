@@ -25,6 +25,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
     compileOnly("com.github.booksaw:BetterTeams:4.15.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.tcoded:FoliaLib:0.5.1")
 
     //Metrics
     implementation("org.bstats:bstats-bukkit:3.1.0")
@@ -59,11 +60,13 @@ tasks.withType<ShadowJar> {
     }
     minimize {
         exclude(dependency("net.wesjd:anvilgui"))
+        exclude(dependency("com.tcoded:FoliaLib"))
     }
     relocate("net.wesjd.anvilgui", "me.justlime.betterTeamGUI.libs.anvilgui")
     relocate("net.kyori", "me.justlime.betterTeamGUI.libs.kyori")
     relocate("net.justlime.limeframegui", "me.justlime.betterTeamGUI.libs.limeframegui")
     relocate("org.bstats", "me.justlime.betterTeamGUI.libs.bstats")
+    relocate("com.tcoded", "me.justlime.betterTeamGUI.libs.tcoded")
 
 }
 

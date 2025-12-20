@@ -1,6 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
 import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.pluginInstance
 import net.justlime.limeframegui.models.GuiItem
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
@@ -10,7 +11,6 @@ import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.wesjd.anvilgui.AnvilGUI
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 val legacySerializer = LegacyComponentSerializer.builder().hexColors().useUnusualXRepeatedCharacterHexFormat().build()
@@ -59,7 +59,7 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
             val msg = ConfigManager.messages.getString("empty-input.chat") ?: ""
             val componentMsg = applyMiniColor(msg)
             adventure.player(player).sendMessage(componentMsg)
-            Bukkit.getScheduler().runTaskLater(pluginInstance, Runnable {
+            foliaLib.scheduler.runLater(Runnable {
                 openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel, onConfirm)
             }, 30)
             return@onClick listOf(AnvilGUI.ResponseAction.close())

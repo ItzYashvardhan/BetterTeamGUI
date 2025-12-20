@@ -5,8 +5,6 @@ import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.utilities.TeamService
-import net.justlime.limeframegui.LimeFrameGUI
-import net.justlime.limeframegui.handler.GUIEventHandler
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player

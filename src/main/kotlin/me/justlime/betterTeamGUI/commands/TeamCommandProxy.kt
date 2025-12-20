@@ -1,5 +1,6 @@
 package me.justlime.betterTeamGUI.commands
 
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
@@ -9,9 +10,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import org.jetbrains.annotations.ApiStatus
 import java.lang.reflect.Field
-import kotlin.collections.iterator
 
 //Note: Generated from Gemini Model 3.0
 /**
@@ -23,9 +22,10 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
     override fun execute(sender: CommandSender, label: String, args: Array<out String>): Boolean {
         //If it's a player running "/team" (booksaw original command) with no arguments
         if (args.isEmpty() && sender is Player) {
-            Bukkit.getScheduler().runTask(pluginInstance, Runnable {
+            foliaLib.scheduler.runNextTick {
                 GUIManager.openTeamGUI(sender)
-            })
+            }
+
             return true
         }
 

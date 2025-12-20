@@ -2,7 +2,6 @@ package me.justlime.betterTeamGUI.gui.java
 
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
-import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import net.justlime.limeframegui.models.GUISetting

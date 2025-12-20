@@ -52,6 +52,7 @@ class BetterTeamGUI : JavaPlugin() {
             ConsoleMessage.printStep("BETTERTEAMS PLUGIN REQUIRED", ConsoleMessage.Color.RED)
             ConsoleMessage.printStep("Disabling BetterTeamsGUI")
             this.server.pluginManager.disablePlugin(this)
+
         }
 
         if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {

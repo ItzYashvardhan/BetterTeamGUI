@@ -28,6 +28,8 @@ object ConfigManager {
     lateinit var leaderBoardView: FileConfiguration
     lateinit var levelsView: FileConfiguration
     lateinit var listView: FileConfiguration
+    lateinit var inviteView: FileConfiguration
+    lateinit var invitedPlayersView: FileConfiguration
     lateinit var memberManagementView: FileConfiguration
     lateinit var membersView: FileConfiguration
     lateinit var moneyView: FileConfiguration
@@ -62,6 +64,8 @@ object ConfigManager {
         reloadSafely(JFiles.LEADERBOARD_VIEW.filename, sender) { leaderBoardView = loadConfig(JFiles.LEADERBOARD_VIEW); LeaderBoardItem.reload() }
         reloadSafely(JFiles.LEVELS_VIEW.filename, sender) { levelsView = loadConfig(JFiles.LEVELS_VIEW); LevelItem.reload() }
         reloadSafely(JFiles.LIST_VIEW.filename, sender) { listView = loadConfig(JFiles.LIST_VIEW); TeamListItem.reload() }
+        reloadSafely(JFiles.INVITE_VIEW.filename, sender) { inviteView = loadConfig(JFiles.INVITE_VIEW); InviteViewItem.reload() }
+        reloadSafely(JFiles.INVITED_PLAYERS_VIEW.filename, sender) { invitedPlayersView = loadConfig(JFiles.INVITED_PLAYERS_VIEW); InvitedPlayersListItem.reload() }
         reloadSafely(JFiles.MEMBER_MANAGEMENT_VIEW.filename, sender) { memberManagementView = loadConfig(JFiles.MEMBER_MANAGEMENT_VIEW); TeamMemberManagementItem.reload() }
         reloadSafely(JFiles.MEMBERS_VIEW.filename, sender) { membersView = loadConfig(JFiles.MEMBERS_VIEW); TeamMemberItem.reload() }
         reloadSafely(JFiles.MONEY_VIEW.filename, sender) { moneyView = loadConfig(JFiles.MONEY_VIEW); TeamMoneyItem.reload() }

@@ -1,7 +1,17 @@
+player-only:
+  chat: "<gradient:#FF7608:#FF7608>BetterTeamGUI</gradient><aqua> » </aqua><gradient:#f36262:#ff9494>Solo los jugadores pueden ejecutar este comando.</gradient>"
+
+no-permission:
+  chat: "<gradient:#C45700:#FF7608>BetterTeamGUI</gradient><aqua> » </aqua><gradient:#f36262:#ff9494>No tenés permiso para hacer eso.</gradient>"
+reload:
+  chat: "<gradient:#C45700:#FF7608>BetterTeamGUI</gradient><aqua> » </aqua><gradient:#00FF00:#00AA00>Configuración recargada exitosamente.</gradient>"
+team-not-found:
+  chat: "<gradient:#C45700:#FF7608>BetterTeamGUI]</gradient><aqua> » </aqua><gradient:#f36262:#ff9494>Equipo no encontrado.</gradient>"
+
 empty-input:
-  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>No podés dejar el campo vacío.</gradient>"
+  chat: "<gradient:#C45700:#FF7608>BetterTeamGUI]</gradient><aqua> » </aqua><gradient:#f36262:#ff9494>No podés dejar el campo vacío.</gradient>"
 warp-password-incorrect:
-  chat: "[BetterTeamGUI] <gradient:#f36262:#ff9494>Contraseña incorrecta para este warp.</gradient>"
+  chat: "<gradient:#C45700:#FF7608>BetterTeamGUI]</gradient><aqua> » </aqua><gradient:#f36262:#ff9494>Contraseña incorrecta para este warp.</gradient>"
 
 ## Used for {required_type} placeholder in levels_view.yml
 money: "Dinero"

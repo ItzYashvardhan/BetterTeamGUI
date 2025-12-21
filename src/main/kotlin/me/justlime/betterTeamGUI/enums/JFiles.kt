@@ -18,6 +18,8 @@ enum class JFiles(val filename: String) {
     LEADERBOARD_VIEW("lang/${pluginInstance.lang}/gui/leaderboard_view.yml"),
     LEVELS_VIEW("lang/${pluginInstance.lang}/gui/levels_view.yml"),
     LIST_VIEW("lang/${pluginInstance.lang}/gui/list_view.yml"),
+    INVITE_VIEW("lang/${pluginInstance.lang}/gui/invite_view.yml"),
+    INVITED_PLAYERS_VIEW("lang/${pluginInstance.lang}/gui/invited_players_view.yml"),
     MEMBER_MANAGEMENT_VIEW("lang/${pluginInstance.lang}/gui/members_management_view.yml"),
     MEMBERS_VIEW("lang/${pluginInstance.lang}/gui/members_view.yml"),
     MONEY_VIEW("lang/${pluginInstance.lang}/gui/money_view.yml"),

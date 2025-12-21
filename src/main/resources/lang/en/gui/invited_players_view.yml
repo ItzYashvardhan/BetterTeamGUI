@@ -1,0 +1,28 @@
+main:
+  title: "<bold><gradient:#C45700:#FF7608>{team} Team Invited List</bold>"
+  row: 6
+  font-title: false
+  font-name: true
+  font-lore: true
+  background:
+    0:
+      name: " "
+      item: LIGHT_BLUE_STAINED_GLASS_PANE
+      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
+    1:
+      name: " "
+      item: PURPLE_STAINED_GLASS_PANE
+      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
+  slot:
+    back: 52
+    home: 53
+    prev: 47
+    next: 51
+
+invited-player-item:
+  name: "<b><yellow>{player}</yellow></b>"
+  lore:
+    - "<gray>Click to revoke invitation</gray>"
+  item: PLAYER_HEAD
+  texture: ""
+  click-sound: ENTITY.VILLAGER.NO,2.0

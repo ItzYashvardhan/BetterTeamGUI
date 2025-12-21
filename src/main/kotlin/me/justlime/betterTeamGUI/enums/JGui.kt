@@ -152,6 +152,12 @@ sealed interface JGui {
             const val DELETE_HOME_CONFIRM_ITEM = DELETE_HOME_VIEW + "confirm"
             const val DELETE_HOME_CANCEL_ITEM = DELETE_HOME_VIEW + "cancel"
 
+            const val DELETE_WARP_VIEW = "delete-warp-view."
+            const val DELETE_WARP_VIEW_MAIN = DELETE_WARP_VIEW + Main.MAIN
+            const val DELETE_WARP_VIEW_BACKGROUND = DELETE_WARP_VIEW + Main.BACKGROUND
+            const val DELETE_WARP_CONFIRM_ITEM = DELETE_WARP_VIEW + "confirm"
+            const val DELETE_WARP_CANCEL_ITEM = DELETE_WARP_VIEW + "cancel"
+
             const val UPDATE_HOME_VIEW = "update-home-view."
             const val UPDATE_HOME_VIEW_MAIN = UPDATE_HOME_VIEW + Main.MAIN
             const val UPDATE_HOME_VIEW_BACKGROUND = UPDATE_HOME_VIEW + Main.BACKGROUND
@@ -205,16 +211,12 @@ sealed interface JGui {
 
     sealed interface MemberView : JGui {
         companion object {
+            const val INVITE_BUTTON = "invite-button"
             const val MEMBER_ITEM = "member-item"
             const val MEMBER_ITEM_NO_ADMIN = "member-item-no-admin"
-            const val INVITE = "invite"
             const val LOCKED_INVITE = "locked-invite"
             const val BAN_LIST = "ban-list"
 
-            const val INVITE_TITLE = "anvil-ui.invite.title"
-            const val INVITE_LABEL = "anvil-ui.invite.label"
-            const val INVITE_INPUT_ITEM = "anvil-ui.invite.input-item"
-            const val INVITE_OUTPUT_ITEM = "anvil-ui.invite.output-item"
 
         }
     }
@@ -357,6 +359,33 @@ sealed interface JGui {
             const val LEVEL_ITEM_DEFAULT_PROGRESS_UNLOCKABLE = "level-item.default.progress-unlockable"
             const val LEVEL_ITEM_DEFAULT_LOCKED = "level-item.default.locked"
 
+        }
+    }
+
+    sealed interface InviteView : JGui {
+        companion object {
+            const val INVITE_ITEM = "invite-item"
+            const val INVITED_LIST_ITEM = "invited-list-item"
+            const val PLAYER_INVITED_ITEM = "player-invited-item"
+
+            const val SEARCH_ITEM = "search-item"
+            const val SEARCH_ITEM_CLEAR = "search-item-clear"
+            const val SEARCH_TITLE = "anvil-ui.search-item.title"
+            const val SEARCH_LABEL = "anvil-ui.search-item.label"
+            const val SEARCH_INPUT_ITEM = "anvil-ui.search-item.input-item"
+            const val SEARCH_OUTPUT_ITEM = "anvil-ui.search-item.output-item"
+
+            const val INVITE = "invite-player"
+            const val INVITE_TITLE = "anvil-ui.invite.title"
+            const val INVITE_LABEL = "anvil-ui.invite.label"
+            const val INVITE_INPUT_ITEM = "anvil-ui.invite.input-item"
+            const val INVITE_OUTPUT_ITEM = "anvil-ui.invite.output-item"
+        }
+    }
+
+    sealed interface InviteList : JGui {
+        companion object {
+            const val INVITED_PLAYER_ITEM = "invited-player-item"
         }
     }
 

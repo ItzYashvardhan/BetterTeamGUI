@@ -2,20 +2,55 @@ package me.justlime.betterTeamGUI.commands
 
 import com.booksaw.betterTeams.CommandResponse
 import com.booksaw.betterTeams.commands.SubCommand
+import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
-import me.justlime.betterTeamGUI.pluginInstance
-import org.bukkit.Bukkit
+import net.justlime.limeframegui.models.GuiSound
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class TeamGuiCommand() : SubCommand() {
-    override fun onCommand(player: CommandSender?, label: String?, args: Array<String>): CommandResponse {
-        if (player !is Player) {
-            return CommandResponse(false)
+class TeamGuiCommand : SubCommand() {
+    override fun onCommand(sender: CommandSender, label: String?, args: Array<String>): CommandResponse {
+        val sound = ConfigManager.sound.getString("open-gui") ?: "BLOCK.NOTE_BLOCK.CHIME, 2.0"
+
+        if (args.isEmpty()) {
+            if (sender !is Player) {
+                val message = ConfigManager.messages.getString("player-only.chat") ?: ""
+                CommandService.sendMessage(sender, message)
+                return CommandResponse(true)
+            }
+            val finalSound = GuiSound.loadSound(sound)
+            foliaLib.scheduler.runNextTick {
+                finalSound?.playSound(sender)
+                GUIManager.openTeamGUI(sender)
+            }
+            return CommandResponse(true)
+
         }
-        Bukkit.getScheduler().runTask(pluginInstance, Runnable {
-            GUIManager.openTeamGUI(player)
-        })
+
+        if (args[0] == "reload") {
+            CommandService.reload(sender)
+            return CommandResponse(true)
+        }
+
+        if (sender !is Player) {
+            val message = ConfigManager.messages.getString("player-only.chat") ?: ""
+            CommandService.sendMessage(sender,message)
+            return CommandResponse(true)
+        }
+
+        if (args[0] == "view") {
+            CommandService.teamView(sender, args.getOrNull(1) ?: "")
+            val finalSound = GuiSound.loadSound(sound)
+            finalSound?.playSound(sender)
+            return CommandResponse(true)
+        }
+
+        foliaLib.scheduler.runNextTick {
+            val finalSound = GuiSound.loadSound(sound)
+            finalSound?.playSound(sender)
+            GUIManager.openTeamGUI(sender)
+        }
         return CommandResponse(true)
     }
 
@@ -43,8 +78,8 @@ class TeamGuiCommand() : SubCommand() {
         return 0
     }
 
-    override fun onTabComplete(player: List<String>?, sender: CommandSender?, label: String?, args: Array<String>) {
-        // No tab completion needed for this command
+    override fun onTabComplete(options: MutableList<String>, sender: CommandSender, label: String?, args: Array<out String>) {
+        options.addAll(CommandService.tabCompleter(sender, args))
     }
 
 }

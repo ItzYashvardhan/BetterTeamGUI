@@ -4,9 +4,11 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
 import me.justlime.betterTeamGUI.config.ConfigManager
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDashboardItem
 import me.justlime.betterTeamGUI.gui.items.TeamMoneyItem
+import me.justlime.betterTeamGUI.gui.items.TeamSettingItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
@@ -30,7 +32,9 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
             teamPlayer.isInTeamChat -> TeamDashboardItem.teamChatItem
             else -> TeamDashboardItem.chatItem
         }
-        setItem(chatItem) { event ->
+        setItem(chatItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) { event ->
             if (event.click.isRightClick) {
                 // Toggle Ally Chat
                 val newState = !teamPlayer.isInAllyChat
@@ -53,29 +57,74 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
         }
 
         val infoItem = if (team.description.isBlank()) TeamDashboardItem.infoItemWithoutDesc else TeamDashboardItem.infoItemWithDesc
-        setItem(infoItem) {
+        setItem(infoItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             if (it.click.isLeftClick) GUIManager.openTeamLeaderBoardGUI(it.whoClicked as Player, team)
             if (it.click.isRightClick) GUIManager.openTeamLevelGUI(player, team)
         }
 
 
-        setItem(TeamDashboardItem.homeItem) {
+        setItem(TeamDashboardItem.homeItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             when (it.click) {
+
+                ClickType.SHIFT_LEFT, ClickType.SHIFT_RIGHT -> {
+                    if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                        permissionDenied(it, setting.style)
+                        return@setItem
+                    }
+                    if (team.teamHome == null) {
+                        val homeItem = TeamSettingItem.noAnchor?.clone()?.apply {
+                            slot = TeamDashboardItem.homeItem?.slot
+                            slotList = TeamDashboardItem.homeItem?.slotList.orEmpty()
+                        }
+                        val oldItem = it.item
+                        it.item = homeItem
+                        it.update()
+                        foliaLib.scheduler.runLater(Runnable {
+                            it.item = oldItem
+                            it.update(setting.style)
+                        }, 30)
+                        return@setItem
+                    }
+                    GUIManager.openTeamDeleteHomeGUI(player)
+                    return@setItem
+
+                }
+
                 ClickType.LEFT -> {
+                    if (team.teamHome == null) {
+                        val homeItem = TeamSettingItem.noAnchor?.clone()?.apply {
+                            slot = TeamDashboardItem.homeItem?.slot
+                            slotList = TeamDashboardItem.homeItem?.slotList.orEmpty()
+                        }
+                        val oldItem = it.item
+                        it.item = homeItem
+                        it.update()
+                        foliaLib.scheduler.runLater(Runnable {
+                            it.item = oldItem
+                            it.update(setting.style)
+                        }, 30)
+                        return@setItem
+                    }
                     TeamService.teleportToHome(player)
                     player.closeInventory()
+                    return@setItem
                 }
 
                 ClickType.RIGHT -> {
+                    if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                        permissionDenied(it, setting.style)
+                        return@setItem
+                    }
                     if (team.teamHome != null) GUIManager.openTeamUpdateHomeGUI(player)
                     else {
                         TeamService.setHome(player)
                         player.closeInventory()
                     }
-                }
-
-                ClickType.SHIFT_LEFT, ClickType.SHIFT_RIGHT -> {
-                    GUIManager.openTeamDeleteHomeGUI(player)
+                    return@setItem
                 }
 
                 else -> Unit
@@ -84,7 +133,9 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
 
         }
 
-        setItem(TeamDashboardItem.balanceItem) { clickEvent ->
+        setItem(TeamDashboardItem.balanceItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) { clickEvent ->
             if (clickEvent.isLeftClick) {
                 depositOrWithdrawMoneyAnvilUI(clickEvent.whoClicked as Player, true)
             }
@@ -97,32 +148,50 @@ fun teamDashboard(setting: GUISetting, player: Player, team: Team, teamPlayer: T
             }
         }
 
-        setItem(TeamDashboardItem.warpItem) {
+        setItem(TeamDashboardItem.warpItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             val player = it.whoClicked as? Player ?: return@setItem
             GUIManager.openTeamWarpGUI(player)
         }
 
-        setItem(TeamDashboardItem.membersItem) {
+        setItem(TeamDashboardItem.membersItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             GUIManager.openTeamMemberGUI(it.whoClicked as Player, team)
         }
 
-        setItem(TeamDashboardItem.enderChestItem) {
+        setItem(TeamDashboardItem.enderChestItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             TeamService.openTeamEnderChest(it.whoClicked as Player)
         }
 
-        setItem(TeamDashboardItem.allyItem) {
+        setItem(TeamDashboardItem.allyItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             GUIManager.openTeamAlliesListGUI(player, team)
         }
 
-        if (teamPlayer.rank != PlayerRank.OWNER) setItem(TeamDashboardItem.leaveItem) {
+        if (teamPlayer.rank != PlayerRank.OWNER) setItem(TeamDashboardItem.leaveItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             GUIManager.openTeamLeaveGUI(it.whoClicked as Player)
         }
 
-        setItem(TeamDashboardItem.listItem) {
+        setItem(TeamDashboardItem.listItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
             GUIManager.openTeamListGUI(it.whoClicked as Player)
         }
 
-        setItem(TeamDashboardItem.settingItem) {
+        setItem(TeamDashboardItem.settingItem?.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+        }) {
+            if (teamPlayer.rank == PlayerRank.DEFAULT) {
+                permissionDenied(it, setting.style)
+                return@setItem
+            }
             GUIManager.openTeamSettingGUI(it.whoClicked as Player)
         }
 

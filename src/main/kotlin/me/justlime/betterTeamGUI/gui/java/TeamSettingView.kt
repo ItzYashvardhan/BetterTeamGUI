@@ -32,7 +32,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(TeamSettingItem.colorPicker?.apply {
         style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     }) { event ->
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
+        if (teamPlayer.rank != PlayerRank.OWNER) {
             permissionDenied(event, setting.style)
             return@setItem
         }
@@ -43,7 +43,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(TeamSettingItem.description?.apply {
         style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     }) { event ->
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
+        if (teamPlayer.rank != PlayerRank.OWNER) {
             permissionDenied(event, setting.style)
             return@setItem
         }
@@ -67,7 +67,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(TeamSettingItem.tag?.apply {
         style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     }) { event ->
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
+        if (teamPlayer.rank != PlayerRank.OWNER) {
             permissionDenied(event, setting.style)
             return@setItem
         }
@@ -91,7 +91,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
 
     setItem(statusItem) { event ->
         // Toggle status
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
+        if (teamPlayer.rank != PlayerRank.OWNER) {
             permissionDenied(event, setting.style)
             return@setItem
         }
@@ -123,7 +123,7 @@ fun teamSettingView(setting: GUISetting, player: Player, team: Team, teamPlayer:
     setItem(TeamSettingItem.title?.apply {
         style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     }) { event ->
-        if (teamPlayer.rank == PlayerRank.DEFAULT) {
+        if (teamPlayer.rank != PlayerRank.OWNER) {
             permissionDenied(event, setting.style)
             return@setItem
         }

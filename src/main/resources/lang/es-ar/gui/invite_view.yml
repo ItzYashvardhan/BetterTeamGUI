@@ -1,0 +1,101 @@
+main:
+  title: "<bold><gradient:#C45700:#FF7608>Menú de Invitación del Equipos {team}</bold>"
+  row: 6
+  font-title: false
+  font-name: true
+  font-lore: true
+  background:
+    0:
+      name: " "
+      item: LIGHT_BLUE_STAINED_GLASS_PANE
+      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
+    1:
+      name: " "
+      item: PURPLE_STAINED_GLASS_PANE
+      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
+  slot:
+    back: 52
+    home: 53
+    prev: 47
+    next: 51
+
+invite-item:
+  name: "<b><yellow>{player}</yellow></b>"
+  lore:
+    - "<yellow>Click izquierdo</yellow> <gray>para invitar</gray>"
+  item: PLAYER_HEAD
+  texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.PLING,2.0
+
+player-invited-item:
+  name: "<b><yellow>{player}</yellow></b>"
+  lore:
+    - "<green>Invitado</green>"
+  item: PLAYER_HEAD
+  texture: ""
+  click-sound: BLOCK.NOTE_BLOCK.BASS, 2.0
+
+search-item:
+  name: "<caps><b><#00FFC7>Buscar por Nombre"
+  lore:
+    - "<gray>Click para buscar un jugador por su nombre.</gray>"
+  item: OAK_SIGN
+  slot: 45
+  click-sound: UI.BUTTON.CLICK
+
+search-item-clear:
+  name: "<caps><b><#00FFC7>Buscar por Nombre <gray>(Click derecho para limpiar)</gray>"
+  lore:
+    - "<gray>Click izquierdo para buscar un jugador por su nombre.</gray>"
+    - "<gray>Click derecho para limpiar.</gray>"
+  item: OAK_SIGN
+  slot: 45
+  click-sound: UI.BUTTON.CLICK
+
+invite-player:
+  name: "<b><gradient:#00FF00:#00AA00>Invitar Jugador</gradient></b>"
+  lore:
+    - "<gray>Click para invitar jugador por nombre de usuario.</gray>"
+  item: LIME_STAINED_GLASS_PANE
+  click-sound: UI.BUTTON.CLICK,1.0
+  slot: 46
+
+
+invited-list-item:
+  name: "<b><gradient:#C40067:#EC7FB8>Jugadores Invitados ({team_invites})</gradient></b>"
+  lore:
+    - "<gray>Ver jugadores que has invitado.</gray>"
+    - " "
+    - "<green>Click izquierdo</green> <gray>para ver</gray>"
+  item: WRITABLE_BOOK
+  slot: 49
+  click-sound: UI.BUTTON.CLICK
+
+
+anvil-ui:
+  search-item:
+    title: "<bold>Buscar Jugador</bold>"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Ingresar Nombre del Jugador</green>"
+      item: PAPER
+      lore:
+        - "<gray>Ingresá el nombre del jugador que querés buscar.</gray>"
+    output-item:
+      name: "<green>Buscar</green>"
+      item: ANVIL
+      lore:
+        - "<gray>Click para buscar al jugador.</gray>"
+  invite:
+    title: "Invitar Jugador"
+    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+    input-item:
+      name: "<green>Ingresar Nombre del Jugador</green>"
+      lore:
+        - "<gray>Ingresá el nombre del jugador que querés invitar.</gray>"
+      item: PAPER
+    output-item:
+      name: "<green>Invitar Jugador</green>"
+      lore:
+        - "<gray>Click para invitar a este jugador.</gray>"
+      item: LIME_DYE

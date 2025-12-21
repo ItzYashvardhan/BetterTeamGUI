@@ -25,7 +25,7 @@ level-item:
       lore:
         - "<gray>Ya consiguieron este nivel.</gray>"
         - ""
-        - " <#5BD686>✔ Comlpetado</#5BD686>"
+        - " <#5BD686>✔ Completado</#5BD686>"
       item: LIME_STAINED_GLASS_PANE
       texture: ""
       click-sound: "UI.BUTTON.CLICK"
@@ -91,7 +91,7 @@ level-item:
       click-sound: "ENTITY.PLAYER.LEVELUP,0.8"
 
     locked:
-      name: "<b><#FF3B3B>Nivel {level} </b><dark_gray>(Locked)"
+      name: "<b><#FF3B3B>Nivel {level} </b><dark_gray>(Bloqueado)"
       lore:
         - "<gray>Este nivel esta bloqueado en este momento.</gray>"
         - ""

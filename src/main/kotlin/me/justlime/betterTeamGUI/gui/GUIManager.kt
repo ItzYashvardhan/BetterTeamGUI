@@ -101,7 +101,9 @@ object GUIManager {
             }
             val team = Team.getTeam(player.name) ?: return
             val teamPlayer = team.getTeamPlayer(player) ?: return
-            teamDashboard(TeamDashboardItem.setting, player, team, teamPlayer)
+            teamDashboard(TeamDashboardItem.setting.apply {
+                style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
+            }, player, team, teamPlayer)
             return
         }
         if (isBedrockPlayer(player)) {
@@ -137,6 +139,14 @@ object GUIManager {
         teamUpdateHomeDialog(TeamDialogItem.updateHomeSetting).open(player)
     }
 
+    fun openTeamDeleteWarpGUI(player: Player, warpName: String) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for delete warp
+            return
+        }
+        teamDeleteWarpDialog(TeamDialogItem.deleteWarpSetting,warpName).open(player)
+    }
+
     fun openTeamDeleteHomeGUI(player: Player) {
         if (isBedrockPlayer(player)) {
             // TODO: Add Bedrock form for delete home
@@ -164,8 +174,28 @@ object GUIManager {
         teamMemberView(setting, player, team)
     }
 
-    fun openTeamMemberManagementGUI(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
+    fun openInvitePlayerGUI(player: Player, team: Team, searchQuery: String? = null) {
+        if (isBedrockPlayer(player)) {
+//            BForm.openInviteForm(player, team)
+            return
+        }
+        inviteView(InviteViewItem.setting.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, team.getTeamPlayer(player) ?: return)
+        }, player, team, searchQuery)
+    }
 
+    fun openInviteListGUI(player: Player, team: Team) {
+        if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for invite list
+            return
+        }
+
+        invitedListView(InvitedPlayersListItem.setting.apply {
+            style.placeholder = TeamService.applyPlaceHolder(team, team.getTeamPlayer(player) ?: return)
+        }, player, team)
+    }
+
+    fun openTeamMemberManagementGUI(player: Player, targetTeamPlayer: TeamPlayer, team: Team) {
         if (isBedrockPlayer(player)) {
             BForm.openTeamMemberForm(player, team)
             return
@@ -278,6 +308,8 @@ object GUIManager {
 
     fun openTeamLevelGUI(player: Player, team: Team) {
         if (isBedrockPlayer(player)) {
+            // TODO: Add Bedrock form for level
+            return
         }
         val teamPlayer = team.getTeamPlayer(player) ?: return
         teamLevel(LevelItem.setting.clone(), player, team, teamPlayer)

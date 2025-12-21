@@ -18,10 +18,16 @@ object TeamDialogItem {
     var disbandConfirmItem = config.loadItem(JGui.DialogView.DISBAND_CONFIRM_ITEM)
     var disbandCancelItem = config.loadItem(JGui.DialogView.DISBAND_CANCEL_ITEM)
 
+    var deleteWarpSetting = config.loadInventorySetting(JGui.DialogView.DELETE_WARP_VIEW_MAIN)
+    var deleteWarpBackground = config.loadItems(JGui.DialogView.DELETE_WARP_VIEW_BACKGROUND)
+    var deleteWarpConfirmItem = config.loadItem(JGui.DialogView.DELETE_WARP_CONFIRM_ITEM)
+    var deleteWarpCancelItem = config.loadItem(JGui.DialogView.DELETE_WARP_CANCEL_ITEM)
+
     var deleteHomeSetting = config.loadInventorySetting(JGui.DialogView.DELETE_HOME_VIEW_MAIN)
     var deleteHomeBackground = config.loadItems(JGui.DialogView.DELETE_HOME_VIEW_BACKGROUND)
     var deleteHomeConfirmItem = config.loadItem(JGui.DialogView.DELETE_HOME_CONFIRM_ITEM)
     var deleteHomeCancelItem = config.loadItem(JGui.DialogView.DELETE_HOME_CANCEL_ITEM)
+
 
     var updateHomeSetting = config.loadInventorySetting(JGui.DialogView.UPDATE_HOME_VIEW_MAIN)
     var updateHomeBackground = config.loadItems(JGui.DialogView.UPDATE_HOME_VIEW_BACKGROUND)
@@ -80,6 +86,11 @@ object TeamDialogItem {
         deleteHomeBackground = config.loadItems(JGui.DialogView.DELETE_HOME_VIEW_BACKGROUND)
         deleteHomeConfirmItem = config.loadItem(JGui.DialogView.DELETE_HOME_CONFIRM_ITEM)
         deleteHomeCancelItem = config.loadItem(JGui.DialogView.DELETE_HOME_CANCEL_ITEM)
+
+        deleteWarpSetting = config.loadInventorySetting(JGui.DialogView.DELETE_WARP_VIEW_MAIN)
+        deleteWarpBackground = config.loadItems(JGui.DialogView.DELETE_WARP_VIEW_BACKGROUND)
+        deleteWarpConfirmItem = config.loadItem(JGui.DialogView.DELETE_WARP_CONFIRM_ITEM)
+        deleteWarpCancelItem = config.loadItem(JGui.DialogView.DELETE_WARP_CANCEL_ITEM)
 
         updateHomeSetting = config.loadInventorySetting(JGui.DialogView.UPDATE_HOME_VIEW_MAIN)
         updateHomeBackground = config.loadItems(JGui.DialogView.UPDATE_HOME_VIEW_BACKGROUND)

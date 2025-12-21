@@ -35,7 +35,7 @@ member-item-no-admin:
     - "<gray>Rank: <yellow>{rank}"
   click-sound: UI.BUTTON.CLICK,1.0
 
-invite:
+invite-button:
   name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
   lore:
     - "<gray>Click to invite player to your team.</gray>"
@@ -61,19 +61,5 @@ ban-list:
   slot: 45
   click-sound: UI.BUTTON.CLICK,1.0
 
-anvil-ui:
-  invite:
-    title: "Invite Player"
-    label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-    input-item:
-      name: "<green>Enter Player Name</green>"
-      lore:
-        - "<gray>Enter the name of the player you want to invite.</gray>"
-      item: PAPER
-    output-item:
-      name: "<green>Invite Player</green>"
-      lore:
-        - "<gray>Click to invite this player.</gray>"
-      item: LIME_DYE
 
 

@@ -11,7 +11,6 @@ import org.bukkit.entity.Player
 
 object TeamService {
 
-
     var command: String = ConfigManager.config.getString(JGui.Config.PREFIX) ?: "team"
 
     fun teamToPlaceholderMap(team: Team): Map<String, String> {
@@ -29,14 +28,13 @@ object TeamService {
             "{team_description}" to team.description,
             "{color}" to team.color.name,
             "{allies_request}" to team.allyRequests.size.toString(),
+            "{team_invites}" to team.invitedPlayers.size.toString()
         )
     }
 
     fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
         return mapOf(
-            "{rank}" to teamPlayer.rank.name,
-            "{team_player}" to (teamPlayer.player.name ?: ""),
-            "{title}" to (teamPlayer.title ?: "")
+            "{rank}" to teamPlayer.rank.name, "{team_player}" to (teamPlayer.player.name ?: ""), "{title}" to (teamPlayer.title ?: "")
         )
     }
 

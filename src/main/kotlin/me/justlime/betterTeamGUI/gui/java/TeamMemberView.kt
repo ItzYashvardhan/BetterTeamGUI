@@ -7,8 +7,6 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
-import me.justlime.betterTeamGUI.utilities.applyMiniColor
-import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
 import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
@@ -71,7 +69,7 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
                         permissionDenied(click, setting.style)
                         return@addItem
                     }
-                    openAnvilInviteGUI(player)
+                    GUIManager.openInvitePlayerGUI(player, team)
                 }
             }
 
@@ -113,17 +111,4 @@ fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
 
 }
 
-fun openAnvilInviteGUI(player: Player) {
-    openAnvilGUI(
-        player = player,
-        title = applyMiniColor(TeamMemberItem.inviteTitle ?: ""),
-        label = applyMiniColor(TeamMemberItem.inviteLabel ?: ""),
-        inputItem = TeamMemberItem.inviteInputItem ?: GuiItem(Material.PAPER),
-        outputItem = TeamMemberItem.inviteOutputItem ?: GuiItem(Material.LIME_DYE),
-        onInvalidInput = { },
-        onCancel = { GUIManager.openTeamMemberGUI(player, Team.getTeam(player.name)!!) },
-        onConfirm = { invitedPlayerName ->
-            TeamService.invitePlayer(player, invitedPlayerName)
-            GUIManager.openTeamMemberGUI(player, Team.getTeam(player.name)!!)
-        })
-}
+

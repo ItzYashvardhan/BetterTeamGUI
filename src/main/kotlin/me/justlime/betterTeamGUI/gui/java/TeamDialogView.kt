@@ -2,6 +2,7 @@ package me.justlime.betterTeamGUI.gui.java
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
+import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.utilities.TeamService
@@ -62,6 +63,35 @@ fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
         }
     }
 
+}
+
+fun teamDeleteWarpDialog(setting: GUISetting, warpName: String) = ChestGUI(setting) {
+    onClick { it.isCancelled = true }
+    // Background & Static Items
+    TeamDialogItem.deleteWarpBackground.forEach { setItem(it) }
+
+    // Confirm Item
+    val confirmItem = TeamDialogItem.deleteWarpConfirmItem
+    if (confirmItem != null) {
+        setItem(confirmItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                TeamService.delWarp(clickEvent.whoClicked as Player, warpName)
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamWarpGUI(clickEvent.whoClicked as Player)
+                }, 2)
+            }
+        }
+    }
+
+    // Cancel Item
+    val cancelItem = TeamDialogItem.deleteWarpCancelItem
+    if (cancelItem != null) {
+        setItem(cancelItem) { clickEvent ->
+            (clickEvent.whoClicked as? Player)?.let { p ->
+                GUIManager.openTeamWarpGUI(p)
+            }
+        }
+    }
 }
 
 fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {

@@ -52,10 +52,11 @@ fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Pl
                             permissionDenied(clickEvent, setting.style)
                             return@addItem
                         }
-                        TeamService.delWarp(clickEvent.whoClicked as Player, warp.name)
                         foliaLib.scheduler.runLater(Runnable {
-                            GUIManager.openTeamWarpGUI(clickEvent.whoClicked as Player)
+                            GUIManager.openTeamDeleteWarpGUI(player, warp.name)
                         }, 2)
+
+
                         return@addItem
 
                     }

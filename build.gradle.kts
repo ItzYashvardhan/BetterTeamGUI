@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "me.justlime"
-version = "2.2"
+version = "2.3"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ repositories {
     maven("https://repo.opencollab.dev/main/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") { name = "extendedclip" }
     maven("https://repo.tcoded.com/releases") { name = "tcoded-releases" }
-
+    maven("https://mvn.wesjd.net/")
 }
 
 dependencies {
@@ -33,7 +33,7 @@ dependencies {
     //GUI
 //    implementation("com.github.ItzYashvardhan:LimeFrameGUI:VERSION")
     implementation("net.justlime.limeframegui:LimeFrameGUI")
-    implementation("net.wesjd:anvilgui:1.10.10-SNAPSHOT")
+    implementation("net.wesjd:anvilgui:1.10.11-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
 
 //     Adventure
@@ -87,7 +87,7 @@ tasks.processResources {
 tasks.register<Copy>("copyToServerPlugins") {
     dependsOn("shadowJar")  // Ensure shadowJar completes before copying
     from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
-    into("E:/Minecraft/servers/Development/PaperMC-1.21.10/plugins")
+    into("E:/Minecraft/servers/Development/PaperMC-1.21.11/plugins")
 //    into("E:/Minecraft/servers/Folia-1.21.8/plugins")
 //    into("E:/Minecraft/servers/PaperMc-1.20.4/plugins")
 }

@@ -43,38 +43,44 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
     val submitSoundPath = ConfigManager.sound.getString("anvil-ui.submit-sound")
     val submitSound = if (submitSoundPath != null) GuiSound.loadSound(submitSoundPath) else null
 
-    AnvilGUI.Builder().plugin(pluginInstance).jsonTitle(jsonString).text(displayPlaceholder).itemLeft(inputItem.toItemStack()).itemOutput(outputItem.toItemStack()).onClose {
-        return@onClose
-    }.onClick { slot, state ->
-        if (slot != AnvilGUI.Slot.OUTPUT) {
-            cancelSound?.playSound(player)
-            onCancel()
-            return@onClick listOf(AnvilGUI.ResponseAction.close())
-        }
+    try {
 
-        val fullInputText = state.text
-        val userInput = if (fullInputText.startsWith(plainPlaceholder, ignoreCase = true)) {
-            fullInputText.removePrefix(plainPlaceholder).trim()
-        } else {
-            fullInputText.trim()
-        }
+        AnvilGUI.Builder().plugin(pluginInstance).jsonTitle(jsonString).text(displayPlaceholder).itemLeft(inputItem.toItemStack()).itemOutput(outputItem.toItemStack()).onClose {
+            return@onClose
+        }.onClick { slot, state ->
+            if (slot != AnvilGUI.Slot.OUTPUT) {
+                cancelSound?.playSound(player)
+                onCancel()
+                return@onClick listOf(AnvilGUI.ResponseAction.close())
+            }
 
-        if (userInput.isEmpty()) {
-            onInvalidInput()
-            player.closeInventory()
-            cancelSound?.playSound(player)
-            val msg = ConfigManager.messages.getString("empty-input.chat") ?: ""
-            val componentMsg = applyMiniColor(msg)
-            adventure.player(player).sendMessage(componentMsg)
-            foliaLib.scheduler.runLater(Runnable {
-                openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel, onConfirm)
-            }, 30)
+            val fullInputText = state.text
+            val userInput = if (fullInputText.startsWith(plainPlaceholder, ignoreCase = true)) {
+                fullInputText.removePrefix(plainPlaceholder).trim()
+            } else {
+                fullInputText.trim()
+            }
+
+            if (userInput.isEmpty()) {
+                onInvalidInput()
+                player.closeInventory()
+                cancelSound?.playSound(player)
+                val msg = ConfigManager.messages.getString("empty-input.chat") ?: ""
+                val componentMsg = applyMiniColor(msg)
+                adventure.player(player).sendMessage(componentMsg)
+                foliaLib.scheduler.runLater(Runnable {
+                    openAnvilGUI(player, title, label, inputItem, outputItem, onInvalidInput, onCancel, onConfirm)
+                }, 30)
+                return@onClick listOf(AnvilGUI.ResponseAction.close())
+            }
+            submitSound?.playSound(player)
+            onConfirm(userInput)
             return@onClick listOf(AnvilGUI.ResponseAction.close())
-        }
-        submitSound?.playSound(player)
-        onConfirm(userInput)
-        return@onClick listOf(AnvilGUI.ResponseAction.close())
-    }.open(player)
+        }.open(player)
+    } catch (_: Throwable) {
+        //Silently fail
+        return
+    }
 }
 
 fun applyMiniColor(message: String): Component {

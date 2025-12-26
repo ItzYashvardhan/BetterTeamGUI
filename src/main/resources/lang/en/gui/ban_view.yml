@@ -28,3 +28,4 @@ banned-player-item:
     - "<yellow>Left-Click</yellow> <gray>to unban</gray>"
   item: PLAYER_HEAD
   texture: "[{team_player_uuid}]"
+  click-sound: gui.members-management.ban

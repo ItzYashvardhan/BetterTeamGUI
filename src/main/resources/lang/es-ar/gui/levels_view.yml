@@ -28,7 +28,7 @@ level-item:
         - " <#5BD686>✔ Completado</#5BD686>"
       item: LIME_STAINED_GLASS_PANE
       texture: ""
-      click-sound: "UI.BUTTON.CLICK"
+      click-sound: gui.levels.default
 
     current:
       name: "<b><#36FA00>Nivel {level} </b>(actual)"
@@ -47,7 +47,7 @@ level-item:
       item: EMERALD
       texture: ""
       glow: true
-      click-sound: "UI.BUTTON.CLICK"
+      click-sound: gui.levels.current
 
     progress:
       name: "<b><#F8CB67>Nivel {level} </b><gray>(en progreso)"
@@ -67,7 +67,7 @@ level-item:
 
       item: ORANGE_STAINED_GLASS_PANE
       texture: ""
-      click-sound: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE,0.1
+      click-sound: gui.levels.progress
 
     progress-unlockable:
       name: "<b><#F8CB67>Nivel {level} </b><gray>(en progreso)"
@@ -88,7 +88,7 @@ level-item:
         - "<b><#36FA00>Click izquierdo para subir de nivel"
       item: ORANGE_STAINED_GLASS_PANE
       texture: ""
-      click-sound: "ENTITY.PLAYER.LEVELUP,0.8"
+      click-sound: gui.levels.progress-unlockable
 
     locked:
       name: "<b><#FF3B3B>Nivel {level} </b><dark_gray>(Bloqueado)"
@@ -97,5 +97,5 @@ level-item:
         - ""
         - " <#FF3B3B>• Nivel requerido {prev_level} para más información"
       item: RED_STAINED_GLASS_PANE
-      click-sound: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE,0.1
+      click-sound: gui.levels.locked
       texture: ""

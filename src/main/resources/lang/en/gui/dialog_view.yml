@@ -27,7 +27,7 @@ leave-view:
       - "<gray>Click to confirm leaving your team.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -35,7 +35,7 @@ leave-view:
       - "<gray>Click to cancel and return to the team menu.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 disband-view:
   main:
@@ -67,7 +67,7 @@ disband-view:
       - "<red>This action cannot be undone!</red>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -75,7 +75,7 @@ disband-view:
       - "<gray>Click to cancel and return to the team settings.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 delete-warp-view:
   main:
@@ -107,7 +107,7 @@ delete-warp-view:
       - "<red>This action cannot be undone!</red>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -115,7 +115,7 @@ delete-warp-view:
       - "<gray>Click to cancel and return to the warp menu.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 delete-home-view:
   main:
@@ -147,7 +147,7 @@ delete-home-view:
       - "<red>This action cannot be undone!</red>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -155,7 +155,7 @@ delete-home-view:
       - "<gray>Click to cancel and return to the team menu.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 update-home-view:
   main:
@@ -187,7 +187,7 @@ update-home-view:
       - "<gray>Click to confirm updating your team home.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -195,7 +195,7 @@ update-home-view:
       - "<gray>Click to cancel and return to the team menu.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 promote-to-owner-view:
   main:
@@ -226,7 +226,7 @@ promote-to-owner-view:
       - "<gray>Click to confirm promoting {team_player} to New Owner of team {team}.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -234,7 +234,7 @@ promote-to-owner-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 promote-to-admin-view:
   main:
@@ -265,7 +265,7 @@ promote-to-admin-view:
       - "<gray>Click to confirm promoting {team_player} to Admin .</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -273,7 +273,7 @@ promote-to-admin-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 demote-to-admin-view:
   main:
@@ -304,7 +304,7 @@ demote-to-admin-view:
       - "<gray>Click to confirm demoting {team_player} to Admin.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -312,7 +312,7 @@ demote-to-admin-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 demote-to-default-view:
   main:
@@ -343,7 +343,7 @@ demote-to-default-view:
       - "<gray>Click to confirm demoting {team_player} to Default Rank.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -351,7 +351,7 @@ demote-to-default-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 kick-view:
   main:
@@ -382,7 +382,7 @@ kick-view:
       - "<gray>Click to confirm kicking {team_player} from the team.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -390,7 +390,7 @@ kick-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 ban-view:
   main:
@@ -421,7 +421,7 @@ ban-view:
       - "<gray>Click to confirm banning {team_player} from the team.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -429,7 +429,7 @@ ban-view:
       - "<gray>Click to cancel and return to member management.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel
 
 neutral-view:
   main:
@@ -460,7 +460,7 @@ neutral-view:
       - "<gray>Click to confirm removing {team_ally} as an ally.</gray>"
     item: LIME_WOOL
     slot: 11
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.confirm
 
   cancel:
     name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
@@ -468,4 +468,4 @@ neutral-view:
       - "<gray>Click to cancel and return to the allies list.</gray>"
     item: RED_WOOL
     slot: 15
-    click-sound: UI.BUTTON.CLICK
+    click-sound: gui.dialog.cancel

@@ -35,6 +35,11 @@ fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
             }
         }
     }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            GUIManager.openTeamGUI(p)
+        }
+    }
 
 }
 
@@ -62,7 +67,12 @@ fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
             }
         }
     }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            GUIManager.openTeamSettingGUI(p)
 
+        }
+    }
 }
 
 fun teamDeleteWarpDialog(setting: GUISetting, warpName: String) = ChestGUI(setting) {
@@ -92,6 +102,13 @@ fun teamDeleteWarpDialog(setting: GUISetting, warpName: String) = ChestGUI(setti
             }
         }
     }
+
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            GUIManager.openTeamWarpGUI(p)
+        }
+    }
+
 }
 
 fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {
@@ -117,6 +134,11 @@ fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {
             (clickEvent.whoClicked as? Player)?.let { p ->
                 GUIManager.openTeamGUI(p)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            GUIManager.openTeamGUI(p)
         }
     }
 }
@@ -146,6 +168,11 @@ fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting) {
             }
         }
     }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            GUIManager.openTeamGUI(p)
+        }
+    }
 }
 
 fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
@@ -161,7 +188,10 @@ fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.promote(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 4)
             }
         }
     }
@@ -174,6 +204,12 @@ fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
         }
     }
 }
@@ -191,7 +227,10 @@ fun teamPromoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.promote(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 2)
             }
         }
     }
@@ -204,6 +243,12 @@ fun teamPromoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
         }
     }
 }
@@ -221,7 +266,10 @@ fun teamDemoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) =
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.demote(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 2)
             }
         }
     }
@@ -234,6 +282,12 @@ fun teamDemoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) =
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
         }
     }
 }
@@ -251,7 +305,10 @@ fun teamDemoteToDefaultDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer)
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.demote(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 2)
             }
         }
     }
@@ -264,6 +321,12 @@ fun teamDemoteToDefaultDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer)
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
         }
     }
 }
@@ -281,7 +344,10 @@ fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.kick(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 2)
                 (targetTeamPlayer.player as? Player)?.let {
                     GUIManager.closeInventory(it)
                 }
@@ -299,6 +365,12 @@ fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI
             }
         }
     }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+        }
+    }
 }
 
 fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
@@ -314,11 +386,10 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
         setItem(confirmItem) { clickEvent ->
             (clickEvent.whoClicked as? Player)?.let { p ->
                 TeamService.ban(p, targetTeamPlayer)
-                GUIManager.closeInventory(p)
-                GUIManager.closeInventory(p)
-                (targetTeamPlayer.player as? Player)?.let {
-                    GUIManager.closeInventory(it)
-                }
+                val team = Team.getTeam(p.name) ?: return@let
+                foliaLib.scheduler.runLater(Runnable {
+                    GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
+                }, 2)
             }
         }
     }
@@ -331,6 +402,12 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamMemberManagementGUI(p, targetTeamPlayer, team)
         }
     }
 }
@@ -361,6 +438,12 @@ fun teamNeutralDialog(setting: GUISetting, targetTeam: Team) = ChestGUI(setting)
                 val team = Team.getTeam(p.name) ?: return@let
                 GUIManager.openTeamAlliesListGUI(p, team)
             }
+        }
+    }
+    onClose { clickEvent ->
+        (clickEvent.player as? Player)?.let { p ->
+            val team = Team.getTeam(p.name) ?: return@let
+            GUIManager.openTeamAlliesListGUI(p, team)
         }
     }
 }

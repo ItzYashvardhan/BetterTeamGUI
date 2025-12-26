@@ -41,7 +41,7 @@ promote-to-owner:
     - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
   glow: false
   slot: 12
-  click-sound: ENTITY.VILLAGER.YES,2.0
+  click-sound: gui.members-management.promote
 
 
 promote-to-admin:
@@ -54,7 +54,7 @@ promote-to-admin:
     - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
   glow: false
   slot: 12
-  click-sound: ENTITY.VILLAGER.YES,2.0
+  click-sound: gui.members-management.promote
 
 
 # Demote Item
@@ -68,7 +68,7 @@ demote-to-admin:
     - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
   glow: false
   slot: 13
-  click-sound: ENTITY.VILLAGER.NO,2.0
+  click-sound: gui.members-management.demote
 
 
 demote-to-default:
@@ -81,7 +81,7 @@ demote-to-default:
     - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
   glow: false
   slot: 13
-  click-sound: ENTITY.VILLAGER.NO,2.0
+  click-sound: gui.members-management.demote
 
 
 # Kick Item
@@ -95,7 +95,7 @@ kick:
     - "<yellow>Left-Click</yellow> <gray>to kick</gray>"
   glow: false
   slot: 15
-  click-sound: ENTITY.VILLAGER.HURT,2.0
+  click-sound: gui.members-management.kick
 
 
 # Ban Item
@@ -109,6 +109,6 @@ ban:
     - "<yellow>Left-Click</yellow> <gray>to ban</gray>"
   glow: false
   slot: 16
-  click-sound: ENTITY.VILLAGER.DEATH,2.0
+  click-sound: gui.members-management.ban
 
 

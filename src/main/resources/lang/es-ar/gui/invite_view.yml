@@ -25,7 +25,7 @@ invite-item:
     - "<yellow>Click izquierdo</yellow> <gray>para invitar</gray>"
   item: PLAYER_HEAD
   texture: ""
-  click-sound: BLOCK.NOTE_BLOCK.PLING,2.0
+  click-sound: gui.invite.invite-item
 
 player-invited-item:
   name: "<b><yellow>{player}</yellow></b>"
@@ -33,7 +33,7 @@ player-invited-item:
     - "<green>Invitado</green>"
   item: PLAYER_HEAD
   texture: ""
-  click-sound: BLOCK.NOTE_BLOCK.BASS, 2.0
+  click-sound: gui.invite.player-invited-item
 
 search-item:
   name: "<caps><b><#00FFC7>Buscar por Nombre"
@@ -41,7 +41,7 @@ search-item:
     - "<gray>Click para buscar un jugador por su nombre.</gray>"
   item: OAK_SIGN
   slot: 45
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.invite.search-item
 
 search-item-clear:
   name: "<caps><b><#00FFC7>Buscar por Nombre <gray>(Click derecho para limpiar)</gray>"
@@ -50,14 +50,14 @@ search-item-clear:
     - "<gray>Click derecho para limpiar.</gray>"
   item: OAK_SIGN
   slot: 45
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.invite.search-item
 
 invite-player:
   name: "<b><gradient:#00FF00:#00AA00>Invitar Jugador</gradient></b>"
   lore:
     - "<gray>Click para invitar jugador por nombre de usuario.</gray>"
   item: LIME_STAINED_GLASS_PANE
-  click-sound: UI.BUTTON.CLICK,1.0
+  click-sound: gui.invite.invite-player
   slot: 46
 
 
@@ -69,7 +69,7 @@ invited-list-item:
     - "<green>Click izquierdo</green> <gray>para ver</gray>"
   item: WRITABLE_BOOK
   slot: 49
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.invite.invited-list-item
 
 
 anvil-ui:

@@ -28,13 +28,16 @@ object TeamService {
             "{team_description}" to team.description,
             "{color}" to team.color.name,
             "{allies_request}" to team.allyRequests.size.toString(),
-            "{team_invites}" to team.invitedPlayers.size.toString()
+            "{team_invites}" to team.invitedPlayers.size.toString(),
+            "{team_online}" to team.onlineMembers.size.toString()
         )
     }
 
     fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
         return mapOf(
-            "{rank}" to teamPlayer.rank.name, "{team_player}" to (teamPlayer.player.name ?: ""), "{title}" to (teamPlayer.title ?: "")
+            "{rank}" to teamPlayer.rank.name,
+            "{team_player}" to (teamPlayer.player.name ?: ""),
+            "{title}" to (teamPlayer.title ?: "")
         )
     }
 

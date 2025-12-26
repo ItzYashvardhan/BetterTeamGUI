@@ -4,6 +4,8 @@ import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.gui.items.*
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
+import loader.FontLoader
+import loader.SoundLoader
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.InvalidConfigurationException
 import org.bukkit.configuration.file.FileConfiguration
@@ -51,6 +53,8 @@ object ConfigManager {
     lateinit var warpForm: FileConfiguration
 
     fun load(sender: CommandSender) {
+        FontLoader.load(JFiles.FONT.filename)
+        SoundLoader.load(JFiles.SOUND.filename)
         reloadSafely(JFiles.CONFIG.filename, sender) { config = loadConfig(JFiles.CONFIG) }
         reloadSafely(JFiles.MESSAGES.filename, sender) { messages = loadConfig(JFiles.MESSAGES) }
         reloadSafely(JFiles.SOUND.filename, sender) { sound = loadConfig(JFiles.SOUND) }

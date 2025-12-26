@@ -29,7 +29,7 @@ leave:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkzYjhkYzkzZjAxODY2MGFhOTI1NmI5MWJiNzcwY2JjYmNjNjJhZTYxZTdhNjcxYzc1ZGM1NDQ1NjljMWE3OCJ9fX0=
   slot: 8
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.dashboard.leave
 
 info-with-description:
   name: "<b><#5BD686>{team} Team</b> <gray>({team_size}/{team_limit})</gray>"
@@ -46,7 +46,7 @@ info-with-description:
   slot: 10
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
+  click-sound: gui.dashboard.info
 
 info-without-description:
   name: "<b><#5BD686>{team} Team</b> <gray>({team_size}/{team_limit})</gray>"
@@ -62,7 +62,7 @@ info-without-description:
   slot: 10
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
+  click-sound: gui.dashboard.info
 
 home:
   name: "<gradient:#00CACA:#00EAEA><b>Team Home</b>"
@@ -75,7 +75,7 @@ home:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU1MzE4MjRjMzA1MjQ2YzhkNTUwYjRlZjk3MzJlMzg1M2NkMDkwM2YyODE3MTMxMDdlZTgwNjFkZTQ2ZGZhMyJ9fX0=
   slot: 12
-  click-sound: ENTITY.ENDERMAN.TELEPORT, 2.0
+  click-sound: gui.dashboard.home
 
 list:
   name: "<b><gradient:#FFDAB4:#FFD2D2>Team List</gradient></b>"
@@ -86,7 +86,7 @@ list:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkzZGZiM2FlODE3Nzc4NGE2NDU3NzlkY2EyYzEyZGZiYTEyNThjMjAyYWZkYzA0ZDg3ZDgwZjJjZWNlYTFkNyJ9fX0=
   slot: 19
-  click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
+  click-sound: gui.dashboard.list
 
 allies:
   name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
@@ -97,7 +97,7 @@ allies:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
   slot: 13
-  click-sound: ENTITY.VILLAGER.TRADE,2.0
+  click-sound: gui.dashboard.allies
 
 members:
   global:
@@ -109,7 +109,7 @@ members:
     slot: 14
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
-    click-sound: ENTITY.VILLAGER.TRADE,2.0
+    click-sound: gui.dashboard.members
 
   admin:
     name: "<b><gradient:#D0B65D:#D0B65D>Team</gradient><gradient:#D0B65D:#F6E6AD> Members</gradient></b>"
@@ -120,7 +120,7 @@ members:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
     slot: 14
-    click-sound: ENTITY.VILLAGER.TRADE,2.0
+    click-sound: gui.dashboard.members
 
 team-chest:
   name: "<b><gradient:#5349FF:#60BEFF>Team Chest</gradient></b>"
@@ -131,7 +131,7 @@ team-chest:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI0ODZmMjg1OTE2OWM4YmZiNjZhNjg3YmNmNGM2OTkzNDE3ZjU4NGI1OGJiZmRiMzM2NDY0ZDUyMDcxY2NkNyJ9fX0=
   slot: 15
-  click-sound: BLOCK.ENDER_CHEST.OPEN,1.0
+  click-sound: gui.dashboard.team-chest
 
 
 warps:
@@ -143,7 +143,7 @@ warps:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhiZThhYmQ2NmQwOWE1OGNlMTJkMzc3NTQ0ZDcyNmQyNWNhZDdlOTc5ZThjMjQ4MTg2NmJlOTRkM2IzMmYifX19
   slot: 21
-  click-sound: ENTITY.ENDERMAN.TELEPORT, 2.0
+  click-sound: gui.dashboard.warps
 
 
 balance:
@@ -157,7 +157,7 @@ balance:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
   slot: 22
-  click-sound: BLOCK.IRON_DOOR.OPEN, 0.1
+  click-sound: gui.dashboard.balance
 
 chat:
   global:
@@ -170,7 +170,7 @@ chat:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5MTk2YjMzMGM2Yjg5NjJmMjNhZDU2MjdmYjZlY2NlNDcyZWFmNWM5ZDQ0Zjc5MWY2NzA5YzdkMGY0ZGVjZSJ9fX0=
     slot: 23
-    click-sound: BLOCK.STONE_BUTTON.CLICK_OFF, 2.0
+    click-sound: gui.dashboard.chat.global
   team:
     name: "<b><gradient:#E0E300:#D5D676>Team Chat</gradient></b>"
     lore:
@@ -182,7 +182,7 @@ chat:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTVmMDNlOWYxNjhhZjY3MzJmMzIxNTVlODAwMTU4ZTYwOWI4M2QyNjgzNzFhZWViNjIzZTBmZGRmMGVkMzU0YSJ9fX0=
     slot: 23
-    click-sound: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+    click-sound: gui.dashboard.chat.team
   ally:
     name: "<b><gradient:#E0E300:#D5D676>Ally Chat</gradient></b>"
     lore:
@@ -193,7 +193,7 @@ chat:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmOGQyNDQ4YTNiZDI4ZmZiNDNjYmZlMGMwNmQ1NzQxYzZkZmEyN2YzYzI5YjhkMDdjYTIxZTVkNjdjNjFiZCJ9fX0=
     slot: 23
-    click-sound: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+    click-sound: gui.dashboard.chat.ally
 
 team-setting:
   name: "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
@@ -205,4 +205,4 @@ team-setting:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliOTkyMzhkOWY4MTM0MDE1ZDc0MzQxYjE3MTE1YmUzMGYxMjVhMzdlYTQ5MDMyYjhjOWUzYjc2OWNmN2VlMSJ9fX0=
   slot: 24
-  click-sound: BLOCK.IRON.PLACE,0.5
+  click-sound: gui.dashboard.team-setting

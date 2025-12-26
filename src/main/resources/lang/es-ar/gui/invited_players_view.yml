@@ -25,4 +25,4 @@ invited-player-item:
     - "<gray>Click para revocar invitación</gray>"
   item: PLAYER_HEAD
   texture: ""
-  click-sound: ENTITY.VILLAGER.NO,2.0
+  click-sound: gui.invited-players.invited-player-item

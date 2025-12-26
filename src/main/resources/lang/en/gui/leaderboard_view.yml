@@ -31,4 +31,4 @@ team-leaderboard-item:
     - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
   item: PLAYER_HEAD
   texture: ""
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.leaderboard.team-leaderboard-item

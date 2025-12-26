@@ -36,7 +36,7 @@ team:
     slot: 10
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-    click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
+    click-sound: gui.team-viewer.info
 
   info-without-description:
     name: "<b><{color}>{team}</{color}></b>"
@@ -48,7 +48,7 @@ team:
     slot: 10
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-    click-sound: BLOCK.NOTE_BLOCK.CHIME,2.0
+    click-sound: gui.team-viewer.info
 
   balance:
     name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
@@ -57,7 +57,7 @@ team:
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
     slot: 13
-    click-sound: BLOCK.IRON_DOOR.OPEN, 0.1
+    click-sound: gui.team-viewer.balance
   members:
     name: "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
     lore:
@@ -68,7 +68,7 @@ team:
     slot: 14
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
-    click-sound: ENTITY.VILLAGER.TRADE,2.0
+    click-sound: gui.team-viewer.members
   allies:
     name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
     lore:
@@ -78,7 +78,7 @@ team:
     slot: 15
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
-    click-sound: ENTITY.VILLAGER.TRADE,2.0
+    click-sound: gui.team-viewer.allies
 members:
   main:
     title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
@@ -108,7 +108,7 @@ members:
     name: "<aqua>{team_player}"
     lore:
       - "<gray>Rank: <yellow>{rank}"
-    click-sound: UI.BUTTON.CLICK,1.0
+    click-sound: gui.team-viewer.member-item
 allies:
   main:
     title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
@@ -144,5 +144,5 @@ allies:
       - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
-    click-sound: UI.BUTTON.CLICK,1.0
+    click-sound: gui.team-viewer.ally-item
 

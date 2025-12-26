@@ -10,7 +10,8 @@ import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.listener.InventoryListener
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
-import net.justlime.limeframegui.color.FontLoader
+import loader.FontLoader
+import loader.SoundLoader
 import net.justlime.limeframegui.enums.ColorType
 import org.bstats.bukkit.Metrics
 import org.bukkit.inventory.ItemFlag
@@ -35,7 +36,6 @@ class BetterTeamGUI : JavaPlugin() {
         this.saveDefaultConfig()
         lang = this.config.getString("lang") ?: "en"
         when (lang) {
-            //Give credit to HATOR for providing this lang
             "es-ar" -> {
                 ConsoleMessage.printStep("Language set to Spanish (Argentina)", ConsoleMessage.Color.YELLOW)
                 ConsoleMessage.printStep("Translated by HATOR", ConsoleMessage.Color.BRIGHT_GREEN)
@@ -83,6 +83,7 @@ class BetterTeamGUI : JavaPlugin() {
 
     fun setupLimeFrameGUI() {
         FontLoader.load(JFiles.FONT.filename)
+        SoundLoader.load(JFiles.SOUND.filename)
         LimeFrameAPI.setKeys {
             inventoryRows = "row"
             material = "item"

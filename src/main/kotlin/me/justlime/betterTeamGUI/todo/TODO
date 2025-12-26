@@ -6,13 +6,5 @@ Todo
 - shift reload, view to '/team gui' and remove /teams command
 - add back tracking for team viewer
 
-2.2 Changelog
-- Added Sounds
-- Added Player Invite View
-- Added Support for Folia Lib (Tested on 1.21.8)
-- Added Spanish (Argentina) Language Support by Hator
-- Added confirmation dialog box when deleting warp
-- LevelUp will show no-permission to member or admin
-- Team setting will not open for Default Rank
-- Various setting item now required Owner permission instead admin
-- and various bugs fixes
+2.3 Changelog
+- Added Support for 1.21.11

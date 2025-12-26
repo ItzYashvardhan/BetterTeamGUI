@@ -2,22 +2,22 @@ home:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTJkN2E3NTFlYjA3MWUwOGRiYmM5NWJjNWQ5ZDY2ZTVmNTFkYzY3MTI2NDBhZDJkZmEwM2RlZmJiNjhhN2YzYSJ9fX0
   name: '<caps><bold><aqua>Return to Main Page</caps>'
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.buttons.home
 back:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjIzZmI2NzQyOTcxNmIyMWJjNmU4ZTdkNjY5Y2VkZGY2NWIxM2UwNzkwYTVjZTU1YjJlMDc3YjgyZDE5ZTEyNCJ9fX0=
   name: '<caps><bold><yellow>Go Back</caps>'
-  click-sound: UI.BUTTON.CLICK
+  click-sound: gui.buttons.back
 next:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmE4N2UzZDk2ZTFjZmViOWNjZmIzYmE1M2EyMTdmYWY1MjQ5ZTI4NTUzM2IyNzFhMmZiMjg0YzMwZGJkOTgyOSJ9fX0
   name: '<caps><bold><green>Next</caps>'
-  click-sound: ITEM.BOOK.PAGE_TURN, 1.4
+  click-sound: gui.buttons.next
 prev:
   item: PLAYER_HEAD
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGExZDU1YjNmOTg5NDEwYTM0NzUyNjUwZTI0OGM5YjZjMTc4M2E3ZWMyYWEzZmQ3Nzg3YmRjNGQwZTYzN2QzOSJ9fX0
   name: '<caps><bold><green>Previous</caps>'
-  click-sound: ITEM.BOOK.PAGE_TURN, 1.4
+  click-sound: gui.buttons.prev
 no-permission:
   name: "<red><bold>NO PERMISSION</bold>"
   lore:
@@ -27,4 +27,4 @@ no-permission:
   glow: true
   flags:
     - HIDE_ATTRIBUTES
-  click-sound: BLOCK.NOTE_BLOCK.BASS, 2.0
+  click-sound: permission-error

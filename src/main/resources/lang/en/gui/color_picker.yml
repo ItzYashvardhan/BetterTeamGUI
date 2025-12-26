@@ -31,7 +31,7 @@ colors:
     item: PLAYER_HEAD
     slot: 10
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjllMTY5NzkzMDliNWE5YjY3M2Q2MGQxMzkwYmJhYjBkMDM4NWVhYzcyNTRkODI4YWRhMmEzNmE0NmY3M2E1OSJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
   black:
     name: "<black>Black"
     lore:
@@ -39,7 +39,7 @@ colors:
     item: PLAYER_HEAD
     slot: 11
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQxMjc2NjJhZDRlNGE5NTQ3NGZmOGIwMWZjMThhNmFmOGEwOWM1MGRiZTA3NDVjOWExMjJkODUzNTMyYzdmZCJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   blue:
     name: "<blue>Blue"
@@ -48,7 +48,7 @@ colors:
     item: PLAYER_HEAD
     slot: 12
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2I1MTA2YjA2MGVhZjM5ODIxNzM0OWYzY2ZiNGYyYzdjNGZkOWEwYjAzMDdhMTdlYmE2YWY3ODg5YmUwZmJlNiJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_aqua:
     name: "<dark_aqua>Dark Aqua"
@@ -57,7 +57,7 @@ colors:
     item: PLAYER_HEAD
     slot: 14
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTc1YjdhYzlmMGM3MTIzMDNjZDNiNjU0ZTY0NmNlMWM0YmYyNDNhYjM0OGE2YTI1MzcwZjI2MDNlNzlhNjJhMCJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_blue:
     name: "<dark_blue>Dark Blue"
@@ -66,7 +66,7 @@ colors:
     item: PLAYER_HEAD
     slot: 15
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U3YWI3MTJjODdmNjdkNDhiOThmNzA2MzRkMWRjZmNkNTk4MGMzZDZmMGQ2MjJjZGMzMjMwOTEyMzYxYjU0ZSJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_gray:
     name: "<dark_gray>Dark Gray"
@@ -75,7 +75,7 @@ colors:
     item: PLAYER_HEAD
     slot: 16
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2FmNmZhYjc2N2NhNGQ3ZGY2MjE3Yjg5NWI2NjdiY2FjYzUyNGQ0MDcwNjg2MTlmODE5YTA3MGYzZjYyOWNlMCJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_green:
     name: "<dark_green>Dark Green"
@@ -84,7 +84,7 @@ colors:
     item: PLAYER_HEAD
     slot: 19
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWUzOGZhMzEzMWUyZGEwNGE4ZjhkNTA4NzJhODIzMmQ3ZDlkZWEzNDBkMDZjOTA5N2ZmYTNjYzQ4MjA4ZGYxZCJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_purple:
     name: "<dark_purple>Dark Purple"
@@ -93,7 +93,7 @@ colors:
     item: PLAYER_HEAD
     slot: 20
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWI4MmU3MmI4ZTQ4MzJlNWExMTRhYjBmYzEyN2M4YWNiODNmMzFmZDRkMjY2ZDA4YjJjYWNjNWI2NDAxYTQwMCJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   dark_red:
     name: "<dark_red>Dark Red"
@@ -102,7 +102,7 @@ colors:
     item: PLAYER_HEAD
     slot: 21
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY1ZjNiYWUwZDIwM2JhMTZmZTFkYzNkMTMwN2E4NmE2MzhiZTkyNDQ3MWYyM2U4MmFiZDlkNzhmOGEzZmNhIn19fQ=="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   gold:
     name: "<gold>Gold"
@@ -111,7 +111,7 @@ colors:
     item: PLAYER_HEAD
     slot: 23
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTE4OWYzNDdmNDI0NTBjZDJhMmU5YjhhNTM5ODgwN2QyOGM3ZjQyNTRiZDk5YThhNDk5Y2U1NDM1MzIwOTU1In19fQ=="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   gray:
     name: "<gray>Gray"
@@ -120,7 +120,7 @@ colors:
     item: PLAYER_HEAD
     slot: 24
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzMyOGRjZGUxNzNiZWZmOWYzZjQxYjkyMzIxM2ZjMWJiNzY3ODk2N2NjYjJlZGU3YTdjZjQwYjE4MzZiMWE3MyJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   green:
     name: "<green>Green"
@@ -129,7 +129,7 @@ colors:
     item: PLAYER_HEAD
     slot: 25
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNlOWY0ZGJhZGRlMGY3MjdjNTgwM2Q3NWQ4YmIzNzhmYjlmY2I0YjYwZDMzYmVjMTkwOTJhM2EyZTdiMDdhOSJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   red:
     name: "<red>Red"
@@ -138,7 +138,7 @@ colors:
     item: PLAYER_HEAD
     slot: 28
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjA2MmQ4ZDcyZjU4OTFjNzFmYWIzMGQ1MmUwNDgxNzk1YjNkMmQzZDJlZDJmOGI5YjUxN2Q3ZDI4MjFlMzVkNiJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   strikethrough:
     name: "<strikethrough>Strikethrough"
@@ -147,7 +147,7 @@ colors:
     item: PLAYER_HEAD
     slot: 29
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWMxYmU5ODEyZjNhZGRkY2ZiMjM5ODNiMTI3ZDllNzQzYzMyYjVkNjc2NWJiYmVhNjY3ZTU5NGM4NWY3MDA2MSJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   white:
     name: "<white>White"
@@ -156,7 +156,7 @@ colors:
     item: PLAYER_HEAD
     slot: 33
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDFmMWY1MThkNWMyOTc3OTYyZTU5OGU0ZGQzMzA4MmEzNWQxNzM0OGY2NTM5NjUxNjc4ZGI1MDlhMDg3Y2RjYiJ9fX0="
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select
 
   yellow:
     name: "<yellow>Yellow"
@@ -165,4 +165,4 @@ colors:
     item: PLAYER_HEAD
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAwYmY0YmYxNGM4Njk5YzBmOTIwOWNhNzlmZTE4MjUzZTkwMWU5ZWMzODc2YTJiYTA5NWRhMDUyZjY5ZWJhNyJ9fX0="
     slot: 34
-    click-sound: BLOCK.BEACON.POWER_SELECT,2.0
+    click-sound: gui.color-picker.select

@@ -13,8 +13,8 @@ object TeamService {
 
     var command: String = ConfigManager.config.getString(JGui.Config.PREFIX) ?: "team"
 
-    fun teamToPlaceholderMap(team: Team): Map<String, String> {
-        return mapOf(
+    fun teamToPlaceholderMap(team: Team): MutableMap<String, String> {
+        return mutableMapOf(
             "{team}" to (team.name ?: "N/A"),
             "{tag}" to (team.tag ?: "N/A"),
             "{pvp}" to (team.isPvp.toString()),
@@ -33,15 +33,15 @@ object TeamService {
         )
     }
 
-    fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): Map<String, String> {
-        return mapOf(
+    fun teamPlayerToPlaceholderMap(teamPlayer: TeamPlayer): MutableMap<String, String> {
+        return mutableMapOf(
             "{rank}" to teamPlayer.rank.name,
             "{team_player}" to (teamPlayer.player.name ?: ""),
             "{title}" to (teamPlayer.title ?: "")
         )
     }
 
-    fun applyPlaceHolder(team: Team, teamPlayer: TeamPlayer): Map<String, String> {
+    fun applyPlaceHolder(team: Team, teamPlayer: TeamPlayer): MutableMap<String, String> {
         val map = mutableMapOf<String, String>()
         map.putAll(teamToPlaceholderMap(team))
         map.putAll(teamPlayerToPlaceholderMap(teamPlayer))

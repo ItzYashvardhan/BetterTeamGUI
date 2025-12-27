@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
@@ -6,11 +6,11 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.gui.items.TeamViewerItems
 import me.justlime.betterTeamGUI.utilities.TeamService
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamViewer(setting: GUISetting, player: Player, targetTeam: Team) {
+fun teamViewer(setting: GuiSetting, player: Player, targetTeam: Team) {
     setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -34,7 +34,7 @@ fun teamViewer(setting: GUISetting, player: Player, targetTeam: Team) {
     }.open(player)
 }
 
-fun teamViewerMembers(setting: GUISetting, player: Player, targetTeam: Team) {
+fun teamViewerMembers(setting: GuiSetting, player: Player, targetTeam: Team) {
     setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -69,7 +69,7 @@ fun teamViewerMembers(setting: GUISetting, player: Player, targetTeam: Team) {
     }.open(player)
 }
 
-fun teamViewerAllies(setting: GUISetting, player: Player, targetTeam: Team) {
+fun teamViewerAllies(setting: GuiSetting, player: Player, targetTeam: Team) {
     setting.style.placeholder = TeamService.teamToPlaceholderMap(targetTeam)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }

@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team

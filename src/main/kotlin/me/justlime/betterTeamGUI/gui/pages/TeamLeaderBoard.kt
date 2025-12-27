@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
@@ -6,13 +6,13 @@ import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.LeaderBoardItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamLeaderBoard(setting: GUISetting, player: Player, team: Team) {
+fun teamLeaderBoard(setting: GuiSetting, player: Player, team: Team) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
         applyBackground(LeaderBoardItem, this) {

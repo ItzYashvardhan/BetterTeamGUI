@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Team
 import com.booksaw.betterTeams.TeamPlayer
@@ -6,11 +6,11 @@ import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.TeamDialogItem
 import me.justlime.betterTeamGUI.utilities.TeamService
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
-fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamLeaveDialog(setting: GuiSetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.leaveBackground.forEach { setItem(it) }
@@ -43,7 +43,7 @@ fun teamLeaveDialog(setting: GUISetting) = ChestGUI(setting) {
 
 }
 
-fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamDisbandDialog(setting: GuiSetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.disbandBackground.forEach { setItem(it) }
@@ -75,7 +75,7 @@ fun teamDisbandDialog(setting: GUISetting) = ChestGUI(setting) {
     }
 }
 
-fun teamDeleteWarpDialog(setting: GUISetting, warpName: String) = ChestGUI(setting) {
+fun teamDeleteWarpDialog(setting: GuiSetting, warpName: String) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.deleteWarpBackground.forEach { setItem(it) }
@@ -111,7 +111,7 @@ fun teamDeleteWarpDialog(setting: GUISetting, warpName: String) = ChestGUI(setti
 
 }
 
-fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamDeleteHomeDialog(setting: GuiSetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.deleteHomeBackground.forEach { setItem(it) }
@@ -143,7 +143,7 @@ fun teamDeleteHomeDialog(setting: GUISetting) = ChestGUI(setting) {
     }
 }
 
-fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting) {
+fun teamUpdateHomeDialog(setting: GuiSetting) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.updateHomeBackground.forEach { setItem(it) }
@@ -175,7 +175,7 @@ fun teamUpdateHomeDialog(setting: GUISetting) = ChestGUI(setting) {
     }
 }
 
-fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamPromoteToOwnerDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.promoteToOwnerBackground.forEach { setItem(it) }
@@ -214,7 +214,7 @@ fun teamPromoteToOwnerDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
     }
 }
 
-fun teamPromoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamPromoteToAdminDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.promoteToAdminBackground.forEach { setItem(it) }
@@ -253,7 +253,7 @@ fun teamPromoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) 
     }
 }
 
-fun teamDemoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamDemoteToAdminDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.demoteToAdminBackground.forEach { setItem(it) }
@@ -292,7 +292,7 @@ fun teamDemoteToAdminDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) =
     }
 }
 
-fun teamDemoteToDefaultDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamDemoteToDefaultDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.demoteToDefaultBackground.forEach { setItem(it) }
@@ -331,7 +331,7 @@ fun teamDemoteToDefaultDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer)
     }
 }
 
-fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamKickDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.kickBackground.forEach { setItem(it) }
@@ -373,7 +373,7 @@ fun teamKickDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI
     }
 }
 
-fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
+fun teamBanDialog(setting: GuiSetting, targetTeamPlayer: TeamPlayer) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.banBackground.forEach { setItem(it) }
@@ -412,14 +412,14 @@ fun teamBanDialog(setting: GUISetting, targetTeamPlayer: TeamPlayer) = ChestGUI(
     }
 }
 
-fun teamNeutralDialog(setting: GUISetting, targetTeam: Team) = ChestGUI(setting) {
+fun teamNeutralDialog(setting: GuiSetting, targetTeam: Team) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     // Background & Static Items
     TeamDialogItem.neutralBackground.forEach { setItem(it) }
 
     // Confirm Item
     val confirmItem = TeamDialogItem.neutralConfirmItem?.clone().apply {
-        this?.style?.placeholder = mapOf("{team_ally}" to (targetTeam.name ?: "Unknown"))
+        this?.style?.placeholder["{team_ally}"] = targetTeam.name ?: "Unknown Team"
     }
     if (confirmItem != null) {
         setItem(confirmItem) { clickEvent ->

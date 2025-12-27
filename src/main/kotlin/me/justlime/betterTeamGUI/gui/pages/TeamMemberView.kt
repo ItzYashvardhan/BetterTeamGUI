@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
@@ -8,13 +8,13 @@ import me.justlime.betterTeamGUI.gui.items.TeamMemberItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamMemberView(setting: GUISetting, player: Player, team: Team) {
+fun teamMemberView(setting: GuiSetting, player: Player, team: Team) {
     val teamPlayer = team.getTeamPlayer(player) ?: return
     setting.style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     ChestGUI(setting) {

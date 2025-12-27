@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.foliaLib
@@ -8,14 +8,14 @@ import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun inviteView(setting: GUISetting, player: Player, team: Team, searchQuery: String? = null) {
+fun inviteView(setting: GuiSetting, player: Player, team: Team, searchQuery: String? = null) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
 

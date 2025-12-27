@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
@@ -8,13 +8,13 @@ import me.justlime.betterTeamGUI.gui.items.TeamButton
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
+fun teamAlliesList(setting: GuiSetting, player: Player, team: Team) {
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -67,7 +67,7 @@ fun teamAlliesList(setting: GUISetting, player: Player, team: Team) {
     }.open(player)
 }
 
-fun teamAllyRequests(setting: GUISetting, player: Player, team: Team) {
+fun teamAllyRequests(setting: GuiSetting, player: Player, team: Team) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
 

@@ -76,6 +76,10 @@ fun openAnvilGUI(player: Player, title: Component, label: Component, inputItem: 
             submitSound?.playSound(player)
             onConfirm(userInput)
             return@onClick listOf(AnvilGUI.ResponseAction.close())
+        }.onClose {
+            foliaLib.scheduler.runLater(Runnable {
+                onCancel()
+            }, 3)
         }.open(player)
     } catch (_: Throwable) {
         //Silently fail

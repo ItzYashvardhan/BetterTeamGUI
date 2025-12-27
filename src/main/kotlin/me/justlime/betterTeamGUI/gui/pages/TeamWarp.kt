@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
@@ -15,13 +15,13 @@ import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-fun teamWarp(setting: GUISetting, team: Team, teamPlayer: TeamPlayer, player: Player): ChestGUI = ChestGUI(setting) {
+fun teamWarp(setting: GuiSetting, team: Team, teamPlayer: TeamPlayer, player: Player): ChestGUI = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     applyBackground(TeamWarpItem, this) {
         GUIManager.openTeamGUI(player)

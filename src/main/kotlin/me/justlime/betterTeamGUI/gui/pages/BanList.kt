@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.gui.GUIManager
@@ -6,13 +6,13 @@ import me.justlime.betterTeamGUI.gui.items.BanListItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.bannedPlayersList
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import java.util.*
 
-fun teamBanList(setting: GUISetting, player: Player, team: Team) {
+fun teamBanList(setting: GuiSetting, player: Player, team: Team) {
 
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -31,9 +31,7 @@ fun teamBanList(setting: GUISetting, player: Player, team: Team) {
                         this.texture = "[${bannedPlayer.uniqueId}]"
 
                         this.style.offlinePlayer = bannedPlayer
-                        this.style.placeholder = mapOf(
-                            "{team_player}" to (bannedPlayer.name ?: "Unknown")
-                        )
+                        this.style.placeholder["{team_player}"] = bannedPlayer.name ?: "Unknown"
                     }
 
                     if (item != null) {

@@ -6,7 +6,7 @@ import me.justlime.betterTeamGUI.config.FormService
 import me.justlime.betterTeamGUI.foliaLib
 import me.justlime.betterTeamGUI.gui.bedrock.BForm
 import me.justlime.betterTeamGUI.gui.items.*
-import me.justlime.betterTeamGUI.gui.java.*
+import me.justlime.betterTeamGUI.gui.pages.*
 import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.isBedrockPlayer

@@ -3,13 +3,13 @@ package me.justlime.betterTeamGUI.gui.items
 import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.enums.TeamItem
 import net.justlime.limeframegui.impl.ConfigHandler
-import net.justlime.limeframegui.models.GUISetting
 import net.justlime.limeframegui.models.GuiItem
+import net.justlime.limeframegui.models.GuiSetting
 
 abstract class BaseGuiItem(private val fileName: String) : TeamItem {
 
     override lateinit var config: ConfigHandler
-    override lateinit var setting: GUISetting
+    override lateinit var setting: GuiSetting
     override lateinit var background: List<GuiItem>
 
     override var backSlot: List<Int> = emptyList()

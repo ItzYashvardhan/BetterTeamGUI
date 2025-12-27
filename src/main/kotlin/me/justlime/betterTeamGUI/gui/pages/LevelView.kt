@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.Main
 import com.booksaw.betterTeams.PlayerRank
@@ -11,7 +11,7 @@ import me.justlime.betterTeamGUI.gui.items.LevelItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.permissionDenied
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.entity.Player
 
@@ -19,7 +19,7 @@ private enum class RequiredType { MONEY, SCORE }
 
 private data class TeamLevel(val level: Int, val maxWarps: Int, val teamLimit: Int, val maxBal: Int, val maxAdmins: Int, val maxOwners: Int, val maxChests: Int, val requiredAmount: Int, val requiredType: RequiredType)
 
-fun teamLevel(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamPlayer) {
+fun teamLevel(setting: GuiSetting, player: Player, team: Team, teamPlayer: TeamPlayer) {
     setting.style.placeholder = TeamService.applyPlaceHolder(team, teamPlayer)
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
@@ -83,9 +83,9 @@ fun teamLevel(setting: GUISetting, player: Player, team: Team, teamPlayer: TeamP
     }.open(player)
 }
 
-private fun getLevelPlaceHolder(level: Int): Map<String, String> {
-    val levelData = getLevelData(level) ?: return emptyMap()
-    return mapOf(
+private fun getLevelPlaceHolder(level: Int): MutableMap<String, String> {
+    val levelData = getLevelData(level) ?: return mutableMapOf()
+    return mutableMapOf(
         "{level}" to level.toString(),
         "{prev_level}" to (getLevelData(level - 1)?.level ?: 0).toString(),
         "{next_level}" to (getLevelData(level + 1)?.level ?: 0).toString(),

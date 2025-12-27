@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
@@ -10,7 +10,7 @@ import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
 import me.justlime.betterTeamGUI.utilities.applyMiniColor
 import me.justlime.betterTeamGUI.utilities.openAnvilGUI
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.models.GuiItem
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.Bukkit
@@ -28,7 +28,7 @@ data class TeamListState(
     val searchQuery: String? = null
 )
 
-fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamListState()) {
+fun teamList(setting: GuiSetting, player: Player, state: TeamListState = TeamListState()) {
     ChestGUI(setting) {
 
         onClick { it.isCancelled = true }
@@ -202,7 +202,7 @@ fun teamList(setting: GUISetting, player: Player, state: TeamListState = TeamLis
     }.open(player)
 }
 
-fun openTeamInvites(setting: GUISetting, player: Player, invitedTeams: MutableList<Team>) {
+fun openTeamInvites(setting: GuiSetting, player: Player, invitedTeams: MutableList<Team>) {
     ChestGUI(setting) {
         onClick { it.isCancelled = true }
         nav {

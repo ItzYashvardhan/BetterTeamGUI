@@ -1,15 +1,15 @@
-package me.justlime.betterTeamGUI.gui.java
+package me.justlime.betterTeamGUI.gui.pages
 
 import me.justlime.betterTeamGUI.gui.GUIManager
 import me.justlime.betterTeamGUI.gui.items.ColorPickerItem
 import me.justlime.betterTeamGUI.utilities.TeamService
 import me.justlime.betterTeamGUI.utilities.applyBackground
-import net.justlime.limeframegui.models.GUISetting
+import net.justlime.limeframegui.models.GuiSetting
 import net.justlime.limeframegui.type.ChestGUI
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 
-fun colorPickerView(setting: GUISetting, player: Player) = ChestGUI(setting) {
+fun colorPickerView(setting: GuiSetting, player: Player) = ChestGUI(setting) {
     onClick { it.isCancelled = true }
     applyBackground(ColorPickerItem, this, false){
         GUIManager.openTeamSettingGUI(player)

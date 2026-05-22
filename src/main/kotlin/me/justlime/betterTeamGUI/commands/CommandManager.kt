@@ -6,7 +6,7 @@ import me.justlime.betterTeamGUI.pluginInstance
 object CommandManager {
     fun register() {
         pluginInstance.getCommand("teams")?.setExecutor(TeamsCommand())
-        Main.plugin.teamCommand.addSubCommand(TeamGuiCommand())
+        Main.plugin?.teamCommand?.addSubCommand(TeamGuiCommand())
     }
 
 }

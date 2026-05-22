@@ -1,0 +1,202 @@
+home:
+  - "[open] dashboard_view"
+back:
+  - "[open] dashboard_view"
+
+dashboard:
+  allies:
+    - "[sound] gui.dashboard.allies"
+    - "[open] allies_view"
+  leave:
+    - "[sound] dashboard.leave"
+    - "[open] dialog/leave"
+  info:
+    left-click:
+      - "[sound] gui.dashboard.info"
+      - "[open] leaderboard_view"
+    right-click:
+      - "[sound] gui.dashboard.info"
+      - "[open] levels_view"
+  home:
+    left-click:
+      - "[sound] gui.dashboard.home"
+      - "[player] {cmd.team} home"
+
+    shift-click:
+      - "[sound] gui.dashboard.home"
+      - "[open] dialog/delete_home"
+
+    right-click:
+      when:
+        value: "{team_player_has_home}"
+        result:
+          "true":
+            - "[sound] gui.dashboard.home"
+            - "[open] dialog/update_home"
+          "false":
+            - "[sound] gui.dashboard.home"
+            - "[player] {cmd.team} sethome"
+            - "[close]"
+  list:
+    - "[sound] gui.dashboard.list"
+    - "[open] viewer/list_viewer"
+
+  members:
+    - "[sound] gui.dashboard.members"
+  team_chest:
+    - "[sound] gui.dashboard.team-chest"
+    - "[close]"
+    - "[player] {cmd.team} echest"
+  warps:
+    - "[sound] gui.dashboard.warps"
+    - "[open] warps_view"
+  balance:
+    - "[sound] gui.dashboard.balance"
+    - "[open] money_view"
+  chat_global:
+    - "[sound] gui.dashboard.chat.global"
+  chat_team:
+    - "[sound] gui.dashboard.chat.team"
+  chat_ally:
+    - "[sound] gui.dashboard.chat.ally"
+  settings:
+    - "[sound] gui.dashboard.team-setting"
+    - "[open] setting_view"
+
+setting:
+  color-picker:
+    - "[sound] gui.setting.color-picker"
+    - "[open] color_picker"
+  description:
+    - "[sound] gui.setting.description"
+    - "[input] description"
+  tag:
+    - "[sound] gui.setting.tag"
+    - "[input] {cmd.team} tag {input} "
+  status:
+    - "[sound] gui.setting.status"
+    - "[player] {cmd.team} open"
+  anchor:
+    - "[sound] gui.setting.anchor"
+    - "[player] {cmd.team} anchor"
+  title:
+    - "[sound] gui.setting.title"
+    - "[input] {cmd.team} title {input}"
+  pvp:
+    - "[sound] gui.setting.pvp"
+    - "[player] {cmd.team} pvp"
+  rename:
+    - "[sound] gui.setting.rename"
+    - "[input] {cmd.team} rename {input}"
+  disband:
+    - "[sound] gui.setting.disband"
+    - "[open] dialog/disband"
+
+color_picker:
+  back:
+    - "[sound] click"
+    - "[open] setting_view"
+  select_aqua:
+    - "[player] {cmd.team} color aqua"
+    - "[close]"
+  select_black:
+    - "[player] {cmd.team} color black"
+    - "[close]"
+  select_blue:
+    - "[player] {cmd.team} color blue"
+    - "[close]"
+  select_dark_aqua:
+    - "[player] {cmd.team} color dark_aqua"
+    - "[close]"
+  select_dark_blue:
+    - "[player] {cmd.team} color dark_blue"
+    - "[close]"
+  select_dark_gray:
+    - "[player] {cmd.team} color dark_gray"
+    - "[close]"
+  select_dark_green:
+    - "[player] {cmd.team} color dark_green"
+    - "[close]"
+  select_dark_purple:
+    - "[player] {cmd.team} color dark_purple"
+    - "[close]"
+  select_dark_red:
+    - "[player] {cmd.team} color dark_red"
+    - "[close]"
+  select_gold:
+    - "[player] {cmd.team} color gold"
+    - "[close]"
+  select_gray:
+    - "[player] {cmd.team} color gray"
+    - "[close]"
+  select_green:
+    - "[player] {cmd.team} color green"
+    - "[close]"
+  select_red:
+    - "[player] {cmd.team} color red"
+    - "[close]"
+  select_strikethrough:
+    - "[player] {cmd.team} color strikethrough"
+    - "[close]"
+  select_white:
+    - "[player] {cmd.team} color white"
+    - "[close]"
+  select_yellow:
+    - "[player] {cmd.team} color yellow"
+    - "[close]"
+
+
+example:
+  
+  # ====================================================
+  # EXAMPLE 1: SEQUENCE & CONDITIONS (if / else if / else)
+  # ====================================================
+  claim_daily_reward:
+    sequence:
+      # Node 1: Checked first (Highest Priority)
+      1:
+        requirements:
+          - "[permission] server.rank.vip"
+          - "[condition] {vault_eco_balance} >= 1000" # { } gets converted to % % for PAPI
+        click:
+          - "[message] <green>You claimed the VIP reward!"
+          - "[console] eco give %player_name% 5000"
+          - "[sound] entity_player_levelup"
+          - "[close]"
+
+      # Node 2: Checked only if Node 1 requirements fail
+      2:
+        requirements:
+          - "[group] default"
+        left-click:
+          - "[message] <yellow>You claimed the standard daily reward!"
+          - "[console] eco give %player_name% 500"
+        right-click:
+          - "[message] <gray>You right-clicked to claim the standard reward!"
+
+      # Fallback: Runs only if ALL numbered nodes fail their requirements
+      else:
+        click:
+          - "[message] <red>You do not meet the requirements for any rewards!"
+          - "[sound] entity_villager_no"
+
+
+  # ====================================================
+  # EXAMPLE 2: WHEN (Switch/Case Statements)
+  # ====================================================
+  teleport_to_spawn:
+    click:
+      when:
+        value: "{player_world}" # The engine resolves this via PlaceholderAPI
+        result:
+          "world_nether":
+            - "[message] <red>Magic doesn't work in the Nether!"
+            - "[sound] block_anvil_place"
+          
+          "world_the_end":
+            - "[message] <red>You are trapped in the End."
+          
+          "default": # Runs if the value doesn't match 'world_nether' or 'world_the_end'
+            - "[message] <green>Teleporting you to spawn!"
+            - "[player] spawn"
+            - "[close]"

@@ -2,22 +2,17 @@ package me.justlime.betterTeamGUI
 
 import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
-import me.justlime.betterTeamGUI.commands.TeamCommandProxy
-import me.justlime.betterTeamGUI.config.Config
-import me.justlime.betterTeamGUI.config.ConfigManager
-import me.justlime.betterTeamGUI.enums.JFiles
-import me.justlime.betterTeamGUI.enums.JGui
+import me.justlime.betterTeamGUI.data.gui.new.TeamListManager
 import me.justlime.betterTeamGUI.listener.InventoryListener
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
-import loader.FontLoader
-import loader.SoundLoader
+import net.justlime.limeframegui.config.GuiDirectoryHandler
 import net.justlime.limeframegui.enums.ColorType
 import org.bstats.bukkit.Metrics
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.HttpURLConnection
-import java.net.URL
+import java.net.URI
 
 lateinit var pluginInstance: BetterTeamGUI
 lateinit var foliaLib: FoliaLib
@@ -44,7 +39,10 @@ class BetterTeamGUI : JavaPlugin() {
 
 
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
-        Config.reload()
+        setupLimeFrameGUI()
+//        Config.reload()
+        ConsoleMessage.printStep("LimeFrame Setup Completed")
+//        Config.reload()
         server.pluginManager.registerEvents(InventoryListener(), this)
 
 
@@ -55,23 +53,24 @@ class BetterTeamGUI : JavaPlugin() {
 
         }
 
-        if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
-            try {
-                TeamCommandProxy.inject() //Experimental}
-            } catch (e: Exception) {
-                ConsoleMessage.printStep("Failed to Inject GUI Commands", ConsoleMessage.Color.RED)
-                ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
-            }
-        }
+//        if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
+//            try {
+//                TeamCommandProxy.inject() //Experimental}
+//            } catch (e: Exception) {
+//                ConsoleMessage.printStep("Failed to Inject GUI Commands", ConsoleMessage.Color.RED)
+//                ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
+//            }
+//        }
         CommandManager.register()
         ConsoleMessage.printStep("Successfully Registered Commands")
         Metrics(this, 24705)
-        setupLimeFrameGUI()
-        Config.reload()
-        ConsoleMessage.printStep("LimeFrame Setup Completed")
+
         ConsoleMessage.printStep("Checking for Updates..")
         checkVersionFromBetterTeamGUIRepo()
-        ConsoleMessage.printStep("Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}", ConsoleMessage.Color.BRIGHT_GREEN)
+        ConsoleMessage.printStep(
+            "Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}",
+            ConsoleMessage.Color.BRIGHT_GREEN
+        )
         ConsoleMessage.printFooter()
     }
 
@@ -82,10 +81,8 @@ class BetterTeamGUI : JavaPlugin() {
     }
 
     fun setupLimeFrameGUI() {
-        FontLoader.load(JFiles.FONT.filename)
-        SoundLoader.load(JFiles.SOUND.filename)
         LimeFrameAPI.setKeys {
-            inventoryRows = "row"
+            inventoryRows = "rows"
             material = "item"
             name = "name"
             lore = "lore"
@@ -94,19 +91,19 @@ class BetterTeamGUI : JavaPlugin() {
             slotList = "slot"
             texture = "texture"
             flags = "flags"
-            stylishName = ConfigManager.font.getBoolean("small-caps", true)
-            stylishLore = ConfigManager.font.getBoolean("small-caps", true)
-            stylishTitle = ConfigManager.font.getBoolean("small-caps", true)
         }
-        ItemFlag.HIDE_ATTRIBUTES
         LimeFrameAPI.enableFoliaLib()
+        LimeFrameAPI.loadConfig("gui")
+        GuiDirectoryHandler.reload(this,true)
+        TeamListManager.registerPopulators()
+
     }
 
 }
 
 private fun checkVersionFromBetterTeamGUIRepo() {
     try {
-        val url = URL("https://api.github.com/repos/ItzYashvardhan/BetterTeamGUI/tags")
+        val url = URI("https://api.github.com/repos/ItzYashvardhan/BetterTeamGUI/tags").toURL()
         val conn = url.openConnection() as HttpURLConnection
         conn.setRequestProperty("User-Agent", "Mozilla/5.0")
         conn.connectTimeout = 5000
@@ -122,7 +119,8 @@ private fun checkVersionFromBetterTeamGUIRepo() {
 
         if (currentVersion != latestTag) {
             ConsoleMessage.printStep(
-                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag", ConsoleMessage.Color.BRIGHT_YELLOW
+                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag",
+                ConsoleMessage.Color.BRIGHT_YELLOW
             )
             ConsoleMessage.printStep("Modrinth", ConsoleMessage.Color.LIGHT_BLUE)
             ConsoleMessage.printStep("https://modrinth.com/plugin/betterteamsgui/versions", ConsoleMessage.Color.WHITE)
@@ -130,7 +128,8 @@ private fun checkVersionFromBetterTeamGUIRepo() {
 
         } else {
             ConsoleMessage.printStep(
-                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)", ConsoleMessage.Color.GREEN
+                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)",
+                ConsoleMessage.Color.GREEN
             )
         }
 

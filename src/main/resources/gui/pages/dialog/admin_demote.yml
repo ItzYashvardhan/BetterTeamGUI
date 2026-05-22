@@ -1,18 +1,20 @@
 main:
   title: "lang.dialog_demote_admin_title"
-  rows: 3
   type: page
   inherit:
-    - "template/dialog_background_pattern"
+    - "template/dialog_background"
+    - "template/nav"
 
 confirm:
   char: "Y"
-  name: "Confirm Demotion"
+  name: "lang.dialog_confirm_name"
+  lore: "lang.dialog_demote_admin_confirm_lore"
   item: LIME_WOOL
-  action: "actions:dialog.demote.confirm"
+  action: "dialog.demote.confirm"
 
 cancel:
   char: "N"
-  name: "Cancel"
+  name: "lang.dialog_cancel_name"
+  lore: "lang.dialog_demote_admin_cancel_lore"
   item: RED_WOOL
-  action: "actions:dialog.demote.cancel"
+  action: "dialog.demote.cancel"

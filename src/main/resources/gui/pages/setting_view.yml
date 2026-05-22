@@ -1,164 +1,151 @@
 main:
-  title: "{lang:setting_view_title}"
-  row: 4
+  title: "lang.setting_view_title"
+  rows: 4
   font-title: false
   font-name: true
   font-lore: true
-  background:
-    0:
-      name: " "
-      item: LIGHT_BLUE_STAINED_GLASS_PANE
-      slot: [ 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52 ]
-      flags:
-        - HIDE_ATTRIBUTES
-        - HIDE_ADDITIONAL_TOOLTIP
-    1:
-      name: " "
-      item: PURPLE_STAINED_GLASS_PANE
-      slot: [ 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53 ]
-      flags:
-        - HIDE_ATTRIBUTES
-        - HIDE_ADDITIONAL_TOOLTIP
-  slot:
-    home: 35
+  inherit:
+    - template/background
+    - template/nav
+  pattern:
+    - ". . . . . . . . . "
+    - ". . C D . T S . ."
+    - ". . A I . V R . ."
+    - "X . . . . . . . ."
 
-
-# 1. Color Picker
+# ----------------------------------------------------
+# CORE SETTING BUTTONS
+# ----------------------------------------------------
 color-picker:
-  name: "{lang:setting_view_color_picker_name}"
-  lore:
-    - "{lang:setting_view_color_picker_lore}"
+  name: "lang.setting_view_color_picker_name"
+  char: "C"
+  lore: ["lang.setting_view_color_picker_lore"]
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzIyNzY3MGQxNDg3OTQ5MTUzMDQ4MjdiMGViMDNlZmYyNzNjYTE1M2Y4NzRkYjVlOTA5NGQxY2RiYjYyNThhMiJ9fX0=" # (Rainbow Block Texture)
-  slot: 11
-  click-sound: gui.setting.color-picker
+  texture: "setting.color-picker"
+  action: "setting.color-picker"
 
-# 2. Description
 description:
-  name: "{lang:setting_view_description_name}"
-  lore:
-    - "{lang:setting_view_description_lore}"
+  name: "lang.setting_view_description_name"
+  char: "D"
+  lore: ["lang.setting_view_description_lore"]
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGExNjAzOGJjOGU2NTE4YWZhOTE0OThkYWI3Njc1YzAxY2IzMWExMjVkMjFjNDliODYxMjk0ZDM5ZTFjNTYwYyJ9fX0=" # (Info/Question Mark Texture)
-  slot: 12
-  click-sound: gui.setting.description
-# 3. Tag
+  texture: "setting.description"
+  action: "setting.description"
+
+
 tag:
-  name: "{lang:setting_view_tag_name}"
-  lore:
-    - "{lang:setting_view_tag_lore}"
+  name: "lang.setting_view_tag_name"
+  char: "T"
+  lore: ["lang.setting_view_tag_lore"]
   item: NAME_TAG
-  slot: 14
-  click-sound: gui.setting.tag
-# 4. Open/Closed Status
+  action: "setting.tag"
+
 status-open:
-  name: "{lang:setting_view_status_name}"
-  lore:
-    - "{lang:setting_view_status_open_lore}"
+  name: "lang.setting_view_status_name"
+  char: "S"
+  lore: ["lang.setting_view_status_open_lore"]
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ViNGIzNDUxOWZlMTU4NDdkYmVhNzIyOTE3OWZlZWI2ZWE1NzcxMmQxNjVkY2M4ZmY2Yjc4NWJiNTg5MTFiMCJ9fX0="
-  slot: 15
-  click-sound: gui.setting.status
-status-closed:
-  name: "{lang:setting_view_status_name}"
-  lore:
-    - "{lang:setting_view_status_closed_lore}"
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ1OGQ0NTkxNjVkNTk3ODc1M2VhYjVmNDRiZDYwOWYzZGI4NGVlM2JiMDE2OTMyMDUyMzg5ZDM4Yjg5NSJ9fX0="
-  slot: 15
-  click-sound: gui.setting.status
-# 5. Home Anchor
+  texture: "setting.status-open"
+  action: "setting.status"
+
 anchor:
-  name: "{lang:setting_view_anchor_name}"
-  lore:
-    - "{lang:setting_view_anchor_lore}"
+  name: "lang.setting_view_anchor_name"
+  char: "A"
+  lore: ["lang.setting_view_anchor_lore"]
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmZiMjkwYTEzZGY4ODI2N2VhNWY1ZmNmNzk2YjYxNTdmZjY0Y2NlZTVjZDM5ZDQ2OTcyNDU5MWJhYmVlZDFmNiJ9fX0="
-  slot: 20
-  click-sound: gui.setting.anchor
+  texture: "setting.anchor"
+  action: "setting.anchor"
+
+title:
+  name: "lang.setting_view_title_name"
+  char: "I"
+  lore: ["lang.setting_view_title_lore"]
+  item: PLAYER_HEAD
+  texture: "setting.title"
+  action: "setting.title"
+
+pvp:
+  name: "lang.setting_view_pvp_name"
+  char: "V"
+  lore: ["lang.setting_view_pvp_lore"]
+  item: IRON_SWORD
+  flags: [ HIDE_ATTRIBUTES ]
+  action: "setting.pvp"
+
+rename:
+  name: "lang.setting_view_rename_name"
+  char: "R"
+  lore: ["lang.setting_view_rename_lore"]
+  item: ANVIL
+  action: "setting.rename"
+
+disband:
+  name: "lang.setting_view_disband_name"
+  char: "X"
+  lore: ["lang.setting_view_disband_lore"]
+  item: PLAYER_HEAD
+  texture: setting.disband
+  action: "setting.disband"
+
+# ----------------------------------------------------
+# CONDITIONAL OVERRIDES
+# ----------------------------------------------------
+status-closed:
+  name: "lang.setting_view_status_name"
+  char: "s"
+  lore: ["lang.setting_view_status_closed_lore"]
+  item: PLAYER_HEAD
+  texture: "setting.status-closed"
+  action: "setting.status"
+
 
 no-anchor:
-  name: "{lang:setting_view_no_anchor_name}"
-  lore:
-    - "{lang:setting_view_no_anchor_lore}"
+  name: "lang.setting_view_no_anchor_name"
+  char: "a"
+  lore: ["lang.setting_view_no_anchor_lore"]
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmZiMjkwYTEzZGY4ODI2N2VhNWY1ZmNmNzk2YjYxNTdmZjY0Y2NlZTVjZDM5ZDQ2OTcyNDU5MWJhYmVlZDFmNiJ9fX0="
-  slot: 20
-  click-sound: gui.setting.no-anchor
+  texture: "texture.no-anchor"
+  action: "setting.anchor"
 
-# 6. Team Title
-title:
-  name: "{lang:setting_view_title_name}"
-  lore:
-    - "{lang:setting_view_title_lore}"
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQzMDhhZTI3YjU4YjY5NjQ1NDk3ZjlkYTg2NTk3ZWRhOTQ3ZWFjZDEwYzI5ZTNkNGJiZjNiYzc2Y2ViMWVhYiJ9fX0=" # (Gold/Crown Texture)
-  slot: 21
-  click-sound: gui.setting.title
-# 7. PVP Toggle
-pvp:
-  name: "{lang:setting_view_pvp_name}"
-  lore:
-    - "{lang:setting_view_pvp_lore}"
-  item: IRON_SWORD
-  flags:
-    - HIDE_ATTRIBUTES
-  slot: 23
-  click-sound: gui.setting.pvp
-#8. Team Rename
-rename:
-  name: "{lang:setting_view_rename_name}"
-  lore:
-    - "{lang:setting_view_rename_lore}"
-  item: ANVIL
-  texture: ""
-  slot: 24
-  click-sound: gui.setting.rename
 
-# 9. Disband Team
-disband:
-  name: "{lang:setting_view_disband_name}"
-  lore:
-    - "{lang:setting_view_disband_lore}"
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjg4ZmI2YjJiM2VmYTZhYjI5OWY5ZjRlN2Q4YzFhMWQ3MzM4NzUzYmRmOGZlZjgxMDc1ZjIxNTU5NDNiYzY5In19fQ=="
-  slot: 27
-  click-sound: gui.setting.disband
 
+# ----------------------------------------------------
+# ANVIL MENUS (Separate from Layout Engine)
+# ----------------------------------------------------
 anvil-ui:
   description:
-    title: "{lang:setting_view_anvil_desc_title}"
-    label: "{lang:setting_view_anvil_label}"
+    title: "lang.setting_view_anvil_desc_title"
+    label: "lang.setting_view_anvil_label"
     input-item:
-      name: "{lang:setting_view_anvil_desc_input_name}"
+      name: "lang.setting_view_anvil_desc_input_name"
       item: PAPER
     output-item:
-      name: "{lang:setting_view_anvil_desc_output_name}"
+      name: "lang.setting_view_anvil_desc_output_name"
       item: PAPER
   tag:
-    title: "{lang:setting_view_anvil_tag_title}"
-    label: "{lang:setting_view_anvil_label}"
+    title: "lang.setting_view_anvil_tag_title"
+    label: "lang.setting_view_anvil_label"
     input-item:
-      name: "{lang:setting_view_anvil_tag_input_name}"
+      name: "lang.setting_view_anvil_tag_input_name"
       item: NAME_TAG
     output-item:
-      name: "{lang:setting_view_anvil_tag_output_name}"
+      name: "lang.setting_view_anvil_tag_output_name"
       item: NAME_TAG
   title:
-    title: "{lang:setting_view_anvil_title_title}"
-    label: "{lang:setting_view_anvil_label}"
+    title: "lang.setting_view_anvil_title_title"
+    label: "lang.setting_view_anvil_label"
     input-item:
-      name: "{lang:setting_view_anvil_title_input_name}"
+      name: "lang.setting_view_anvil_title_input_name"
       item: PAPER
     output-item:
-      name: "{lang:setting_view_anvil_title_output_name}"
+      name: "lang.setting_view_anvil_title_output_name"
       item: PAPER
   rename:
-    title: "{lang:setting_view_anvil_rename_title}"
-    label: "{lang:setting_view_anvil_label}"
+    title: "lang.setting_view_anvil_rename_title"
+    label: "lang.setting_view_anvil_label"
     input-item:
-      name: "{lang:setting_view_anvil_rename_input_name}"
+      name: "lang.setting_view_anvil_rename_input_name"
       item: ANVIL
     output-item:
-      name: "{lang:setting_view_anvil_rename_output_name}"
+      name: "lang.setting_view_anvil_rename_output_name"
       item: ANVIL

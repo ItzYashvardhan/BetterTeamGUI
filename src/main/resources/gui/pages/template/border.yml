@@ -1,0 +1,65 @@
+main:
+  type: template
+  text:
+    title:
+      font: true
+      weight: [BOLD]
+      prefix: "["
+      suffix: "<reset>]"
+    name:
+      weight: [BOLD]
+      case: UPPERCASE
+    lore:
+      font: true
+      prefix: "<gray>"
+      wrap-length: 45
+  pattern:
+    default:
+      1:
+        - "B P B P B P B P B"
+      2:
+        - ". . . . . . . . ."
+        - "B P B P B P B P B"
+      3:
+        - "B P B P B P B P B"
+        - "P . . . . . . . P"
+        - "B P B P B P B P B"
+      4:
+        - "B P B P B P B P B"
+        - "P . . . . . . . P"
+        - "B . . . . . . . B"
+        - "P B P B P B P B B"
+      5:
+        - "B P B P B P B P B"
+        - "P . . . . . . . P"
+        - "B . . . . . . . B"
+        - "P . . . . . . . P"
+        - "B P B P B P B P B"
+      6:
+        - "B P B P B P B P B"
+        - "P . . . . . . . P"
+        - "B . . . . . . . B"
+        - "P . . . . . . . P"
+        - "B . . . . . . . B"
+        - "B P B P B P B P P"
+
+
+
+background_blue:
+  name: " "
+  char: "B"
+  item: LIGHT_BLUE_STAINED_GLASS_PANE
+  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
+
+background_purple:
+  name: " "
+  char: "P"
+  item: PURPLE_STAINED_GLASS_PANE
+  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
+
+background_white:
+  name: " "
+  char: "W"
+  item: WHITE_STAINED_GLASS_PANE
+  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
+

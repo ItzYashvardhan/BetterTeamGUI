@@ -1,8 +1,9 @@
 package me.justlime.betterTeamGUI.commands
 
-import me.justlime.betterTeamGUI.config.ConfigManager
-import me.justlime.betterTeamGUI.gui.GUIManager
-import net.justlime.limeframegui.models.GuiSound
+import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.config.GuiDirectoryHandler
+import net.justlime.limeframegui.manager.GuiManager
+import net.justlime.limeframegui.registry.gui.PageRegistry
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -11,43 +12,64 @@ import org.bukkit.entity.Player
 
 class TeamsCommand : CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        val sound = ConfigManager.sound.getString("open-gui") ?: "BLOCK.NOTE_BLOCK.CHIME, 2.0"
+//        val sound = SoundRegistry.get("open-gui")
 
         if (args.isEmpty()) {
             if (sender !is Player) {
-                val message = ConfigManager.messages.getString("player-only.chat") ?: ""
-                CommandService.sendMessage(sender, message)
+//                val message = ConfigManager.messages.getString("player-only.chat") ?: ""
+//                CommandService.sendMessage(sender, message)
                 return true
             }
-            val finalSound = GuiSound.loadSound(sound)
-            GUIManager.openTeamGUI(sender)
-            finalSound?.playSound(sender)
+            GuiManager.open(sender,"dashboard_view")
             return true
         }
 
+        if (args[0] == "open" && args.size >1  && sender is Player) {
+            GuiManager.open(sender,args[1])
+            return true
+        }
+
+
         if (args[0] == "reload") {
+            GuiDirectoryHandler.reload(pluginInstance,false)
+            return CommandService.reload(sender)
+        }
+
+        if (args[0] == "reset") {
+            GuiDirectoryHandler.reload(pluginInstance,true)
             return CommandService.reload(sender)
         }
 
         if (sender !is Player) {
-            val message = ConfigManager.messages.getString("player-only.chat") ?: ""
-            CommandService.sendMessage(sender, message)
+//            val message = ConfigManager.messages.getString("player-only.chat") ?: ""
+//            CommandService.sendMessage(sender, message)
             return true
         }
 
         if (args[0] == "view") {
             CommandService.teamView(sender, args.getOrNull(1) ?: "")
-            val finalSound = GuiSound.loadSound(sound)
-            finalSound?.playSound(sender)
+//            GuiSound.playPack(sender, sound)
             return true
         }
 
-        GUIManager.openTeamGUI(sender)
+//        GUIManager.openTeamGUI(sender)
         return true
     }
 
-    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String> {
-        return CommandService.tabCompleter(sender, args)
+    override fun onTabComplete(
+        sender: CommandSender,
+        command: Command,
+        label: String,
+        args: Array<out String>
+    ): MutableList<String> {
+        val list = mutableListOf<String>()
+        if (args.size == 1) {
+            list.addAll(listOf("view", "reload", "reset", "open"))
+        } else if (args.size == 2 && args[0] == "open") {
+            list.addAll(PageRegistry.getPages().keys)
+        }
+
+        return list
     }
 
 }

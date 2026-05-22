@@ -1,68 +1,101 @@
 main:
-  title: "{lang:warps_view_title}"
-  row: 6
+  title: "lang.warps_view_title"
+  rows: 6
   font-title: false
   font-name: true
   font-lore: true
-  background:
-    0:
-      name: " "
-      item: LIGHT_BLUE_STAINED_GLASS_PANE
-      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
-    1:
-      name: " "
-      item: PURPLE_STAINED_GLASS_PANE
-      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
-  slot:
-    home: 53
+  inherit:
+    - "template/border"
+    - "template/nav"
+  pattern:
+    - ". . . . . . . . ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". . < . . . > . ."
 
+# ----------------------------------------------------
+# DYNAMIC LIST SETTINGS
+# ----------------------------------------------------
+dynamic_list:
+  char: "L"
+  populator_id: "warps_list"
+  buffer:
+    render-limit: 28  # 28 slots available in this pattern per page
+    margin: 5
+    cleanup-margin: 40
+  template:
+    # This acts as a fallback, but your Kotlin backend will dynamically
+    # swap this with the claimable/occupied/locked items defined below.
+    item: BEDROCK
+
+# ----------------------------------------------------
+# WARP STATE TEMPLATES (Fetched by Kotlin Backend)
+# ----------------------------------------------------
 claimable-warp:
+  name: "lang.warps_view_claimable_name"
+  lore: ["lang.warps_view_claimable_lore"]
   item: GREEN_STAINED_GLASS_PANE
-  name: "{lang:warps_view_claimable_name}"
-  lore:
-    - "{lang:warps_view_claimable_lore}"
+  action: "warps.claim"
   click-sound: gui.warps.claimable-warp
 
 occupied-warp:
-  name: "{lang:warps_view_occupied_name}"
+  name: "lang.warps_view_occupied_name"
+  lore: ["lang.warps_view_occupied_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhiZThhYmQ2NmQwOWE1OGNlMTJkMzc3NTQ0ZDcyNmQyNWNhZDdlOTc5ZThjMjQ4MTg2NmJlOTRkM2IzMmYifX19
-  lore:
-    - "{lang:warps_view_occupied_lore}"
+  texture: warps.occupied
+  action: "warps.teleport"
   click-sound: gui.warps.occupied-warp
 
 locked-warp:
+  name: "lang.warps_view_locked_name"
+  lore: ["lang.warps_view_locked_lore"]
   item: RED_STAINED_GLASS_PANE
-  name: "{lang:warps_view_locked_name}"
-  lore:
-    - "{lang:warps_view_locked_lore}"
+  action: "warps.unlock"
   click-sound: gui.warps.locked-warp
 
+# ----------------------------------------------------
+# CORE BUTTONS (Mapped to Pattern)
+# ----------------------------------------------------
+prev_page:
+  name: "lang.core_prev_page_name"
+  char: "<"
+  item: PLAYER_HEAD
+  texture: "texture:core.prev_page"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.core_next_page_name"
+  char: ">"
+  item: PLAYER_HEAD
+  texture: "texture:core.next_page"
+  action: "core_next_page"
+
+# ----------------------------------------------------
+# ANVIL MENUS (Separate from Layout Engine)
+# ----------------------------------------------------
 anvil-ui:
   set-warp-name:
-    title: "{lang:warps_view_anvil_set_name_title}"
-    label: "{lang:warps_view_anvil_label}"
+    title: "lang.warps_view_anvil_set_name_title"
+    label: "lang.warps_view_anvil_label"
     input-item:
-      name: "{lang:warps_view_anvil_set_name_input_name}"
+      name: "lang.warps_view_anvil_set_name_input_name"
       item: PAPER
-      lore:
-        - "{lang:warps_view_anvil_set_name_input_lore}"
+      lore: ["lang.warps_view_anvil_set_name_input_lore"]
     output-item:
-      name: "{lang:warps_view_anvil_set_name_output_name}"
+      name: "lang.warps_view_anvil_set_name_output_name"
       item: ANVIL
-      lore:
-        - "{lang:warps_view_anvil_set_name_output_lore}"
+      lore: ["lang.warps_view_anvil_set_name_output_lore"]
 
   enter-warp-password-to-teleport:
-    title: "{lang:warps_view_anvil_password_title}"
-    label: "{lang:warps_view_anvil_label}"
+    title: "lang.warps_view_anvil_password_title"
+    label: "lang.warps_view_anvil_label"
     input-item:
-      name: "{lang:warps_view_anvil_password_input_name}"
+      name: "lang.warps_view_anvil_password_input_name"
       item: PAPER
-      lore:
-        - "{lang:warps_view_anvil_password_input_lore}"
+      lore: ["lang.warps_view_anvil_password_input_lore"]
     output-item:
-      name: "{lang:warps_view_anvil_password_output_name}"
+      name: "lang.warps_view_anvil_password_output_name"
       item: ANVIL
-      lore:
-        - "{lang:warps_view_anvil_password_output_lore}"
+      lore: ["lang.warps_view_anvil_password_output_lore"]

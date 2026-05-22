@@ -1,3 +1,19 @@
 cmd:
   team: team
   admin: teamadmin
+
+player: "%player_name%"
+team: "%betterteams_name%"
+team_size: "%betterteams_members%"
+team_limit: "%betterteams_maxmembers%"
+team_tag: "%betterteams_tag%"
+team_level: "%betterteams_level%"
+team_score: "%betterteams_score%"
+team_online: "%betterteams_online%"
+team_description: "%betterteams_description%"
+team_money: "%betterteams_money%"
+team_color: "%betterteams_colorname%"
+team_pvp: "%betterteams_pvp%"
+team_anchor: "%betterteams_anchor%"
+team_title: "%betterteams_title%"
+team_player_has_home: "%betterteams_hasHome%"

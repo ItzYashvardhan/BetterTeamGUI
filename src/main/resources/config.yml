@@ -1,5 +1,3 @@
-#Supported language en,es-ar.
-lang: en # Required Server Restart to apply changes
 
 # This allows player to directly open gui through /team command or its aliases
 use-native-command: true # Required Server Restart to apply changes

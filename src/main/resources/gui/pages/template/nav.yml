@@ -1,0 +1,44 @@
+main:
+  type: template
+  pattern:
+    1:
+      - ". . . . . . . R H"
+    2:
+      - ". . . . . . . . ."
+      - ". . . . . . . R H"
+    3:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . R H"
+    4:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . R H"
+    5:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . R H"
+    6:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . R H"
+
+back:
+  name: "lang.buttons_back_name"
+  char: "R"
+  item: PLAYER_HEAD
+  texture: "core.back"
+  action: "actions.back"
+
+home:
+  name: "lang.buttons_home_name"
+  char: "H"
+  item: PLAYER_HEAD
+  texture: "core.home"
+  action: "actions.home"

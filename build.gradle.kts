@@ -1,8 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.gradle.ext.runConfigurations
+import org.jetbrains.gradle.ext.settings
 
 plugins {
-    kotlin("jvm") version "2.1.21"
-    id("com.gradleup.shadow") version "8.3.6"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.idea.ext) // Added for IntelliJ Run Configuration
 }
 
 group = "me.justlime"
@@ -10,6 +13,7 @@ version = "2.3"
 
 repositories {
     mavenCentral()
+    maven("https://repo.papermc.io/repository/maven-public/") { name = "papermc" }
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") { name = "spigotmc-repo" }
     maven("https://oss.sonatype.org/content/groups/public/") { name = "sonatype" }
     maven("https://repo.codemc.org/repository/maven-public/") { name = "codemc" }
@@ -21,53 +25,61 @@ repositories {
 }
 
 dependencies {
-    //Core
-    compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
-    compileOnly("com.github.booksaw:BetterTeams:4.15.2")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.tcoded:FoliaLib:0.5.1")
+    // Core
+    compileOnly(libs.spigot.api)
+    compileOnly(libs.betterteams)
+    implementation(libs.folialib)
 
-    //Metrics
-    implementation("org.bstats:bstats-bukkit:3.1.0")
+    // Metrics
+    implementation(libs.bstats.bukkit)
 
-    //GUI
-//    implementation("com.github.ItzYashvardhan:LimeFrameGUI:VERSION")
+    // GUI
     implementation("net.justlime.limeframegui:LimeFrameGUI")
-    implementation("net.wesjd:anvilgui:1.10.11-SNAPSHOT")
-    compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
+    implementation(libs.anvilgui)
+    compileOnly(libs.floodgate.api)
 
-//     Adventure
-    implementation("net.kyori:adventure-platform-bukkit:4.4.1")
-    implementation("net.kyori:adventure-text-minimessage:4.24.0")
-    implementation("net.kyori:adventure-text-serializer-plain:4.24.0")
-    implementation("net.kyori:adventure-text-serializer-legacy:4.24.0")
+    // Adventure
+    implementation(libs.adventure.platform.bukkit)
+    implementation(libs.adventure.text.minimessage)
+    implementation(libs.adventure.text.serializer.plain)
+    implementation(libs.adventure.text.serializer.legacy)
 
-    //Placeholder
-    compileOnly("me.clip:placeholderapi:2.11.6")
+    // Placeholder
+    compileOnly(libs.placeholderapi)
 
-    //Other
-    compileOnly("com.google.code.gson:gson:2.10.1")
-
+    // Other
+    compileOnly(libs.gson)
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(21)
 }
 
+val serverVersion = "1.21.11"
+
 tasks.withType<ShadowJar> {
+    archiveClassifier.set("all")
+
     manifest {
         attributes["paperweight-mappings-namespace"] = "spigot"
     }
+
+    // Minimize safely: Exclude libraries that rely heavily on reflection/dynamic loading
     minimize {
-        exclude(dependency("net.wesjd:anvilgui"))
-        exclude(dependency("com.tcoded:FoliaLib"))
+        exclude(dependency("net.wesjd:anvilgui:.*"))
+        exclude(dependency("com.tcoded:FoliaLib:.*"))
+        exclude(dependency("net.justlime.limeframegui:.*"))
+        exclude(dependency("net.kyori:.*"))
+        exclude(dependency("org.jetbrains.kotlin:.*"))
     }
+
+    // Relocations to avoid classpath conflicts with other plugins
     relocate("net.wesjd.anvilgui", "me.justlime.betterTeamGUI.libs.anvilgui")
     relocate("net.kyori", "me.justlime.betterTeamGUI.libs.kyori")
     relocate("net.justlime.limeframegui", "me.justlime.betterTeamGUI.libs.limeframegui")
     relocate("org.bstats", "me.justlime.betterTeamGUI.libs.bstats")
     relocate("com.tcoded", "me.justlime.betterTeamGUI.libs.tcoded")
-
+    relocate("kotlin", "me.justlime.betterTeamGUI.libs.kotlin") // Critical for Kotlin developers
 }
 
 tasks.build {
@@ -85,14 +97,66 @@ tasks.processResources {
 
 // Task to copy the jar to the server plugins folder
 tasks.register<Copy>("copyToServerPlugins") {
-    dependsOn("shadowJar")  // Ensure shadowJar completes before copying
-    from(layout.buildDirectory.dir("libs/${project.name}-${project.version}-all.jar"))  // Use layout.buildDirectory
-    into("E:/Minecraft/servers/Development/PaperMC-1.21.11/plugins")
-//    into("E:/Minecraft/servers/Folia-1.21.8/plugins")
-//    into("E:/Minecraft/servers/PaperMc-1.20.4/plugins")
+    dependsOn("shadowJar")
+    from(tasks.named<ShadowJar>("shadowJar").flatMap { it.archiveFile })
+    into(layout.projectDirectory.dir("run/$serverVersion/plugins"))
 }
 
 // Combined task to build and copy
 tasks.register("shadowJarCopy") {
     dependsOn("build", "copyToServerPlugins")
+}
+
+// Task to copy common configurations
+tasks.register<Copy>("prepareServerConfigs") {
+    group = "server"
+    description = "Copies config presets from run/common to the server directory"
+    from(layout.projectDirectory.dir("run/common"))
+    into(layout.projectDirectory.dir("run/$serverVersion"))
+}
+
+// Task to safely clean the server while preserving downloaded libraries to prevent re-downloading
+tasks.register<Delete>("cleanServer") {
+    group = "server"
+    description = "Cleans server data but keeps cached libraries and versions to avoid redownloading."
+    val runDir = layout.projectDirectory.dir("run/$serverVersion").asFile
+    if (runDir.exists()) {
+        delete(fileTree(runDir) {
+            exclude("libraries/**")
+            exclude("versions/**")
+            exclude("cache/**")
+            exclude("server.jar")
+            exclude("eula.txt")
+            exclude("server.properties")
+            exclude("world/**")
+            exclude("crash-reports/**")
+            exclude("*.json")
+            exclude("*.yml")
+        })
+    }
+}
+
+tasks.register<Exec>("runServer") {
+    group = "server"
+    description = "Run the Minecraft server"
+    dependsOn("copyToServerPlugins", "prepareServerConfigs")
+    workingDir = layout.projectDirectory.dir("run/$serverVersion").asFile
+    commandLine("java", "-Xms2G", "-Xmx2G", "-jar", "server.jar", "nogui")
+    standardInput = System.`in`
+}
+
+// Automatically generate the "MinecraftServer" run button in IntelliJ
+idea {
+    project {
+        settings {
+            runConfigurations {
+                create("MinecraftServer", org.jetbrains.gradle.ext.Gradle::class.java) {
+                    taskNames = listOf("runServer")
+                }
+                create("Run Server", org.jetbrains.gradle.ext.Gradle::class.java) {
+                    taskNames = listOf("cleanServer", "runServer")
+                }
+            }
+        }
+    }
 }

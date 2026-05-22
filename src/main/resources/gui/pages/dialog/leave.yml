@@ -1,18 +1,20 @@
 main:
   title: "lang.dialog_leave_title"
-  rows: 3
+  type: page
   inherit:
-    - "template/background.yml"
+    - "template/dialog_background"
+    - "template/nav"
 
 confirm:
-  name: "lang.dialog_confirm_name"
   char: "Y"
-  lore: [ "lang.dialog_leave_confirm_lore" ]
+  name: "lang.dialog_confirm_name"
+  lore: "lang.dialog_leave_confirm_lore"
   item: LIME_WOOL
-  click-sound: "gui.dialog.confirm"
+  action: "dialog.leave.confirm"
+
 cancel:
-  name: "lang.dialog_cancel_name"
   char: "N"
-  lore: [ "lang.dialog_leave_cancel_lore" ]
+  name: "lang.dialog_cancel_name"
+  lore: "lang.dialog_leave_cancel_lore"
   item: RED_WOOL
-  click-sound: "gui.dialog.cancel"
+  action: "dialog.leave.cancel"

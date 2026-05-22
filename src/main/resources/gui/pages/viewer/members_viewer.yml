@@ -1,0 +1,39 @@
+# ===================================================================
+# MEMBERS VIEWER (Dynamic List)
+# ===================================================================
+main:
+  title: "lang.team_viewer_members_title"
+  rows: 6
+  inherit:
+    - "template/border"
+    - "template/nav"
+  pattern:
+    - ". . . . . . . . ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". . < . . . > X H"
+
+  dynamic_list:
+    char: "L"
+    populator_id: "team_members_list"
+    buffer:
+      render-limit: 28
+      margin: 5
+      cleanup-margin: 40
+    template:
+      item: PLAYER_HEAD
+      name: "lang.team_viewer_member_item_name"
+      lore:
+        - "lang.team_viewer_member_item_lore"
+      click-sound: gui.team-viewer.member-item
+
+  # Prevents severe warning from validateDynamicNavigation
+  prev_page:
+    char: "<"
+    action: "core_prev_page"
+
+  next_page:
+    char: ">"
+    action: "core_next_page"

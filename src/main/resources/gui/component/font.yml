@@ -6,7 +6,7 @@
 # Currently it doesn't support cas sensitive (i.e 'A' is treat as same as 'a')
 
 # Font applied for Minecraft 1.19+
-'19':
+'1_19':
   # Letters
   a: "ᴀ"
   b: "ʙ"
@@ -51,7 +51,7 @@
   "@": "＠"
 
 # Font applied for Minecraft 1.16+
-'16':
+'1_16':
   # Letters
   a: "ᴀ"
   b: "ʙ"

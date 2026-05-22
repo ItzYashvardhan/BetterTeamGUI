@@ -1,0 +1,152 @@
+# Sound Configuration Syntax
+# Format: <SOUND_NAME>, [pitch], [volume], [delay]
+#
+# Suffixes (Optional):
+#  p = Pitch (0.5 - 2.0)
+#  v = Volume (0.1 - 2.0)
+#  d = Delay (in ticks, 20 ticks = 1 second)
+#
+# Examples:
+#  With-Suffix: BLOCK.NOTE_BLOCK.PLING, 2.0p, 40d  (High pitch, plays after 2 seconds)
+#  Without-Suffix: BLOCK.NOTE_BLOCK.PLING, 2.0, 1.0, 40
+#  Sequence-example:
+#       - BLOCK.NOTE_BLOCK.PLING, 1.8p, 5d
+#       - BLOCK.NOTE_BLOCK.PLING, 2.9p, 10d
+#       - BLOCK.NOTE_BLOCK.PLING, 2.0p, 12d
+
+# Play a Sound for first time when opening a team gui
+open-gui: BLOCK.NOTE_BLOCK.CHIME, 2.0
+
+#Global
+click: UI.BUTTON.CLICK
+error: BLOCK.NOTE_BLOCK.BASS
+permission-error: BLOCK.NOTE_BLOCK.BASS, 2.0
+yes-sound: ENTITY.VILLAGER.YES, 2.0
+no-sound: ENTITY.VILLAGER.NO, 2.0
+trade: ENTITY.VILLAGER.TRADE, 2.0
+selected: BLOCK.BEACON.POWER_SELECT, 2.0
+
+anvil-ui:
+  cancel-sound: click, 2.0
+  invalid-sound: BLOCK.BELL.USE, 0.1
+  submit-sound: BLOCK.ANVIL.PLACE, 1.4
+
+# GUI Sounds
+gui:
+  dashboard:
+    leave: click
+    info: click, 2.0
+    home: ENTITY.ENDERMAN.TELEPORT, 2.0
+    list: click
+    allies: trade
+    members: trade
+    team-chest: BLOCK.ENDER_CHEST.OPEN, 1.0
+    warps: ENTITY.ENDERMAN.TELEPORT, 2.0
+    balance: BLOCK.IRON_DOOR.OPEN, 0.1
+    chat:
+      global: BLOCK.STONE_BUTTON.CLICK_OFF, 2.0
+      team: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+      ally: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+    team-setting: BLOCK.IRON.PLACE, 0.5
+
+  members:
+    member-item: click, 1.0
+    invite-button: click, 1.0
+    locked-invite: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
+    ban-list: click, 1.0
+
+  setting:
+    color-picker: click
+    description: click
+    tag: click
+    status: click
+    anchor: click
+    no-anchor: click
+    title: click
+    pvp: click
+    rename: click
+    disband: click
+
+  members-management:
+    promote: yes-sound
+    demote: no-sound
+    kick: ENTITY.VILLAGER.HURT, 2.0
+    ban: ENTITY.VILLAGER.DEATH, 2.0
+
+  invited-players:
+    invited-player-item: ENTITY.VILLAGER.NO, 2.0
+
+  leaderboard:
+    team-leaderboard-item: click,2.0
+
+  color-picker:
+    select: selected
+
+  levels:
+    default: click
+    current: click
+    progress: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
+    progress-unlockable: ENTITY.PLAYER.LEVELUP, 0.8
+    locked: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
+
+  invite:
+    invite-item: BLOCK.NOTE_BLOCK.PLING, 2.0
+    player-invited-item: BLOCK.NOTE_BLOCK.BASS, 2.0
+    search-item: click
+    invite-player: click
+    invited-list-item: click
+
+  dialog:
+    confirm: click
+    cancel: click
+
+  allies:
+    ally-item: trade
+    ally-request-inbox: click
+    ally-request-item: click
+
+  warps:
+    claimable-warp: click, 2.0
+    occupied-warp: ENTITY.ENDERMAN.TELEPORT, 1.0
+    locked-warp: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
+
+  list:
+    team-item: click, 2.0
+    search-item: click
+    sort: click
+    filter: click
+    invitation: click
+    invitation-team-item: click
+    create: click
+
+  team-viewer:
+    info: BLOCK.NOTE_BLOCK.CHIME, 2.0
+    balance: BLOCK.IRON_DOOR.OPEN, 0.1
+    members: trade
+    allies: trade
+    member-item: trade
+    ally-item: trade
+
+  buttons:
+    home: click
+    back: click
+    next: ITEM.BOOK.PAGE_TURN, 1.4
+    prev: ITEM.BOOK.PAGE_TURN, 1.4
+
+
+# Sample Sounds example for fun
+my-sound:
+  - click
+  - click,4d
+  - click,10d
+
+my-sound2:
+  - ENTITY.VILLAGER.TRADE,
+  - BLOCK.NOTE_BLOCK.CHIME,10d,2.0p
+  - ENTITY.VILLAGER.TRADE,20d
+
+my-sound3:
+  - my-sound
+  - my-sound2
+  - my-sound,12d #Play whole pack after 12d
+  - my-sound2  #Play simultaneously with my-sound

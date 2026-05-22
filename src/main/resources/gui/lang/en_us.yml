@@ -153,11 +153,13 @@ allies_view_req_item_lore:
   - "<green>Right-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to deny request</gray>"
 
-##################
-## Color Picker ##
-##################
-color_picker_title: "<b><gradient:#C45700:#FF7608>Team Color Picker</gradient>"
-color_picker_lore_template: "<gray>Click to set your team color to {color}.</gray>"
+# ==========================================
+# TEAM COLOR PICKER
+# ==========================================
+color_picker_title: "<b><gradient:#C45700:#FF7608>Team Color Picker</gradient></b>"
+color_picker_lore_template: "<gray>Click to set your team color to <{color}>{color}</{color}>.</gray>"
+
+# Explicit Item Names (Called by the 'name:' tag in the GUI)
 color_picker_aqua: "<aqua>Aqua"
 color_picker_black: "<black>Black"
 color_picker_blue: "<blue>Blue"
@@ -342,15 +344,19 @@ levels_view_locked_requirement: " <#FF3B3B>• Required Level {prev_level} for m
 ## List View ##
 ###############
 list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
-list_view_team_item_name_in_team: "<b><{color}>{team}</{color}></b>"
+
+#team-item
+list_view_team_item_name_in_team: "<b><{team_color}>{team}</{team_color}></b>"
 list_view_team_item_desc: "<white><italic>{team_description}</italic></white>"
 list_view_team_item_lore_common:
-  - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+  - " <#5BD686>• Tag:</#5BD686> <white><bold>{team_tag}</bold></white>"
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
 list_view_team_item_lore_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
 list_view_team_item_name_no_team: "<b><{color}>{team}</{color}></b> <gray>({team_size}/{team_limit})</gray>"
 list_view_team_item_lore_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
+
+#Searching, Sorting and Creation
 list_view_search_name: "<caps><b><#00FFC7>Search by Name"
 list_view_search_lore:
   - "<gray>Click to search for a team by its name.</gray>"
@@ -497,7 +503,7 @@ setting_view_color_picker_name: "<#D6BA5B><bold>Team Color</bold>"
 setting_view_color_picker_lore:
   - "<gray>Change your team's chat color.</gray>"
   - ""
-  - "<gray>Current: <{color}>{color}</{color}></gray>"
+  - "<gray>Current: <{team_color}>{team_color}</{team_color}></gray>"
   - ""
   - "<yellow>Click to select color ➤</yellow>"
 setting_view_description_name: "<#D6BA5B><bold>Description</bold>"
@@ -515,7 +521,7 @@ setting_view_tag_lore:
   - "<gray>your team in chat.</gray>"
   - ""
   - "<gray>Current</gray>"
-  - "<b><white>{tag}</white>"
+  - "<b><white>{team_/tag}</white>"
   - ""
   - "<yellow>Click to change tag ✎</yellow>"
 setting_view_status_name: "<#D6BA5B><bold>Recruitment Status</bold>"
@@ -532,7 +538,7 @@ setting_view_anchor_lore:
   - "<gray>If enabled, team members will</gray>"
   - "<gray>respawn at the team home.</gray>"
   - ""
-  - "<gray>Status: <white>{anchor}</white></gray>"
+  - "<gray>Status: <white>{team_anchor}</white></gray>"
   - ""
   - "<yellow>Click to toggle Anchor ⟳</yellow>"
 setting_view_no_anchor_name: "<red><bold>Home Missing!!</bold>"
@@ -544,7 +550,7 @@ setting_view_title_lore:
   - "<gray>above your team name.</gray>"
   - ""
   - "<gray>Current</gray>"
-  - "<b><white>{title}</white>"
+  - "<b><white>{team_title}</white>"
   - ""
   - "<yellow>Click to edit title ✎</yellow>"
 setting_view_pvp_name: "<#D6BA5B><bold>Friendly Fire (PvP)</bold>"
@@ -552,7 +558,7 @@ setting_view_pvp_lore:
   - "<gray>Allow members to damage</gray>"
   - "<gray>each other.</gray>"
   - ""
-  - "<gray>Status: <white>{pvp}</white></gray>"
+  - "<gray>Status: <white>{team_pvp}</white></gray>"
   - ""
   - "<yellow>Click to toggle PvP ⚔</yellow>"
 setting_view_rename_name: "<#D6BA5B><bold>Rename Team</bold>"
@@ -560,7 +566,7 @@ setting_view_rename_lore:
   - ""
   - "<gray>Change the name of your team.</gray>"
   - " "
-  - "<gray>Current: <b><{color}>{team}</{color}></b>"
+  - "<gray>Current: <b><{team_color}>{team}</{team_color}></b>"
   - "<yellow>Click to rename team ✎</yellow>"
 setting_view_disband_name: "<red><bold>Disband Team</bold>"
 setting_view_disband_lore:

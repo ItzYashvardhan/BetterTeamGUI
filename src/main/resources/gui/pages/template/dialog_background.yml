@@ -2,6 +2,7 @@ main:
   type: template
   inherit:
     - "template/background"
+  rows: 3
   pattern:
     3:
       - ". . . . . . . . ."

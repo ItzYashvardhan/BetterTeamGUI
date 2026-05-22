@@ -1,99 +1,134 @@
 main:
-  title: "{lang:levels_view_title}"
-  row: 6
+  title: "lang.levels_view_title"
+  rows: 6
   font-title: false
   font-name: true
   font-lore: true
-  background:
-    0:
-      name: " "
-      item: LIGHT_BLUE_STAINED_GLASS_PANE
-      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
-    1:
-      name: " "
-      item: PURPLE_STAINED_GLASS_PANE
-      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
-  slot:
-    home: 53
-    prev: 47
-    next: 51
+  inherit:
+    - "template/border"
+  pattern:
+    - ". . . . . . . . ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". . < . . . > . H" 
 
+# ----------------------------------------------------
+# DYNAMIC LIST SETTINGS
+# ----------------------------------------------------
+dynamic_list:
+  char: "L"
+  populator_id: "levels_list"
+  buffer:
+    render-limit: 28
+    margin: 5
+    cleanup-margin: 40
+  template:
+    item: BEDROCK
+
+# ----------------------------------------------------
+# LEVEL STATES (Fetched by Kotlin Backend)
+# ----------------------------------------------------
 level-item:
   default:
     unlocked:
-      name: "{lang:levels_view_unlocked_name}"
+      name: "lang.levels_view_unlocked_name"
       lore:
-        - "{lang:levels_view_unlocked_lore}"
+        - "lang.levels_view_unlocked_lore"
       item: LIME_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.default
 
     current:
-      name: "{lang:levels_view_current_name}"
+      name: "lang.levels_view_current_name"
       lore:
-        - "{lang:levels_view_current_lore}"
+        - "lang.levels_view_current_lore"
         - ""
-        - "{lang:levels_view_current_perks_header}"
-        - "{lang:levels_view_perks_members}"
-        - "{lang:levels_view_perks_warps}"
-        - "{lang:levels_view_perks_balance}"
-        - "{lang:levels_view_perks_chests}"
-        - "{lang:levels_view_perks_admins}"
-        - "{lang:levels_view_perks_owners}"
+        - "lang.levels_view_current_perks_header"
+        - "lang.levels_view_perks_members"
+        - "lang.levels_view_perks_warps"
+        - "lang.levels_view_perks_balance"
+        - "lang.levels_view_perks_chests"
+        - "lang.levels_view_perks_admins"
+        - "lang.levels_view_perks_owners"
         - " "
-        - "{lang:levels_view_current_active}"
+        - "lang.levels_view_current_active"
       item: EMERALD
       texture: ""
       glow: true
       click-sound: gui.levels.current
 
     progress:
-      name: "{lang:levels_view_progress_name}"
+      name: "lang.levels_view_progress_name"
       lore:
-        - "{lang:levels_view_progress_lore}"
+        - "lang.levels_view_progress_lore"
         - ""
-        - "{lang:levels_view_new_perks_header}"
-        - "{lang:levels_view_perks_members}"
-        - "{lang:levels_view_perks_warps}"
-        - "{lang:levels_view_perks_balance}"
-        - "{lang:levels_view_perks_chests}"
-        - "{lang:levels_view_perks_admins}"
-        - "{lang:levels_view_perks_owners}"
+        - "lang.levels_view_new_perks_header"
+        - "lang.levels_view_perks_members"
+        - "lang.levels_view_perks_warps"
+        - "lang.levels_view_perks_balance"
+        - "lang.levels_view_perks_chests"
+        - "lang.levels_view_perks_admins"
+        - "lang.levels_view_perks_owners"
         - ""
-        - "{lang:levels_view_requirement_header}"
-        - "{lang:levels_view_requirement_fail}"
-
+        - "lang.levels_view_requirement_header"
+        - "lang.levels_view_requirement_fail"
       item: ORANGE_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.progress
 
     progress-unlockable:
-      name: "{lang:levels_view_progress_name}"
+      name: "lang.levels_view_progress_name"
       lore:
-        - "{lang:levels_view_progress_lore}"
+        - "lang.levels_view_progress_lore"
         - ""
-        - "{lang:levels_view_new_perks_header}"
-        - "{lang:levels_view_perks_members}"
-        - "{lang:levels_view_perks_warps}"
-        - "{lang:levels_view_perks_balance}"
-        - "{lang:levels_view_perks_chests}"
-        - "{lang:levels_view_perks_admins}"
-        - "{lang:levels_view_perks_owners}"
+        - "lang.levels_view_new_perks_header"
+        - "lang.levels_view_perks_members"
+        - "lang.levels_view_perks_warps"
+        - "lang.levels_view_perks_balance"
+        - "lang.levels_view_perks_chests"
+        - "lang.levels_view_perks_admins"
+        - "lang.levels_view_perks_owners"
         - ""
-        - "{lang:levels_view_requirement_header}"
-        - "{lang:levels_view_requirement_success}"
+        - "lang.levels_view_requirement_header"
+        - "lang.levels_view_requirement_success"
         - ""
-        - "{lang:levels_view_click_rankup}"
+        - "lang.levels_view_click_rankup"
       item: ORANGE_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.progress-unlockable
 
     locked:
-      name: "{lang:levels_view_locked_name}"
+      name: "lang.levels_view_locked_name"
       lore:
-        - "{lang:levels_view_locked_lore}"
+        - "lang.levels_view_locked_lore"
         - ""
-        - "{lang:levels_view_locked_requirement}"
+        - "lang.levels_view_locked_requirement"
       item: RED_STAINED_GLASS_PANE
-      click-sound: gui.levels.locked
       texture: ""
+      click-sound: gui.levels.locked
+
+# ----------------------------------------------------
+# CORE BUTTONS (Mapped to Pattern)
+# ----------------------------------------------------
+prev_page:
+  name: "lang.core_prev_page_name"
+  char: "<"
+  item: PLAYER_HEAD
+  texture: "texture:core.prev_page"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.core_next_page_name"
+  char: ">"
+  item: PLAYER_HEAD
+  texture: "texture:core.next_page"
+  action: "core_next_page"
+
+home:
+  name: "lang.buttons_home_name"
+  char: "H"
+  item: PLAYER_HEAD
+  texture: "texture:core.home"
+  action: "home"

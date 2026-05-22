@@ -1,30 +1,30 @@
-package me.justlime.betterTeamGUI.enums
+package me.justlime.betterTeamGUI.models.enums
 
 import me.justlime.betterTeamGUI.pluginInstance
 
 enum class JFiles(val filename: String) {
     CONFIG("config.yml"),
     SOUND("sound.yml"),
-    FONT("font.yml"),
+    FONT("gui/component/font.yml"),
     //Java Config
     MESSAGES("lang/${pluginInstance.lang}/messages.yml"),
-    ALLIES_VIEW("gui/allies_view.yml"),
-    BAN_VIEW("gui/ban_view.yml"),
-    BUTTONS("gui/buttons.yml"),
-    COLORS("gui/color_picker.yml"),
-    DASHBOARD_VIEW("gui/dashboard_view.yml"),
-    DIALOG_VIEW("gui/dialog_view.yml"),
-    LEADERBOARD_VIEW("gui/leaderboard_view.yml"),
-    LEVELS_VIEW("gui/levels_view.yml"),
-    LIST_VIEW("gui/list_view.yml"),
-    INVITE_VIEW("gui/invite_view.yml"),
-    INVITED_PLAYERS_VIEW("gui/invited_players_view.yml"),
-    MEMBER_MANAGEMENT_VIEW("gui/members_management_view.yml"),
-    MEMBERS_VIEW("gui/members_view.yml"),
-    MONEY_VIEW("gui/money_view.yml"),
-    SETTING_VIEW("gui/setting_view.yml"),
-    TEAM_VIEWER("gui/team_viewer.yml"),
-    WARPS_VIEW("gui/warps_view.yml"),
+    ALLIES_VIEW("gui/pages/allies_view.yml"),
+    BAN_VIEW("gui/pages/ban_view.yml"),
+    BUTTONS("gui/pages/buttons.yml"),
+    COLORS("gui/pages/color_picker.yml"),
+    DASHBOARD_VIEW("gui/pages/dashboard_view.yml"),
+    DIALOG_VIEW("gui/pages/dialog_view.yml"),
+    LEADERBOARD_VIEW("gui/pages/leaderboard_view.yml"),
+    LEVELS_VIEW("gui/pages/levels_view.yml"),
+    LIST_VIEW("gui/pages/viewer/list_viewer.yml"),
+    INVITE_VIEW("gui/pages/invite_view.yml"),
+    INVITED_PLAYERS_VIEW("gui/pages/invited_players_view.yml"),
+    MEMBER_MANAGEMENT_VIEW("gui/pages/members_management_view.yml"),
+    MEMBERS_VIEW("gui/pages/members_view.yml"),
+    MONEY_VIEW("gui/inputs/money_view.yml"),
+    SETTING_VIEW("gui/pages/setting_view.yml"),
+    TEAM_VIEWER("gui/pages/viewer/team_viewer.yml"),
+    WARPS_VIEW("gui/pages/warps_view.yml"),
 
     //Bedrock Config
     TEAM_CREATE_FORM("lang/${pluginInstance.lang}/form/create_form.yml"),

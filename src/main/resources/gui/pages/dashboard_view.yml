@@ -1,153 +1,150 @@
 main:
-  title: "{lang:dashboard_title}"
-  row: 4
-  font-title: false
-  font-name: false
-  font-lore: true
-  background:
-    0:
-      name: " "
-      item: LIGHT_BLUE_STAINED_GLASS_PANE
-      slot: [ 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52 ]
-      flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
-    1:
-      name: " "
-      item: PURPLE_STAINED_GLASS_PANE
-      slot: [ 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53 ]
-      flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
+  title: "lang.dashboard_title"
+  rows: 4
+  inherit:
+    - template/background
+    - template/nav
+  pattern:
+    - ". . . . . . . . ."
+    - ". I . H A M C . ."
+    - ". D . W E T S . ."
+    - ". . . . . . . . ."
+  requirement:
+    condition:
+      - "[condition] '{team}' != ''"
+    on-deny:
+      - "[open] viewer/list_viewer"
 
+# ----------------------------------------------------
+# BACKGROUND PANES
+# ----------------------------------------------------
+
+
+# ----------------------------------------------------
+# CORE BUTTONS (Mapped to Pattern)
+# ----------------------------------------------------
 leave:
-  name: lang.dashboard_leave_name
-  lore: [lang.dashboard_leave_lore]
+  name: "lang.dashboard_leave_name"
+  char: "L"
+  lore: ["lang.dashboard_leave_lore"]
   item: PLAYER_HEAD
-  texture: texture.leave
-  slot: 8
-  click-sound: sound.dashboard.leave
+  texture: "texture:dashboard.leave"
+  action: "actions:dashboard.leave"
 
-info-with-description:
-  name: "{lang:dashboard_info_name}"
+info:
+  name: "lang.dashboard_info_name"
+  char: "I"
   lore:
-    - "{lang:dashboard_info_desc}"
+    - "lang.dashboard_info_desc"
     - " "
-    - "{lang:dashboard_info_lore_common}"
-  slot: 10
+    - "lang.dashboard_info_lore_common"
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-  click-sound: gui.dashboard.info
-
-info-without-description:
-  name: "{lang:dashboard_info_name}"
-  lore:
-    - "{lang:dashboard_info_lore_common}"
-  slot: 10
-  item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0=
-  click-sound: gui.dashboard.info
+  texture: "texture:dashboard.info"
+  action: "actions:dashboard.info"
 
 home:
-  name: "{lang:dashboard_home_name}"
-  lore:
-    - "{lang:dashboard_home_lore}"
+  name: "lang.dashboard_home_name"
+  char: "H"
+  lore: ["lang.dashboard_home_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU1MzE4MjRjMzA1MjQ2YzhkNTUwYjRlZjk3MzJlMzg1M2NkMDkwM2YyODE3MTMxMDdlZTgwNjFkZTQ2ZGZhMyJ9fX0=
-  slot: 12
-  click-sound: gui.dashboard.home
+  texture: "texture:dashboard.home"
+  action: "dashboard.home"
 
 list:
-  name: "{lang:dashboard_list_name}"
-  lore:
-    - "{lang:dashboard_list_lore}"
+  name: "lang.dashboard_list_name"
+  char: "D"
+  lore: ["lang.dashboard_list_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkzZGZiM2FlODE3Nzc4NGE2NDU3NzlkY2EyYzEyZGZiYTEyNThjMjAyYWZkYzA0ZDg3ZDgwZjJjZWNlYTFkNyJ9fX0=
-  slot: 19
-  click-sound: gui.dashboard.list
+  texture: "texture:dashboard.list"
+  action: "actions:dashboard.list"
 
 allies:
-  name: "{lang:dashboard_allies_name}"
-  lore:
-    - "{lang:dashboard_allies_lore}"
+  name: "lang.dashboard_allies_name"
+  char: "A"
+  lore: ["lang.dashboard_allies_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2E4YzA0NjM4NDY3MTg1NDczMmIyNTBlZmY2OGJmM2NhN2U0NzlmNDdlZTYwZmViNDY5ZGM4ZmFjZGU2NDQ2NCJ9fX0=
-  slot: 13
-  click-sound: gui.dashboard.allies
+  texture: "texture:dashboard.allies"
+  action: "actions:dashboard.allies"
 
 members:
-  global:
-    name: "{lang:dashboard_members_name}"
-    lore:
-      - "{lang:dashboard_members_lore_global}"
-    slot: 14
-    item: PLAYER_HEAD
-    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
-    click-sound: gui.dashboard.members
-
-  admin:
-    name: "{lang:dashboard_members_name}"
-    lore:
-      - "{lang:dashboard_members_lore_admin}"
-    item: PLAYER_HEAD
-    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg5YmNlNzM2YTRmZDc5M2VlMmEzODI3NTZhMjUzZjkyY2E3ZDdlYWMwMzFlNDViYTk3YWQwNmNlODYzZGQ0YiJ9fX0=
-    slot: 14
-    click-sound: gui.dashboard.members
-
-team-chest:
-  name: "{lang:dashboard_chest_name}"
-  lore:
-    - "{lang:dashboard_chest_lore}"
+  name: "lang.dashboard_members_name"
+  char: "M"
+  lore: ["lang.dashboard_members_lore_global"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI0ODZmMjg1OTE2OWM4YmZiNjZhNjg3YmNmNGM2OTkzNDE3ZjU4NGI1OGJiZmRiMzM2NDY0ZDUyMDcxY2NkNyJ9fX0=
-  slot: 15
-  click-sound: gui.dashboard.team-chest
+  texture: "texture:dashboard.members"
+  action: "actions:dashboard.members"
+
+team_chest:
+  name: "lang.dashboard_chest_name"
+  char: "C"
+  lore: ["lang.dashboard_chest_lore"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.chest"
+  action: "actions:dashboard.chest"
 
 warps:
-  name: "{lang:dashboard_warps_name}"
-  lore:
-    - "{lang:dashboard_warps_lore}"
+  name: "lang.dashboard_warps_name"
+  char: "W"
+  lore: ["lang.dashboard_warps_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhiZThhYmQ2NmQwOWE1OGNlMTJkMzc3NTQ0ZDcyNmQyNWNhZDdlOTc5ZThjMjQ4MTg2NmJlOTRkM2IzMmYifX19
-  slot: 21
-  click-sound: gui.dashboard.warps
+  texture: "texture:dashboard.warps"
+  action: "actions:dashboard.warps"
 
 balance:
-  name: "{lang:dashboard_balance_name}"
-  lore:
-    - "{lang:dashboard_balance_lore}"
+  name: "lang.dashboard_balance_name"
+  char: "E"
+  lore: ["lang.dashboard_balance_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjAxNjM3ZDNkZTExNDUxYTdkNDI5MjRiMDJiNjg0YmQ1MDRlMDNjYTRkNDE2NzBjOTJiNTRjMmEzMGM4ODdmIn19fQ==
-  slot: 22
-  click-sound: gui.dashboard.balance
+  texture: "texture:dashboard.balance"
+  action: "actions:dashboard.balance"
 
-chat:
-  global:
-    name: "{lang:dashboard_chat_global_name}"
-    lore:
-      - "{lang:dashboard_chat_lore}"
-    item: PLAYER_HEAD
-    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5MTk2YjMzMGM2Yjg5NjJmMjNhZDU2MjdmYjZlY2NlNDcyZWFmNWM5ZDQ0Zjc5MWY2NzA5YzdkMGY0ZGVjZSJ9fX0=
-    slot: 23
-    click-sound: gui.dashboard.chat.global
-  team:
-    name: "{lang:dashboard_chat_team_name}"
-    lore:
-      - "{lang:dashboard_chat_lore}"
-    item: PLAYER_HEAD
-    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTVmMDNlOWYxNjhhZjY3MzJmMzIxNTVlODAwMTU4ZTYwOWI4M2QyNjgzNzFhZWViNjIzZTBmZGRmMGVkMzU0YSJ9fX0=
-    slot: 23
-    click-sound: gui.dashboard.chat.team
-  ally:
-    name: "{lang:dashboard_chat_ally_name}"
-    lore:
-      - "{lang:dashboard_chat_lore}"
-    item: PLAYER_HEAD
-    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmOGQyNDQ4YTNiZDI4ZmZiNDNjYmZlMGMwNmQ1NzQxYzZkZmEyN2YzYzI5YjhkMDdjYTIxZTVkNjdjNjFiZCJ9fX0=
-    slot: 23
-    click-sound: gui.dashboard.chat.ally
-
-team-setting:
-  name: "{lang:dashboard_settings_name}"
-  lore:
-    - "{lang:dashboard_settings_lore}"
+chat_global:
+  name: "lang.dashboard_chat_global_name"
+  char: "T"
+  lore: ["lang.dashboard_chat_lore"]
   item: PLAYER_HEAD
-  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliOTkyMzhkOWY4MTM0MDE1ZDc0MzQxYjE3MTE1YmUzMGYxMjVhMzdlYTQ5MDMyYjhjOWUzYjc2OWNmN2VlMSJ9fX0=
-  slot: 24
-  click-sound: gui.dashboard.team-setting
+  texture: "texture:dashboard.chat.global"
+  action: "actions:dashboard.chat.global"
+
+settings:
+  name: "lang.dashboard_settings_name"
+  char: "S"
+  lore: ["lang.dashboard_settings_lore"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.settings"
+  action: "actions:dashboard.settings"
+
+# ----------------------------------------------------
+# CONDITIONAL OVERRIDES
+# ----------------------------------------------------
+info_without_description:
+  name: "lang.dashboard_info_name"
+  char: "i"
+  lore: ["lang.dashboard_info_lore_common"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.info"
+  action: "actions:dashboard.info"
+
+members_admin:
+  name: "lang.dashboard_members_name"
+  char: "m"
+  lore: ["lang.dashboard_members_lore_admin"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.members"
+  action: "actions:dashboard.members"
+
+chat_team:
+  name: "lang.dashboard_chat_team_name"
+  char: "t"
+  lore: ["lang.dashboard_chat_lore"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.chat.team"
+  action: "actions:dashboard.chat.team"
+
+chat_ally:
+  name: "lang.dashboard_chat_ally_name"
+  char: "a"
+  lore: ["lang.dashboard_chat_lore"]
+  item: PLAYER_HEAD
+  texture: "texture:dashboard.chat.ally"
+  action: "actions:dashboard.chat.ally"

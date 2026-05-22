@@ -1,19 +1,21 @@
 main:
   title: "lang.dialog_demote_default_title"
-  rows: 3
+  type: page
   inherit:
-    - "template/background"
+    - "template/dialog_background"
+    - "template/nav"
 
 confirm:
-  name: "lang.dialog_confirm_name"
   char: "Y"
-  lore: [ "lang.dialog_demote_default_confirm_lore" ]
+  name: "lang.dialog_confirm_name"
+  lore: "lang.dialog_demote_default_confirm_lore"
   item: LIME_WOOL
-  click-sound: "gui.dialog.confirm"
+  action: "dialog.demote_default.confirm"
+
 cancel:
-  name: "lang.dialog_cancel_name"
   char: "N"
-  lore: [ "lang.dialog_demote_default_cancel_lore" ]
+  name: "lang.dialog_cancel_name"
+  lore: "lang.dialog_demote_default_cancel_lore"
   item: RED_WOOL
-  click-sound: "gui.dialog.cancel"
+  action: "dialog.demote_default.cancel"
 

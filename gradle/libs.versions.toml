@@ -1,0 +1,34 @@
+[versions]
+kotlin = "2.1.21"
+shadow = "8.3.6"
+ideaExt = "1.1.9"
+spigotApi = "1.20-R0.1-SNAPSHOT"
+betterteams = "11ca5a8b24"
+folialib = "0.5.1"
+bstats = "3.1.0"
+anvilgui = "1.10.11-SNAPSHOT"
+floodgate = "2.2.3-SNAPSHOT"
+adventurePlatform = "4.4.1"
+adventureText = "4.24.0"
+placeholderapi = "2.11.6"
+gson = "2.10.1"
+
+[libraries]
+spigot-api = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigotApi" }
+betterteams = { group = "com.github.booksaw.BetterTeams", name = "betterteams", version.ref = "betterteams" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+folialib = { group = "com.tcoded", name = "FoliaLib", version.ref = "folialib" }
+bstats-bukkit = { group = "org.bstats", name = "bstats-bukkit", version.ref = "bstats" }
+anvilgui = { group = "net.wesjd", name = "anvilgui", version.ref = "anvilgui" }
+floodgate-api = { group = "org.geysermc.floodgate", name = "api", version.ref = "floodgate" }
+adventure-platform-bukkit = { group = "net.kyori", name = "adventure-platform-bukkit", version.ref = "adventurePlatform" }
+adventure-text-minimessage = { group = "net.kyori", name = "adventure-text-minimessage", version.ref = "adventureText" }
+adventure-text-serializer-plain = { group = "net.kyori", name = "adventure-text-serializer-plain", version.ref = "adventureText" }
+adventure-text-serializer-legacy = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "adventureText" }
+placeholderapi = { group = "me.clip", name = "placeholderapi", version.ref = "placeholderapi" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+idea-ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt" }

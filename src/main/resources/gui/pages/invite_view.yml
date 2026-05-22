@@ -1,0 +1,98 @@
+main:
+  title: "{lang:invite_view_title}"
+  row: 6
+  font-title: false
+  font-name: true
+  font-lore: true
+  background:
+    0:
+      name: " "
+      item: LIGHT_BLUE_STAINED_GLASS_PANE
+      slot: [ 0,2,4,6,8,18,26,36,44,46,48,50,52 ]
+    1:
+      name: " "
+      item: PURPLE_STAINED_GLASS_PANE
+      slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
+  slot:
+    back: 52
+    home: 53
+    prev: 47
+    next: 51
+
+invite-item:
+  name: "{lang:invite_view_invite_item_name}"
+  lore:
+    - "{lang:invite_view_invite_item_lore}"
+  item: PLAYER_HEAD
+  texture: ""
+  click-sound: gui.invite.invite-item
+
+player-invited-item:
+  name: "{lang:invite_view_player_invited_item_name}"
+  lore:
+    - "{lang:invite_view_player_invited_item_lore}"
+  item: PLAYER_HEAD
+  texture: ""
+  click-sound: gui.invite.player-invited-item
+
+search-item:
+  name: "{lang:invite_view_search_item_name}"
+  lore:
+    - "{lang:invite_view_search_item_lore}"
+  item: OAK_SIGN
+  slot: 45
+  click-sound: gui.invite.search-item
+
+search-item-clear:
+  name: "{lang:invite_view_search_item_clear_name}"
+  lore:
+    - "{lang:invite_view_search_item_clear_lore}"
+  item: OAK_SIGN
+  slot: 45
+  click-sound: gui.invite.search-item
+
+invite-player:
+  name: "{lang:invite_view_invite_player_name}"
+  lore:
+    - "{lang:invite_view_invite_player_lore}"
+  item: LIME_STAINED_GLASS_PANE
+  click-sound: gui.invite.invite-player
+  slot: 46
+
+
+invited-list-item:
+  name: "{lang:invite_view_invited_list_item_name}"
+  lore:
+    - "{lang:invite_view_invited_list_item_lore}"
+  item: WRITABLE_BOOK
+  slot: 49
+  click-sound: gui.invite.invited-list-item
+
+
+anvil-ui:
+  search-item:
+    title: "{lang:invite_view_anvil_search_title}"
+    label: "{lang:invite_view_anvil_label}"
+    input-item:
+      name: "{lang:invite_view_anvil_search_input_name}"
+      item: PAPER
+      lore:
+        - "{lang:invite_view_anvil_search_input_lore}"
+    output-item:
+      name: "{lang:invite_view_anvil_search_output_name}"
+      item: ANVIL
+      lore:
+        - "{lang:invite_view_anvil_search_output_lore}"
+  invite:
+    title: "{lang:invite_view_anvil_invite_title}"
+    label: "{lang:invite_view_anvil_label}"
+    input-item:
+      name: "{lang:invite_view_anvil_invite_input_name}"
+      lore:
+        - "{lang:invite_view_anvil_invite_input_lore}"
+      item: PAPER
+    output-item:
+      name: "{lang:invite_view_anvil_invite_output_name}"
+      lore:
+        - "{lang:invite_view_anvil_invite_output_lore}"
+      item: LIME_DYE

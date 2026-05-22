@@ -1,0 +1,44 @@
+main:
+  type: template
+  font-title: true
+  font-name: true
+  font-lore: true
+  pattern:
+    1:
+      - "B P B P B P B P B"
+    2:
+      - "B P B P B P B P B"
+      - "B P B P B P B P B"
+    3:
+      - "B P B P B P B P B"
+      - "B P . P B P . P B"
+      - "B P B P B P B P B"
+    4:
+      - "B P B P B P B P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P B P B P B P B"
+    5:
+      - "B P B P B P B P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P B P B P B P B"
+    6:
+      - "B P B P B P B P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P . P B P . P B"
+      - "B P B P B P B P B"
+
+background_blue:
+  name: " "
+  char: "B"
+  item: LIGHT_BLUE_STAINED_GLASS_PANE
+  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
+background_purple:
+  name: " "
+  char: "P"
+  item: PURPLE_STAINED_GLASS_PANE
+  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]

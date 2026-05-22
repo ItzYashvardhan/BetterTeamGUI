@@ -1,0 +1,18 @@
+main:
+  title: "lang.dialog_demote_admin_title"
+  rows: 3
+  type: page
+  inherit:
+    - "template/dialog_background_pattern"
+
+confirm:
+  char: "Y"
+  name: "Confirm Demotion"
+  item: LIME_WOOL
+  action: "actions:dialog.demote.confirm"
+
+cancel:
+  char: "N"
+  name: "Cancel"
+  item: RED_WOOL
+  action: "actions:dialog.demote.cancel"

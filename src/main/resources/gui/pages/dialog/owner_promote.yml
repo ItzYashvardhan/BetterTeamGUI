@@ -1,0 +1,18 @@
+main:
+  title: "lang.dialog_promote_owner_title"
+  rows: 3
+  inherit:
+    - "template/background"
+
+confirm:
+  name: "lang.dialog_confirm_name"
+  char: "Y"
+  lore: [ "lang.dialog_promote_owner_confirm_lore" ]
+  item: LIME_WOOL
+  click-sound: "gui.dialog.confirm"
+cancel:
+  name: "lang.dialog_cancel_name"
+  char: "N"
+  lore: [ "lang.dialog_promote_owner_cancel_lore" ]
+  item: RED_WOOL
+  click-sound: "gui.dialog.cancel"

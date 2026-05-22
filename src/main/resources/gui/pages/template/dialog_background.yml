@@ -1,0 +1,9 @@
+main:
+  type: template
+  inherit:
+    - "template/background"
+  pattern:
+    3:
+      - ". . . . . . . . ."
+      - ". Y Y Y . N N N ."
+      - ". . . . . . . . ."

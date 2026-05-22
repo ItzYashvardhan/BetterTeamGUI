@@ -1,0 +1,81 @@
+# This file allows you to define custom fonts for different Minecraft client versions.
+# You can use these custom fonts to display text in GUIs or messages with unique styles.
+# The keys '19' and '16' refer to Minecraft versions 1.19+ and 1.16+ respectively.
+# Each letter, number, or special character can be mapped to a custom unicode character.
+# If no version is specified for given client version it will used default font
+# Currently it doesn't support cas sensitive (i.e 'A' is treat as same as 'a')
+
+# Font applied for Minecraft 1.19+
+'19':
+  # Letters
+  a: "ᴀ"
+  b: "ʙ"
+  c: "ᴄ"
+  d: "ᴅ"
+  e: "ᴇ"
+  f: "ꜰ"
+  g: "ɢ"
+  h: "ʜ"
+  i: "ɪ"
+  j: "ᴊ"
+  k: "ᴋ"
+  l: "ʟ"
+  m: "ᴍ"
+  n: "ɴ"
+  o: "ᴏ"
+  p: "ᴘ"
+  q: "ǫ"
+  r: "ʀ"
+  s: "s"
+  t: "ᴛ"
+  u: "ᴜ"
+  v: "ᴠ"
+  w: "ᴡ"
+  x: "x"
+  y: "ʏ"
+  z: "ᴢ"
+
+  # Numbers
+  "0": "𝟬"
+  "1": "𝟭"
+  "2": "𝟮"
+  "3": "𝟯"
+  "4": "𝟰"
+  "5": "𝟱"
+  "6": "𝟲"
+  "7": "𝟳"
+  "8": "𝟴"
+  "9": "𝟵"
+
+  # Special
+  "@": "＠"
+
+# Font applied for Minecraft 1.16+
+'16':
+  # Letters
+  a: "ᴀ"
+  b: "ʙ"
+  c: "ᴄ"
+  d: "ᴅ"
+  e: "ᴇ"
+  f: "ꜰ"
+  g: "ɢ"
+  h: "ʜ"
+  i: "ɪ"
+  j: "ᴊ"
+  k: "ᴋ"
+  l: "ʟ"
+  m: "ᴍ"
+  n: "ɴ"
+  o: "ᴏ"
+  p: "ᴘ"
+  q: "ǫ"
+  r: "ʀ"
+  s: "s"
+  t: "ᴛ"
+  u: "ᴜ"
+  v: "ᴠ"
+  w: "ᴡ"
+  x: "x"
+  y: "ʏ"
+  z: "ᴢ"

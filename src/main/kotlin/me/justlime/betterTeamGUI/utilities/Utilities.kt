@@ -36,33 +36,3 @@ val Team.bannedPlayersList: List<String>
 //        event.update(style)
 //    }, 30)
 //}
-
-//fun applyBackground(
-//    teamItem: TeamItem,
-//    builder: ChestGUIBuilder,
-//    enableNav: Boolean = true,
-//    onBack: (InventoryClickEvent) -> Unit
-//) {
-//
-//    val teamButton = TeamButton(teamItem.config)
-//
-//    builder.apply {
-//        if (enableNav) nav {
-//            this.prevSlot = teamItem.prevSlot
-//            this.nextSlot = teamItem.nextSlot
-//            this.nextItem = teamButton.next ?: GuiItem(Material.ARROW)
-//            this.prevItem = teamButton.prev ?: GuiItem(Material.ARROW)
-//            buffer {
-//                renderLimit = 10
-//                margin = 3
-//                cleanupMargin = 20
-//            }
-//        }
-//
-//
-//        teamItem.background.forEach { setItem(it) }
-//
-//        setItem(teamButton.back, teamItem.backSlot) { onBack(it) }
-//        setItem(teamButton.home, teamItem.homeSlot) { GUIManager.openTeamGUI(it.whoClicked as Player) }
-//    }
-//}

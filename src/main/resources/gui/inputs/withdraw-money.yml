@@ -1,0 +1,15 @@
+main:
+  title: "lang.money_view_withdraw_title"
+  label: "lang.money_view_label"
+
+left-item:
+    name: "lang.money_view_withdraw_input_name"
+    item: PAPER
+    lore:
+      - "lang.money_view_withdraw_input_lore"
+
+output-item:
+    name: "lang.money_view_withdraw_output_name"
+    item: ANVIL
+    lore:
+      - "lang.money_view_withdraw_output_lore"

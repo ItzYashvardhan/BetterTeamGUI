@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.models.enums
+package me.justlime.betterTeamGUI.models
 
 sealed interface JGui {
 

@@ -12,7 +12,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "B . < . . . > . H" 
+    - "B . < . . . > . ."
     # B(45), <(47), >(51), H(53)
 
 # ----------------------------------------------------
@@ -26,7 +26,7 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   template:
-    item: PLAYER_HEAD # Fallback, swapped dynamically by your backend
+    item: PLAYER_HEAD # Fallback, TODO
 
 # ----------------------------------------------------
 # MEMBER & INVITE STATES (Populated by Kotlin Backend)

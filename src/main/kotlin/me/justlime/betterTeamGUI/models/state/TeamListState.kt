@@ -1,4 +1,4 @@
-package me.justlime.betterTeamGUI.data.gui.new.state
+package me.justlime.betterTeamGUI.listing
 
 import me.justlime.betterTeamGUI.models.enums.FilterType
 import me.justlime.betterTeamGUI.models.enums.SortOrder

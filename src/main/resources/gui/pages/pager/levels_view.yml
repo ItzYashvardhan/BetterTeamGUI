@@ -6,13 +6,14 @@ main:
   font-lore: true
   inherit:
     - "template/border"
+    - "template/nav"
   pattern:
     - ". . . . . . . . ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . . . > . H" 
+    - ". . < . . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS

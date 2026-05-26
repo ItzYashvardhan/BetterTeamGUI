@@ -1,11 +1,7 @@
 package me.justlime.betterTeamGUI.utilities
 
-import com.booksaw.betterTeams.Team
-import com.booksaw.betterTeams.TeamPlayer
-import me.justlime.betterTeamGUI.foliaLib
-import me.justlime.betterTeamGUI.models.enums.JGui
+import me.justlime.betterTeamGUI.models.JGui
 import net.justlime.limeframegui.config.YamlFileHandler
-import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import java.io.File
 

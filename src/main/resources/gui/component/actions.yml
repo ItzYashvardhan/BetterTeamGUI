@@ -1,7 +1,9 @@
 home:
+  - "[sound] click"
   - "[open] dashboard_view"
 back:
-  - "[open] dashboard_view"
+  - "[sound] click"
+  - "[back]"
 
 dashboard:
   allies:
@@ -39,7 +41,7 @@ dashboard:
             - "[close]"
   list:
     - "[sound] gui.dashboard.list"
-    - "[open] viewer/list_viewer"
+    - "[open] pager/team_list"
 
   members:
     - "[sound] gui.dashboard.members"
@@ -98,58 +100,106 @@ color_picker:
     - "[open] setting_view"
   select_aqua:
     - "[player] {cmd.team} color aqua"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
   select_black:
     - "[player] {cmd.team} color black"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_blue:
     - "[player] {cmd.team} color blue"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_aqua:
     - "[player] {cmd.team} color dark_aqua"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_blue:
     - "[player] {cmd.team} color dark_blue"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_gray:
     - "[player] {cmd.team} color dark_gray"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_green:
     - "[player] {cmd.team} color dark_green"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_purple:
     - "[player] {cmd.team} color dark_purple"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_dark_red:
     - "[player] {cmd.team} color dark_red"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_gold:
     - "[player] {cmd.team} color gold"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_gray:
     - "[player] {cmd.team} color gray"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_green:
     - "[player] {cmd.team} color green"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_red:
     - "[player] {cmd.team} color red"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_strikethrough:
     - "[player] {cmd.team} color strikethrough"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_white:
     - "[player] {cmd.team} color white"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
   select_yellow:
     - "[player] {cmd.team} color yellow"
-    - "[close]"
+    - "[Delay] {color_delay}"
+    - "[open] setting_view"
+
+
+team_list:
+  create:
+    click:
+    - "[sound] gui.dashboard.list"
+    - "[input] create-team [player] team create {input}"
 
 
 example:
+  # ====================================================
+  # EXAMPLE 1: Simple
+  # ====================================================
+  open_menu:
+    requirements:
+      - "[permission] team.use"
+      - "[condition] %vault_eco_balance% >= 1000"
+    click:
+      - "[sound] block_chest_open"
+      - "[open] dashboard_view"
+      - "[message] <green>Opening Team Dashboard..."
   
   # ====================================================
-  # EXAMPLE 1: SEQUENCE & CONDITIONS (if / else if / else)
+  # EXAMPLE 2: SEQUENCE & CONDITIONS (if / else if / else)
   # ====================================================
   claim_daily_reward:
     sequence:
@@ -178,11 +228,11 @@ example:
       else:
         click:
           - "[message] <red>You do not meet the requirements for any rewards!"
-          - "[sound] entity_villager_no"
+          - "[sound] entity_villager_no" # Value retrieve from component/sound.yml
 
 
   # ====================================================
-  # EXAMPLE 2: WHEN (Switch/Case Statements)
+  # EXAMPLE 3: WHEN (Switch/Case Statements)
   # ====================================================
   teleport_to_spawn:
     click:

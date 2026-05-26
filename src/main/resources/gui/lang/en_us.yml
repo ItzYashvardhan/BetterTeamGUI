@@ -410,7 +410,7 @@ list_view_filter_not_full_lore:
   - "<gray>Only showing teams with available seats.</gray>"
   - ""
   - "<yellow>Click to change filter ➤</yellow>"
-list_view_invitation_name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({invites})</gray>"
+list_view_invitation_name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({team_invites})</gray>"
 list_view_invitation_lore:
   - "<gray>View pending team invitations</gray>"
   - " "

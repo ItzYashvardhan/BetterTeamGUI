@@ -1,14 +1,13 @@
-package me.justlime.betterTeamGUI.data.gui.new
+package me.justlime.betterTeamGUI.listing
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
-import me.justlime.betterTeamGUI.data.gui.new.state.TeamListState
 import me.justlime.betterTeamGUI.models.enums.FilterType
 import me.justlime.betterTeamGUI.models.enums.SortOrder
 import me.justlime.betterTeamGUI.models.enums.SortType
 import net.justlime.limeframegui.registry.gui.ListPopulatorRegistry
 import org.bukkit.entity.Player
-import java.util.*
+import java.util.UUID
 
 object TeamListManager {
     //Manage State per player

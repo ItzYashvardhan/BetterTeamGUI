@@ -55,6 +55,16 @@ anchor:
   item: PLAYER_HEAD
   texture: "setting.anchor"
   action: "setting.anchor"
+  requirement:
+
+
+no-anchor:
+  name: "lang.setting_view_no_anchor_name"
+  char: "A"
+  lore: ["lang.setting_view_no_anchor_lore"]
+  item: PLAYER_HEAD
+  texture: "texture.no-anchor"
+  action: "setting.anchor"
 
 title:
   name: "lang.setting_view_title_name"
@@ -99,18 +109,12 @@ status-closed:
   action: "setting.status"
 
 
-no-anchor:
-  name: "lang.setting_view_no_anchor_name"
-  char: "a"
-  lore: ["lang.setting_view_no_anchor_lore"]
-  item: PLAYER_HEAD
-  texture: "texture.no-anchor"
-  action: "setting.anchor"
+
 
 
 
 # ----------------------------------------------------
-# ANVIL MENUS (Separate from Layout Engine)
+# ANVIL MENUS (Move to Separate from Layout Engine TODO)
 # ----------------------------------------------------
 anvil-ui:
   description:

@@ -26,11 +26,11 @@ dynamic_list:
     name: "lang.allies_view_item_name"
     lore: ["lang.allies_view_item_lore"]
     item: PLAYER_HEAD
-    texture: "{ally_uuid}" # Dynamically replaced by your Kotlin backend
+    texture: "{ally_uuid}" # Dynamically replaced code
     action: "allies.view_profile"
 
 # ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
+# CORE BUTTONS
 # ----------------------------------------------------
 ally_request_inbox:
   name: "lang.allies_view_requests_name"

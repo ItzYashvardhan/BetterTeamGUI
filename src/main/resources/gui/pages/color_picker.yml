@@ -2,15 +2,14 @@ main:
   title: "lang.color_picker_title"
   rows: 5
   inherit:
-    - "template/border"
+    - "template/background"
     - "template/nav --R"
   pattern:
     - ". . . . . . . . ."
     - ". a b c . d e f ."
     - ". g h i . j k l ."
     - ". m n . . . o p ."
-    - ". . . . . . . R H" 
-    # R and H will override the border on the bottom right for navigation
+    - ". . . . . . . R ."
 
 # ----------------------------------------------------
 # NAVIGATION BUTTONS
@@ -20,7 +19,7 @@ back:
   char: "R"
   item: PLAYER_HEAD
   texture: "texture:core.back"
-  action: "color_picker.back"
+  action: "back"
 
 # ----------------------------------------------------
 # COLORS (Mapped to Pattern)

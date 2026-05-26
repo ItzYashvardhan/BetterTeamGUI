@@ -1,0 +1,12 @@
+main:
+  title: "lang.list_view_anvil_search_title"
+  label: "lang.list_view_anvil_label"
+
+left-item:
+    name: "lang.list_view_anvil_search_input_name"
+    item: PAPER
+    lore: [ "lang.list_view_anvil_search_input_lore" ]
+output-item:
+    name: "lang.list_view_anvil_search_output_name"
+    item: ANVIL
+    lore: [ "lang.list_view_anvil_search_output_lore" ]

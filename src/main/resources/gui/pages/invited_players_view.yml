@@ -10,7 +10,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . . . > R H"
+    - ". . < . . . > . ."
 
 dynamic_list:
   char: "L"

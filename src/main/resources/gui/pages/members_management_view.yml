@@ -1,51 +1,31 @@
 main:
-  title: "{lang:members_management_view_title}"
+  title: "lang.members_management_view_title"
   rows: 3
-  font-title: false
-  font-name: true
-  font-lore: true
+  inherit:
+    - "template/background"
+    - "template/nav --R"
+  
   pattern:
-    - "B P B P B P B P B"
-    - "P I P U D B K N P"
-    - "B P B P B P B < H"
+    - ". . . . . . . . ."
+    - ". I . U D . K N ."
+    - ". . . . . . . R ."
 
 # ----------------------------------------------------
-# BACKGROUND PANES
-# ----------------------------------------------------
-background_blue:
-  char: "B"
-  name: " "
-  item: LIGHT_BLUE_STAINED_GLASS_PANE
-  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
-
-background_purple:
-  char: "P"
-  name: " "
-  item: PURPLE_STAINED_GLASS_PANE
-  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
-
-background_red:
-  char: "R" # Unused in default pattern, but available if you want to mask missing permissions!
-  name: " "
-  item: RED_STAINED_GLASS_PANE
-  flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
-
-# ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
+# CORE BUTTONS 
 # ----------------------------------------------------
 player-info:
   char: "I"
   item: PLAYER_HEAD
-  name: "{lang:members_management_view_player_info_name}"
-  lore: ["{lang:members_management_view_player_info_lore}"]
+  name: "lang.members_management_view_player_info_name"
+  lore: ["lang.members_management_view_player_info_lore"]
   texture: "[{team_player_uuid}]"
   
 kick:
   char: "K"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzVkMDk2ZjhjNjhlZWMyYTcwMWQxZDVkMmQzMDdjMjdmOGRjYmU4Mzc5ZDAwNTI4YmZiMjg2NGM2NjRjMSJ9fX0="
-  name: "{lang:members_management_view_kick_name}"
-  lore: ["{lang:members_management_view_kick_lore}"]
+  name: "lang.members_management_view_kick_name"
+  lore: ["lang.members_management_view_kick_lore"]
   glow: false
   click-sound: gui.members-management.kick
 
@@ -53,8 +33,8 @@ ban:
   char: "N"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRmODE1YmNiYWMyMzczNDA0NjRiNzc3ODA3ZjI2YjVlOTMxN2MxOWQ1NzlkYTJkZDk0Y2JiYzZhMGRlNTEzOCJ9fX0="
-  name: "{lang:members_management_view_ban_name}"
-  lore: ["{lang:members_management_view_ban_lore}"]
+  name: "lang.members_management_view_ban_name"
+  lore: ["lang.members_management_view_ban_lore"]
   glow: false
   click-sound: gui.members-management.ban
 
@@ -73,15 +53,15 @@ home:
   action: "home"
 
 # ----------------------------------------------------
-# CONDITIONAL OVERRIDES (Swapped by Kotlin Backend)
+# CONDITIONAL OVERRIDES 
 # ----------------------------------------------------
 # Use 'U' for promote-to-owner, use 'u' for promote-to-admin
 promote-to-owner:
   char: "U"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0="
-  name: "{lang:members_management_view_promote_owner_name}"
-  lore: ["{lang:members_management_view_promote_owner_lore}"]
+  name: "lang.members_management_view_promote_owner_name"
+  lore: ["lang.members_management_view_promote_owner_lore"]
   glow: false
   click-sound: gui.members-management.promote
 
@@ -89,8 +69,8 @@ promote-to-admin:
   char: "u"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0="
-  name: "{lang:members_management_view_promote_admin_name}"
-  lore: ["{lang:members_management_view_promote_admin_lore}"]
+  name: "lang.members_management_view_promote_admin_name"
+  lore: ["lang.members_management_view_promote_admin_lore"]
   glow: false
   click-sound: gui.members-management.promote
 
@@ -99,8 +79,8 @@ demote-to-admin:
   char: "D"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0="
-  name: "{lang:members_management_view_demote_admin_name}"
-  lore: ["{lang:members_management_view_demote_admin_lore}"]
+  name: "lang.members_management_view_demote_admin_name"
+  lore: ["lang.members_management_view_demote_admin_lore"]
   glow: false
   click-sound: gui.members-management.demote
 
@@ -108,7 +88,7 @@ demote-to-default:
   char: "d"
   item: PLAYER_HEAD
   texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0="
-  name: "{lang:members_management_view_demote_default_name}"
-  lore: ["{lang:members_management_view_demote_default_lore}"]
+  name: "lang.members_management_view_demote_default_name"
+  lore: ["lang.members_management_view_demote_default_lore"]
   glow: false
   click-sound: gui.members-management.demote

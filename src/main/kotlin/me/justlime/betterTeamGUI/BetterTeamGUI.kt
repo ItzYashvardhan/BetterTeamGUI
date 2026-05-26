@@ -1,15 +1,16 @@
 package me.justlime.betterTeamGUI
 
+import com.booksaw.betterTeams.Team
 import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
-import me.justlime.betterTeamGUI.data.gui.new.TeamListManager
 import me.justlime.betterTeamGUI.listener.InventoryListener
+import me.justlime.betterTeamGUI.listing.TeamListManager
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.config.GuiDirectoryHandler
 import net.justlime.limeframegui.enums.ColorType
+import net.justlime.limeframegui.registry.component.PlaceholderRegistry
 import org.bstats.bukkit.Metrics
-import org.bukkit.inventory.ItemFlag
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.HttpURLConnection
 import java.net.URI
@@ -94,9 +95,32 @@ class BetterTeamGUI : JavaPlugin() {
         }
         LimeFrameAPI.enableFoliaLib()
         LimeFrameAPI.loadConfig("gui")
-        GuiDirectoryHandler.reload(this,true)
+        GuiDirectoryHandler.reload(this, true)
         TeamListManager.registerPopulators()
 
+        injectPlaceholder()
+
+    }
+
+    fun injectPlaceholder(){
+        val allTeams = Team.getTeamManager().loadedTeamListClone.values
+        PlaceholderRegistry.register("team_invites") { player ->
+            var inviteCount = 0
+            for (team in allTeams) {
+                if (team.invitedPlayers.contains(player.uniqueId)) {
+                    inviteCount++
+                }
+            }
+            inviteCount.toString()
+        }
+        PlaceholderRegistry.register("allies_request") { player ->
+            val team = Team.getTeamManager().getTeam(player)
+            if (team == null) {
+                "0"
+            } else {
+                team.allyRequests.size.toString()
+            }
+        }
     }
 
 }
@@ -137,6 +161,8 @@ private fun checkVersionFromBetterTeamGUIRepo() {
         ConsoleMessage.printStep("Failed to check for updates", ConsoleMessage.Color.RED)
         ConsoleMessage.printStep(e.message ?: "Unidentified Version Error")
     }
+
+
 }
 
 

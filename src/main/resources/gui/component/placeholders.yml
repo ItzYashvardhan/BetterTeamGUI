@@ -1,3 +1,11 @@
+###################
+## PLACEHOLDERS ##
+##################
+
+## Description
+## These placeholder will automatically inject into action, lang and conditions configuration
+
+# # This is the prefix for all commands executed by the actions component.
 cmd:
   team: team
   admin: teamadmin
@@ -17,3 +25,5 @@ team_pvp: "%betterteams_pvp%"
 team_anchor: "%betterteams_anchor%"
 team_title: "%betterteams_title%"
 team_player_has_home: "%betterteams_hasHome%"
+
+color_delay: 2

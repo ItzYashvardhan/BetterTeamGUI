@@ -26,34 +26,30 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   template:
-    # This acts as a fallback, but your Kotlin backend will dynamically
-    # swap this with the claimable/occupied/locked items defined below.
-    item: BEDROCK
+    # ----------------------------------------------------
+    # WARP STATE TEMPLATES
+    # ----------------------------------------------------
+    claimable-warp:
+      name: "lang.warps_view_claimable_name"
+      lore: [ "lang.warps_view_claimable_lore" ]
+      item: GREEN_STAINED_GLASS_PANE
+      action: "warps.claim"
+      click-sound: gui.warps.claimable-warp
 
-# ----------------------------------------------------
-# WARP STATE TEMPLATES (Fetched by Kotlin Backend)
-# ----------------------------------------------------
-claimable-warp:
-  name: "lang.warps_view_claimable_name"
-  lore: ["lang.warps_view_claimable_lore"]
-  item: GREEN_STAINED_GLASS_PANE
-  action: "warps.claim"
-  click-sound: gui.warps.claimable-warp
+    occupied-warp:
+      name: "lang.warps_view_occupied_name"
+      lore: [ "lang.warps_view_occupied_lore" ]
+      item: PLAYER_HEAD
+      texture: warps.occupied
+      action: "warps.teleport"
+      click-sound: gui.warps.occupied-warp
 
-occupied-warp:
-  name: "lang.warps_view_occupied_name"
-  lore: ["lang.warps_view_occupied_lore"]
-  item: PLAYER_HEAD
-  texture: warps.occupied
-  action: "warps.teleport"
-  click-sound: gui.warps.occupied-warp
-
-locked-warp:
-  name: "lang.warps_view_locked_name"
-  lore: ["lang.warps_view_locked_lore"]
-  item: RED_STAINED_GLASS_PANE
-  action: "warps.unlock"
-  click-sound: gui.warps.locked-warp
+    locked-warp:
+      name: "lang.warps_view_locked_name"
+      lore: [ "lang.warps_view_locked_lore" ]
+      item: RED_STAINED_GLASS_PANE
+      action: "warps.unlock"
+      click-sound: gui.warps.locked-warp
 
 # ----------------------------------------------------
 # CORE BUTTONS (Mapped to Pattern)
@@ -73,7 +69,7 @@ next_page:
   action: "core_next_page"
 
 # ----------------------------------------------------
-# ANVIL MENUS (Separate from Layout Engine)
+# ANVIL MENUS (Move Separate from Layout Engine TODO)
 # ----------------------------------------------------
 anvil-ui:
   set-warp-name:
@@ -82,11 +78,11 @@ anvil-ui:
     input-item:
       name: "lang.warps_view_anvil_set_name_input_name"
       item: PAPER
-      lore: ["lang.warps_view_anvil_set_name_input_lore"]
+      lore: [ "lang.warps_view_anvil_set_name_input_lore" ]
     output-item:
       name: "lang.warps_view_anvil_set_name_output_name"
       item: ANVIL
-      lore: ["lang.warps_view_anvil_set_name_output_lore"]
+      lore: [ "lang.warps_view_anvil_set_name_output_lore" ]
 
   enter-warp-password-to-teleport:
     title: "lang.warps_view_anvil_password_title"
@@ -94,8 +90,8 @@ anvil-ui:
     input-item:
       name: "lang.warps_view_anvil_password_input_name"
       item: PAPER
-      lore: ["lang.warps_view_anvil_password_input_lore"]
+      lore: [ "lang.warps_view_anvil_password_input_lore" ]
     output-item:
       name: "lang.warps_view_anvil_password_output_name"
       item: ANVIL
-      lore: ["lang.warps_view_anvil_password_output_lore"]
+      lore: [ "lang.warps_view_anvil_password_output_lore" ]

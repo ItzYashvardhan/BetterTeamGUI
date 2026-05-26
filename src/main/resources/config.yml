@@ -4,21 +4,7 @@ use-native-command: true # Required Server Restart to apply changes
 
 # # This is the prefix for all commands executed by the plugin.
 # For example, if you set it to "team", then all commands will be executed as "/team <command>".
-command-prefix: "team"
-
-#For Bedrock Form
-back-button:
-  lines:
-    - "&cBack"
-    - "&aClick to Back"
-  image:
-    enabled: false
-    url: " "
-
-#Possible Placeholder [{player},{uuid}]
-# Avatar: "https://crafatar.com/avatars/{uuid}?size=128&overlay"
-Avatar: "https://mc-heads.net/avatar/%skinsrestorer_texture_id_or_steve%.png"
-# Note It is recommended to use %skinsrestorer_texture_id_or_steve% as placeholder for avatar
+command-prefix: "team (REMOVED)" # Note this will Not work You should change in gui/component/placholder.yml
 
 #Don't change this value unless you know what it means
-version: 2.0
+version: 3.0

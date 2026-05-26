@@ -3,7 +3,7 @@ kotlin = "2.3.0"
 shadow = "9.3.1"
 ideaExt = "1.1.9"
 spigotApi = "1.20-R0.1-SNAPSHOT"
-betterteams = "11ca5a8b24"
+betterteams = "5.1.2"
 folialib = "0.5.1"
 bstats = "3.1.0"
 anvilgui = "1.10.11-SNAPSHOT"
@@ -32,3 +32,4 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 idea-ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt" }
+

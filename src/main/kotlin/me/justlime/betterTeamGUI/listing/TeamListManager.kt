@@ -54,24 +54,39 @@ object TeamListManager {
                 val hasDescription = team.description != null && team.description.isNotEmpty()
                 val viewerHasTeam = Team.getTeam(player) != null
 
+
+                val teamPlaceholders = mapOf(
+                    "list_team" to team.name,
+                    "list_team_color" to team.color.name,
+                    "list_team_tag" to (team.tag ?: ""),
+                    "list_team_description" to (team.description ?: ""),
+                    "list_team_size" to team.members.size().toString(),
+                    "list_team_score" to team.score.toString(),
+                    "list_team_limit" to team.teamLimit.toString(),
+                    "list_team_level" to team.level.toString()
+                )
+
                 val templateKey = when {
-                    viewerHasTeam && hasDescription -> "in-team-has-description"
-                    viewerHasTeam && !hasDescription -> "in-team"
-                    !viewerHasTeam && hasDescription -> "no-team-has-description"
-                    else -> "no-team"
+                    viewerHasTeam && hasDescription -> "team-item-with-description-in-team"
+                    viewerHasTeam && !hasDescription -> "team-item-without-description-in-team"
+                    !viewerHasTeam && hasDescription -> "team-item-with-description-no-team"
+                    else -> "team-item-without-description-no-team"
                 }
 
-                val baseTemplate =
-                    templatesMap[templateKey] ?: templatesMap["default"] ?: templatesMap.values.firstOrNull()
-                if (baseTemplate == null) return@mapNotNull null
+
+                val baseTemplate = templatesMap[templateKey] ?: return@mapNotNull null
 
                 val randomOwnerPlayer = ownerRank.random().player
+
                 val item = baseTemplate.clone().apply {
                     this.style.offlinePlayer = randomOwnerPlayer
+                    this.style.placeholder.putAll(teamPlaceholders)
                     this.style.viewer = null
                 }
                 item
             }
         }
     }
+
+
 }

@@ -10,12 +10,11 @@ confirm:
   name: "lang.dialog_confirm_name"
   lore: "lang.dialog_demote_default_confirm_lore"
   item: LIME_WOOL
-  action: "dialog.demote_default.confirm"
+  action: "dialog.confirm_default_demote"
 
 cancel:
   char: "N"
   name: "lang.dialog_cancel_name"
   lore: "lang.dialog_demote_default_cancel_lore"
   item: RED_WOOL
-  action: "dialog.demote_default.cancel"
-
+  action: "dialog.cancel"

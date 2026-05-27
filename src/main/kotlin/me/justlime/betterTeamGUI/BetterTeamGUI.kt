@@ -102,7 +102,7 @@ class BetterTeamGUI : JavaPlugin() {
 
     }
 
-    fun injectPlaceholder(){
+    fun injectPlaceholder() {
         val allTeams = Team.getTeamManager().loadedTeamListClone.values
         PlaceholderRegistry.register("team_invites") { player ->
             var inviteCount = 0
@@ -121,8 +121,13 @@ class BetterTeamGUI : JavaPlugin() {
                 team.allyRequests.size.toString()
             }
         }
-    }
 
+        PlaceholderRegistry.register("team_anchor") { player ->
+            val team = Team.getTeam(player) ?: return@register "false"
+            val uuid = team.anchoredPlayers.convertedList.find { it == player.uniqueId.toString() }
+            if (uuid != null) "true" else "false"
+        }
+    }
 }
 
 private fun checkVersionFromBetterTeamGUIRepo() {

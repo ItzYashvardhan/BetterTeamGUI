@@ -10,11 +10,11 @@ confirm:
   name: "gui.lang.dialog_confirm_name"
   lore: "gui.lang.dialog_delete_warp_confirm_lore"
   item: LIME_WOOL
-  action: "dialog.delete_warp.confirm"
+  action: "dialog.confirm_delete_warp"
 
 cancel:
   char: "N"
   name: "gui.lang.dialog_cancel_name"
   lore: "gui.lang.dialog_delete_warp_cancel_lore"
   item: RED_WOOL
-  action: "dialog.delete_warp.cancel"
+  action: "dialog.cancel"

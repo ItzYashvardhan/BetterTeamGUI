@@ -12,7 +12,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "S . . F T O . I H"
+    - "S . . F T O . . H"
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -38,7 +38,7 @@ dynamic_list:
         - "lang.list_view_team_item_lore_click"
       item: PLAYER_HEAD
       texture: ""
-      click-sound: gui.list.team-item
+      action: "view.team"
 
     team-item-without-description-in-team:
       name: "lang.list_view_team_item_name_in_team"
@@ -48,7 +48,7 @@ dynamic_list:
         - "lang.list_view_team_item_lore_click"
       item: PLAYER_HEAD
       texture: ""
-      click-sound: gui.list.team-item
+      action: "view.team"
 
     team-item-with-description-no-team:
       name: "lang.list_view_team_item_name_no_team"
@@ -61,7 +61,7 @@ dynamic_list:
         - "lang.list_view_team_item_lore_join"
       item: PLAYER_HEAD
       texture: ""
-      click-sound: gui.list.team-item
+      action: "view.team"
 
     team-item-without-description-no-team:
       name: "lang.list_view_team_item_name_no_team"
@@ -72,7 +72,7 @@ dynamic_list:
         - "lang.list_view_team_item_lore_join"
       item: PLAYER_HEAD
       texture: ""
-      click-sound: gui.list.team-item
+      action: "view.team"
 
     invitation-team-item:
       name: "lang.list_view_invitation_team_item_name"
@@ -84,9 +84,23 @@ dynamic_list:
         - "lang.list_view_invitation_team_item_lore_accept"
       item: PLAYER_HEAD
       texture: ""
-      click-sound: gui.list.invitation-team-item
+      action: "view.team"
 
+prev_page:
+  name: "lang.core_prev_page_name"
+  slot: 47
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.prev_page"
+  action: "core_prev_page"
 
+next_page:
+  name: "lang.core_next_page_name"
+  slot: 51
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.next_page"
+  action: "core_next_page"
 
 
 # ----------------------------------------------------
@@ -99,13 +113,7 @@ search-item:
   item: OAK_SIGN
   click-sound: gui.list.search-item
 
-prev_page:
-  name: "lang.core_prev_page_name"
-  slot: 47
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "texture:core.prev_page"
-  action: "core_prev_page"
+
 
 filter_default:
   char: "F"
@@ -128,20 +136,16 @@ sort_order_asc:
   item: LEVER
   click-sound: gui.list.sort
 
-next_page:
-  name: "lang.core_next_page_name"
-  slot: 51
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "texture:core.next_page"
-  action: "core_next_page"
-
 invitation:
-  char: "I"
+  slot: 52
+  priority: 1
   name: "lang.list_view_invitation_name"
   lore: [ "lang.list_view_invitation_lore" ]
   item: CHEST
-  action: "team_list.create"
+  view-requirement:
+    - "[condition] '{team}' == ''"
+  click:
+    - "[open] pager/invitation_view"
 
 create:
   char: "H"

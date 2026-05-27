@@ -5,7 +5,96 @@ back:
   - "[sound] click"
   - "[back]"
 
+input:
+  verify_team_creation:
+    sequence:
+      1:
+        requirements:
+          - "[condition] '{team}' == ''"
+        click:
+          - "[message] <red>That team name is invalid or already taken! Try again."
+          - "[sound] block.anvil.place"
+          - "[input] create-team"
+
+      else:
+        click:
+          - "[message] <green>Team created successfully!"
+          - "[sound] entity.player.levelup"
+          - "[open] dashboard_view"
+
+
+dialog:
+  cancel:
+    - "[sound] click"
+    - "[back]"
+  confirm_disband:
+    - "[sound] click"
+    - "[player] {cmd.team} disband"
+    - "[delay] 10"
+    - "[player] {cmd.team} disband"
+    - "[delay] 20"
+    - "[back]"
+
+  confirm_leave:
+    - "[sound] click"
+    - "[player] {cmd.team} leave"
+    - "[back]"
+
+  confirm_delete_home:
+    - "[sound] click"
+    - "[player] {cmd.team} delhome"
+    - "[back]"
+
+  confirm_update_home:
+    - "[sound] click"
+    - "[player] {cmd.team} sethome"
+    - "[back]"
+
+  confirm_kick:
+    - "[sound] click"
+    - "[player] {cmd.team} kick {args}"
+    - "[back]"
+
+  confirm_ban:
+    - "[sound] click"
+    - "[player] {cmd.team} ban {args}"
+    - "[back]"
+
+  confirm_neutral:
+    - "[sound] click"
+    - "[player] {cmd.team} neutral {args}"
+    - "[back]"
+
+  confirm_delete_warp:
+    - "[sound] click"
+    - "[player] {cmd.team} delwarp {args}"
+    - "[back]"
+
+  confirm_admin_demote:
+    - "[sound] click"
+    - "[player] {cmd.team} demote {args}"
+    - "[back]"
+
+  confirm_admin_promote:
+    - "[sound] click"
+    - "[player] {cmd.team} promote {args}"
+    - "[back]"
+
+  confirm_owner_promote:
+    - "[sound] click"
+    - "[player] {cmd.team} owner {args}"
+    - "[back]"
+
+  confirm_default_demote:
+    - "[sound] click"
+    - "[player] {cmd.team} demote {args}"
+    - "[back]"
+
+
 dashboard:
+  list:
+    - "[sound] gui.dashboard.list"
+    - "[open] pager/team_list"
   allies:
     - "[sound] gui.dashboard.allies"
     - "[open] allies_view"
@@ -30,7 +119,7 @@ dashboard:
 
     right-click:
       when:
-        value: "{team_player_has_home}"
+        value: "{team_has_home}"
         result:
           "true":
             - "[sound] gui.dashboard.home"
@@ -38,10 +127,7 @@ dashboard:
           "false":
             - "[sound] gui.dashboard.home"
             - "[player] {cmd.team} sethome"
-            - "[close]"
-  list:
-    - "[sound] gui.dashboard.list"
-    - "[open] pager/team_list"
+            - "[back]"
 
   members:
     - "[sound] gui.dashboard.members"
@@ -51,7 +137,7 @@ dashboard:
     - "[player] {cmd.team} echest"
   warps:
     - "[sound] gui.dashboard.warps"
-    - "[open] warps_view"
+    - "[open] pager/warps_view"
   balance:
     - "[sound] gui.dashboard.balance"
     - "[open] money_view"
@@ -71,25 +157,32 @@ setting:
     - "[open] color_picker"
   description:
     - "[sound] gui.setting.description"
-    - "[input] description"
+    - "[input] setting/description"
   tag:
     - "[sound] gui.setting.tag"
-    - "[input] {cmd.team} tag {input} "
+    - "[input] setting/tag"
   status:
     - "[sound] gui.setting.status"
     - "[player] {cmd.team} open"
+    - "[delay] 5"
+    - "[open] setting_view"
   anchor:
     - "[sound] gui.setting.anchor"
     - "[player] {cmd.team} anchor"
+    - "[delay] 5"
+    - "[open] setting_view"
   title:
     - "[sound] gui.setting.title"
-    - "[input] {cmd.team} title {input}"
+    - "[input] setting/title"
   pvp:
     - "[sound] gui.setting.pvp"
     - "[player] {cmd.team} pvp"
+    - "[delay] 5"
+    - "[open] setting_view"
+
   rename:
     - "[sound] gui.setting.rename"
-    - "[input] {cmd.team} rename {input}"
+    - "[input] setting/rename"
   disband:
     - "[sound] gui.setting.disband"
     - "[open] dialog/disband"
@@ -177,12 +270,24 @@ color_picker:
     - "[Delay] {color_delay}"
     - "[open] setting_view"
 
-
 team_list:
   create:
     click:
     - "[sound] gui.dashboard.list"
-    - "[input] create-team [player] team create {input}"
+    - "[input] create-team"
+
+view:
+  team:
+    - "[sound] gui.list.team-item"
+    - "[open] view/team"
+  members:
+    - "[sound] gui.team-viewer.members"
+    - "[open] view/members"
+  allies:
+    - "[sound] gui.team-viewer.allies"
+    - "[open] view/allies"
+
+
 
 
 example:

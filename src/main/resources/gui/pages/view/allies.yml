@@ -1,5 +1,5 @@
 # ===================================================================
-# ALLIES VIEWER (Dynamic List)
+# ALLIES VIEW (Dynamic List)
 # ===================================================================
 main:
   title: "lang.team_viewer_allies_title"
@@ -13,25 +13,34 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . . . > . ."
+    - ". . . . . . . . ."
 
 dynamic_list:
   char: "L"
   populator_id: "team_allies_list"
   buffer:
     render-limit: 28
-  template:
-    name: "lang.team_viewer_ally_item_name"
-    lore:
-      - "lang.team_viewer_ally_item_lore"
-    item: PLAYER_HEAD
-    texture: "team.allies"
-    click-sound: gui.team-viewer.ally-item
+  templates:
+    allies-item:
+      name: "lang.team_viewer_ally_item_name"
+      lore:
+        - "lang.team_viewer_ally_item_lore"
+      item: PLAYER_HEAD
+      texture: "team.allies"
+      click-sound: gui.team-viewer.ally-item
 
 prev_page:
-  char: "<"
+  name: "lang.core_prev_page_name"
+  slot: 47
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.prev_page"
   action: "core_prev_page"
 
 next_page:
-  char: ">"
+  name: "lang.core_next_page_name"
+  slot: 51
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.next_page"
   action: "core_next_page"

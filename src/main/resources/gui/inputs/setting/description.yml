@@ -1,0 +1,21 @@
+main:
+  title: "lang.setting_view_anvil_desc_title"
+  label: "lang.label"
+
+left-item:
+  name: "lang.setting_view_anvil_desc_input_name"
+  item: PAPER
+  lore: [ ]
+  click:
+    - "[sound] click"
+    - "[back]"
+
+
+output-item:
+  name: "lang.setting_view_anvil_desc_output_name"
+  item: ANVIL
+  lore: []
+  click:
+    - "[player] team description {input}"
+    - "[delay] 10"
+    - "[open] setting_view"

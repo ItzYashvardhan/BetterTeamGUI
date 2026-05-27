@@ -10,11 +10,11 @@ confirm:
   name: "lang.dialog_confirm_name"
   lore: "lang.dialog_kick_confirm_lore"
   item: LIME_WOOL
-  action: "dialog.kick.confirm"
+  action: "dialog.confirm_kick"
 
 cancel:
   char: "N"
   name: "lang.dialog_cancel_name"
   lore: "lang.dialog_kick_cancel_lore"
   item: RED_WOOL
-  action: "dialog.kick.cancel"
+  action: "dialog.cancel"

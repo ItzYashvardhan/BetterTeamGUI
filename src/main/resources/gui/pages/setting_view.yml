@@ -6,12 +6,24 @@ main:
   font-lore: true
   inherit:
     - template/background
-    - template/nav
+    - template/nav --R
   pattern:
     - ". . . . . . . . . "
     - ". . C D . T S . ."
-    - ". . A I . V R . ."
-    - "X . . . . . . . ."
+    - ". . A I . V N . ."
+    - "X . . . . . . R ."
+
+# ----------------------------------------------------
+# NAVIGATION BUTTONS
+# ----------------------------------------------------
+back:
+  name: "lang.buttons_back_name"
+  char: "R"
+  item: PLAYER_HEAD
+  texture: "core.back"
+  click:
+    - "[sound] click"
+    - "[open]  dashboard_view"
 
 # ----------------------------------------------------
 # CORE SETTING BUTTONS
@@ -41,30 +53,43 @@ tag:
   action: "setting.tag"
 
 status-open:
-  name: "lang.setting_view_status_name"
   char: "S"
+  name: "lang.setting_view_status_name"
   lore: ["lang.setting_view_status_open_lore"]
   item: PLAYER_HEAD
   texture: "setting.status-open"
   action: "setting.status"
 
+status-closed:
+  char: "S"
+  priority: 10
+  name: "lang.setting_view_status_name"
+  lore: ["lang.setting_view_status_closed_lore"]
+  item: PLAYER_HEAD
+  texture: "setting.status-closed"
+  action: "setting.status"
+  view-requirement:
+    - "[condition] '{team_open}' == 'false'"
+
+
 anchor:
-  name: "lang.setting_view_anchor_name"
   char: "A"
+  name: "lang.setting_view_anchor_name"
   lore: ["lang.setting_view_anchor_lore"]
   item: PLAYER_HEAD
   texture: "setting.anchor"
   action: "setting.anchor"
-  requirement:
-
 
 no-anchor:
-  name: "lang.setting_view_no_anchor_name"
   char: "A"
+  priority: 10
+  name: "lang.setting_view_no_anchor_name"
   lore: ["lang.setting_view_no_anchor_lore"]
   item: PLAYER_HEAD
-  texture: "texture.no-anchor"
-  action: "setting.anchor"
+  texture: "setting.no-anchor"
+  view-requirement:
+    - "[condition] '{team_has_home}' == 'false'"
+
 
 title:
   name: "lang.setting_view_title_name"
@@ -84,7 +109,7 @@ pvp:
 
 rename:
   name: "lang.setting_view_rename_name"
-  char: "R"
+  char: "N"
   lore: ["lang.setting_view_rename_lore"]
   item: ANVIL
   action: "setting.rename"
@@ -96,19 +121,6 @@ disband:
   item: PLAYER_HEAD
   texture: setting.disband
   action: "setting.disband"
-
-# ----------------------------------------------------
-# CONDITIONAL OVERRIDES
-# ----------------------------------------------------
-status-closed:
-  name: "lang.setting_view_status_name"
-  char: "s"
-  lore: ["lang.setting_view_status_closed_lore"]
-  item: PLAYER_HEAD
-  texture: "setting.status-closed"
-  action: "setting.status"
-
-
 
 
 

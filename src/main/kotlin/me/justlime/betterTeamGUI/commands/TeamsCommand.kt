@@ -20,11 +20,13 @@ class TeamsCommand : CommandExecutor, TabCompleter {
 //                CommandService.sendMessage(sender, message)
                 return true
             }
+            GuiManager.clearHistory(sender.uniqueId)
             GuiManager.open(sender,"dashboard_view")
             return true
         }
 
         if (args[0] == "open" && args.size >1  && sender is Player) {
+            GuiManager.clearHistory(sender.uniqueId)
             GuiManager.open(sender,args[1])
             return true
         }

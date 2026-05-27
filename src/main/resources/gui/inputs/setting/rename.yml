@@ -1,0 +1,20 @@
+main:
+  title: "lang.setting_view_anvil_rename_title"
+  label: "lang.label"
+
+left-item:
+  name: "lang.setting_view_anvil_rename_input_name"
+  item: PAPER
+  lore: []
+  click:
+    - "[sound] click"
+    - "[back]"
+
+output-item:
+  name: "lang.setting_view_anvil_rename_output_name"
+  item: ANVIL
+  lore: []
+  click:
+    - "[player] team name {input}"
+    - "[delay] 10"
+    - "[open] setting_view"

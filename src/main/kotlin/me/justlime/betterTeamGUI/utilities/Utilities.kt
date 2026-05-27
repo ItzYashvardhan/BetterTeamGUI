@@ -2,7 +2,9 @@ package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.pluginInstance
+import org.bukkit.ChatColor
 import org.bukkit.entity.Player
+import org.bukkit.inventory.StonecutterInventory
 import org.geysermc.floodgate.api.FloodgateApi
 
 fun isBedrockPlayer(player: Player): Boolean =
@@ -23,7 +25,6 @@ val Team.bannedPlayersList: List<String>
             emptyList()
         }
     }
-
 //Utilities for GUI
 //fun permissionDenied(event: InventoryClickEvent, style: GuiStyleSheet) {
 //    val oldItem = event.item ?: return

@@ -1,14 +1,19 @@
 main:
   title: "lang.list_view_anvil_create_title"
-  label: "lang.list_view_anvil_label"
+  label: "lang.label"
 
 left-item:
   name: "lang.list_view_anvil_create_input_name"
   item: PAPER
   lore: [ "lang.list_view_anvil_create_input_lore" ]
+  click:
+    - "[action] back"
 
 output-item:
   name: "lang.list_view_anvil_create_output_name"
   item: ANVIL
   lore: [ "lang.list_view_anvil_create_output_lore" ]
-  action: home
+  click:
+    - "[player] team create {input}"
+    - "[delay] 10"
+    - "[action] input.verify_team_creation"

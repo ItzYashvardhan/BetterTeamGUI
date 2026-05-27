@@ -3,23 +3,13 @@ main:
   rows: 5
   inherit:
     - "template/background"
-    - "template/nav --R"
+    - "template/nav"
   pattern:
     - ". . . . . . . . ."
     - ". a b c . d e f ."
     - ". g h i . j k l ."
     - ". m n . . . o p ."
-    - ". . . . . . . R ."
-
-# ----------------------------------------------------
-# NAVIGATION BUTTONS
-# ----------------------------------------------------
-back:
-  name: "lang.core_back_name"
-  char: "R"
-  item: PLAYER_HEAD
-  texture: "texture:core.back"
-  action: "back"
+    - ". . . . . . . . ."
 
 # ----------------------------------------------------
 # COLORS (Mapped to Pattern)

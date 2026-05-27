@@ -3,7 +3,6 @@ main:
   rows: 4
   inherit:
     - template/background
-    - template/nav
   pattern:
     - ". . . . . . . . ."
     - ". I . H A M C . ."

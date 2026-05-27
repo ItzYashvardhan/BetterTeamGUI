@@ -10,11 +10,11 @@ confirm:
   name: "lang.dialog_confirm_name"
   lore: "lang.dialog_promote_owner_confirm_lore"
   item: LIME_WOOL
-  action: "dialog.promote_owner.confirm"
+  action: "dialog.confirm_owner_promote"
 
 cancel:
   char: "N"
   name: "lang.dialog_cancel_name"
   lore: "lang.dialog_promote_owner_cancel_lore"
   item: RED_WOOL
-  action: "dialog.promote_owner.cancel"
+  action: "dialog.cancel"

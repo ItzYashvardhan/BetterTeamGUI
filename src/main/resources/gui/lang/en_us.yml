@@ -24,6 +24,23 @@ buttons_no_perm_lore:
   - "<gray>You do not have permission to</gray>"
   - "<gray>interact with this button.</gray>"
 
+###############
+## List View ##
+###############
+# Main
+list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
+
+# Team Item
+list_view_team_item_name_in_team: "<b><{list_team_color}>{list_team}</{list_team_color}></b>"
+list_view_team_item_desc: "<white><italic>{list_team_description}</italic></white>"
+list_view_team_item_lore_common:
+  - " <#5BD686>• Tag:</#5BD686> <white><bold>{list_team_tag}</bold></white>"
+  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{list_team_size}" # Wait, shouldn't this be {list_team_level}?
+  - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{list_team_score}"
+list_view_team_item_name_no_team: "<b><{list_team_color}>{list_team}</{list_team_color}></b> <gray>({list_team_size}/{list_team_limit})</gray>"
+list_view_team_item_lore_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+list_view_team_item_lore_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
+
 ##############
 ## Ban View ##
 ##############
@@ -153,29 +170,11 @@ allies_view_req_item_lore:
   - "<green>Right-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to deny request</gray>"
 
-# ==========================================
-# TEAM COLOR PICKER
-# ==========================================
+#######################
+## TEAM COLOR PICKER ##
+#######################
 color_picker_title: "<b><gradient:#C45700:#FF7608>Team Color Picker</gradient></b>"
 color_picker_lore_template: "<gray>Click to set your team color to <{color}>{color}</{color}>.</gray>"
-
-# Explicit Item Names (Called by the 'name:' tag in the GUI)
-color_picker_aqua: "<aqua>Aqua"
-color_picker_black: "<black>Black"
-color_picker_blue: "<blue>Blue"
-color_picker_dark_aqua: "<dark_aqua>Dark Aqua"
-color_picker_dark_blue: "<dark_blue>Dark Blue"
-color_picker_dark_gray: "<dark_gray>Dark Gray"
-color_picker_dark_green: "<dark_green>Dark Green"
-color_picker_dark_purple: "<dark_purple>Dark Purple"
-color_picker_dark_red: "<dark_red>Dark Red"
-color_picker_gold: "<gold>Gold"
-color_picker_gray: "<gray>Gray"
-color_picker_green: "<green>Green"
-color_picker_red: "<red>Red"
-color_picker_strikethrough: "<strikethrough>Strikethrough"
-color_picker_white: "<white>White"
-color_picker_yellow: "<yellow>Yellow"
 
 #################
 ## Dialog View ##
@@ -340,22 +339,6 @@ levels_view_locked_lore:
   - "<gray>This level is Currently locked.</gray>"
 levels_view_locked_requirement: " <#FF3B3B>• Required Level {prev_level} for more info"
 
-###############
-## List View ##
-###############
-list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
-
-#team-item
-list_view_team_item_name_in_team: "<b><{team_color}>{team}</{team_color}></b>"
-list_view_team_item_desc: "<white><italic>{team_description}</italic></white>"
-list_view_team_item_lore_common:
-  - " <#5BD686>• Tag:</#5BD686> <white><bold>{team_tag}</bold></white>"
-  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
-  - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
-list_view_team_item_lore_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
-list_view_team_item_name_no_team: "<b><{color}>{team}</{color}></b> <gray>({team_size}/{team_limit})</gray>"
-list_view_team_item_lore_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
-
 #Searching, Sorting and Creation
 list_view_search_name: "<caps><b><#00FFC7>Search by Name"
 list_view_search_lore:
@@ -498,7 +481,10 @@ money_view_withdraw_output_lore:
 ##################
 ## Setting View ##
 ##################
+# Main
 setting_view_title: "<b><gradient:#C45700:#FF7608>{team} Team Setting's</gradient>"
+
+# Color
 setting_view_color_picker_name: "<#D6BA5B><bold>Team Color</bold>"
 setting_view_color_picker_lore:
   - "<gray>Change your team's chat color.</gray>"
@@ -506,6 +492,8 @@ setting_view_color_picker_lore:
   - "<gray>Current: <{team_color}>{team_color}</{team_color}></gray>"
   - ""
   - "<yellow>Click to select color ➤</yellow>"
+
+# Description
 setting_view_description_name: "<#D6BA5B><bold>Description</bold>"
 setting_view_description_lore:
   - "<gray>Edit the text displayed in</gray>"
@@ -515,15 +503,19 @@ setting_view_description_lore:
   - "<b><white>{team_description}</white>"
   - ""
   - "<yellow>Click to edit text ✎</yellow>"
+
+# Tag
 setting_view_tag_name: "<#D6BA5B><bold>Team Tag</bold>"
 setting_view_tag_lore:
   - "<gray>Set a short prefix/tag for</gray>"
   - "<gray>your team in chat.</gray>"
   - ""
   - "<gray>Current</gray>"
-  - "<b><white>{team_/tag}</white>"
+  - "<b><white>{team_tag}</white>"
   - ""
   - "<yellow>Click to change tag ✎</yellow>"
+
+# Recruitment
 setting_view_status_name: "<#D6BA5B><bold>Recruitment Status</bold>"
 setting_view_status_open_lore:
   - "<gray>Status: <white>OPEN</white></gray>"
@@ -533,7 +525,10 @@ setting_view_status_closed_lore:
   - "<gray>Status: <white>CLOSED</white></gray>"
   - ""
   - "<yellow>Click to toggle Open/Closed ⟳</yellow>"
+
+# Anchor
 setting_view_anchor_name: "<#D6BA5B><bold>Home Anchor</bold>"
+setting_view_no_anchor_name: "<red><bold>Home Missing!!</bold>"
 setting_view_anchor_lore:
   - "<gray>If enabled, team members will</gray>"
   - "<gray>respawn at the team home.</gray>"
@@ -541,9 +536,10 @@ setting_view_anchor_lore:
   - "<gray>Status: <white>{team_anchor}</white></gray>"
   - ""
   - "<yellow>Click to toggle Anchor ⟳</yellow>"
-setting_view_no_anchor_name: "<red><bold>Home Missing!!</bold>"
 setting_view_no_anchor_lore:
   - "<gray>You must set a team home first.</gray>"
+
+# Title
 setting_view_title_name: "<#D6BA5B><bold>Team Title</bold>"
 setting_view_title_lore:
   - "<gray>Set the official title displayed</gray>"
@@ -553,6 +549,8 @@ setting_view_title_lore:
   - "<b><white>{team_title}</white>"
   - ""
   - "<yellow>Click to edit title ✎</yellow>"
+
+# PVP
 setting_view_pvp_name: "<#D6BA5B><bold>Friendly Fire (PvP)</bold>"
 setting_view_pvp_lore:
   - "<gray>Allow members to damage</gray>"
@@ -561,6 +559,8 @@ setting_view_pvp_lore:
   - "<gray>Status: <white>{team_pvp}</white></gray>"
   - ""
   - "<yellow>Click to toggle PvP ⚔</yellow>"
+
+# Rename
 setting_view_rename_name: "<#D6BA5B><bold>Rename Team</bold>"
 setting_view_rename_lore:
   - ""
@@ -568,34 +568,23 @@ setting_view_rename_lore:
   - " "
   - "<gray>Current: <b><{team_color}>{team}</{team_color}></b>"
   - "<yellow>Click to rename team ✎</yellow>"
+
+# Disband
 setting_view_disband_name: "<red><bold>Disband Team</bold>"
 setting_view_disband_lore:
   - "<gray>Permanently delete this team.</gray>"
   - "<gray>This action cannot be undone.</gray>"
   - ""
   - "<red><bold>⚠ CLICK TO DISBAND ⚠</bold></red>"
-setting_view_anvil_desc_title: "<gradient:#5BD686:#D6BA5B><bold>Set Description</bold></gradient>"
-setting_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-setting_view_anvil_desc_input_name: "<gray>Current: <white>%betterteams_description%</white></gray>"
-setting_view_anvil_desc_output_name: "<gray>New Description: <white>%input%</white></gray>"
-setting_view_anvil_tag_title: "<gradient:#5BD686:#D6BA5B><bold>Set Tag</bold></gradient>"
-setting_view_anvil_tag_input_name: "<gray>Current: <white>%betterteams_tag%</white></gray>"
-setting_view_anvil_tag_output_name: "<gray>New Tag: <white>%input%</white></gray>"
-setting_view_anvil_title_title: "<gradient:#5BD686:#D6BA5B><bold>Set Title</bold></gradient>"
-setting_view_anvil_title_input_name: "<gray>Current: <white>%betterteams_title%</white></gray>"
-setting_view_anvil_title_output_name: "<gray>New Title: <white>%input%</white></gray>"
-setting_view_anvil_rename_title: "<gradient:#5BD686:#D6BA5B><bold>Rename Team</bold></gradient>"
-setting_view_anvil_rename_input_name: "<gray>Current: <white>%betterteams_name%</white></gray>"
-setting_view_anvil_rename_output_name: "<gray>New Name: <white>%input%</white></gray>"
 
 #################
 ## Team Viewer ##
 #################
 team_viewer_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
-team_viewer_info_name: "<b><{color}>{team}</{color}></b> <gray>({team_size}/{team_limit})</gray>"
+team_viewer_info_name: "<b><{team_color}>{team}</{team_color}></b> <gray>({team_size}/{team_limit})</gray>"
 team_viewer_info_desc: "<white><italic>{team_description}</italic></white>"
 team_viewer_info_lore_common:
-  - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
+  - " <#5BD686>• Tag:</#5BD686> <white><bold>{team_tag}</bold></white>"
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
   - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
@@ -665,3 +654,30 @@ warps_view_anvil_password_input_lore:
 warps_view_anvil_password_output_name: "<green>Confirm Warp Password</green>"
 warps_view_anvil_password_output_lore:
   - "<gray>Click to confirm the warp password.</gray>"
+
+############
+## INPUTS ##
+############
+
+#Label
+label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+
+# Setting - Description
+setting_view_anvil_desc_title: "<gradient:#5BD686:#D6BA5B><bold>Set Description</bold></gradient>"
+setting_view_anvil_desc_input_name: "<gray>Current: <white>{team_description}</white></gray>"
+setting_view_anvil_desc_output_name: "<gray>New Description: <white>%input%</white></gray>"
+
+# Setting - Tag
+setting_view_anvil_tag_title: "<gradient:#5BD686:#D6BA5B><bold>Set Tag</bold></gradient>"
+setting_view_anvil_tag_input_name: "<gray>Current: <white>{team_tag}</white></gray>"
+setting_view_anvil_tag_output_name: "<gray>New Tag: <white>%input%</white></gray>"
+
+# Setting - Title
+setting_view_anvil_title_title: "<gradient:#5BD686:#D6BA5B><bold>Set Title</bold></gradient>"
+setting_view_anvil_title_input_name: "<gray>Current: <white>{team_title}</white></gray>"
+setting_view_anvil_title_output_name: "<gray>New Title: <white>%input%</white></gray>"
+
+# Setting - Rename
+setting_view_anvil_rename_title: "<gradient:#5BD686:#D6BA5B><bold>Rename Team</bold></gradient>"
+setting_view_anvil_rename_input_name: "<gray>Current: <white>%betterteams_name%</white></gray>"
+setting_view_anvil_rename_output_name: "<gray>New Name: <white>%input%</white></gray>"

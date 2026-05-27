@@ -1,0 +1,38 @@
+main:
+  title: "lang.invitation_title"
+  type: pager
+  inherit:
+    - "template/border"
+    - "template/nav"
+  pattern:
+    - ". . . . . . . . ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". L L L L L L L ."
+    - ". . . . . . . . ."
+
+dynamic_list:
+  char: "L"
+  populator_id: "invitation_list"
+  buffer:
+    render-limit: 28
+    margin: 5
+    cleanup-margin: 40
+  templates:
+    invitation-item:
+      name: "<gold><b>{team_name}</b>"
+      lore:
+        - "lang.invitation_lore"
+        - ""
+        - "<yellow>Left-click to join"
+        - "<red>Right-click to deny"
+      item: PLAYER_HEAD
+      left-click:
+        - "[sound] click"
+        - "[player] {cmd.team} join {team_name}"
+        - "[close]"
+      right-click:
+        - "[sound] click"
+        - "[player] {cmd.team} deny {team_name}"
+        - "[refresh]"

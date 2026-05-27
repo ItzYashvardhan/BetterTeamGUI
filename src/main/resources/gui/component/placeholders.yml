@@ -22,8 +22,16 @@ team_description: "%betterteams_description%"
 team_money: "%betterteams_money%"
 team_color: "%betterteams_colorname%"
 team_pvp: "%betterteams_pvp%"
-team_anchor: "%betterteams_anchor%"
 team_title: "%betterteams_title%"
-team_player_has_home: "%betterteams_hasHome%"
-
+team_has_home: "%betterteams_hasHome%"
+team_open: "%betterteams_open%"
 color_delay: 2
+
+
+#########################
+## Internal Registered ##
+#########################
+## team_anchor         ##
+## team_invites        ##
+## allies_request      ##
+#########################

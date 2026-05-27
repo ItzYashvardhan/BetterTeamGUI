@@ -13,7 +13,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . . . > . ."
+    - ". . . . . . . . ."
 
 dynamic_list:
   char: "L"
@@ -22,17 +22,26 @@ dynamic_list:
     render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
-    item: PLAYER_HEAD
-    name: "lang.team_viewer_member_item_name"
-    lore:
-      - "lang.team_viewer_member_item_lore"
-    click-sound: gui.team-viewer.member-item
+  templates:
+    member-item:
+      item: PLAYER_HEAD
+      name: "lang.team_viewer_member_item_name"
+      lore:
+        - "lang.team_viewer_member_item_lore"
+      click-sound: gui.team-viewer.member-item
 
 prev_page:
-  char: "<"
+  name: "lang.core_prev_page_name"
+  slot: 47
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.prev_page"
   action: "core_prev_page"
 
 next_page:
-  char: ">"
+  name: "lang.core_next_page_name"
+  slot: 51
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.next_page"
   action: "core_next_page"

@@ -10,11 +10,11 @@ confirm:
   name: "lang.dialog_confirm_name"
   lore: "lang.dialog_delete_home_confirm_lore"
   item: LIME_WOOL
-  action: "dialog.delete_home.confirm"
+  action: "dialog.confirm_delete_home"
 
 cancel:
   char: "N"
   name: "lang.dialog_cancel_name"
   lore: "lang.dialog_delete_home_cancel_lore"
   item: RED_WOOL
-  action: "dialog.delete_home.cancel"
+  action: "dialog.cancel"

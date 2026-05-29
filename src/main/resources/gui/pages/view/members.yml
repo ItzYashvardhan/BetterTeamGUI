@@ -17,7 +17,7 @@ main:
 
 dynamic_list:
   char: "L"
-  populator_id: "team_members_list"
+  populator_id: "members_list"
   buffer:
     render-limit: 28
     margin: 5

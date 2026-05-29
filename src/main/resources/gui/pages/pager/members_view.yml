@@ -1,19 +1,19 @@
 main:
-  title: "{lang:members_view_title}"
+  title: "lang.members_view_title"
   rows: 6
   font-title: false
   font-name: true
   font-lore: true
   inherit:
     - "template/border"
+    - "template/nav"
   pattern:
     - ". . . . . . . . ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "B . < . . . > . ."
-    # B(45), <(47), >(51), H(53)
+    - "B . . . . . . . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -25,69 +25,60 @@ dynamic_list:
     render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
-    item: PLAYER_HEAD # Fallback, TODO
+  templates:
+    member-item:
+      name: "lang.members_view_member_name"
+      lore: ["lang.members_view_member_lore_admin"]
+      item: PLAYER_HEAD
+      action: "members.manage"
 
-# ----------------------------------------------------
-# MEMBER & INVITE STATES (Populated by Kotlin Backend)
-# ----------------------------------------------------
-member-item:
-  name: "{lang:members_view_member_name}"
-  lore: ["{lang:members_view_member_lore_admin}"]
-  item: PLAYER_HEAD
-  action: "actions:members.manage"
-  click-sound: gui.members.member-item
+    member-item-no-admin:
+      name: "lang.members_view_member_name"
+      lore: ["lang.members_view_member_lore_default"]
+      item: PLAYER_HEAD
+      action: "members.view"
 
-member-item-no-admin:
-  name: "{lang:members_view_member_name}"
-  lore: ["{lang:members_view_member_lore_default}"]
-  item: PLAYER_HEAD
-  action: "actions:members.view"
-  click-sound: gui.members.member-item
+    invite-button:
+      name: "lang.members_view_invite_name"
+      lore: ["lang.members_view_invite_lore"]
+      item: LIME_STAINED_GLASS_PANE
+      action: "members.invite"
 
-invite-button:
-  name: "{lang:members_view_invite_name}"
-  lore: ["{lang:members_view_invite_lore}"]
-  item: LIME_STAINED_GLASS_PANE
-  action: "actions:members.invite"
-  click-sound: gui.members.invite-button
-
-locked-invite:
-  name: "{lang:members_view_locked_name}"
-  lore: ["{lang:members_view_locked_lore}"]
-  item: RED_STAINED_GLASS_PANE
-  action: "actions:members.locked_invite"
-  click-sound: gui.members.locked-invite
-
-# ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
-# ----------------------------------------------------
-ban-list:
-  char: "B"
-  name: "{lang:members_view_banlist_name}"
-  lore: ["{lang:members_view_banlist_lore}"]
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDkyZjA4YzEyOTQ4MjlkNDcxYThlMDEwOWEwNmZiNmFlNzE3ZTVmYWYzZTA4MDg0MDhhNjZkODg5MjI3ZGFjNyJ9fX0="
-  action: "[open] ban_list"
-  click-sound: gui.members.ban-list
+    locked-invite:
+      name: "lang.members_view_locked_name"
+      lore: ["lang.members_view_locked_lore"]
+      item: RED_STAINED_GLASS_PANE
+      action: "members.locked_invite"
 
 prev_page:
   name: "lang.core_prev_page_name"
-  char: "<"
+  slot: "47"
   item: PLAYER_HEAD
-  texture: "texture:core.prev_page"
+  texture: "core.prev_page"
   action: "core_prev_page"
 
 next_page:
   name: "lang.core_next_page_name"
-  char: ">"
+  slot: "51"
   item: PLAYER_HEAD
-  texture: "texture:core.next_page"
+  texture: "core.next_page"
   action: "core_next_page"
+
+# ----------------------------------------------------
+# CORE BUTTONS
+# ----------------------------------------------------
+ban_list:
+  char: "B"
+  name: "lang.members_view_banlist_name"
+  lore: ["lang.members_view_banlist_lore"]
+  item: PLAYER_HEAD
+  texture: "members.ban_list"
+  action: "[open] ban_list"
+  click-sound: gui.members.ban-list
 
 home:
   name: "lang.buttons_home_name"
   char: "H"
   item: PLAYER_HEAD
-  texture: "texture:core.home"
+  texture: "core.home"
   action: "home"

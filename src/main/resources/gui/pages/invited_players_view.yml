@@ -26,3 +26,19 @@ dynamic_list:
     item: PLAYER_HEAD
     texture: "{player_uuid}"
     action: "invite.revoke"
+
+prev_page:
+  name: "lang.core_prev_page_name"
+  char: "<"
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.prev_page"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.core_next_page_name"
+  char: ">"
+  priority: 1
+  item: PLAYER_HEAD
+  texture: "core.next_page"
+  action: "core_next_page"

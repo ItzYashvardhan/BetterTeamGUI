@@ -3,92 +3,176 @@ main:
   rows: 3
   inherit:
     - "template/background"
-    - "template/nav --R"
-  
+    - "template/nav"
   pattern:
     - ". . . . . . . . ."
-    - ". I . U D . K N ."
-    - ". . . . . . . R ."
+    - ". I . E D . K L ." # I=Info, E=Promote, D=Demote, K=Kick, L=Ban
+    - ". . . . . . . . ."
+
 
 # ----------------------------------------------------
-# CORE BUTTONS 
+# TARGET INFO
 # ----------------------------------------------------
 player-info:
   char: "I"
   item: PLAYER_HEAD
   name: "lang.members_management_view_player_info_name"
-  lore: ["lang.members_management_view_player_info_lore"]
-  texture: "[{team_player_uuid}]"
-  
-kick:
-  char: "K"
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzVkMDk2ZjhjNjhlZWMyYTcwMWQxZDVkMmQzMDdjMjdmOGRjYmU4Mzc5ZDAwNTI4YmZiMjg2NGM2NjRjMSJ9fX0="
-  name: "lang.members_management_view_kick_name"
-  lore: ["lang.members_management_view_kick_lore"]
-  glow: false
-  click-sound: gui.members-management.kick
-
-ban:
-  char: "N"
-  item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRmODE1YmNiYWMyMzczNDA0NjRiNzc3ODA3ZjI2YjVlOTMxN2MxOWQ1NzlkYTJkZDk0Y2JiYzZhMGRlNTEzOCJ9fX0="
-  name: "lang.members_management_view_ban_name"
-  lore: ["lang.members_management_view_ban_lore"]
-  glow: false
-  click-sound: gui.members-management.ban
-
-back:
-  char: "<"
-  name: "lang.buttons_back_name"
-  item: PLAYER_HEAD
-  texture: "texture:core.back"
-  action: "back"
-
-home:
-  char: "H"
-  name: "lang.buttons_home_name"
-  item: PLAYER_HEAD
-  texture: "texture:core.home"
-  action: "home"
+  lore:
+  - "lang.members_management_view_player_info_lore"
+  - " "
+  - "You rank is {viewer_rank}"
 
 # ----------------------------------------------------
-# CONDITIONAL OVERRIDES 
+# CONDITIONAL PROMOTION STACK (Char 'E')
 # ----------------------------------------------------
-# Use 'U' for promote-to-owner, use 'u' for promote-to-admin
 promote-to-owner:
-  char: "U"
+  char: "E"
+  priority: 10
+  view-requirement:
+    - "[condition] '{rank}' == 'Admin'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0="
   name: "lang.members_management_view_promote_owner_name"
   lore: ["lang.members_management_view_promote_owner_lore"]
   glow: false
+  texture: "members.promote"
   click-sound: gui.members-management.promote
+  action: "members.promote_owner"
 
-promote-to-admin:
-  char: "u"
+# Allows Owners to promote Defaults to Admin
+promote-to-admin-by-owner:
+  char: "E"
+  priority: 6
+  view-requirement:
+    - "[condition] '{rank}' == 'Default'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjIyMWRhNDQxOGJkM2JmYjQyZWI2NGQyYWI0MjljNjFkZWNiOGY0YmY3ZDRjZmI3N2ExNjJiZTNkY2IwYjkyNyJ9fX0="
   name: "lang.members_management_view_promote_admin_name"
   lore: ["lang.members_management_view_promote_admin_lore"]
   glow: false
+  texture: "members.promote"
   click-sound: gui.members-management.promote
+  action: "members.promote_admin"
 
-# Use 'D' for demote-to-admin, use 'd' for demote-to-default
+# Allows Admins to promote Defaults to Admin
+promote-to-admin:
+  char: "E"
+  priority: 5
+  view-requirement:
+    - "[condition] '{rank}' == 'Default'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
+  item: PLAYER_HEAD
+  name: "lang.members_management_view_promote_admin_name"
+  lore: ["lang.members_management_view_promote_admin_lore"]
+  glow: false
+  texture: "members.promote"
+  click-sound: gui.members-management.promote
+  action: "members.promote_admin"
+
+# ----------------------------------------------------
+# CONDITIONAL DEMOTION STACK (Char 'D')
+# ----------------------------------------------------
 demote-to-admin:
   char: "D"
+  priority: 10
+  view-requirement:
+    - "[condition] '{rank}' == 'Owner'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
+    - "[condition] '{viewer}' == '{player}'"
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0="
   name: "lang.members_management_view_demote_admin_name"
   lore: ["lang.members_management_view_demote_admin_lore"]
   glow: false
+  texture: "members.demote"
   click-sound: gui.members-management.demote
+  action: "members.demote_admin"
 
 demote-to-default:
-  char: "d"
+  char: "D"
+  priority: 5
+  view-requirement:
+    - "[condition] '{rank}' == 'Admin'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
   item: PLAYER_HEAD
-  texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NTJiZjYxNmYzMWVkNjdjMzdkZTRiMGJhYTJjNWY4ZDhmY2E4MmU3MmRiY2FmY2JhNjY5NTZhODFjNCJ9fX0="
   name: "lang.members_management_view_demote_default_name"
   lore: ["lang.members_management_view_demote_default_lore"]
   glow: false
+  texture: "members.demote"
   click-sound: gui.members-management.demote
+  action: "members.demote_default"
+
+# ----------------------------------------------------
+# PUNISHMENT STACKS (Char 'K' and 'L')
+# ----------------------------------------------------
+kick-admin:
+  char: "K"
+  priority: 10
+  view-requirement:
+    - "[condition] '{rank}' == 'Admin'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
+  item: PLAYER_HEAD
+  name: "lang.members_management_view_kick_name"
+  lore: ["lang.members_management_view_kick_lore"]
+  texture: "members.kick"
+  action: "members.kick"
+
+kick-default:
+  char: "K"
+  priority: 5
+  view-requirement:
+    - "[condition] '{rank}' == 'Default'"
+  item: PLAYER_HEAD
+  name: "lang.members_management_view_kick_name"
+  lore: ["lang.members_management_view_kick_lore"]
+  texture: "members.kick"
+  action: "members.kick"
+
+ban-admin:
+  char: "L"
+  priority: 10
+  view-requirement:
+    - "[condition] '{rank}' == 'Admin'"
+    - "[condition] '{viewer_rank}' == 'Owner'"
+  item: PLAYER_HEAD
+  name: "lang.members_management_view_ban_name"
+  lore: ["lang.members_management_view_ban_lore"]
+  texture: "members.ban"
+  action: "members.ban"
+
+ban-default:
+  char: "L"
+  priority: 5
+  view-requirement:
+    - "[condition] '{rank}' == 'Default'"
+  item: PLAYER_HEAD
+  name: "lang.members_management_view_ban_name"
+  lore: ["lang.members_management_view_ban_lore"]
+  texture: "members.ban"
+  action: "members.ban"
+
+# ----------------------------------------------------
+# FALLBACKS (Priority 1)
+# ----------------------------------------------------
+no-permission-e:
+  char: "E"
+  priority: 1
+  item: RED_STAINED_GLASS_PANE
+  name: " "
+
+no-permission-d:
+  char: "D"
+  priority: 1
+  item: RED_STAINED_GLASS_PANE
+  name: " "
+
+no-permission-k:
+  char: "K"
+  priority: 1
+  item: RED_STAINED_GLASS_PANE
+  name: " "
+
+no-permission-b:
+  char: "L"
+  priority: 1
+  item: RED_STAINED_GLASS_PANE
+  name: " "

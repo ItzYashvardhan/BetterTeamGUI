@@ -35,7 +35,7 @@ list_view_team_item_name_in_team: "<b><{list_team_color}>{list_team}</{list_team
 list_view_team_item_desc: "<white><italic>{list_team_description}</italic></white>"
 list_view_team_item_lore_common:
   - " <#5BD686>• Tag:</#5BD686> <white><bold>{list_team_tag}</bold></white>"
-  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{list_team_size}" # Wait, shouldn't this be {list_team_level}?
+  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{list_team_size}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{list_team_score}"
 list_view_team_item_name_no_team: "<b><{list_team_color}>{list_team}</{list_team_color}></b> <gray>({list_team_size}/{list_team_limit})</gray>"
 list_view_team_item_lore_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
@@ -148,6 +148,44 @@ members_view_banlist_lore:
   - "<gray>are banned from joining.</gray>"
   - ""
   - "<yellow>Click to manage bans ➤</yellow>"
+
+#############################
+## Members Management View ##
+#############################
+members_management_view_title: "<bold><gradient:#C45700:#FF7608>Managing: {player}</bold>"
+members_management_view_player_info_name: "<b><aqua>{player}</b>"
+members_management_view_player_info_lore:
+  - "<gray>Rank: <yellow>{rank}</yellow>"
+members_management_view_promote_owner_name: "<b><green>Promote to Owner</green></b>"
+members_management_view_promote_owner_lore:
+  - "<gray>Promote this member to the highest rank.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
+members_management_view_promote_admin_name: "<b><green>Promote to Admin</green></b>"
+members_management_view_promote_admin_lore:
+  - "<gray>Promote this member to a higher rank.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
+members_management_view_demote_admin_name: "<b><red>Demote to Admin</red></b>"
+members_management_view_demote_admin_lore:
+  - "<gray>Demote this member to a lower rank.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
+members_management_view_demote_default_name: "<b><red>Demote to Default</red></b>"
+members_management_view_demote_default_lore:
+  - "<gray>Demote this member to a lowest rank.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
+members_management_view_kick_name: "<b><red>Kick</red></b>"
+members_management_view_kick_lore:
+  - "<gray>Remove this member from the team.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to kick</gray>"
+members_management_view_ban_name: "<b><red>Ban</red></b>"
+members_management_view_ban_lore:
+  - "<gray>Ban this member from joining the team again.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to ban</gray>"
 
 #################
 ## Allies View ##
@@ -421,44 +459,6 @@ list_view_anvil_create_output_name: "<green>Create</green>"
 list_view_anvil_create_output_lore:
   - "<gray>Click to create your team.</gray>"
 
-#############################
-## Members Management View ##
-#############################
-members_management_view_title: "<bold><gradient:#C45700:#FF7608>Managing: {player}</bold>"
-members_management_view_player_info_name: "<b><aqua>{team_player}</b>"
-members_management_view_player_info_lore:
-  - "<gray>Rank: <yellow>{rank}</yellow>"
-members_management_view_promote_owner_name: "<b><green>Promote to Owner</green></b>"
-members_management_view_promote_owner_lore:
-  - "<gray>Promote this member to the highest rank.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
-members_management_view_promote_admin_name: "<b><green>Promote to Admin</green></b>"
-members_management_view_promote_admin_lore:
-  - "<gray>Promote this member to a higher rank.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
-members_management_view_demote_admin_name: "<b><red>Demote to Admin</red></b>"
-members_management_view_demote_admin_lore:
-  - "<gray>Demote this member to a lower rank.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
-members_management_view_demote_default_name: "<b><red>Demote to Default</red></b>"
-members_management_view_demote_default_lore:
-  - "<gray>Demote this member to a lowest rank.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
-members_management_view_kick_name: "<b><red>Kick</red></b>"
-members_management_view_kick_lore:
-  - "<gray>Remove this member from the team.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to kick</gray>"
-members_management_view_ban_name: "<b><red>Ban</red></b>"
-members_management_view_ban_lore:
-  - "<gray>Ban this member from joining the team again.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to ban</gray>"
-
 ################
 ## Money View ##
 ################
@@ -580,7 +580,10 @@ setting_view_disband_lore:
 #################
 ## Team Viewer ##
 #################
+# Team
 team_viewer_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
+
+# Team - Info Item
 team_viewer_info_name: "<b><{team_color}>{team}</{team_color}></b> <gray>({team_size}/{team_limit})</gray>"
 team_viewer_info_desc: "<white><italic>{team_description}</italic></white>"
 team_viewer_info_lore_common:
@@ -588,24 +591,34 @@ team_viewer_info_lore_common:
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
   - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
+
+# Team - balance Item
 team_viewer_balance_name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
 team_viewer_balance_lore:
   - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
+
+# Team - Members Item
 team_viewer_members_name: "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
 team_viewer_members_lore:
   - "<gray>View this team's members.</gray>"
   - "<#5BD686>• Size:</#5BD686> <b><white>{team_size}/{team_limit}</white></b>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
+
+# Team - Allies Item
 team_viewer_allies_name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
 team_viewer_allies_lore:
   - "<gray>View this team's allies.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view allies</gray>"
+
+# Team Members
 team_viewer_members_title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
 team_viewer_member_item_name: "<aqua>{team_player}"
 team_viewer_member_item_lore:
   - "<gray>Rank: <yellow>{rank}"
+
+# Team Allies
 team_viewer_allies_title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
 team_viewer_ally_item_name: "<b><{color}>{team}</{color}></b>"
 team_viewer_ally_item_lore:

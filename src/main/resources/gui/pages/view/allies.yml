@@ -17,7 +17,7 @@ main:
 
 dynamic_list:
   char: "L"
-  populator_id: "team_allies_list"
+  populator_id: "allies_list"
   buffer:
     render-limit: 28
   templates:
@@ -26,8 +26,7 @@ dynamic_list:
       lore:
         - "lang.team_viewer_ally_item_lore"
       item: PLAYER_HEAD
-      texture: "team.allies"
-      click-sound: gui.team-viewer.ally-item
+      action: view.team
 
 prev_page:
   name: "lang.core_prev_page_name"

@@ -144,8 +144,7 @@ invitation:
   item: CHEST
   view-requirement:
     - "[condition] '{team}' == ''"
-  click:
-    - "[open] pager/invitation_view"
+  action: "inbox.team_invites"
 
 create:
   char: "H"

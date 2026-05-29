@@ -1,7 +1,8 @@
-package me.justlime.betterTeamGUI.listing
+package me.justlime.betterTeamGUI.listing.viewer
 
 import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
+import me.justlime.betterTeamGUI.listing.TeamListState
 import me.justlime.betterTeamGUI.models.enums.FilterType
 import me.justlime.betterTeamGUI.models.enums.SortOrder
 import me.justlime.betterTeamGUI.models.enums.SortType
@@ -10,7 +11,6 @@ import org.bukkit.entity.Player
 import java.util.UUID
 
 object TeamListManager {
-    //Manage State per player
     private val playerStates = mutableMapOf<UUID, TeamListState>()
 
     fun getState(player: Player): TeamListState = playerStates.getOrPut(player.uniqueId) { TeamListState() }
@@ -18,10 +18,10 @@ object TeamListManager {
         playerStates[player.uniqueId] = state
     }
 
-    // 2. Register the Populator during your plugin's onEnable!
     fun registerPopulators() {
-        ListPopulatorRegistry.register("teams_list") { player, mask ->
-            val templatesMap = mask.templates
+        ListPopulatorRegistry.register("teams_list") { response ->
+            val player = response.player
+            val templatesMap = response.mask.templates
             val state = getState(player)
             var teams = Team.getTeamManager().sortTeamsByMembers().mapNotNull { Team.getTeam(it) }
 

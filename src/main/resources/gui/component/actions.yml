@@ -5,6 +5,8 @@ back:
   - "[sound] click"
   - "[back]"
 
+
+
 input:
   verify_team_creation:
     sequence:
@@ -23,73 +25,84 @@ input:
           - "[open] dashboard_view"
 
 
+
+
 dialog:
+  # ----------------------------------------------------
+  # REUSABLE UTILITIES
+  # ----------------------------------------------------
+  delay_back:
+    - "[delay] 5"
+    - "[back]"
+
+  # ----------------------------------------------------
+  # ACTIONS
+  # ----------------------------------------------------
   cancel:
     - "[sound] click"
     - "[back]"
+
   confirm_disband:
     - "[sound] click"
     - "[player] {cmd.team} disband"
     - "[delay] 10"
     - "[player] {cmd.team} disband"
-    - "[delay] 20"
-    - "[back]"
+    - "[action] dialog.delay_back"
 
   confirm_leave:
     - "[sound] click"
     - "[player] {cmd.team} leave"
-    - "[back]"
+    - "[action] dialog.delay_back"
 
   confirm_delete_home:
     - "[sound] click"
     - "[player] {cmd.team} delhome"
-    - "[back]"
+    - "[action] dialog.delay_back"
 
   confirm_update_home:
     - "[sound] click"
     - "[player] {cmd.team} sethome"
-    - "[back]"
-
-  confirm_kick:
-    - "[sound] click"
-    - "[player] {cmd.team} kick {args}"
-    - "[back]"
-
-  confirm_ban:
-    - "[sound] click"
-    - "[player] {cmd.team} ban {args}"
-    - "[back]"
+    - "[action] dialog.delay_back"
 
   confirm_neutral:
     - "[sound] click"
-    - "[player] {cmd.team} neutral {args}"
-    - "[back]"
+    - "[player] {cmd.team} neutral {team}"
+    - "[action] dialog.delay_back"
 
   confirm_delete_warp:
     - "[sound] click"
-    - "[player] {cmd.team} delwarp {args}"
-    - "[back]"
+    - "[player] {cmd.team} delwarp {warp}"
+    - "[action] dialog.delay_back"
 
   confirm_admin_demote:
     - "[sound] click"
-    - "[player] {cmd.team} demote {args}"
-    - "[back]"
+    - "[player] {cmd.team} demote {player}"
+    - "[action] dialog.delay_back"
 
   confirm_admin_promote:
     - "[sound] click"
-    - "[player] {cmd.team} promote {args}"
-    - "[back]"
+    - "[player] {cmd.team} promote {player}"
+    - "[action] dialog.delay_back"
 
   confirm_owner_promote:
     - "[sound] click"
-    - "[player] {cmd.team} owner {args}"
-    - "[back]"
+    - "[player] {cmd.team} promote {player}"
+    - "[action] dialog.delay_back"
 
   confirm_default_demote:
     - "[sound] click"
-    - "[player] {cmd.team} demote {args}"
-    - "[back]"
+    - "[player] {cmd.team} demote {player}"
+    - "[action] dialog.delay_back"
 
+  confirm_kick:
+    - "[sound] click"
+    - "[player] {cmd.team} kick {player}"
+    - "[action] dialog.delay_back"
+
+  confirm_ban:
+    - "[sound] click"
+    - "[player] {cmd.team} ban {player}"
+    - "[action] dialog.delay_back"
 
 dashboard:
   list:
@@ -97,17 +110,17 @@ dashboard:
     - "[open] pager/team_list"
   allies:
     - "[sound] gui.dashboard.allies"
-    - "[open] allies_view"
+    - "[open] pager/allies_list"
   leave:
     - "[sound] dashboard.leave"
     - "[open] dialog/leave"
   info:
     left-click:
       - "[sound] gui.dashboard.info"
-      - "[open] leaderboard_view"
+      - "[open] pager/leaderboard_view"
     right-click:
       - "[sound] gui.dashboard.info"
-      - "[open] levels_view"
+      - "[open] pager/levels_view"
   home:
     left-click:
       - "[sound] gui.dashboard.home"
@@ -131,6 +144,7 @@ dashboard:
 
   members:
     - "[sound] gui.dashboard.members"
+    - "[open] pager/members_view"
   team_chest:
     - "[sound] gui.dashboard.team-chest"
     - "[close]"
@@ -150,6 +164,42 @@ dashboard:
   settings:
     - "[sound] gui.dashboard.team-setting"
     - "[open] setting_view"
+
+members:
+  manage:
+    - "[sound] gui.members.member-item"
+    - "[open] members_management_view"
+  view:
+    - "[sound] gui.members.member-item"
+  invite:
+    - "[sound] gui.members.invite-button"
+    - "[open] pager/invite_view"
+  locked_invite:
+    - "[sound] gui.members.locked-invite"
+    - "[message] <red>This slot is locked! Increase your team level to unlock more member slots."
+  ban-list:
+    - "[sound] gui.members.ban-list"
+    - "[open] pager/ban_list"
+  promote_admin:
+    - "[sound] gui.members-management.promote"
+    - "[open] dialog/promote_admin"
+  promote_owner:
+    - "[sound] gui.members-management.promote"
+    - "[open] dialog/promote_owner"
+  demote_admin:
+    - "[sound] gui.members-management.demote"
+    - "[open] dialog/demote_admin"
+  demote_default:
+    - "[sound] gui.members-management.demote"
+    - "[open] dialog/demote_default"
+  kick:
+    - "[sound] gui.members-management.kick"
+    - "[open] dialog/kick"
+  ban:
+    - "[sound] gui.members-management.ban"
+    - "[open] dialog/ban"
+
+
 
 setting:
   color-picker:
@@ -286,6 +336,16 @@ view:
   allies:
     - "[sound] gui.team-viewer.allies"
     - "[open] view/allies"
+
+inbox:
+  allies_request:
+    - "[sound] click"
+    - "[open] inbox/allies_request_inbox"
+  team_invites:
+    - "[sound] click"
+    - "[open] inbox/team_invites_inbox"
+
+levels: []
 
 
 

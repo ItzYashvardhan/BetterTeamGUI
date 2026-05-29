@@ -1,10 +1,15 @@
 package me.justlime.betterTeamGUI
 
+import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.listener.InventoryListener
-import me.justlime.betterTeamGUI.listing.TeamListManager
+import me.justlime.betterTeamGUI.listing.*
+import me.justlime.betterTeamGUI.listing.common.TeamAlliesManager
+import me.justlime.betterTeamGUI.listing.common.TeamMembersManager
+import me.justlime.betterTeamGUI.listing.inbox.TeamInvitationManager
+import me.justlime.betterTeamGUI.listing.viewer.TeamListManager
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.config.GuiDirectoryHandler
@@ -97,14 +102,19 @@ class BetterTeamGUI : JavaPlugin() {
         LimeFrameAPI.loadConfig("gui")
         GuiDirectoryHandler.reload(this, true)
         TeamListManager.registerPopulators()
-
+        TeamMembersManager.registerPopulators()
+        TeamAlliesManager.registerPopulators()
+        TeamBanManager.registerPopulators()
+        TeamLeaderboardManager.registerPopulators()
+        TeamWarpsManager.registerPopulators()
+        TeamLevelsManager.registerPopulators()
+        TeamInvitationManager.registerPopulators()
         injectPlaceholder()
-
     }
 
     fun injectPlaceholder() {
         val allTeams = Team.getTeamManager().loadedTeamListClone.values
-        PlaceholderRegistry.register("team_invites") { player ->
+        PlaceholderRegistry.register("team_invites") { player, _ ->
             var inviteCount = 0
             for (team in allTeams) {
                 if (team.invitedPlayers.contains(player.uniqueId)) {
@@ -113,7 +123,7 @@ class BetterTeamGUI : JavaPlugin() {
             }
             inviteCount.toString()
         }
-        PlaceholderRegistry.register("allies_request") { player ->
+        PlaceholderRegistry.register("allies_request") { player, _ ->
             val team = Team.getTeamManager().getTeam(player)
             if (team == null) {
                 "0"
@@ -122,10 +132,26 @@ class BetterTeamGUI : JavaPlugin() {
             }
         }
 
-        PlaceholderRegistry.register("team_anchor") { player ->
+        PlaceholderRegistry.register("team_anchor") { player, _ ->
             val team = Team.getTeam(player) ?: return@register "false"
             val uuid = team.anchoredPlayers.convertedList.find { it == player.uniqueId.toString() }
             if (uuid != null) "true" else "false"
+        }
+
+        PlaceholderRegistry.register("viewer") { viewer, _ ->
+            viewer.name
+        }
+
+        PlaceholderRegistry.register("viewer_rank") { viewer, _ ->
+            val team = Team.getTeam(viewer) ?: return@register "None"
+            val teamPlayer = team.getTeamPlayer(viewer) ?: return@register ""
+            val rank = teamPlayer.rank
+            val result = when (rank) {
+                PlayerRank.OWNER -> "Owner"
+                PlayerRank.ADMIN -> "Admin"
+                else -> "Default"
+            }
+            result
         }
     }
 }

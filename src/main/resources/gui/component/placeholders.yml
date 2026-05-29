@@ -10,7 +10,7 @@ cmd:
   team: team
   admin: teamadmin
 
-player: "%player_name%"
+rank: "%betterteams_rank%"
 team: "%betterteams_name%"
 team_size: "%betterteams_members%"
 team_limit: "%betterteams_maxmembers%"
@@ -28,10 +28,12 @@ team_open: "%betterteams_open%"
 color_delay: 2
 
 
-#########################
-## Internal Registered ##
-#########################
-## team_anchor         ##
-## team_invites        ##
-## allies_request      ##
-#########################
+##########################
+## Internal Placeholder ##
+##########################
+## viewer               ##
+## viewer_rank          ##
+## team_anchor          ##
+## team_invites         ##
+## allies_request       ##
+##########################

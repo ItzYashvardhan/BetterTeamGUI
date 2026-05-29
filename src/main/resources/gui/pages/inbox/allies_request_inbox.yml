@@ -24,9 +24,29 @@ dynamic_list:
     cleanup-margin: 40
   templates:
     allies-item:
-      name: "lang.allies_view_item_name"
-      lore: [ "lang.allies_view_item_lore" ]
+      name: "lang.allies_view_req_item_name"
+      lore: [ "lang.allies_view_req_item_lore" ]
       item: PLAYER_HEAD
+      left-click:
+        - "[sound] click"
+        - "[player] {cmd.team} ally {team}"
+        - "[refresh]"
+      right-click:
+        - "[sound] click"
+        - "[open] view/team"
+      shift-click:
+        - "[sound] click"
+        - "[player] {cmd.team} neutral {team}"
+        - "[refresh]"
+
+ally_request_item:
+  char: "I"
+  name: "lang.allies_view_requests_name"
+  lore: [ "lang.allies_view_requests_lore" ]
+  item: CHEST
+  action: "inbox.allies_request"
+
+
 
 prev_page:
   name: "lang.core_prev_page_name"
@@ -45,12 +65,3 @@ next_page:
   action: "core_next_page"
 
 
-# ----------------------------------------------------
-# CORE BUTTONS
-# ----------------------------------------------------
-ally_request_item:
-  char: "I"
-  name: "lang.allies_view_requests_name"
-  lore: [ "lang.allies_view_requests_lore" ]
-  item: CHEST
-  action: "inbox.allies_request"

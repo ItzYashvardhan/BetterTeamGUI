@@ -57,7 +57,6 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
                         val proxy = TeamCommandProxy(commandName, originalCommand)
 
                         // Register our proxy into the map
-                        // "betterteams" is the fallback prefix, but it will take precedence for "team" because we removed the old one
                         commandMap.register(commandName, proxy)
 
                         ConsoleMessage.printStep("Successfully hooked into \"/team\" via CommandMap injection!", ConsoleMessage.Color.GREEN)

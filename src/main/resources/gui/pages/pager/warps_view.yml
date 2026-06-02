@@ -6,6 +6,7 @@ main:
   font-lore: true
   inherit:
     - "template/border"
+    - "template/pager"
     - "template/nav"
   pattern:
     - ". . . . . . . . ."
@@ -22,10 +23,10 @@ dynamic_list:
   char: "L"
   populator_id: "warps_list"
   buffer:
-    render-limit: 28  # 28 slots available in this pattern per page
+    render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
+  templates:
     # ----------------------------------------------------
     # WARP STATE TEMPLATES
     # ----------------------------------------------------
@@ -33,65 +34,23 @@ dynamic_list:
       name: "lang.warps_view_claimable_name"
       lore: [ "lang.warps_view_claimable_lore" ]
       item: GREEN_STAINED_GLASS_PANE
-      action: "warps.claim"
-      click-sound: gui.warps.claimable-warp
+      action: "warp.claim"
 
     occupied-warp:
       name: "lang.warps_view_occupied_name"
       lore: [ "lang.warps_view_occupied_lore" ]
       item: PLAYER_HEAD
       texture: warps.occupied
-      action: "warps.teleport"
-      click-sound: gui.warps.occupied-warp
+      action: "warp.teleport"
 
     locked-warp:
       name: "lang.warps_view_locked_name"
       lore: [ "lang.warps_view_locked_lore" ]
       item: RED_STAINED_GLASS_PANE
-      action: "warps.unlock"
-      click-sound: gui.warps.locked-warp
+      action: "warp.locked"
 
 # ----------------------------------------------------
 # CORE BUTTONS (Mapped to Pattern)
 # ----------------------------------------------------
-prev_page:
-  name: "lang.core_prev_page_name"
-  char: "<"
-  item: PLAYER_HEAD
-  texture: "texture:core.prev_page"
-  action: "core_prev_page"
 
-next_page:
-  name: "lang.core_next_page_name"
-  char: ">"
-  item: PLAYER_HEAD
-  texture: "texture:core.next_page"
-  action: "core_next_page"
 
-# ----------------------------------------------------
-# ANVIL MENUS (Move Separate from Layout Engine TODO)
-# ----------------------------------------------------
-anvil-ui:
-  set-warp-name:
-    title: "lang.warps_view_anvil_set_name_title"
-    label: "lang.warps_view_anvil_label"
-    input-item:
-      name: "lang.warps_view_anvil_set_name_input_name"
-      item: PAPER
-      lore: [ "lang.warps_view_anvil_set_name_input_lore" ]
-    output-item:
-      name: "lang.warps_view_anvil_set_name_output_name"
-      item: ANVIL
-      lore: [ "lang.warps_view_anvil_set_name_output_lore" ]
-
-  enter-warp-password-to-teleport:
-    title: "lang.warps_view_anvil_password_title"
-    label: "lang.warps_view_anvil_label"
-    input-item:
-      name: "lang.warps_view_anvil_password_input_name"
-      item: PAPER
-      lore: [ "lang.warps_view_anvil_password_input_lore" ]
-    output-item:
-      name: "lang.warps_view_anvil_password_output_name"
-      item: ANVIL
-      lore: [ "lang.warps_view_anvil_password_output_lore" ]

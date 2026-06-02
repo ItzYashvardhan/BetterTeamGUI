@@ -1,5 +1,5 @@
 main:
-  title: "gui.lang.dialog_delete_warp_title"
+  title: "lang.dialog_delete_warp_title"
   type: page
   inherit:
     - "template/dialog_background"
@@ -7,14 +7,14 @@ main:
 
 confirm:
   char: "Y"
-  name: "gui.lang.dialog_confirm_name"
-  lore: "gui.lang.dialog_delete_warp_confirm_lore"
+  name: "lang.dialog_confirm_name"
+  lore: "lang.dialog_delete_warp_confirm_lore"
   item: LIME_WOOL
   action: "dialog.confirm_delete_warp"
 
 cancel:
   char: "N"
-  name: "gui.lang.dialog_cancel_name"
-  lore: "gui.lang.dialog_delete_warp_cancel_lore"
+  name: "lang.dialog_cancel_name"
+  lore: "lang.dialog_delete_warp_cancel_lore"
   item: RED_WOOL
   action: "dialog.cancel"

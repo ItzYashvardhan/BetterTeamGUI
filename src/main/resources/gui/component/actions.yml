@@ -5,8 +5,6 @@ back:
   - "[sound] click"
   - "[back]"
 
-
-
 input:
   verify_team_creation:
     sequence:
@@ -23,9 +21,6 @@ input:
           - "[message] <green>Team created successfully!"
           - "[sound] entity.player.levelup"
           - "[open] dashboard_view"
-
-
-
 
 dialog:
   # ----------------------------------------------------
@@ -71,7 +66,7 @@ dialog:
 
   confirm_delete_warp:
     - "[sound] click"
-    - "[player] {cmd.team} delwarp {warp}"
+    - "[player] {cmd.team} delwarp {warp_name}"
     - "[action] dialog.delay_back"
 
   confirm_admin_demote:
@@ -106,28 +101,28 @@ dialog:
 
 dashboard:
   list:
-    - "[sound] gui.dashboard.list"
+    - "[sound] click"
     - "[open] pager/team_list"
   allies:
-    - "[sound] gui.dashboard.allies"
+    - "[sound] trade"
     - "[open] pager/allies_list"
   leave:
-    - "[sound] dashboard.leave"
+    - "[sound] click"
     - "[open] dialog/leave"
   info:
     left-click:
-      - "[sound] gui.dashboard.info"
+      - "[sound] light_click"
       - "[open] pager/leaderboard_view"
     right-click:
-      - "[sound] gui.dashboard.info"
+      - "[sound] light_click"
       - "[open] pager/levels_view"
   home:
     left-click:
-      - "[sound] gui.dashboard.home"
+      - "[sound] light_teleport"
       - "[player] {cmd.team} home"
 
     shift-click:
-      - "[sound] gui.dashboard.home"
+      - "[sound] light_click"
       - "[open] dialog/delete_home"
 
     right-click:
@@ -135,34 +130,34 @@ dashboard:
         value: "{team_has_home}"
         result:
           "true":
-            - "[sound] gui.dashboard.home"
+            - "[sound] light_click"
             - "[open] dialog/update_home"
           "false":
-            - "[sound] gui.dashboard.home"
+            - "[sound] teleport"
             - "[player] {cmd.team} sethome"
             - "[back]"
 
   members:
-    - "[sound] gui.dashboard.members"
+    - "[sound] trade"
     - "[open] pager/members_view"
   team_chest:
-    - "[sound] gui.dashboard.team-chest"
+    - "[sound] open_chest"
     - "[close]"
     - "[player] {cmd.team} echest"
   warps:
-    - "[sound] gui.dashboard.warps"
+    - "[sound] light_teleport"
     - "[open] pager/warps_view"
   balance:
-    - "[sound] gui.dashboard.balance"
+    - "[sound] balance"
     - "[open] money_view"
   chat_global:
-    - "[sound] gui.dashboard.chat.global"
+    - "[sound] chat.global"
   chat_team:
-    - "[sound] gui.dashboard.chat.team"
+    - "[sound] chat.team"
   chat_ally:
-    - "[sound] gui.dashboard.chat.ally"
+    - "[sound] chat.ally"
   settings:
-    - "[sound] gui.dashboard.team-setting"
+    - "[sound] setting"
     - "[open] setting_view"
 
 members:
@@ -198,8 +193,6 @@ members:
   ban:
     - "[sound] gui.members-management.ban"
     - "[open] dialog/ban"
-
-
 
 setting:
   color-picker:
@@ -323,12 +316,16 @@ color_picker:
 team_list:
   create:
     click:
-    - "[sound] gui.dashboard.list"
-    - "[input] create-team"
+    - "[sound] click"
+    - "[input] team/create"
+  search:
+    - "[sound] click"
+    - "[input] team/search"
+
 
 view:
   team:
-    - "[sound] gui.list.team-item"
+    - "[sound] light_click"
     - "[open] view/team"
   members:
     - "[sound] gui.team-viewer.members"
@@ -336,6 +333,32 @@ view:
   allies:
     - "[sound] gui.team-viewer.allies"
     - "[open] view/allies"
+
+warp:
+  claim:
+    - "[sound] light_click"
+    - "[input] warp/claim [player] {cmd.team} setwarp {input}"
+  teleport:
+    click:
+      when:
+        value: "{warp_locked}"
+        result:
+          "Yes":
+            - "[sound] locked"
+            - "[input] warp/passward [player] {cmd.team} warp {warp_name} {input}"
+          else:
+            - "[player] {cmd.team} warp {warp_name}"
+            - "[sound] teleport" ## If you have warp tp cooldown use delay :)
+            - "[close]"
+    shift-click: # Delete
+      - "[sound] light_click"
+      - "[open] dialog/delete_warp"
+
+
+  locked:
+    - "[sound] locked"
+
+
 
 inbox:
   allies_request:
@@ -350,7 +373,7 @@ levels: []
 
 
 
-example:
+examples:
   # ====================================================
   # EXAMPLE 1: Simple
   # ====================================================

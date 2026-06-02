@@ -1,0 +1,14 @@
+main:
+  title: "lang.warps_view_anvil_password_title"
+  label: "lang.warps_view_anvil_label"
+
+
+left-item:
+  name: "lang.warps_view_anvil_password_input_name"
+  item: PAPER
+  lore: [ "lang.warps_view_anvil_password_input_lore" ]
+
+output-item:
+  name: "lang.warps_view_anvil_password_output_name"
+  item: ANVIL
+  lore: [ "lang.warps_view_anvil_password_output_lore" ]

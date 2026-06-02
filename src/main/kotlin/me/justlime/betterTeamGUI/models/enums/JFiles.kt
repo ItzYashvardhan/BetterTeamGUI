@@ -21,7 +21,7 @@ enum class JFiles(val filename: String) {
     INVITED_PLAYERS_VIEW("gui/pages/invited_players_view.yml"),
     MEMBER_MANAGEMENT_VIEW("gui/pages/members_management_view.yml"),
     MEMBERS_VIEW("gui/pages/pager/members_view.yml"),
-    MONEY_VIEW("gui/inputs/withdraw-money.yml"),
+    MONEY_VIEW("gui/inputs/payment/withdraw.yml"),
     SETTING_VIEW("gui/pages/setting_view.yml"),
     TEAM_VIEWER("gui/pages/view/team.yml"),
     WARPS_VIEW("gui/pages/pager/warps_view.yml"),

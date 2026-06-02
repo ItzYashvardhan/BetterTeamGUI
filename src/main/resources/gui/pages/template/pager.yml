@@ -1,0 +1,53 @@
+main:
+  type: template
+  pattern:
+    2:
+      - ". . . . . . . . ."
+      - ". . < . . . > . ."
+    3:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . < . . . > . ."
+
+    4:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . < . . . > . ."
+
+    5:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . < . . . > . ."
+
+
+    6:
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . . . . . . . ."
+      - ". . < . . . > . ."
+
+
+
+
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  item: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  item: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"

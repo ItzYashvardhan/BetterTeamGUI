@@ -632,41 +632,74 @@ team_viewer_ally_item_lore:
 ################
 ## Warps View ##
 ################
-warps_view_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team Warp's</bold>"
-warps_view_claimable_name: "<b><green>Create Warp</green></b>"
+# Main
+warps_view_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Warps</gradient></bold>"
+
+# Claimable Warps
+warps_view_claimable_name: "<bold><#55FF55>+ Create New Warp</bold>"
 warps_view_claimable_lore:
-  - "<gray>Click to set new warp at current location.</gray>"
+  - "<gray>Sets a new team warp exactly</gray>"
+  - "<gray>where you are standing.</gray>"
   - ""
-  - "<yellow>Left-Click</yellow> <gray>to claim</gray>"
-warps_view_occupied_name: "<b><gradient:#FFDAB4:#FFD2D2>{warp}</gradient></b>"
+  - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to claim slot</gray>"
+
+# Occupied Warps
+warps_view_occupied_name: "<bold><gradient:#FFDAB4:#FFD2D2>{warp_name}</gradient></bold>"
 warps_view_occupied_lore:
-  - "<gray>Teleport to <gradient:#FFDAB4:#FFD2D2>{warp}</gradient> warp.</gray>"
+  - "<gray>Location:</gray> <white>{warp_world}</white> <gray>(<white>{warp_x}</white>, <white>{warp_y}</white>, <white>{warp_z}</white>)</gray>"
+  - "<gray>Secured:</gray> <white>{warp_locked}</white>"
   - ""
-  - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
-  - "<yellow>Shift-Click</yellow> <gray>to delete warp</gray>"
-warps_view_locked_name: "<b><red>Locked</red></b>"
+  - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to teleport</gray>"
+  - "<white>▶</white> <red>Shift-Right-Click</red> <gray>to delete warp</gray>"
+
+# Locked Warps
+warps_view_locked_name: "<bold><#FF5555>✖ Locked Slot</bold>"
 warps_view_locked_lore:
-  - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this warp.</gray>"
-warps_view_anvil_set_name_title: "<bold>Set Warp Name</bold>"
-warps_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-warps_view_anvil_set_name_input_name: "<green>Enter Warp Name</green>"
+  - "<gray>Upgrade your Team Level to</gray>"
+  - "<gray>unlock more warp slots.</gray>"
+
+# ----------------------------------------------------
+# ANVIL MENUS: Warps
+# ----------------------------------------------------
+warps_view_anvil_label: "<gradient:#00FFC7:#00BC92>▶ </gradient>"
+
+# --- Create New Warp ---
+warps_view_anvil_set_name_title: "<bold><#55FF55>Name Your Warp</bold>"
+
+warps_view_anvil_set_name_input_name: "<bold><green>Create a New Warp</green></bold>"
 warps_view_anvil_set_name_input_lore:
-  - "<gray>Enter the name for your new warp.</gray>"
-  - "<gray>Optional: Add password after name</gray>"
-  - " "
-  - "<yellow>Syntax"
-  - "<white><warp name> [password]"
-warps_view_anvil_set_name_output_name: "<green>Create New Warp</green>"
+  - "<gray>Type a name for your team's new warp</gray>"
+  - "<gray>in the text box above.</gray>"
+  - ""
+  - "<gray>To secure it, add a password</gray>"
+  - "<gray>separated by a space.</gray>"
+  - ""
+  - "<yellow>Syntax:</yellow> <white>Name [Password]</white>"
+  - "<gray>Example:</gray> <white>Base secret123</white>"
+
+warps_view_anvil_set_name_output_name: "<bold><#55FF55>✔ Confirm Creation</bold>"
 warps_view_anvil_set_name_output_lore:
-  - "<gray>Click to confirm the new warp</gray>"
-  - "<gray>name with/without password.</gray>"
-warps_view_anvil_password_title: "<bold>Enter Password</bold>"
-warps_view_anvil_password_input_name: "<green>Enter Warp Password</green>"
+  - "<gray>Your new warp will be created</gray>"
+  - "<gray>exactly where you are standing.</gray>"
+  - ""
+  - "<white>▶</white> <yellow>Click</yellow> <gray>to save</gray>"
+
+# --- Enter Password (Locked) ---
+warps_view_anvil_password_title: "<bold><#FF5555>Restricted Warp</bold>"
+
+warps_view_anvil_password_input_name: "<bold><gold>Enter Password</gold></bold>"
 warps_view_anvil_password_input_lore:
-  - "<gray>Enter the password to teleport to this warp.</gray>"
-warps_view_anvil_password_output_name: "<green>Confirm Warp Password</green>"
+  - "<gray>This warp is secured. You must</gray>"
+  - "<gray>enter the password to access it.</gray>"
+  - ""
+  - "<white>▶</white> <gray>Type the password above.</gray>"
+
+warps_view_anvil_password_output_name: "<bold><#55FF55>✔ Authenticate</bold>"
 warps_view_anvil_password_output_lore:
-  - "<gray>Click to confirm the warp password.</gray>"
+  - "<gray>Submit the password to attempt</gray>"
+  - "<gray>teleportation.</gray>"
+  - ""
+  - "<white>▶</white> <yellow>Click</yellow> <gray>to confirm</gray>"
 
 ############
 ## INPUTS ##

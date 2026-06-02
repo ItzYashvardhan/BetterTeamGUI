@@ -2,10 +2,13 @@ package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
 import me.justlime.betterTeamGUI.pluginInstance
+import net.justlime.limeframegui.models.GuiItem
+import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.inventory.StonecutterInventory
 import org.geysermc.floodgate.api.FloodgateApi
+import java.util.UUID
 
 fun isBedrockPlayer(player: Player): Boolean =
     if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance()
@@ -25,6 +28,23 @@ val Team.bannedPlayersList: List<String>
             emptyList()
         }
     }
+
+fun uuidMapper(
+    uUID: UUID,
+    baseTemplate: GuiItem
+): GuiItem {
+    val invitedPlayer = Bukkit.getOfflinePlayer(uUID)
+    val invitationPlaceholders = mapOf(
+        "team_player" to (invitedPlayer.name ?: "Unknown")
+    )
+    return baseTemplate.clone().apply {
+        this.style.offlinePlayer = invitedPlayer
+        this.style.placeholder.putAll(invitationPlaceholders)
+        this.style.viewer = null
+    }
+}
+
+
 //Utilities for GUI
 //fun permissionDenied(event: InventoryClickEvent, style: GuiStyleSheet) {
 //    val oldItem = event.item ?: return

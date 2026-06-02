@@ -15,39 +15,39 @@
 #       - BLOCK.NOTE_BLOCK.PLING, 2.0p, 12d
 
 # Play a Sound for first time when opening a team gui
-open-gui: BLOCK.NOTE_BLOCK.CHIME, 2.0
+open_gui: BLOCK.NOTE_BLOCK.CHIME, 2.0
 
-#Global
 click: UI.BUTTON.CLICK
+light_click: click, 2.0
 error: BLOCK.NOTE_BLOCK.BASS
 permission-error: BLOCK.NOTE_BLOCK.BASS, 2.0
 yes-sound: ENTITY.VILLAGER.YES, 2.0
 no-sound: ENTITY.VILLAGER.NO, 2.0
 trade: ENTITY.VILLAGER.TRADE, 2.0
 selected: BLOCK.BEACON.POWER_SELECT, 2.0
+locked: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
+teleport: ENTITY.ENDERMAN.TELEPORT
+light_teleport: ENTITY.ENDERMAN.TELEPORT, 2.0
+open_chest: BLOCK.ENDER_CHEST.OPEN
+balance: BLOCK.IRON_DOOR.OPEN, 0.1
+setting: BLOCK.IRON.PLACE, 0.5
+chat:
+  global: BLOCK.STONE_BUTTON.CLICK_OFF, 2.0
+  team: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+  ally: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
+
+# Turn pages
+next: ITEM.BOOK.PAGE_TURN, 1.4
+prev: ITEM.BOOK.PAGE_TURN, 1.4
 
 anvil-ui:
   cancel-sound: click, 2.0
   invalid-sound: BLOCK.BELL.USE, 0.1
   submit-sound: BLOCK.ANVIL.PLACE, 1.4
 
+
 # GUI Sounds
 gui:
-  dashboard:
-    leave: click
-    info: click, 2.0
-    home: ENTITY.ENDERMAN.TELEPORT, 2.0
-    list: click
-    allies: trade
-    members: trade
-    team-chest: BLOCK.ENDER_CHEST.OPEN, 1.0
-    warps: ENTITY.ENDERMAN.TELEPORT, 2.0
-    balance: BLOCK.IRON_DOOR.OPEN, 0.1
-    chat:
-      global: BLOCK.STONE_BUTTON.CLICK_OFF, 2.0
-      team: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
-      ally: BLOCK.STONE_BUTTON.CLICK_ON, 2.0
-    team-setting: BLOCK.IRON.PLACE, 0.5
 
   members:
     member-item: click, 1.0
@@ -87,7 +87,6 @@ gui:
     current: click
     progress: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
     progress-unlockable: ENTITY.PLAYER.LEVELUP, 0.8
-    locked: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
 
   invite:
     invite-item: BLOCK.NOTE_BLOCK.PLING, 2.0
@@ -104,20 +103,6 @@ gui:
     ally-item: trade
     ally-request-inbox: click
     ally-request-item: click
-
-  warps:
-    claimable-warp: click, 2.0
-    occupied-warp: ENTITY.ENDERMAN.TELEPORT, 1.0
-    locked-warp: BLOCK.NOTE_BLOCK.IRON_XYLOPHONE, 0.1
-
-  list:
-    team-item: click, 2.0
-    search-item: click
-    sort: click
-    filter: click
-    invitation: click
-    invitation-team-item: click
-    create: click
 
   team-viewer:
     info: BLOCK.NOTE_BLOCK.CHIME, 2.0

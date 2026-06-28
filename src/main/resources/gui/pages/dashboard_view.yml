@@ -17,128 +17,114 @@ main:
 # ----------------------------------------------------
 # CORE BUTTONS
 # ----------------------------------------------------
-leave:
-  name: "lang.dashboard_leave_name"
+dashboard_leave:
   char: "L"
-  lore: ["lang.dashboard_leave_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.leave"
   action: "dashboard.leave"
 
-info:
-  name: "lang.dashboard_info_name"
+dashboard_info_with_desc:
+  name: "lang.team_name"
   char: "I"
   lore:
-    - "lang.dashboard_info_desc"
+    - "lang.team_desc"
     - " "
-    - "lang.dashboard_info_lore_common"
-  item: PLAYER_HEAD
+    - "lang.team_common"
+    - " "
+    - "lang.team_self"
+  material: PLAYER_HEAD
   texture: "dashboard.info"
   action: "dashboard.info"
 
-home:
-  name: "lang.dashboard_home_name"
+dashboard_info_without_desc:
+  name: "lang.team_name"
+  char: "I"
+  priority: 10
+  view-requirement:
+    - "[condition] '{team_description}' == ''"
+  lore:
+    - "lang.team_common"
+    - " "
+    - "lang.team_self"
+  material: PLAYER_HEAD
+  texture: "dashboard.info"
+  action: "dashboard.info"
+
+dashboard_home:
   char: "H"
-  lore: ["lang.dashboard_home_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.home"
   action: "dashboard.home"
 
-list:
-  name: "lang.dashboard_list_name"
+dashboard_list:
   char: "D"
-  lore: ["lang.dashboard_list_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.list"
   action: "dashboard.list"
 
-allies:
-  name: "lang.dashboard_allies_name"
+dashboard_allies:
   char: "A"
-  lore: ["lang.dashboard_allies_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.allies"
   action: "dashboard.allies"
 
-members:
-  name: "lang.dashboard_members_name"
+dashboard_members:
   char: "M"
-  lore: ["lang.dashboard_members_lore_global"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.members"
   action: "dashboard.members"
 
-team_chest:
-  name: "lang.dashboard_chest_name"
+dashboard_chest:
   char: "C"
-  lore: ["lang.dashboard_chest_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.chest"
   action: "dashboard.chest"
 
-warps:
-  name: "lang.dashboard_warps_name"
+dashboard_warps:
   char: "W"
-  lore: ["lang.dashboard_warps_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.warps"
   action: "dashboard.warps"
 
-balance:
-  name: "lang.dashboard_balance_name"
+dashboard_balance:
   char: "E"
-  lore: ["lang.dashboard_balance_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.balance"
   action: "dashboard.balance"
 
-chat_global:
-  name: "lang.dashboard_chat_global_name"
+dashboard_chat_global:
   char: "T"
-  lore: ["lang.dashboard_chat_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.chat.global"
   action: "dashboard.chat.global"
 
-settings:
-  name: "lang.dashboard_settings_name"
+dashboard_settings:
   char: "S"
-  lore: ["lang.dashboard_settings_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.settings"
   action: "dashboard.settings"
 
 # ----------------------------------------------------
 # CONDITIONAL OVERRIDES
 # ----------------------------------------------------
-info_without_description:
-  name: "lang.dashboard_info_name"
-  char: "i"
-  lore: ["lang.dashboard_info_lore_common"]
-  item: PLAYER_HEAD
-  texture: "dashboard.info"
-  action: "dashboard.info"
 
-members_admin:
-  name: "lang.dashboard_members_name"
+dashboard_members_admin:
+  display: "lang.dashboard_members_admin"
   char: "m"
-  lore: ["lang.dashboard_members_lore_admin"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.members"
   action: "dashboard.members"
 
-chat_team:
-  name: "lang.dashboard_chat_team_name"
+dashboard_chat_team:
+  display: "lang.dashboard_chat_team"
   char: "t"
-  lore: ["lang.dashboard_chat_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.chat.team"
   action: "dashboard.chat.team"
 
-chat_ally:
-  name: "lang.dashboard_chat_ally_name"
+dashboard_chat_ally:
+  display: "lang.dashboard_chat_ally"
   char: "a"
-  lore: ["lang.dashboard_chat_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "dashboard.chat.ally"
   action: "dashboard.chat.ally"

@@ -1,0 +1,15 @@
+main:
+  type: template
+  text:
+    title:
+      font: true
+      weight: [BOLD]
+      prefix: "["
+      suffix: "<reset>]"
+    name:
+      weight: [BOLD]
+      case: UPPERCASE
+    lore:
+      font: true
+      prefix: "<gray>"
+      wrap-length: 45

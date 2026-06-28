@@ -13,9 +13,9 @@ main:
 # ----------------------------------------------------
 # TARGET INFO
 # ----------------------------------------------------
-player-info:
+members_management_view_player_info:
   char: "I"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   name: "lang.members_management_view_player_info_name"
   lore:
   - "lang.members_management_view_player_info_lore"
@@ -25,15 +25,13 @@ player-info:
 # ----------------------------------------------------
 # CONDITIONAL PROMOTION STACK (Char 'E')
 # ----------------------------------------------------
-promote-to-owner:
+members_management_view_promote_owner:
   char: "E"
   priority: 10
   view-requirement:
     - "[condition] '{rank}' == 'Admin'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_promote_owner_name"
-  lore: ["lang.members_management_view_promote_owner_lore"]
+  material: PLAYER_HEAD
   glow: false
   texture: "members.promote"
   click-sound: gui.members-management.promote
@@ -41,14 +39,13 @@ promote-to-owner:
 
 # Allows Owners to promote Defaults to Admin
 promote-to-admin-by-owner:
+  display: "lang.members_management_view_promote_admin"
   char: "E"
   priority: 6
   view-requirement:
     - "[condition] '{rank}' == 'Default'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_promote_admin_name"
-  lore: ["lang.members_management_view_promote_admin_lore"]
+  material: PLAYER_HEAD
   glow: false
   texture: "members.promote"
   click-sound: gui.members-management.promote
@@ -56,14 +53,13 @@ promote-to-admin-by-owner:
 
 # Allows Admins to promote Defaults to Admin
 promote-to-admin:
+  display: "lang.members_management_view_promote_admin"
   char: "E"
   priority: 5
   view-requirement:
     - "[condition] '{rank}' == 'Default'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_promote_admin_name"
-  lore: ["lang.members_management_view_promote_admin_lore"]
+  material: PLAYER_HEAD
   glow: false
   texture: "members.promote"
   click-sound: gui.members-management.promote
@@ -72,30 +68,26 @@ promote-to-admin:
 # ----------------------------------------------------
 # CONDITIONAL DEMOTION STACK (Char 'D')
 # ----------------------------------------------------
-demote-to-admin:
+members_management_view_demote_admin:
   char: "D"
   priority: 10
   view-requirement:
     - "[condition] '{rank}' == 'Owner'"
     - "[condition] '{viewer_rank}' == 'Owner'"
     - "[condition] '{viewer}' == '{player}'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_demote_admin_name"
-  lore: ["lang.members_management_view_demote_admin_lore"]
+  material: PLAYER_HEAD
   glow: false
   texture: "members.demote"
   click-sound: gui.members-management.demote
   action: "members.demote_admin"
 
-demote-to-default:
+members_management_view_demote_default:
   char: "D"
   priority: 5
   view-requirement:
     - "[condition] '{rank}' == 'Admin'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_demote_default_name"
-  lore: ["lang.members_management_view_demote_default_lore"]
+  material: PLAYER_HEAD
   glow: false
   texture: "members.demote"
   click-sound: gui.members-management.demote
@@ -105,48 +97,44 @@ demote-to-default:
 # PUNISHMENT STACKS (Char 'K' and 'L')
 # ----------------------------------------------------
 kick-admin:
+  display: "lang.members_management_view_kick"
   char: "K"
   priority: 10
   view-requirement:
     - "[condition] '{rank}' == 'Admin'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_kick_name"
-  lore: ["lang.members_management_view_kick_lore"]
+  material: PLAYER_HEAD
   texture: "members.kick"
   action: "members.kick"
 
 kick-default:
+  display: "lang.members_management_view_kick"
   char: "K"
   priority: 5
   view-requirement:
     - "[condition] '{rank}' == 'Default'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_kick_name"
-  lore: ["lang.members_management_view_kick_lore"]
+  material: PLAYER_HEAD
   texture: "members.kick"
   action: "members.kick"
 
 ban-admin:
+  display: "lang.members_management_view_ban"
   char: "L"
   priority: 10
   view-requirement:
     - "[condition] '{rank}' == 'Admin'"
     - "[condition] '{viewer_rank}' == 'Owner'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_ban_name"
-  lore: ["lang.members_management_view_ban_lore"]
+  material: PLAYER_HEAD
   texture: "members.ban"
   action: "members.ban"
 
 ban-default:
+  display: "lang.members_management_view_ban"
   char: "L"
   priority: 5
   view-requirement:
     - "[condition] '{rank}' == 'Default'"
-  item: PLAYER_HEAD
-  name: "lang.members_management_view_ban_name"
-  lore: ["lang.members_management_view_ban_lore"]
+  material: PLAYER_HEAD
   texture: "members.ban"
   action: "members.ban"
 
@@ -156,23 +144,23 @@ ban-default:
 no-permission-e:
   char: "E"
   priority: 1
-  item: RED_STAINED_GLASS_PANE
+  material: RED_STAINED_GLASS_PANE
   name: " "
 
 no-permission-d:
   char: "D"
   priority: 1
-  item: RED_STAINED_GLASS_PANE
+  material: RED_STAINED_GLASS_PANE
   name: " "
 
 no-permission-k:
   char: "K"
   priority: 1
-  item: RED_STAINED_GLASS_PANE
+  material: RED_STAINED_GLASS_PANE
   name: " "
 
 no-permission-b:
   char: "L"
   priority: 1
-  item: RED_STAINED_GLASS_PANE
+  material: RED_STAINED_GLASS_PANE
   name: " "

@@ -25,6 +25,26 @@ dynamic_list:
   template:
     name: "lang.ban_view_item_name"
     lore: ["lang.ban_view_item_lore"]
-    item: PLAYER_HEAD
+    material: PLAYER_HEAD
     texture: "{team_player_uuid}" # Dynamically replaced by CODE
     action: "bans.manage_player"
+
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"

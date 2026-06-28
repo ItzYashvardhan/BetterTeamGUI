@@ -13,7 +13,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "B . . . . . . . ."
+    - "B . < . . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -29,39 +29,45 @@ dynamic_list:
     member-item:
       name: "lang.members_view_member_name"
       lore: ["lang.members_view_member_lore_admin"]
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       action: "members.manage"
 
     member-item-no-admin:
       name: "lang.members_view_member_name"
       lore: ["lang.members_view_member_lore_default"]
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       action: "members.view"
 
     invite-button:
       name: "lang.members_view_invite_name"
       lore: ["lang.members_view_invite_lore"]
-      item: LIME_STAINED_GLASS_PANE
+      material: LIME_STAINED_GLASS_PANE
       action: "members.invite"
 
     locked-invite:
       name: "lang.members_view_locked_name"
       lore: ["lang.members_view_locked_lore"]
-      item: RED_STAINED_GLASS_PANE
+      material: RED_STAINED_GLASS_PANE
       action: "members.locked_invite"
 
 prev_page:
-  name: "lang.core_prev_page_name"
-  slot: "47"
-  item: PLAYER_HEAD
-  texture: "core.prev_page"
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
   action: "core_prev_page"
 
 next_page:
-  name: "lang.core_next_page_name"
-  slot: "51"
-  item: PLAYER_HEAD
-  texture: "core.next_page"
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
   action: "core_next_page"
 
 # ----------------------------------------------------
@@ -71,7 +77,7 @@ ban_list:
   char: "B"
   name: "lang.members_view_banlist_name"
   lore: ["lang.members_view_banlist_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "members.ban_list"
   action: "[open] ban_list"
   click-sound: gui.members.ban-list
@@ -79,6 +85,6 @@ ban_list:
 home:
   name: "lang.buttons_home_name"
   char: "H"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.home"
   action: "home"

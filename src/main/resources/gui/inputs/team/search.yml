@@ -6,7 +6,12 @@ left-item:
     name: "lang.list_view_anvil_search_input_name"
     item: PAPER
     lore: [ "lang.list_view_anvil_search_input_lore" ]
+    action: back
+
 output-item:
     name: "lang.list_view_anvil_search_output_name"
     item: ANVIL
     lore: [ "lang.list_view_anvil_search_output_lore" ]
+    click:
+      - "[run] list_action_search"
+      - "[sound] click "

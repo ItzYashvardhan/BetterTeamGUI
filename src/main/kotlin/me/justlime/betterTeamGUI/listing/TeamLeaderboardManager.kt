@@ -7,11 +7,11 @@ import net.justlime.limeframegui.registry.gui.ListPopulatorRegistry
 object TeamLeaderboardManager : IPopulator {
 
     override fun registerPopulators() {
-        ListPopulatorRegistry.register("team_leaderboard_list") { response ->
+        ListPopulatorRegistry.register("leaderboard_list") { response ->
             val player = response.player
             val templatesMap = response.mask.templates
 
-            val baseTemplate = templatesMap["leaderboard-item"] ?: return@register emptyList()
+            val baseTemplate = templatesMap["leaderboard"] ?: return@register emptyList()
             val teams = Team.getTeamManager().sortTeamsByScore().mapNotNull { Team.getTeam(it) }
             teams.mapIndexed { index, team ->
                 val randomTeamOwner = team.members.get().filter { it.rank == PlayerRank.OWNER }.random()

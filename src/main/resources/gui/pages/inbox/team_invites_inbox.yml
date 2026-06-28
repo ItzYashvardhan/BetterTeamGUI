@@ -10,7 +10,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . . . . . . . ."
+    - ". . < . . . > . ."
 
 dynamic_list:
   char: "L"
@@ -27,7 +27,7 @@ dynamic_list:
         - ""
         - "<yellow>Left-click to join"
         - "<red>Right-click to deny"
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       left-click:
         - "[sound] click"
         - "[player] {cmd.team} join {team_name}"
@@ -36,3 +36,23 @@ dynamic_list:
         - "[sound] click"
         - "[player] {cmd.team} deny {team_name}"
         - "[refresh]"
+
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"

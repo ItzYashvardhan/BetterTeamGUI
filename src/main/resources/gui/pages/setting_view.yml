@@ -1,5 +1,5 @@
 main:
-  title: "lang.setting_view_title"
+  title: "lang.setting_view"
   rows: 4
   font-title: false
   font-name: true
@@ -17,9 +17,9 @@ main:
 # NAVIGATION BUTTONS
 # ----------------------------------------------------
 back:
-  name: "lang.buttons_back_name"
+  display: "lang.buttons_back"
   char: "R"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.back"
   click:
     - "[sound] click"
@@ -28,102 +28,76 @@ back:
 # ----------------------------------------------------
 # CORE SETTING BUTTONS
 # ----------------------------------------------------
-color-picker:
-  name: "lang.setting_view_color_picker_name"
+setting_view_color_picker:
   char: "C"
-  lore: ["lang.setting_view_color_picker_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.color-picker"
   action: "setting.color-picker"
 
-description:
-  name: "lang.setting_view_description_name"
+setting_view_description:
   char: "D"
-  lore: ["lang.setting_view_description_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.description"
   action: "setting.description"
 
-
-tag:
-  name: "lang.setting_view_tag_name"
+setting_view_tag:
   char: "T"
-  lore: ["lang.setting_view_tag_lore"]
-  item: NAME_TAG
+  material: NAME_TAG
   action: "setting.tag"
 
-status-open:
+setting_view_status_open:
   char: "S"
-  name: "lang.setting_view_status_name"
-  lore: ["lang.setting_view_status_open_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.status-open"
   action: "setting.status"
 
-status-closed:
+setting_view_status_closed:
+  display: "lang.setting_view_status_closed"
   char: "S"
   priority: 10
-  name: "lang.setting_view_status_name"
-  lore: ["lang.setting_view_status_closed_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.status-closed"
   action: "setting.status"
   view-requirement:
     - "[condition] '{team_open}' == 'false'"
 
-
-anchor:
+setting_view_anchor:
   char: "A"
-  name: "lang.setting_view_anchor_name"
-  lore: ["lang.setting_view_anchor_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.anchor"
   action: "setting.anchor"
 
-no-anchor:
+setting_view_no_anchor:
+  display: "lang.setting_view_no_anchor"
   char: "A"
   priority: 10
-  name: "lang.setting_view_no_anchor_name"
-  lore: ["lang.setting_view_no_anchor_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.no-anchor"
   view-requirement:
     - "[condition] '{team_has_home}' == 'false'"
 
-
-title:
-  name: "lang.setting_view_title_name"
+setting_view_title:
   char: "I"
-  lore: ["lang.setting_view_title_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "setting.title"
   action: "setting.title"
 
-pvp:
-  name: "lang.setting_view_pvp_name"
+setting_view_pvp:
   char: "V"
-  lore: ["lang.setting_view_pvp_lore"]
-  item: IRON_SWORD
+  material: IRON_SWORD
   flags: [ HIDE_ATTRIBUTES ]
   action: "setting.pvp"
 
-rename:
-  name: "lang.setting_view_rename_name"
+setting_view_rename:
   char: "N"
-  lore: ["lang.setting_view_rename_lore"]
-  item: ANVIL
+  material: ANVIL
   action: "setting.rename"
 
-disband:
-  name: "lang.setting_view_disband_name"
+setting_view_disband:
   char: "X"
-  lore: ["lang.setting_view_disband_lore"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: setting.disband
   action: "setting.disband"
-
-
-
 
 # ----------------------------------------------------
 # ANVIL MENUS (Move to Separate from Layout Engine TODO)
@@ -134,34 +108,34 @@ anvil-ui:
     label: "lang.setting_view_anvil_label"
     input-item:
       name: "lang.setting_view_anvil_desc_input_name"
-      item: PAPER
+      material: PAPER
     output-item:
       name: "lang.setting_view_anvil_desc_output_name"
-      item: PAPER
+      material: PAPER
   tag:
     title: "lang.setting_view_anvil_tag_title"
     label: "lang.setting_view_anvil_label"
     input-item:
       name: "lang.setting_view_anvil_tag_input_name"
-      item: NAME_TAG
+      material: NAME_TAG
     output-item:
       name: "lang.setting_view_anvil_tag_output_name"
-      item: NAME_TAG
+      material: NAME_TAG
   title:
     title: "lang.setting_view_anvil_title_title"
     label: "lang.setting_view_anvil_label"
     input-item:
       name: "lang.setting_view_anvil_title_input_name"
-      item: PAPER
+      material: PAPER
     output-item:
       name: "lang.setting_view_anvil_title_output_name"
-      item: PAPER
+      material: PAPER
   rename:
     title: "lang.setting_view_anvil_rename_title"
     label: "lang.setting_view_anvil_label"
     input-item:
       name: "lang.setting_view_anvil_rename_input_name"
-      item: ANVIL
+      material: ANVIL
     output-item:
       name: "lang.setting_view_anvil_rename_output_name"
-      item: ANVIL
+      material: ANVIL

@@ -23,15 +23,35 @@ dynamic_list:
     name: "lang.invite_view_invite_item_name"
     lore:
       - "lang.invite_view_invite_item_lore"
-    item: PLAYER_HEAD
+    material: PLAYER_HEAD
     texture: "{player_uuid}"
     action: "invite.send"
+
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"
 
 player-invited-item:
   name: "lang.invite_view_player_invited_item_name"
   lore:
     - "lang.invite_view_player_invited_item_lore"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "{player_uuid}"
   action: "invite.cancel"
 
@@ -41,7 +61,7 @@ search-item:
   priority: 0
   lore:
     - "lang.invite_view_search_item_lore"
-  item: OAK_SIGN
+  material: OAK_SIGN
   action: "invite.search"
 
 search-item-clear:
@@ -52,7 +72,7 @@ search-item-clear:
     - "[condition] is_searching"
   lore:
     - "lang.invite_view_search_item_clear_lore"
-  item: OAK_SIGN
+  material: OAK_SIGN
   action: "invite.clear_search"
 
 invite-player:
@@ -60,7 +80,7 @@ invite-player:
   char: "I"
   lore:
     - "lang.invite_view_invite_player_lore"
-  item: LIME_STAINED_GLASS_PANE
+  material: LIME_STAINED_GLASS_PANE
   action: "invite.custom"
 
 invited-list-item:
@@ -68,7 +88,7 @@ invited-list-item:
   char: "V"
   lore:
     - "lang.invite_view_invited_list_item_lore"
-  item: WRITABLE_BOOK
+  material: WRITABLE_BOOK
   action: "[open_gui] invited_list"
 
 anvil-ui:
@@ -77,12 +97,12 @@ anvil-ui:
     label: "lang.invite_view_anvil_label"
     input-item:
       name: "lang.invite_view_anvil_search_input_name"
-      item: PAPER
+      material: PAPER
       lore:
         - "lang.invite_view_anvil_search_input_lore"
     output-item:
       name: "lang.invite_view_anvil_search_output_name"
-      item: ANVIL
+      material: ANVIL
       lore:
         - "lang.invite_view_anvil_search_output_lore"
   invite:
@@ -92,9 +112,9 @@ anvil-ui:
       name: "lang.invite_view_anvil_invite_input_name"
       lore:
         - "lang.invite_view_anvil_invite_input_lore"
-      item: PAPER
+      material: PAPER
     output-item:
       name: "lang.invite_view_anvil_invite_output_name"
       lore:
         - "lang.invite_view_anvil_invite_output_lore"
-      item: LIME_DYE
+      material: LIME_DYE

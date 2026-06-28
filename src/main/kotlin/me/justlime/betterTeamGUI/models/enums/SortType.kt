@@ -1,3 +1,3 @@
 package me.justlime.betterTeamGUI.models.enums
 
-enum class SortType { MONEY, SCORE, LEVEL, MEMBERS }
+enum class SortType {  SCORE, LEVEL, MEMBERS, MONEY }

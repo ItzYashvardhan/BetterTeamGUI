@@ -3,7 +3,7 @@ version: '2.3'
 main: me.justlime.betterTeamGUI.BetterTeamGUI
 api-version: '1.13'
 description: "A Addon plugin for BetterTeams (v4.15.2)"
-author: Yashvardhan
+author: ItzJustLime
 website: https://discord.gg/rVsUJ4keZN
 folia-supported: true
 

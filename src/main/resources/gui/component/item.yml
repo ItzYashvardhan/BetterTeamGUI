@@ -1,13 +1,11 @@
-back_button:
-  name: "lang.core_back_name"
+buttons_back:
   char: "R"
   item: PLAYER_HEAD
-  texture: "texture:core.back"
-  action: "[menu] previous_menu"
+  texture: "core.back"
+  action: "actions.back"
 
-home_button:
-  name: "lang.core_home_name"
+buttons_home:
   char: "H"
   item: PLAYER_HEAD
-  texture: "texture:core.home"
-  action: "[menu] dashboard"
+  texture: "core.home"
+  action: "actions.home"

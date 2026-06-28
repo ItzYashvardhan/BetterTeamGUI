@@ -7,17 +7,20 @@ import net.justlime.limeframegui.registry.gui.ListPopulatorRegistry
 object TeamLevelsManager : IPopulator {
 
     override fun registerPopulators() {
-        ListPopulatorRegistry.register("team_levels_list") { response ->
+        // FIX 1: Matched the exact string from the YAML ("levels_list")
+        ListPopulatorRegistry.register("levels_list") { response ->
             val player = response.player
             val templatesMap = response.mask.templates
 
             val team = Team.getTeam(player) ?: return@register emptyList()
             val levels = LevelManager.getLevels().values.sortedBy { it.level }
 
-            val unlockedTemplate = templatesMap["unlocked-item"] ?: return@register emptyList()
-            val currentTemplate = templatesMap["current-item"] ?: return@register emptyList()
-            val progressTemplate = templatesMap["progress-item"] ?: return@register emptyList()
-            val lockedTemplate = templatesMap["locked-item"] ?: return@register emptyList()
+            // Fetch all templates (including the missing progress-unlockable!)
+            val unlockedTemplate = templatesMap["unlocked"] ?: return@register emptyList()
+            val currentTemplate = templatesMap["current"] ?: return@register emptyList()
+            val progressTemplate = templatesMap["progress"] ?: return@register emptyList()
+            val progressUnlockableTemplate = templatesMap["progress-unlockable"] ?: return@register emptyList()
+            val lockedTemplate = templatesMap["locked"] ?: return@register emptyList()
 
             levels.map { level ->
                 val requiredAmount = level.costValue
@@ -46,15 +49,19 @@ object TeamLevelsManager : IPopulator {
                     else -> true
                 }
 
+                // FIX 2: Corrected the mathematical logic for MMO-style level states!
                 val template = when {
-                    team.level >= level.level -> unlockedTemplate
-                    team.level + 1 == level.level -> if (requirementsMet) currentTemplate else progressTemplate
-                    else -> lockedTemplate
+                    level.level < team.level -> unlockedTemplate            // Past levels
+                    level.level == team.level -> currentTemplate            // Exact current level
+                    level.level == team.level + 1 -> {                      // Next level
+                        if (requirementsMet) progressUnlockableTemplate else progressTemplate
+                    }
+                    else -> lockedTemplate                                  // Future levels (Level + 2 and beyond)
                 }
 
                 template.clone().apply {
                     this.style.placeholder.putAll(placeholders)
-                    this.style.viewer = null
+                    this.style.viewer = null // Optional context reset
                 }
             }
         }

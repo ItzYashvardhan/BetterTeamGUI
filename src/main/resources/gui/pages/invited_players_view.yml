@@ -20,25 +20,23 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   template:
-    name: "lang.invited_players_view_item_name"
-    lore:
-      - "lang.invited_players_view_item_lore"
-    item: PLAYER_HEAD
+    display: "lang.invited_players_view_item"
+    material: PLAYER_HEAD
     texture: "{player_uuid}"
     action: "invite.revoke"
 
 prev_page:
-  name: "lang.core_prev_page_name"
+  display: "lang.core_prev_page"
   char: "<"
   priority: 1
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.prev_page"
   action: "core_prev_page"
 
 next_page:
-  name: "lang.core_next_page_name"
+  display: "lang.core_next_page"
   char: ">"
   priority: 1
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.next_page"
   action: "core_next_page"

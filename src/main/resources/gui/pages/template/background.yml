@@ -37,18 +37,18 @@ main:
 background_R_blue:
   name: "<reset> "
   char: "B"
-  item: LIGHT_BLUE_STAINED_GLASS_PANE
+  material: LIGHT_BLUE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 
 background_L_purple:
   name: "<reset> "
   char: "P"
-  item: PURPLE_STAINED_GLASS_PANE
+  material: PURPLE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 
 background_white:
   name: "<reset> "
   char: "W"
-  item: WHITE_STAINED_GLASS_PANE
+  material: WHITE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 

@@ -14,146 +14,146 @@ main:
 # ----------------------------------------------------
 # COLORS (Mapped to Pattern)
 # ----------------------------------------------------
-aqua:
-  name: "lang.color_picker_aqua"
+color_picker_aqua:
+  name: "{lang:color_picker_name_template|color=aqua}"
   char: "a"
   lore: ["{lang:color_picker_lore_template|color=aqua}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.aqua"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_aqua"
 
-black:
-  name: "lang.color_picker_black"
+color_picker_black:
+  name: "{lang:color_picker_name_template|color=black}"
   char: "b"
   lore: ["{lang:color_picker_lore_template|color=black}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.black"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_black"
 
-blue:
-  name: "lang.color_picker_blue"
+color_picker_blue:
+  name: "{lang:color_picker_name_template|color=blue}"
   char: "c"
   lore: ["{lang:color_picker_lore_template|color=blue}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.blue"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_blue"
 
-dark_aqua:
-  name: "lang.color_picker_dark_aqua"
+color_picker_dark_aqua:
+  name: "{lang:color_picker_name_template|color=dark_aqua}"
   char: "d"
   lore: ["{lang:color_picker_lore_template|color=dark_aqua}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_aqua"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_aqua"
 
-dark_blue:
-  name: "lang.color_picker_dark_blue"
+color_picker_dark_blue:
+  name: "{lang:color_picker_name_template|color=dark_blue}"
   char: "e"
   lore: ["{lang:color_picker_lore_template|color=dark_blue}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_blue"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_blue"
 
-dark_gray:
-  name: "lang.color_picker_dark_gray"
+color_picker_dark_gray:
+  name: "{lang:color_picker_name_template|color=dark_gray}"
   char: "f"
   lore: ["{lang:color_picker_lore_template|color=dark_gray}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_gray"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_gray"
 
-dark_green:
-  name: "lang.color_picker_dark_green"
+color_picker_dark_green:
+  name: "{lang:color_picker_name_template|color=dark_green}"
   char: "g"
   lore: ["{lang:color_picker_lore_template|color=dark_green}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_green"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_green"
 
-dark_purple:
-  name: "lang.color_picker_dark_purple"
+color_picker_dark_purple:
+  name: "{lang:color_picker_name_template|color=dark_purple}"
   char: "h"
   lore: ["{lang:color_picker_lore_template|color=dark_purple}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_purple"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_purple"
 
-dark_red:
-  name: "lang.color_picker_dark_red"
+color_picker_dark_red:
+  name: "{lang:color_picker_name_template|color=dark_red}"
   char: "i"
   lore: ["{lang:color_picker_lore_template|color=dark_red}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.dark_red"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_dark_red"
 
-gold:
-  name: "lang.color_picker_gold"
+color_picker_gold:
+  name: "{lang:color_picker_name_template|color=gold}"
   char: "j"
   lore: ["{lang:color_picker_lore_template|color=gold}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.gold"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_gold"
 
-gray:
-  name: "lang.color_picker_gray"
+color_picker_gray:
+  name: "{lang:color_picker_name_template|color=gray}"
   char: "k"
   lore: ["{lang:color_picker_lore_template|color=gray}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.gray"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_gray"
 
-green:
-  name: "lang.color_picker_green"
+color_picker_green:
+  name: "{lang:color_picker_name_template|color=green}"
   char: "l"
   lore: ["{lang:color_picker_lore_template|color=green}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.green"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_green"
 
-red:
-  name: "lang.color_picker_red"
+color_picker_red:
+  name: "{lang:color_picker_name_template|color=red}"
   char: "m"
   lore: ["{lang:color_picker_lore_template|color=red}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.red"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_red"
 
-strikethrough:
-  name: "lang.color_picker_strikethrough"
+color_picker_strikethrough:
+  name: "{lang:color_picker_name_template|color=strikethrough}"
   char: "n"
   lore: ["{lang:color_picker_lore_template|color=strikethrough}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.strikethrough"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_strikethrough"
 
-white:
-  name: "lang.color_picker_white"
+color_picker_white:
+  name: "{lang:color_picker_name_template|color=white}"
   char: "o"
   lore: ["{lang:color_picker_lore_template|color=white}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "texture:color.white"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_white"
 
-yellow:
-  name: "lang.color_picker_yellow"
+color_picker_yellow:
+  name: "{lang:color_picker_name_template|color=yellow}"
   char: "p"
   lore: ["{lang:color_picker_lore_template|color=yellow}"]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "color.yellow"
   click-sound: "gui.color-picker.select"
   action: "color_picker.select_yellow"

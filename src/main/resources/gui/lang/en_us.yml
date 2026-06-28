@@ -1,6 +1,6 @@
-######################
-## General Messages ##
-######################
+# ===================================================================
+# GENERAL MESSAGES
+# ===================================================================
 prefix: "<gradient:#C45700:#FF7608>BetterTeamGUI</gradient><aqua> » </aqua>"
 messages:
   player-only: "{lang:prefix}<gradient:#f36262:#ff9494>Only players can execute this command.</gradient>"
@@ -12,56 +12,121 @@ messages:
   money: "Money"
   score: "Score"
 
-####################
-## Global Buttons ##
-####################
-buttons_home_name: '<caps><bold><aqua>Return to Main Page</caps>'
-buttons_back_name: '<caps><bold><yellow>Go Back</caps>'
-buttons_next_name: '<caps><bold><green>Next</caps>'
-buttons_prev_name: '<caps><bold><green>Previous</caps>'
-buttons_no_perm_name: "<red><bold>NO PERMISSION</bold>"
-buttons_no_perm_lore:
+# ===================================================================
+# GLOBAL BUTTONS
+# ===================================================================
+button_home:
+  - '<aqua>Return to Main Page'
+button_back:
+  - '<yellow>Go Back'
+button_next:
+  - '<green>Next'
+button_prev:
+  - '<green>Previous'
+button_no_perm:
+  - "<red><bold>NO PERMISSION</bold>"
   - "<gray>You do not have permission to</gray>"
   - "<gray>interact with this button.</gray>"
 
-###############
-## List View ##
-###############
+
+# ===================================================================
+# COMMON ITEMS
+# ===================================================================
+team_name: "<{team_color}>{team}</{team_color}> <gray>({team_size}/{team_limit})</gray>"
+team_desc: "<white><italic>{team_description}</italic></white>"
+team_common:
+  - " <#5BD686>• Tag:</#5BD686> <white><bold>{team_tag}</bold></white>"
+  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_level}"
+  - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
+  - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_online}"
+team_self:
+  - "<yellow>Left-Click</yellow> <gray>to view LeaderBoards</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to view Team Level</gray>"
+team_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+team_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
+
+
+# ===================================================================
+# dashboard_view - Page
+# ===================================================================
 # Main
-list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
-
-# Team Item
-list_view_team_item_name_in_team: "<b><{list_team_color}>{list_team}</{list_team_color}></b>"
-list_view_team_item_desc: "<white><italic>{list_team_description}</italic></white>"
-list_view_team_item_lore_common:
-  - " <#5BD686>• Tag:</#5BD686> <white><bold>{list_team_tag}</bold></white>"
-  - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{list_team_size}"
-  - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{list_team_score}"
-list_view_team_item_name_no_team: "<b><{list_team_color}>{list_team}</{list_team_color}></b> <gray>({list_team_size}/{list_team_limit})</gray>"
-list_view_team_item_lore_click: "<yellow>Left-Click</yellow> <gray>to view team</gray>"
-list_view_team_item_lore_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
-
-##############
-## Ban View ##
-##############
-ban_view_title: "<bold><gradient:#C45700:#FF7608>Ban List (Page - {page})</bold>"
-ban_view_item_name: "<b><red>{team_player}</b>"
-ban_view_item_lore:
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to unban</gray>"
-
-#####################
-## Dashboard View ##
-#####################
 dashboard_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
-dashboard_leave_name: "<b><gradient:#FF0000:#FF7878>Leave Team</gradient></b>"
-dashboard_leave_lore:
+
+# Gui
+dashboard_leave:
+  - "<b><gradient:#FF0000:#FF7878>Leave Team</gradient></b>"
   - "<gray>Leave your current team.</gray>"
   - ""
   - "<red>Left-Click</red> <gray>to leave</gray>"
-dashboard_info_name: "<b><#5BD686>{team} Team</b> <gray>({team_size}/{team_limit})</gray>"
-dashboard_info_desc: "<white><italic>{team_description}</italic></white>"
-dashboard_info_lore_common:
+
+dashboard_home:
+  - "<gradient:#00CACA:#00EAEA><b>Team Home</b>"
+  - "<gray>Teleport to your team's home.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to set new home</gray>"
+  - "<yellow>Shift-Click</yellow> <gray>to remove home</gray>"
+dashboard_list:
+  - "<b><gradient:#FFDAB4:#FFD2D2>Team List</gradient></b>"
+  - "<gray>View a list of all teams.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to open the list</gray>"
+dashboard_allies:
+  - "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
+  - "<gray>View your team's allies.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to view allies</gray>"
+dashboard_members:
+  - "<b><gradient:#D0B65D:#D0B65D>Team</gradient><gradient:#D0B65D:#F6E6AD> Members</gradient></b>"
+  - "<gray>View your team's members.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
+dashboard_members_admin:
+  - "<b><gradient:#D0B65D:#D0B65D>Team</gradient><gradient:#D0B65D:#F6E6AD> Members</gradient></b>"
+  - "<gray>manage your team's members.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
+dashboard_chest:
+  - "<b><gradient:#5349FF:#60BEFF>Team Chest</gradient></b>"
+  - "<gray>Access your team's shared chest.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to open</gray>"
+dashboard_warps:
+  - "<gradient:#00CACA:#00EAEA><b>Team Warps</b>"
+  - "<gray>View all available team warps.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to open warps</gray>"
+dashboard_balance:
+  - "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
+  - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to deposit</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
+dashboard_chat_global:
+  - "<b><gradient:#E0E300:#D5D676>Global Chat</gradient></b>"
+  - "<gray>Toggle between global, team, and ally chat.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+dashboard_chat_team:
+  - "<b><gradient:#E0E300:#D5D676>Team Chat</gradient></b>"
+  - "<gray>Toggle between global, team, and ally chat.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+dashboard_chat_ally:
+  - "<b><gradient:#E0E300:#D5D676>Ally Chat</gradient></b>"
+  - "<gray>Toggle between global, team, and ally chat.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+dashboard_settings:
+  - "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
+  - "<gray>Manage your team's options.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to view settings</gray>"
+dashboard_info_without_description:
+  - "<b><#5BD686>{team} Team</b> <gray>({team_size}/{team_limit})</gray>"
   - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_level}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
@@ -69,66 +134,153 @@ dashboard_info_lore_common:
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view LeaderBoards</gray>"
   - "<yellow>Right-Click</yellow> <gray>to view Team Level</gray>"
-dashboard_home_name: "<gradient:#00CACA:#00EAEA><b>Team Home</b>"
-dashboard_home_lore:
-  - "<gray>Teleport to your team's home.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to teleport</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to set new home</gray>"
-  - "<yellow>Shift-Click</yellow> <gray>to remove home</gray>"
-dashboard_list_name: "<b><gradient:#FFDAB4:#FFD2D2>Team List</gradient></b>"
-dashboard_list_lore:
-  - "<gray>View a list of all teams.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to open the list</gray>"
-dashboard_allies_name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
-dashboard_allies_lore:
-  - "<gray>View your team's allies.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to view allies</gray>"
-dashboard_members_name: "<b><gradient:#D0B65D:#D0B65D>Team</gradient><gradient:#D0B65D:#F6E6AD> Members</gradient></b>"
-dashboard_members_lore_global:
-  - "<gray>View your team's members.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
-dashboard_members_lore_admin:
-  - "<gray>manage your team's members.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
-dashboard_chest_name: "<b><gradient:#5349FF:#60BEFF>Team Chest</gradient></b>"
-dashboard_chest_lore:
-  - "<gray>Access your team's shared chest.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to open</gray>"
-dashboard_warps_name: "<gradient:#00CACA:#00EAEA><b>Team Warps</b>"
-dashboard_warps_lore:
-  - "<gray>View all available team warps.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to open warps</gray>"
-dashboard_balance_name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
-dashboard_balance_lore:
-  - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to deposit</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
-dashboard_chat_global_name: "<b><gradient:#E0E300:#D5D676>Global Chat</gradient></b>"
-dashboard_chat_team_name: "<b><gradient:#E0E300:#D5D676>Team Chat</gradient></b>"
-dashboard_chat_ally_name: "<b><gradient:#E0E300:#D5D676>Ally Chat</gradient></b>"
-dashboard_chat_lore:
-  - "<gray>Toggle between global, team, and ally chat.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
-dashboard_settings_name: "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
-dashboard_settings_lore:
-  - "<gray>Manage your team's options.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to view settings</gray>"
 
-##################
-## Members View ##
-##################
+# ===================================================================
+# pager/team_list - Page
+# ===================================================================
+# Main
+list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
+
+# Gui
+
+list_view_search:
+  - "<#00FFC7>🔍 Search Teams"
+  - "<gray>Looking for a specific group?</gray>"
+  - " "
+  - "<yellow>▸ Click to search by name</yellow>"
+
+list_view_sort_asc:
+  - "<green>Order: <white>Ascending ⬆"
+  - "<gray>Displaying from lowest to highest.</gray>"
+  - ""
+  - "<yellow>▸ Click to switch to Descending</yellow>"
+
+list_view_sort_desc:
+  - "<green>Order: <white>Descending ⬇"
+  - "<gray>Displaying from highest to lowest.</gray>"
+  - ""
+  - "<yellow>▸ Click to switch to Ascending</yellow>"
+
+list_view_sort_money:
+  - "<aqua>Sort By: <white>Balance"
+  - "<gray>Ranking teams by their total wealth.</gray>"
+  - ""
+  - "<yellow>▸ Click to cycle sort mode</yellow>"
+
+list_view_sort_score:
+  - "<aqua>Sort By: <white>Score"
+  - "<gray>Ranking teams by their total score.</gray>"
+  - ""
+  - "<yellow>▸ Click to cycle sort mode</yellow>"
+
+list_view_sort_level:
+  - "<aqua>Sort By: <white>Level"
+  - "<gray>Ranking teams by their current level.</gray>"
+  - ""
+  - "<yellow>▸ Click to cycle sort mode</yellow>"
+
+list_view_sort_members:
+  - "<aqua>Sort By: <white>Members"
+  - "<gray>Ranking teams by their roster size.</gray>"
+  - ""
+  - "<yellow>▸ Click to cycle sort mode</yellow>"
+
+list_view_filter_default:
+  - "<gold>Filter: <white>None"
+  - "<gray>Currently displaying all registered teams.</gray>"
+  - ""
+  - "<yellow>▸ Click to change filter</yellow>"
+
+list_view_filter_open:
+  - "<gold>Filter: <white>Joinable"
+  - "<gray>Only showing teams that do not</gray>"
+  - "<gray>require an invite to join.</gray>"
+  - ""
+  - "<yellow>▸ Click to change filter</yellow>"
+
+list_view_filter_online:
+  - "<gold>Filter: <white>Active"
+  - "<gray>Only showing teams that have</gray>"
+  - "<gray>members currently online.</gray>"
+  - ""
+  - "<yellow>▸ Click to change filter</yellow>"
+
+list_view_filter_not_full:
+  - "<gold>Filter: <white>Available Seats"
+  - "<gray>Only showing teams that have</gray>"
+  - "<gray>room for new members.</gray>"
+  - ""
+  - "<yellow>▸ Click to change filter</yellow>"
+
+list_view_invitation:
+  - "<gradient:#C40067:#EC7FB8>✉ Team Invitations</gradient> <gray>({team_invites})</gray>"
+  - "<gray>Manage your pending team requests.</gray>"
+  - " "
+  - "<#00FFC7>▸ Left-Click</#00FFC7> <gray>to view inbox</gray>"
+
+list_view_no_invitation:
+  - "<gradient:#C40067:#EC7FB8>✉ Team Invitations</gradient><gray>(0)</gray>"
+  - "<gray>You have no pending team</gray>"
+  - "<gray>invitations at this time.</gray>"
+
+list_view_invitation_team_item:
+  - "<{color}>{team}</{color}>"
+  - "<#00FFC7>▸ Left-Click</#00FFC7> <gray>to accept invitation</gray>"
+
+list_view_create:
+  - "<gradient:#00FFC7:#00BC92>➕ Create a Team</gradient>"
+  - "<gray>Start your own journey and</gray>"
+  - "<gray>invite your friends to join.</gray>"
+  - " "
+  - "<#00FFC7>▸ Click to create</#00FFC7>"
+
+# ===================================================================
+# team/search - Inputs
+# ===================================================================
+# Main
+list_view_anvil_search_title: "<bold>Search Team</bold>"
+
+# Input item
+list_view_search_input:
+  - "<green>Enter Team Name</green>"
+  - "<gray>Enter the name of the team you want to search for.</gray>"
+list_view_search_output:
+  - "<green>Search</green>"
+  - "<gray>Click to search for the team.</gray>"
+
+# ===================================================================
+# team/create - Input
+# ===================================================================
+# Main
+list_view_create_title: "<bold>Create Team</bold>"
+
+# Input item
+list_view_create_input:
+  - "<green>Enter Team Name</green>"
+  - "<gray>Enter the name of your new team.</gray>"
+list_view_create_output:
+  - "<green>Create</green>"
+  - "<gray>Click to create your team.</gray>"
+
+# ===================================================================
+# pager/ban_view - Page
+# ===================================================================
+# Main
+ban_view_title: "<bold><gradient:#C45700:#FF7608>Ban List (Page - {page})</bold>"
+
+# Gui
+ban_view_item:
+  - "<b><red>{team_player}</b>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to unban</gray>"
+
+# ===================================================================
+# pager/members_view - Page
+# ===================================================================
+# Main
 members_view_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team Member's</bold>"
+
+# Gui
 members_view_member_name: "<aqua>{team_player}"
 members_view_member_lore_admin:
   - "<gray>Rank: <yellow>{rank}"
@@ -136,226 +288,263 @@ members_view_member_lore_admin:
   - "<green>Click to manage this member."
 members_view_member_lore_default:
   - "<gray>Rank: <yellow>{rank}"
-members_view_invite_name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
-members_view_invite_lore:
+members_view_invite:
+  - "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
   - "<gray>Click to invite player to your team.</gray>"
-members_view_locked_name: "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
-members_view_locked_lore:
+members_view_locked:
+  - "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
   - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this member slot.</gray>"
-members_view_banlist_name: "<#D6BA5B><bold>Banned Players</bold>"
-members_view_banlist_lore:
+members_view_banlist:
+  - "<#D6BA5B><bold>Banned Players</bold>"
   - "<gray>View and manage players who</gray>"
   - "<gray>are banned from joining.</gray>"
   - ""
   - "<yellow>Click to manage bans ➤</yellow>"
 
-#############################
-## Members Management View ##
-#############################
+# ===================================================================
+# members_management_view - Page
+# ===================================================================
+# Main
 members_management_view_title: "<bold><gradient:#C45700:#FF7608>Managing: {player}</bold>"
+
+# Gui
 members_management_view_player_info_name: "<b><aqua>{player}</b>"
 members_management_view_player_info_lore:
   - "<gray>Rank: <yellow>{rank}</yellow>"
-members_management_view_promote_owner_name: "<b><green>Promote to Owner</green></b>"
-members_management_view_promote_owner_lore:
+members_management_view_promote_owner:
+  - "<b><green>Promote to Owner</green></b>"
   - "<gray>Promote this member to the highest rank.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
-members_management_view_promote_admin_name: "<b><green>Promote to Admin</green></b>"
-members_management_view_promote_admin_lore:
+members_management_view_promote_admin:
+  - "<b><green>Promote to Admin</green></b>"
   - "<gray>Promote this member to a higher rank.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to promote</gray>"
-members_management_view_demote_admin_name: "<b><red>Demote to Admin</red></b>"
-members_management_view_demote_admin_lore:
+members_management_view_demote_admin:
+  - "<b><red>Demote to Admin</red></b>"
   - "<gray>Demote this member to a lower rank.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
-members_management_view_demote_default_name: "<b><red>Demote to Default</red></b>"
-members_management_view_demote_default_lore:
+members_management_view_demote_default:
+  - "<b><red>Demote to Default</red></b>"
   - "<gray>Demote this member to a lowest rank.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to demote</gray>"
-members_management_view_kick_name: "<b><red>Kick</red></b>"
-members_management_view_kick_lore:
+members_management_view_kick:
+  - "<b><red>Kick</red></b>"
   - "<gray>Remove this member from the team.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to kick</gray>"
-members_management_view_ban_name: "<b><red>Ban</red></b>"
-members_management_view_ban_lore:
+members_management_view_ban:
+  - "<b><red>Ban</red></b>"
   - "<gray>Ban this member from joining the team again.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to ban</gray>"
 
-#################
-## Allies View ##
-#################
+# ===================================================================
+# pager/allies_list - Page
+# ===================================================================
+# Main
 allies_view_title: "<bold><gradient:#C45700:#FF7608>Allies List (Page - {page})</bold>"
-allies_view_item_name: "<b><{color}>{team}</{color}></b>"
-allies_view_item_lore:
+
+# Gui
+allies_view_item:
+  - "<b><{color}>{team}</{color}></b>"
   - ""
   - "<green>Left-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to remove ally</gray>"
-allies_view_requests_name: "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
-allies_view_requests_lore:
+allies_view_requests:
+  - "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
   - "<gray>View pending ally requests</gray>"
   - " "
   - "<green>Left-Click</green> <gray>to view</gray>"
-allies_view_req_item_name: "<b><{color}>{team}</{color}></b>"
-allies_view_req_item_lore:
+allies_view_req_item:
+  - "<b><{color}>{team}</{color}></b>"
   - ""
   - "<green>Left-Click</green> <gray>to accept request</gray>"
   - "<green>Right-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to deny request</gray>"
 
-#######################
-## TEAM COLOR PICKER ##
-#######################
-color_picker_title: "<b><gradient:#C45700:#FF7608>Team Color Picker</gradient></b>"
+# ===================================================================
+# color_picker - Page
+# ===================================================================
+# Main
+color_picker_title: "<gradient:#C45700:#FF7608>Team Color Picker</gradient>"
+
+# Gui
+color_picker_name_template: "<{color}>{color}</{color}>"
 color_picker_lore_template: "<gray>Click to set your team color to <{color}>{color}</{color}>.</gray>"
 
-#################
-## Dialog View ##
-#################
+# ===================================================================
+# dialog - Page
+# ===================================================================
+# Main
 dialog_leave_title: "<bold>Leave Team?</bold>"
-dialog_confirm_name: "<b><gradient:#00FF00:#00AA00>CONFIRM</gradient></b>"
-dialog_leave_confirm_lore:
-  - "<gray>Click to confirm leaving your team.</gray>"
-dialog_cancel_name: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
-dialog_leave_cancel_lore:
-  - "<gray>Click to cancel and return to the team menu.</gray>"
 dialog_disband_title: "<bold>Disband Team?</bold>"
-dialog_disband_confirm_lore:
+dialog_delete_warp_title: "<bold>Delete Team Warp?</bold>"
+dialog_delete_home_title: "<bold>Delete Team Home?</bold>"
+dialog_update_home_title: "<bold>Update Team Home?</bold>"
+dialog_promote_owner_title: "<bold>Promote to Owner?</bold>"
+dialog_promote_admin_title: "<bold>Promote to Admin?</bold>"
+dialog_demote_admin_title: "<bold>Demote to Admin?</bold>"
+dialog_demote_default_title: "<bold>Demote to Default?</bold>"
+dialog_kick_title: "<bold>Kick Member?</bold>"
+dialog_ban_title: "<bold>Ban Member?</bold>"
+dialog_neutral_title: "<bold>Remove Ally?</bold>"
+
+# Gui
+dialog_confirm: "<b><gradient:#00FF00:#00AA00>CONFIRM</gradient></b>"
+dialog_cancel: "<b><gradient:#FF0000:#AA0000>CANCEL</gradient></b>"
+dialog_leave_confirm:
+  - "<gray>Click to confirm leaving your team.</gray>"
+dialog_leave_cancel:
+  - "<gray>Click to cancel and return to the team menu.</gray>"
+dialog_disband_confirm:
   - "<gray>Click to confirm disbanding your team.</gray>"
   - "<red>This action cannot be undone!</red>"
-dialog_disband_cancel_lore:
+dialog_disband_cancel:
   - "<gray>Click to cancel and return to the team settings.</gray>"
-dialog_delete_warp_title: "<bold>Delete Team Warp?</bold>"
-dialog_delete_warp_confirm_lore:
+dialog_delete_warp_confirm:
   - "<gray>Click to confirm deleting your team warp.</gray>"
   - "<red>This action cannot be undone!</red>"
-dialog_delete_warp_cancel_lore:
+dialog_delete_warp_cancel:
   - "<gray>Click to cancel and return to the warp menu.</gray>"
-dialog_delete_home_title: "<bold>Delete Team Home?</bold>"
-dialog_delete_home_confirm_lore:
+dialog_delete_home_confirm:
   - "<gray>Click to confirm deleting your team home.</gray>"
   - "<red>This action cannot be undone!</red>"
-dialog_delete_home_cancel_lore:
+dialog_delete_home_cancel:
   - "<gray>Click to cancel and return to the team menu.</gray>"
-dialog_update_home_title: "<bold>Update Team Home?</bold>"
-dialog_update_home_confirm_lore:
+dialog_update_home_confirm:
   - "<gray>Click to confirm updating your team home.</gray>"
-dialog_update_home_cancel_lore:
+dialog_update_home_cancel:
   - "<gray>Click to cancel and return to the team menu.</gray>"
-dialog_promote_owner_title: "<bold>Promote to Owner?</bold>"
-dialog_promote_owner_confirm_lore:
+dialog_promote_owner_confirm:
   - "<gray>Click to confirm promoting {team_player} to New Owner of team {team}.</gray>"
-dialog_promote_owner_cancel_lore:
+dialog_promote_owner_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_promote_admin_title: "<bold>Promote to Admin?</bold>"
-dialog_promote_admin_confirm_lore:
+dialog_promote_admin_confirm:
   - "<gray>Click to confirm promoting {team_player} to Admin .</gray>"
-dialog_promote_admin_cancel_lore:
+dialog_promote_admin_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_demote_admin_title: "<bold>Demote to Admin?</bold>"
-dialog_demote_admin_confirm_lore:
+dialog_demote_admin_confirm:
   - "<gray>Click to confirm demoting {team_player} to Admin.</gray>"
-dialog_demote_admin_cancel_lore:
+dialog_demote_admin_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_demote_default_title: "<bold>Demote to Default?</bold>"
-dialog_demote_default_confirm_lore:
+dialog_demote_default_confirm:
   - "<gray>Click to confirm demoting {team_player} to Default Rank.</gray>"
-dialog_demote_default_cancel_lore:
+dialog_demote_default_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_kick_title: "<bold>Kick Member?</bold>"
-dialog_kick_confirm_lore:
+dialog_kick_confirm:
   - "<gray>Click to confirm kicking {team_player} from the team.</gray>"
-dialog_kick_cancel_lore:
+dialog_kick_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_ban_title: "<bold>Ban Member?</bold>"
-dialog_ban_confirm_lore:
+dialog_ban_confirm:
   - "<gray>Click to confirm banning {team_player} from the team.</gray>"
-dialog_ban_cancel_lore:
+dialog_ban_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
-dialog_neutral_title: "<bold>Remove Ally?</bold>"
-dialog_neutral_confirm_lore:
+dialog_neutral_confirm:
   - "<gray>Click to confirm removing {team_ally} as an ally.</gray>"
-dialog_neutral_cancel_lore:
+dialog_neutral_cancel:
   - "<gray>Click to cancel and return to the allies list.</gray>"
 
-#################
-## Invite View ##
-#################
+# ===================================================================
+# pager/invite_view - Page
+# ===================================================================
+# Main
 invite_view_title: "<bold><gradient:#C45700:#FF7608>{team} Team Invite Menu</bold>"
-invite_view_invite_item_name: "<b><yellow>{player}</yellow></b>"
-invite_view_invite_item_lore:
+
+# Gui
+invite_view_invite_item:
+  - "<b><yellow>{player}</yellow></b>"
   - "<yellow>Left-Click</yellow> <gray>to invite</gray>"
-invite_view_player_invited_item_name: "<b><yellow>{player}</yellow></b>"
-invite_view_player_invited_item_lore:
+invite_view_player_invited_item:
+  - "<b><yellow>{player}</yellow></b>"
   - "<green>Invited</green>"
-invite_view_search_item_name: "<caps><b><#00FFC7>Search by Name"
-invite_view_search_item_lore:
+invite_view_search_item:
+  - "<caps><b><#00FFC7>Search by Name"
   - "<gray>Click to search for a player by their name.</gray>"
-invite_view_search_item_clear_name: "<caps><b><#00FFC7>Search by Name <gray>(Right-Click to Clear)</gray>"
-invite_view_search_item_clear_lore:
+invite_view_search_item_clear:
+  - "<caps><b><#00FFC7>Search by Name <gray>(Right-Click to Clear)</gray>"
   - "<gray>Left-Click to search for a player by their name.</gray>"
   - "<gray>Right-Click to clear.</gray>"
-invite_view_invite_player_name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
-invite_view_invite_player_lore:
+invite_view_invite_player:
+  - "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
   - "<gray>Click to invite player by username.</gray>"
-invite_view_invited_list_item_name: "<b><gradient:#C40067:#EC7FB8>Invited Players ({team_invites})</gradient></b>"
-invite_view_invited_list_item_lore:
+invite_view_invited_list_item:
+  - "<b><gradient:#C40067:#EC7FB8>Invited Players ({team_invites})</gradient></b>"
   - "<gray>View players you have invited.</gray>"
   - " "
   - "<green>Left-Click</green> <gray>to view</gray>"
+
+# inputs/team/search.yml - Input
+# Main (input)
 invite_view_anvil_search_title: "<bold>Search Player</bold>"
-invite_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-invite_view_anvil_search_input_name: "<green>Enter Player Name</green>"
-invite_view_anvil_search_input_lore:
-  - "<gray>Enter the name of the player you want to search for.</gray>"
-invite_view_anvil_search_output_name: "<green>Search</green>"
-invite_view_anvil_search_output_lore:
-  - "<gray>Click to search for the player.</gray>"
+# inputs/team/create.yml - Input
 invite_view_anvil_invite_title: "Invite Player"
-invite_view_anvil_invite_input_name: "<green>Enter Player Name</green>"
-invite_view_anvil_invite_input_lore:
+
+# Input item
+invite_view_anvil_search_input:
+  - "<green>Enter Player Name</green>"
+  - "<gray>Enter the name of the player you want to search for.</gray>"
+invite_view_anvil_search_output:
+  - "<green>Search</green>"
+  - "<gray>Click to search for the player.</gray>"
+invite_view_anvil_invite_input:
+  - "<green>Enter Player Name</green>"
   - "<gray>Enter the name of the player you want to invite.</gray>"
-invite_view_anvil_invite_output_name: "<green>Invite Player</green>"
-invite_view_anvil_invite_output_lore:
+invite_view_anvil_invite_output:
+  - "<green>Invite Player</green>"
   - "<gray>Click to invite this player.</gray>"
 
-##########################
-## Invited Players View ##
-##########################
+# ===================================================================
+# invited_players_view - Page
+# ===================================================================
+# Main
 invited_players_view_title: "<bold><gradient:#C45700:#FF7608>{team} Team Invited List</bold>"
-invited_players_view_item_name: "<b><yellow>{player}</yellow></b>"
-invited_players_view_item_lore:
+
+# Gui
+invited_players_view_item:
+  - "<b><yellow>{player}</yellow></b>"
   - "<gray>Click to revoke invitation</gray>"
 
-######################
-## Leaderboard View ##
-######################
+# ===================================================================
+# pager/leaderboard_view - Page
+# ===================================================================
+# Main
 leaderboard_view_title: "<bold><gradient:#C45700:#FF7608>Leaderboard (Page - {page})</bold>"
-leaderboard_view_item_name: "<b><{color}>{team}</{color}></b>"
-leaderboard_view_item_lore:
+
+# Gui
+leaderboard_view_item:
+  - "<b><{team_color}>{team}</{team_color}></b>"
   - " "
   - " <#5BD686>• Rank:</#5BD686> <white>#<bold>{team_position}</bold></white>"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
 
-#################
-## Levels View ##
-#################
+# ===================================================================
+# pager/levels_view - Page
+# ===================================================================
+# Main
 levels_view_title: "<bold><gradient:#C45700:#FF7608>{team} Team Level's</bold>"
-levels_view_unlocked_name: "<b><#5BD686>Level {level} </b><gray>(Unlocked)"
-levels_view_unlocked_lore:
+
+# Gui
+levels_view_unlocked:
+  - "<b><#5BD686>Level {level} </b><gray>(Unlocked)"
   - "<gray>You have already passed this level.</gray>"
   - ""
   - " <#5BD686>✔ Completed</#5BD686>"
-levels_view_current_name: "<b><#36FA00>Level {level} </b>(Current)"
-levels_view_current_lore:
+levels_view_current:
+  - "<b><#36FA00>Level {level} </b>(Current)"
   - "<gray>Your team is currently at this level.</gray>"
+levels_view_progress:
+  - "<b><#F8CB67>Level {level} </b><gray>(In Progress)"
+  - "<gray>Reach this level to unlock perks.</gray>"
+levels_view_locked:
+  - "<b><#FF3B3B>Level {level} </b><dark_gray>(Locked)"
+  - "<gray>This level is Currently locked.</gray>"
+  - "<gray>You must reach Level {prev_level} to view more info.</gray>"
 levels_view_current_perks_header: "<b><gradient:#FF60C1:#F30094>Current Perks"
 levels_view_perks_members: " <#36FA00>• <white>Members Size <#36FA00>{team_limit}</white>"
 levels_view_perks_warps: " <#36FA00>• <white>Warps Limit <#36FA00>{warp_limit}</white>"
@@ -364,138 +553,49 @@ levels_view_perks_chests: " <#36FA00>• <white>Max Chests <#36FA00>{max_chests}
 levels_view_perks_admins: " <#36FA00>• <white>Max Admins <#36FA00>{max_admins}</white>"
 levels_view_perks_owners: " <#36FA00>• <white>Max Owners <#36FA00>{max_owners}</white>"
 levels_view_current_active: " <#36FA00>◆ Active"
-levels_view_progress_name: "<b><#F8CB67>Level {level} </b><gray>(In Progress)"
-levels_view_progress_lore:
-  - "<gray>Reach this level to unlock perks.</gray>"
 levels_view_new_perks_header: "<b><gradient:#FF60C1:#F30094>New Perks"
 levels_view_requirement_header: "<b><#FF3B3B>Requirement"
 levels_view_requirement_fail: " <#FF3B3B>❌<#FF3B3B> <white>{required_type} <#FF3B3B><b>{required_amount}"
 levels_view_requirement_success: " <#36FA00>✔<#36FA00> <white>{required_type} <#36FA00><b>{required_amount}"
 levels_view_click_rankup: "<b><#36FA00>Left-Click to Rank Up"
-levels_view_locked_name: "<b><#FF3B3B>Level {level} </b><dark_gray>(Locked)"
-levels_view_locked_lore:
-  - "<gray>This level is Currently locked.</gray>"
-levels_view_locked_requirement: " <#FF3B3B>• Required Level {prev_level} for more info"
 
-#Searching, Sorting and Creation
-list_view_search_name: "<caps><b><#00FFC7>Search by Name"
-list_view_search_lore:
-  - "<gray>Click to search for a team by its name.</gray>"
-list_view_sort_asc_name: "<caps><green>Order: <white>Ascending"
-list_view_sort_asc_lore:
-  - "<gray>Sorts the list from lowest to highest.</gray>"
-  - ""
-  - "<yellow>Click to switch to Descending ⬇</yellow>"
-list_view_sort_desc_name: "<caps><green>Order: <white>Descending"
-list_view_sort_desc_lore:
-  - "<gray>Sorts the list from highest to lowest.</gray>"
-  - ""
-  - "<yellow>Click to switch to Ascending ⬆</yellow>"
-list_view_sort_money_name: "<caps><aqua>Sort By: <white>Money"
-list_view_sort_money_lore:
-  - "<gray>Currently sorting by team balance.</gray>"
-  - ""
-  - "<yellow>Click to cycle sort mode ➤</yellow>"
-list_view_sort_score_name: "<caps><aqua>Sort By: <white>Score"
-list_view_sort_score_lore:
-  - "<gray>Currently sorting by team score.</gray>"
-  - ""
-  - "<yellow>Click to cycle sort mode ➤</yellow>"
-list_view_sort_level_name: "<caps><aqua>Sort By: <white>Level"
-list_view_sort_level_lore:
-  - "<gray>Currently sorting by team level.</gray>"
-  - ""
-  - "<yellow>Click to cycle sort mode ➤</yellow>"
-list_view_sort_members_name: "<caps><aqua>Sort By: <white>Members"
-list_view_sort_members_lore:
-  - "<gray>Currently sorting by member count.</gray>"
-  - ""
-  - "<yellow>Click to cycle sort mode ➤</yellow>"
-list_view_filter_default_name: "<caps><gold>Filter: <white>None"
-list_view_filter_default_lore:
-  - "<gray>Showing all teams.</gray>"
-  - ""
-  - "<yellow>Click to change filter ➤</yellow>"
-list_view_filter_open_name: "<caps><gold>Filter: <white>Joinable"
-list_view_filter_open_lore:
-  - "<gray>Only showing teams that are open.</gray>"
-  - ""
-  - "<yellow>Click to change filter ➤</yellow>"
-list_view_filter_online_name: "<caps><gold>Filter: <white>Online"
-list_view_filter_online_lore:
-  - "<gray>Only showing teams with online members.</gray>"
-  - ""
-  - "<yellow>Click to change filter ➤</yellow>"
-list_view_filter_not_full_name: "<caps><gold>Filter: <white>Spacious"
-list_view_filter_not_full_lore:
-  - "<gray>Only showing teams with available seats.</gray>"
-  - ""
-  - "<yellow>Click to change filter ➤</yellow>"
-list_view_invitation_name: "<b><gradient:#C40067:#EC7FB8>Team Invitations</gradient></b> <gray>({team_invites})</gray>"
-list_view_invitation_lore:
-  - "<gray>View pending team invitations</gray>"
-  - " "
-  - "<green>Left-Click</green> <gray>to view</gray>"
-list_view_no_invitation_lore:
-  - "<gray>You have no pending team invitations</gray>"
-list_view_invitation_team_item_name: "<b><{color}>{team}</{color}></b>"
-list_view_invitation_team_item_lore_accept: "<green>Left-Click</green> <gray>to accept invitation</gray>"
-list_view_create_name: "<b><gradient:#00FFC7:#00BC92>Create Team</gradient></b>"
-list_view_create_lore:
-  - "<gray>Click to create a new team.</gray>"
-list_view_anvil_search_title: "<bold>Search Team</bold>"
-list_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-list_view_anvil_search_input_name: "<green>Enter Team Name</green>"
-list_view_anvil_search_input_lore:
-  - "<gray>Enter the name of the team you want to search for.</gray>"
-list_view_anvil_search_output_name: "<green>Search</green>"
-list_view_anvil_search_output_lore:
-  - "<gray>Click to search for the team.</gray>"
-list_view_anvil_create_title: "<bold>Create Team</bold>"
-list_view_anvil_create_input_name: "<green>Enter Team Name</green>"
-list_view_anvil_create_input_lore:
-  - "<gray>Enter the name of your new team.</gray>"
-list_view_anvil_create_output_name: "<green>Create</green>"
-list_view_anvil_create_output_lore:
-  - "<gray>Click to create your team.</gray>"
-
-################
-## Money View ##
-################
+# ===================================================================
+# money_view - Page
+# ===================================================================
+# Main (input)
 money_view_deposit_title: "<bold>Deposit Amount</bold>"
-money_view_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-money_view_deposit_input_name: "<green>Enter Deposit Amount</green>"
-money_view_deposit_input_lore:
-  - "<gray>Enter the amount you wish to deposit.</gray>"
-money_view_deposit_output_name: "<green>Confirm Deposit</green>"
-money_view_deposit_output_lore:
-  - "<gray>Click to confirm your deposit.</gray>"
 money_view_withdraw_title: "<bold>Withdraw Amount</bold>"
-money_view_withdraw_input_name: "<green>Enter Withdraw Amount</green>"
-money_view_withdraw_input_lore:
+
+# Input item
+money_view_deposit_input:
+  - "<green>Enter Deposit Amount</green>"
+  - "<gray>Enter the amount you wish to deposit.</gray>"
+money_view_deposit_output:
+  - "<green>Confirm Deposit</green>"
+  - "<gray>Click to confirm your deposit.</gray>"
+money_view_withdraw_input:
+  - "<green>Enter Withdraw Amount</green>"
   - "<gray>Enter the amount you wish to withdraw.</gray>"
-money_view_withdraw_output_name: "<green>Confirm Withdraw</green>"
-money_view_withdraw_output_lore:
+money_view_withdraw_output:
+  - "<green>Confirm Withdraw</green>"
   - "<gray>Click to confirm your withdrawal.</gray>"
 
-##################
-## Setting View ##
-##################
+# ===================================================================
+# setting_view - Page
+# ===================================================================
 # Main
-setting_view_title: "<b><gradient:#C45700:#FF7608>{team} Team Setting's</gradient>"
+setting_view: "<b><gradient:#C45700:#FF7608>{team} Team Setting's</gradient>"
 
-# Color
-setting_view_color_picker_name: "<#D6BA5B><bold>Team Color</bold>"
-setting_view_color_picker_lore:
+# Gui
+setting_view_color_picker:
+  - "<#D6BA5B><bold>Team Color</bold>"
   - "<gray>Change your team's chat color.</gray>"
   - ""
   - "<gray>Current: <{team_color}>{team_color}</{team_color}></gray>"
   - ""
   - "<yellow>Click to select color ➤</yellow>"
-
-# Description
-setting_view_description_name: "<#D6BA5B><bold>Description</bold>"
-setting_view_description_lore:
+setting_view_description:
+  - "<#D6BA5B><bold>Description</bold>"
   - "<gray>Edit the text displayed in</gray>"
   - "<gray>the team information panel.</gray>"
   - ""
@@ -503,10 +603,8 @@ setting_view_description_lore:
   - "<b><white>{team_description}</white>"
   - ""
   - "<yellow>Click to edit text ✎</yellow>"
-
-# Tag
-setting_view_tag_name: "<#D6BA5B><bold>Team Tag</bold>"
-setting_view_tag_lore:
+setting_view_tag:
+  - "<#D6BA5B><bold>Team Tag</bold>"
   - "<gray>Set a short prefix/tag for</gray>"
   - "<gray>your team in chat.</gray>"
   - ""
@@ -514,34 +612,29 @@ setting_view_tag_lore:
   - "<b><white>{team_tag}</white>"
   - ""
   - "<yellow>Click to change tag ✎</yellow>"
-
-# Recruitment
-setting_view_status_name: "<#D6BA5B><bold>Recruitment Status</bold>"
-setting_view_status_open_lore:
+setting_view_status_open:
+  - "<#D6BA5B><bold>Recruitment Status</bold>"
   - "<gray>Status: <white>OPEN</white></gray>"
   - ""
   - "<yellow>Click to toggle Open/Closed ⟳</yellow>"
-setting_view_status_closed_lore:
+setting_view_status_closed:
+  - "<#D6BA5B><bold>Recruitment Status</bold>"
   - "<gray>Status: <white>CLOSED</white></gray>"
   - ""
   - "<yellow>Click to toggle Open/Closed ⟳</yellow>"
-
-# Anchor
-setting_view_anchor_name: "<#D6BA5B><bold>Home Anchor</bold>"
-setting_view_no_anchor_name: "<red><bold>Home Missing!!</bold>"
-setting_view_anchor_lore:
+setting_view_anchor:
+  - "<#D6BA5B><bold>Home Anchor</bold>"
   - "<gray>If enabled, team members will</gray>"
   - "<gray>respawn at the team home.</gray>"
   - ""
   - "<gray>Status: <white>{team_anchor}</white></gray>"
   - ""
   - "<yellow>Click to toggle Anchor ⟳</yellow>"
-setting_view_no_anchor_lore:
+setting_view_no_anchor:
+  - "<red><bold>Home Missing!!</bold>"
   - "<gray>You must set a team home first.</gray>"
-
-# Title
-setting_view_title_name: "<#D6BA5B><bold>Team Title</bold>"
-setting_view_title_lore:
+setting_view_title:
+  - "<#D6BA5B><bold>Team Title</bold>"
   - "<gray>Set the official title displayed</gray>"
   - "<gray>above your team name.</gray>"
   - ""
@@ -549,41 +642,51 @@ setting_view_title_lore:
   - "<b><white>{team_title}</white>"
   - ""
   - "<yellow>Click to edit title ✎</yellow>"
-
-# PVP
-setting_view_pvp_name: "<#D6BA5B><bold>Friendly Fire (PvP)</bold>"
-setting_view_pvp_lore:
+setting_view_pvp:
+  - "<#D6BA5B><bold>Friendly Fire (PvP)</bold>"
   - "<gray>Allow members to damage</gray>"
   - "<gray>each other.</gray>"
   - ""
   - "<gray>Status: <white>{team_pvp}</white></gray>"
   - ""
   - "<yellow>Click to toggle PvP ⚔</yellow>"
-
-# Rename
-setting_view_rename_name: "<#D6BA5B><bold>Rename Team</bold>"
-setting_view_rename_lore:
+setting_view_rename:
+  - "<#D6BA5B><bold>Rename Team</bold>"
   - ""
   - "<gray>Change the name of your team.</gray>"
   - " "
   - "<gray>Current: <b><{team_color}>{team}</{team_color}></b>"
   - "<yellow>Click to rename team ✎</yellow>"
-
-# Disband
-setting_view_disband_name: "<red><bold>Disband Team</bold>"
-setting_view_disband_lore:
+setting_view_disband:
+  - "<red><bold>Disband Team</bold>"
   - "<gray>Permanently delete this team.</gray>"
   - "<gray>This action cannot be undone.</gray>"
   - ""
   - "<red><bold>⚠ CLICK TO DISBAND ⚠</bold></red>"
 
-#################
-## Team Viewer ##
-#################
-# Team
+# Main (input)
+setting_view_anvil_desc_title: "<gradient:#5BD686:#D6BA5B><bold>Set Description</bold></gradient>"
+setting_view_anvil_tag_title: "<gradient:#5BD686:#D6BA5B><bold>Set Tag</bold></gradient>"
+setting_view_anvil_title_title: "<gradient:#5BD686:#D6BA5B><bold>Set Title</bold></gradient>"
+setting_view_anvil_rename_title: "<gradient:#5BD686:#D6BA5B><bold>Rename Team</bold></gradient>"
+
+# Input item
+setting_view_anvil_desc_input_name: "<gray>Current: <white>{team_description}</white></gray>"
+setting_view_anvil_desc_output_name: "<gray>New Description: <white>%input%</white></gray>"
+setting_view_anvil_tag_input_name: "<gray>Current: <white>{team_tag}</white></gray>"
+setting_view_anvil_tag_output_name: "<gray>New Tag: <white>%input%</white></gray>"
+setting_view_anvil_title_input_name: "<gray>Current: <white>{team_title}</white></gray>"
+setting_view_anvil_title_output_name: "<gray>New Title: <white>%input%</white></gray>"
+setting_view_anvil_rename_input_name: "<gray>Current: <white>%betterteams_name%</white></gray>"
+setting_view_anvil_rename_output_name: "<gray>New Name: <white>%input%</white></gray>"
+
+# ===================================================================
+# view/team - Page
+# ===================================================================
+# Main
 team_viewer_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
 
-# Team - Info Item
+# Gui
 team_viewer_info_name: "<b><{team_color}>{team}</{team_color}></b> <gray>({team_size}/{team_limit})</gray>"
 team_viewer_info_desc: "<white><italic>{team_description}</italic></white>"
 team_viewer_info_lore_common:
@@ -591,37 +694,41 @@ team_viewer_info_lore_common:
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
   - " <#5BD686>• Active:</#5BD686> <#D6BA5B>{team_level}"
-
-# Team - balance Item
-team_viewer_balance_name: "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
-team_viewer_balance_lore:
+team_viewer_balance:
+  - "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
   - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
-
-# Team - Members Item
-team_viewer_members_name: "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
-team_viewer_members_lore:
+team_viewer_members:
+  - "<b><gradient:#D0B65D:#D0B65D>Team Members</gradient><gradient:#D0B65D:#F6E6AD></gradient></b>"
   - "<gray>View this team's members.</gray>"
   - "<#5BD686>• Size:</#5BD686> <b><white>{team_size}/{team_limit}</white></b>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view members</gray>"
-
-# Team - Allies Item
-team_viewer_allies_name: "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
-team_viewer_allies_lore:
+team_viewer_allies:
+  - "<b><gradient:#DE00AB:#FFA1F9>Team Allies</gradient></b>"
   - "<gray>View this team's allies.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view allies</gray>"
 
-# Team Members
+# ===================================================================
+# view/members - Page
+# ===================================================================
+# Main
 team_viewer_members_title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
-team_viewer_member_item_name: "<aqua>{team_player}"
-team_viewer_member_item_lore:
+
+# Gui
+team_viewer_member_item:
+  - "<aqua>{team_player}"
   - "<gray>Rank: <yellow>{rank}"
 
-# Team Allies
+# ===================================================================
+# view/allies - Page
+# ===================================================================
+# Main
 team_viewer_allies_title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
-team_viewer_ally_item_name: "<b><{color}>{team}</{color}></b>"
-team_viewer_ally_item_lore:
+
+# Gui
+team_viewer_ally_item:
+  - "<b><{color}>{team}</{color}></b>"
   - " "
   - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"
   - " <#5BD686>• Level:</#5BD686> <#D6BA5B>{team_size}"
@@ -629,45 +736,40 @@ team_viewer_ally_item_lore:
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
 
-################
-## Warps View ##
-################
+# ===================================================================
+# pager/warps_view - Page
+# ===================================================================
 # Main
 warps_view_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Warps</gradient></bold>"
 
-# Claimable Warps
-warps_view_claimable_name: "<bold><#55FF55>+ Create New Warp</bold>"
-warps_view_claimable_lore:
+# Gui
+warps_view_claimable:
+  - "<bold><#55FF55>+ Create New Warp</bold>"
   - "<gray>Sets a new team warp exactly</gray>"
   - "<gray>where you are standing.</gray>"
   - ""
   - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to claim slot</gray>"
-
-# Occupied Warps
-warps_view_occupied_name: "<bold><gradient:#FFDAB4:#FFD2D2>{warp_name}</gradient></bold>"
-warps_view_occupied_lore:
+warps_view_occupied:
+  - "<bold><gradient:#FFDAB4:#FFD2D2>{warp_name}</gradient></bold>"
   - "<gray>Location:</gray> <white>{warp_world}</white> <gray>(<white>{warp_x}</white>, <white>{warp_y}</white>, <white>{warp_z}</white>)</gray>"
   - "<gray>Secured:</gray> <white>{warp_locked}</white>"
   - ""
   - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to teleport</gray>"
   - "<white>▶</white> <red>Shift-Right-Click</red> <gray>to delete warp</gray>"
-
-# Locked Warps
-warps_view_locked_name: "<bold><#FF5555>✖ Locked Slot</bold>"
-warps_view_locked_lore:
+warps_view_locked:
+  - "<bold><#FF5555>✖ Locked Slot</bold>"
   - "<gray>Upgrade your Team Level to</gray>"
   - "<gray>unlock more warp slots.</gray>"
 
-# ----------------------------------------------------
-# ANVIL MENUS: Warps
-# ----------------------------------------------------
-warps_view_anvil_label: "<gradient:#00FFC7:#00BC92>▶ </gradient>"
-
-# --- Create New Warp ---
+# inputs/warp/claim.yml - Input
+# Main (input)
 warps_view_anvil_set_name_title: "<bold><#55FF55>Name Your Warp</bold>"
+# inputs/warp/passward.yml - Input
+warps_view_anvil_password_title: "<bold><#FF5555>Restricted Warp</bold>"
 
-warps_view_anvil_set_name_input_name: "<bold><green>Create a New Warp</green></bold>"
-warps_view_anvil_set_name_input_lore:
+# Input item
+warps_view_anvil_set_name_input:
+  - "<bold><green>Create a New Warp</green></bold>"
   - "<gray>Type a name for your team's new warp</gray>"
   - "<gray>in the text box above.</gray>"
   - ""
@@ -676,54 +778,27 @@ warps_view_anvil_set_name_input_lore:
   - ""
   - "<yellow>Syntax:</yellow> <white>Name [Password]</white>"
   - "<gray>Example:</gray> <white>Base secret123</white>"
-
-warps_view_anvil_set_name_output_name: "<bold><#55FF55>✔ Confirm Creation</bold>"
-warps_view_anvil_set_name_output_lore:
+warps_view_anvil_set_name_output:
+  - "<bold><#55FF55>✔ Confirm Creation</bold>"
   - "<gray>Your new warp will be created</gray>"
   - "<gray>exactly where you are standing.</gray>"
   - ""
   - "<white>▶</white> <yellow>Click</yellow> <gray>to save</gray>"
-
-# --- Enter Password (Locked) ---
-warps_view_anvil_password_title: "<bold><#FF5555>Restricted Warp</bold>"
-
-warps_view_anvil_password_input_name: "<bold><gold>Enter Password</gold></bold>"
-warps_view_anvil_password_input_lore:
+warps_view_anvil_password_input:
+  - "<bold><gold>Enter Password</gold></bold>"
   - "<gray>This warp is secured. You must</gray>"
   - "<gray>enter the password to access it.</gray>"
   - ""
   - "<white>▶</white> <gray>Type the password above.</gray>"
-
-warps_view_anvil_password_output_name: "<bold><#55FF55>✔ Authenticate</bold>"
-warps_view_anvil_password_output_lore:
+warps_view_anvil_password_output:
+  - "<bold><#55FF55>✔ Authenticate</bold>"
   - "<gray>Submit the password to attempt</gray>"
   - "<gray>teleportation.</gray>"
   - ""
   - "<white>▶</white> <yellow>Click</yellow> <gray>to confirm</gray>"
 
-############
-## INPUTS ##
-############
-
-#Label
+# (removed grouped headers; individual headers inserted near their keys)
+# ===================================================================
+# ANVIL (INPUTS) - GENERIC
+# ===================================================================
 label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
-
-# Setting - Description
-setting_view_anvil_desc_title: "<gradient:#5BD686:#D6BA5B><bold>Set Description</bold></gradient>"
-setting_view_anvil_desc_input_name: "<gray>Current: <white>{team_description}</white></gray>"
-setting_view_anvil_desc_output_name: "<gray>New Description: <white>%input%</white></gray>"
-
-# Setting - Tag
-setting_view_anvil_tag_title: "<gradient:#5BD686:#D6BA5B><bold>Set Tag</bold></gradient>"
-setting_view_anvil_tag_input_name: "<gray>Current: <white>{team_tag}</white></gray>"
-setting_view_anvil_tag_output_name: "<gray>New Tag: <white>%input%</white></gray>"
-
-# Setting - Title
-setting_view_anvil_title_title: "<gradient:#5BD686:#D6BA5B><bold>Set Title</bold></gradient>"
-setting_view_anvil_title_input_name: "<gray>Current: <white>{team_title}</white></gray>"
-setting_view_anvil_title_output_name: "<gray>New Title: <white>%input%</white></gray>"
-
-# Setting - Rename
-setting_view_anvil_rename_title: "<gradient:#5BD686:#D6BA5B><bold>Rename Team</bold></gradient>"
-setting_view_anvil_rename_input_name: "<gray>Current: <white>%betterteams_name%</white></gray>"
-setting_view_anvil_rename_output_name: "<gray>New Name: <white>%input%</white></gray>"

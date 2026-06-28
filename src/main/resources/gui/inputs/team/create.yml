@@ -1,18 +1,19 @@
 main:
-  title: "lang.list_view_anvil_create_title"
+  title: "lang.list_view_create_title"
   label: "lang.label"
-
-left-item:
-  name: "lang.list_view_anvil_create_input_name"
-  item: PAPER
-  lore: [ "lang.list_view_anvil_create_input_lore" ]
+  inherit:
+    - "template/text_style"
+list_view_create_input:
+  type: LEFT
+  material: PLAYER_HEAD
+  texture: list.create
   click:
     - "[action] back"
 
-output-item:
-  name: "lang.list_view_anvil_create_output_name"
-  item: ANVIL
-  lore: [ "lang.list_view_anvil_create_output_lore" ]
+list_view_create_output:
+  type: OUTPUT
+  material: PLAYER_HEAD
+  texture: list.create
   click:
     - "[player] team create {input}"
     - "[delay] 10"

@@ -12,7 +12,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "S . . F T O . . H"
+    - "S . < F T O > . H"
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -26,131 +26,108 @@ dynamic_list:
     cleanup-margin: 40
   templates:
     # ----------------------------------------------------
-    # TEAM STATE TEMPLATES (Fetched by Kotlin Backend)
+    # TEAM STATE TEMPLATES
     # ----------------------------------------------------
     team-item-with-description-in-team:
-      name: "lang.list_view_team_item_name_in_team"
+      name: "lang.team_name"
       lore:
-        - "lang.list_view_team_item_desc"
+        - "lang.team_desc"
         - " "
-        - "lang.list_view_team_item_lore_common"
+        - "lang.team_common"
         - ""
-        - "lang.list_view_team_item_lore_click"
-      item: PLAYER_HEAD
+        - "lang.team_click"
+      material: PLAYER_HEAD
       texture: ""
       action: "view.team"
 
     team-item-without-description-in-team:
-      name: "lang.list_view_team_item_name_in_team"
+      name: "lang.team_name"
       lore:
-        - "lang.list_view_team_item_lore_common"
+        - "lang.team_common"
         - ""
-        - "lang.list_view_team_item_lore_click"
-      item: PLAYER_HEAD
+        - "lang.team_click"
+      material: PLAYER_HEAD
       texture: ""
       action: "view.team"
 
     team-item-with-description-no-team:
-      name: "lang.list_view_team_item_name_no_team"
+      name: "lang.team_name"
       lore:
-        - "lang.list_view_team_item_desc"
+        - "lang.team_desc"
         - " "
-        - "lang.list_view_team_item_lore_common"
+        - "lang.team_common"
         - ""
-        - "lang.list_view_team_item_lore_click"
-        - "lang.list_view_team_item_lore_join"
-      item: PLAYER_HEAD
+        - "lang.team_click"
+        - "lang.team_join"
+      material: PLAYER_HEAD
       texture: ""
       action: "view.team"
 
     team-item-without-description-no-team:
-      name: "lang.list_view_team_item_name_no_team"
+      name: "lang.team_name"
       lore:
-        - "lang.list_view_team_item_lore_common"
+        - "lang.team_common"
         - ""
-        - "lang.list_view_team_item_lore_click"
-        - "lang.list_view_team_item_lore_join"
-      item: PLAYER_HEAD
+        - "lang.team_click"
+        - "lang.team_join"
+      material: PLAYER_HEAD
       texture: ""
       action: "view.team"
 
     invitation-team-item:
-      name: "lang.list_view_invitation_team_item_name"
+      name: "lang.team_name"
       lore:
         - "lang.list_view_team_item_desc"
         - " "
         - "lang.list_view_team_item_lore_common"
         - ""
         - "lang.list_view_invitation_team_item_lore_accept"
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       texture: ""
       action: "view.team"
 
 prev_page:
-  name: "lang.core_prev_page_name"
-  slot: 47
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "core.prev_page"
+  display: "lang.buttons_prev"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
   action: "core_prev_page"
 
 next_page:
-  name: "lang.core_next_page_name"
-  slot: 51
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "core.next_page"
+  display: "lang.buttons_next"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
   action: "core_next_page"
 
 
 # ----------------------------------------------------
 # CORE BUTTONS
 # ----------------------------------------------------
-search-item:
+list_view_search:
   char: "S"
-  name: "lang.list_view_search_name"
-  lore: [ "lang.list_view_search_lore" ]
-  item: OAK_SIGN
-  click-sound: gui.list.search-item
+  material: OAK_SIGN
+  click:
+    - "[sound] light_click"
+    - "[input] team/search"
 
-
-
-filter_default:
-  char: "F"
-  name: "lang.list_view_filter_default_name"
-  lore: [ "lang.list_view_filter_default_lore" ]
-  item: HOPPER
-  click-sound: gui.list.filter
-
-sort_type_money:
-  char: "T"
-  name: "lang.list_view_sort_money_name"
-  lore: [ "lang.list_view_sort_money_lore" ]
-  item: SUNFLOWER
-  click-sound: gui.list.sort
-
-sort_order_asc:
-  char: "O"
-  name: "lang.list_view_sort_asc_name"
-  lore: [ "lang.list_view_sort_asc_lore" ]
-  item: LEVER
-  click-sound: gui.list.sort
-
-invitation:
+list_view_invitation:
   slot: 52
   priority: 1
-  name: "lang.list_view_invitation_name"
-  lore: [ "lang.list_view_invitation_lore" ]
-  item: CHEST
+  material: CHEST
   view-requirement:
     - "[condition] '{team}' == ''"
   action: "inbox.team_invites"
 
-create:
+list_view_create:
   char: "H"
-  name: "lang.list_view_create_name"
-  lore: [ "lang.list_view_create_lore" ]
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "list.create"
   action: "team_list.create"
   view-requirement:
@@ -158,69 +135,106 @@ create:
 
 
 home:
+  display: "lang.buttons_home"
   char: "H"
-  name: "lang.buttons_home_name"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "texture:core.home"
   action: "home"
   view-requirement:
     - "[condition] '{team}' != ''"
 
 # ----------------------------------------------------
-# CONDITIONAL OVERRIDES (Swapped by your backend logic)
+# DEFAULT BUTTONS
 # ----------------------------------------------------
-sort_order_desc:
-  char: "o"
-  name: "lang.list_view_sort_desc_name"
-  lore: [ "lang.list_view_sort_desc_lore" ]
-  item: REDSTONE_TORCH
-  click-sound: gui.list.sort
 
-sort_type_score:
-  char: "t"
-  name: "lang.list_view_sort_score_name"
-  lore: [ "lang.list_view_sort_score_lore" ]
-  item: NETHER_STAR
-  click-sound: gui.list.sort
+# FILTERS
+list_view_filter_default:
+  char: "F"
+  material: HOPPER
+  action: "list_action_filter"
+  click-sound: "click"
 
-sort_type_level:
-  char: "U"
-  name: "lang.list_view_sort_level_name"
-  lore: [ "lang.list_view_sort_level_lore" ]
-  item: EXPERIENCE_BOTTLE
-  click-sound: gui.list.sort
+list_view_filter_open:
+  char: "F"
+  material: OAK_DOOR
+  action: "list_action_filter"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_filter}' == 'OPEN_ONLY'"
 
-sort_type_members:
-  char: "u"
-  name: "lang.list_view_sort_members_name"
-  lore: [ "lang.list_view_sort_members_lore" ]
-  item: PLAYER_HEAD
-  click-sound: gui.list.sort
+list_view_filter_online:
+  char: "F"
+  material: LIME_DYE
+  action: "list_action_filter"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_filter}' == 'CURRENTLY_ONLINE'"
 
-filter_open:
-  char: "f"
-  name: "lang.list_view_filter_open_name"
-  lore: [ "lang.list_view_filter_open_lore" ]
-  item: OAK_DOOR
-  click-sound: gui.list.filter
+list_view_filter_not_full:
+  char: "F"
+  material: CHEST
+  action: "list_action_filter"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_filter}' == 'NOT_FULL'"
 
-filter_online:
-  char: "G"
-  name: "lang.list_view_filter_online_name"
-  lore: [ "lang.list_view_filter_online_lore" ]
-  item: LIME_DYE
-  click-sound: gui.list.filter
 
-filter_not_full:
-  char: "g"
-  name: "lang.list_view_filter_not_full_name"
-  lore: [ "lang.list_view_filter_not_full_lore" ]
-  item: CHEST
-  click-sound: gui.list.filter
+# SORT TYPES
+list_view_sort_money:
+  char: "T"
+  material: SUNFLOWER
+  action: "list_action_sort_type"
+  click-sound: "click"
+
+list_view_sort_score:
+  char: "T"
+  material: NETHER_STAR
+  action: "list_action_sort_type"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_sort_type}' == 'SCORE'"
+
+list_view_sort_level:
+  char: "T"
+  material: EXPERIENCE_BOTTLE
+  action: "list_action_sort_type"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_sort_type}' == 'LEVEL'"
+
+list_view_sort_members:
+  char: "T"
+  material: PLAYER_HEAD
+  action: "list_action_sort_type"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_sort_type}' == 'MEMBERS'"
+
+
+# SORT ORDER
+list_view_sort_asc:
+  char: "O"
+  material: LEVER
+  action: "list_action_sort_order"
+  click-sound: "click"
+
+list_view_sort_desc:
+  char: "O"
+  material: REDSTONE_TORCH
+  action: "list_action_sort_order"
+  click-sound: "click"
+  priority: 10
+  view-requirement:
+    - "[condition] '{list_sort_order}' == 'DESC'"
 
 no-invitation:
+  display: "lang.list_view_no_invitation"
   char: "i"
-  name: "lang.list_view_invitation_name"
-  lore: [ "lang.list_view_no_invitation_lore" ]
-  item: CHEST
+  material: CHEST
   click-sound: gui.list.invitation

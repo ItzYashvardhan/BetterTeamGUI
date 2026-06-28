@@ -13,7 +13,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . . . . . . . ."
+    - ". . < . . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -25,19 +25,15 @@ dynamic_list:
     render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
-    item: BEDROCK
-
-# ----------------------------------------------------
-# LEVEL STATES (Fetched by Kotlin Backend)
-# ----------------------------------------------------
-level-item:
-  default:
+  templates:
+    # ----------------------------------------------------
+    # LEVEL STATES
+    # ----------------------------------------------------
     unlocked:
       name: "lang.levels_view_unlocked_name"
       lore:
         - "lang.levels_view_unlocked_lore"
-      item: LIME_STAINED_GLASS_PANE
+      material: LIME_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.default
 
@@ -55,7 +51,7 @@ level-item:
         - "lang.levels_view_perks_owners"
         - " "
         - "lang.levels_view_current_active"
-      item: EMERALD
+      material: EMERALD
       texture: ""
       glow: true
       click-sound: gui.levels.current
@@ -75,7 +71,7 @@ level-item:
         - ""
         - "lang.levels_view_requirement_header"
         - "lang.levels_view_requirement_fail"
-      item: ORANGE_STAINED_GLASS_PANE
+      material: ORANGE_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.progress
 
@@ -96,9 +92,10 @@ level-item:
         - "lang.levels_view_requirement_success"
         - ""
         - "lang.levels_view_click_rankup"
-      item: ORANGE_STAINED_GLASS_PANE
+      material: ORANGE_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.progress-unlockable
+      action: "level.rankup"
 
     locked:
       name: "lang.levels_view_locked_name"
@@ -106,30 +103,33 @@ level-item:
         - "lang.levels_view_locked_lore"
         - ""
         - "lang.levels_view_locked_requirement"
-      item: RED_STAINED_GLASS_PANE
+      material: RED_STAINED_GLASS_PANE
       texture: ""
       click-sound: gui.levels.locked
 
-# ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
-# ----------------------------------------------------
 prev_page:
-  name: "lang.core_prev_page_name"
+  name: "lang.buttons_prev_name"
   char: "<"
-  item: PLAYER_HEAD
-  texture: "texture:core.prev_page"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
   action: "core_prev_page"
 
 next_page:
-  name: "lang.core_next_page_name"
+  name: "lang.buttons_next_name"
   char: ">"
-  item: PLAYER_HEAD
-  texture: "texture:core.next_page"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
   action: "core_next_page"
 
 home:
   name: "lang.buttons_home_name"
   char: "H"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "texture:core.home"
   action: "home"

@@ -4,69 +4,72 @@ import com.booksaw.betterTeams.PlayerRank
 import com.booksaw.betterTeams.Team
 import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
+import me.justlime.betterTeamGUI.commands.TeamCommandProxy
 import me.justlime.betterTeamGUI.listener.InventoryListener
-import me.justlime.betterTeamGUI.listing.*
+import me.justlime.betterTeamGUI.listener.ListenerManager
+import me.justlime.betterTeamGUI.listing.TeamBanManager
+import me.justlime.betterTeamGUI.listing.TeamLeaderboardManager
+import me.justlime.betterTeamGUI.listing.TeamLevelsManager
+import me.justlime.betterTeamGUI.listing.TeamWarpsManager
 import me.justlime.betterTeamGUI.listing.common.TeamAlliesManager
 import me.justlime.betterTeamGUI.listing.common.TeamMembersManager
 import me.justlime.betterTeamGUI.listing.inbox.TeamInvitationManager
 import me.justlime.betterTeamGUI.listing.viewer.TeamListManager
+import me.justlime.betterTeamGUI.models.JGui
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.config.GuiDirectoryHandler
+import net.justlime.limeframegui.enums.AnsiColor
 import net.justlime.limeframegui.enums.ColorType
 import net.justlime.limeframegui.registry.component.PlaceholderRegistry
+import net.justlime.limeframegui.util.LimeConsole
 import org.bstats.bukkit.Metrics
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.HttpURLConnection
 import java.net.URI
 
-lateinit var pluginInstance: BetterTeamGUI
+
 lateinit var foliaLib: FoliaLib
 
 class BetterTeamGUI : JavaPlugin() {
 
-    var lang = "en"
+    companion object {
+        lateinit var INSTANCE: BetterTeamGUI
+    }
 
     override fun onEnable() {
-
+        registerConsoleMessage()
         ConsoleMessage.printHeader()
         ConsoleMessage.printStep("Enabling BetterTeamGUI")
-        pluginInstance = this
+        INSTANCE = this
         foliaLib = FoliaLib(this)
-        if (!this.dataFolder.exists()) this.dataFolder.mkdir()
-        this.saveDefaultConfig()
-        lang = this.config.getString("lang") ?: "en"
-        when (lang) {
-            "es-ar" -> {
-                ConsoleMessage.printStep("Language set to Spanish (Argentina)", ConsoleMessage.Color.YELLOW)
-                ConsoleMessage.printStep("Translated by HATOR", ConsoleMessage.Color.BRIGHT_GREEN)
-            }
+        if (!this.dataFolder.exists()) {
+            this.dataFolder.mkdir()
         }
-
+        this.saveDefaultConfig()
 
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         setupLimeFrameGUI()
-//        Config.reload()
         ConsoleMessage.printStep("LimeFrame Setup Completed")
-//        Config.reload()
         server.pluginManager.registerEvents(InventoryListener(), this)
 
 
         if (!this.server.pluginManager.isPluginEnabled("BetterTeams")) {
-            ConsoleMessage.printStep("BETTERTEAMS PLUGIN REQUIRED", ConsoleMessage.Color.RED)
+            ConsoleMessage.printStep("BETTERTEAMS PLUGIN REQUIRED", AnsiColor.RED)
             ConsoleMessage.printStep("Disabling BetterTeamsGUI")
             this.server.pluginManager.disablePlugin(this)
 
         }
 
-//        if (ConfigManager.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
-//            try {
-//                TeamCommandProxy.inject() //Experimental}
-//            } catch (e: Exception) {
-//                ConsoleMessage.printStep("Failed to Inject GUI Commands", ConsoleMessage.Color.RED)
-//                ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
-//            }
-//        }
+        if (this.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
+            try {
+                TeamCommandProxy.inject() //Experimental
+            } catch (e: Exception) {
+                ConsoleMessage.printStep("Failed to Inject GUI Commands", AnsiColor.RED)
+                ConsoleMessage.printStep("Error: ${e.message}", AnsiColor.BRIGHT_RED)
+            }
+        }
+        ListenerManager.register()
         CommandManager.register()
         ConsoleMessage.printStep("Successfully Registered Commands")
         Metrics(this, 24705)
@@ -75,9 +78,20 @@ class BetterTeamGUI : JavaPlugin() {
         checkVersionFromBetterTeamGUIRepo()
         ConsoleMessage.printStep(
             "Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}",
-            ConsoleMessage.Color.BRIGHT_GREEN
+            AnsiColor.BRIGHT_GREEN
         )
         ConsoleMessage.printFooter()
+    }
+
+
+    private fun registerConsoleMessage() {
+        LimeConsole.register(
+            "BetterTeamGUI", LimeConsole(
+                pluginName = "BetterTeamGUI",
+                tagline = "Redefining Team Interaction",
+                primaryColor = AnsiColor.ORANGE
+            )
+        )
     }
 
     override fun onDisable() {
@@ -87,21 +101,10 @@ class BetterTeamGUI : JavaPlugin() {
     }
 
     fun setupLimeFrameGUI() {
-        LimeFrameAPI.setKeys {
-            inventoryRows = "rows"
-            material = "item"
-            name = "name"
-            lore = "lore"
-            glow = "glow"
-            slot = "slot"
-            slotList = "slot"
-            texture = "texture"
-            flags = "flags"
-        }
         LimeFrameAPI.enableFoliaLib()
         LimeFrameAPI.loadConfig("gui")
         GuiDirectoryHandler.reload(this, true)
-        TeamListManager.registerPopulators()
+        TeamListManager.registerAll()
         TeamMembersManager.registerPopulators()
         TeamAlliesManager.registerPopulators()
         TeamBanManager.registerPopulators()
@@ -170,26 +173,26 @@ private fun checkVersionFromBetterTeamGUIRepo() {
         val match = versionPattern.find(response) ?: return
 
         val latestTag = match.groupValues[1].removePrefix("v")
-        val currentVersion = pluginInstance.description.version
+        val currentVersion = BetterTeamGUI.INSTANCE.description.version
 
         if (currentVersion != latestTag) {
             ConsoleMessage.printStep(
-                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag",
-                ConsoleMessage.Color.BRIGHT_YELLOW
+                "Outdated Version Found:${AnsiColor.WHITE} $currentVersion -> $latestTag",
+                AnsiColor.BRIGHT_YELLOW
             )
-            ConsoleMessage.printStep("Modrinth", ConsoleMessage.Color.LIGHT_BLUE)
-            ConsoleMessage.printStep("https://modrinth.com/plugin/betterteamsgui/versions", ConsoleMessage.Color.WHITE)
-            ConsoleMessage.printStep("Download the latest version from above link", ConsoleMessage.Color.BRIGHT_PURPLE)
+            ConsoleMessage.printStep("Modrinth", AnsiColor.BRIGHT_BLUE)
+            ConsoleMessage.printStep("https://modrinth.com/plugin/betterteamsgui/versions", AnsiColor.WHITE)
+            ConsoleMessage.printStep("Download the latest version from above link", AnsiColor.BRIGHT_PURPLE)
 
         } else {
             ConsoleMessage.printStep(
-                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)",
-                ConsoleMessage.Color.GREEN
+                "Latest version found${AnsiColor.RESET}${AnsiColor.WHITE} ($currentVersion)",
+                AnsiColor.GREEN
             )
         }
 
     } catch (e: Exception) {
-        ConsoleMessage.printStep("Failed to check for updates", ConsoleMessage.Color.RED)
+        ConsoleMessage.printStep("Failed to check for updates", AnsiColor.RED)
         ConsoleMessage.printStep(e.message ?: "Unidentified Version Error")
     }
 

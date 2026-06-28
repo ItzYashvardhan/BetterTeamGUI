@@ -10,7 +10,7 @@ main:
     - ". . . . . . . X H"
 
 # Info Item
-info-with-description:
+team_viewer_info_with_description:
   name: "lang.team_viewer_info_name"
   char: "I"
   priority: 10
@@ -20,49 +20,37 @@ info-with-description:
     - "lang.team_viewer_info_desc"
     - " "
     - "lang.team_viewer_info_lore_common"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "team.info"
   click-sound: gui.team-viewer.info
 
-info-without-description:
+team_viewer_info_without_description:
   name: "lang.team_viewer_info_name"
   char: "I"
   priority: 0
   lore:
     - "lang.team_viewer_info_lore_common"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "team.info"
   click-sound: gui.team-viewer.info
 
   # ----------------------------------------------------
   # CORE BUTTONS
   # ----------------------------------------------------
-balance:
-  name: "lang.team_viewer_balance_name"
+team_viewer_balance:
   char: "B"
-  lore:
-    - "lang.team_viewer_balance_lore"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "team.balance" # Moved Base64 to texture.yml
   click-sound: gui.team-viewer.balance
 
-members:
-  name: "lang.team_viewer_members_name"
+team_viewer_members:
   char: "M"
-  lore:
-    - "lang.team_viewer_members_lore"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "team.members"
   action: view.members
 
-allies:
-  name: "lang.team_viewer_allies_name"
+team_viewer_allies:
   char: "A"
-  lore:
-    - "lang.team_viewer_allies_lore"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "team.allies"
   action: view.allies
-
-
-

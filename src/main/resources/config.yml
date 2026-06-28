@@ -2,9 +2,13 @@
 # This allows player to directly open gui through /team command or its aliases
 use-native-command: true # Required Server Restart to apply changes
 
-# # This is the prefix for all commands executed by the plugin.
-# For example, if you set it to "team", then all commands will be executed as "/team <command>".
-command-prefix: "team (REMOVED)" # Note this will Not work You should change in gui/component/placholder.yml
+# Match your command prefix here in order to inject the gui to /team.
+# i.e it could be /betterteams:team or /team
+command-prefix: "team"
+
+# Bonus Features
+# It will assign each team a random color instead of default to GOLD
+random-team-color: true
 
 #Don't change this value unless you know what it means
 version: 3.0

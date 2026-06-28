@@ -13,7 +13,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . . . . . . . ."
+    - ". . < . . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -25,26 +25,30 @@ dynamic_list:
     render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
-    name: "lang.leaderboard_view_item_name"
-    lore: ["lang.leaderboard_view_item_lore"]
-    item: PLAYER_HEAD
-    texture: "{player_uuid}"
-    click-sound: gui.leaderboard.team-leaderboard-item
+  templates:
+    leaderboard:
+      name: "lang.leaderboard_view_item_name"
+      lore: ["lang.leaderboard_view_item_lore"]
+      material: PLAYER_HEAD
+      texture: "{player_uuid}"
+      click-sound: gui.leaderboard.team-leaderboard-item
 
-# ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
-# ----------------------------------------------------
 prev_page:
-  name: "lang.core_prev_page_name"
+  name: "lang.buttons_prev_name"
   char: "<"
-  item: PLAYER_HEAD
-  texture: "core.prev_page"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
   action: "core_prev_page"
 
 next_page:
-  name: "lang.core_next_page_name"
+  name: "lang.buttons_next_name"
   char: ">"
-  item: PLAYER_HEAD
-  texture: "core.next_page"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
   action: "core_next_page"

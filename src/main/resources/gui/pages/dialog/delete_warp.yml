@@ -7,14 +7,14 @@ main:
 
 confirm:
   char: "Y"
-  name: "lang.dialog_confirm_name"
-  lore: "lang.dialog_delete_warp_confirm_lore"
-  item: LIME_WOOL
+  name: "lang.dialog_confirm"
+  lore: "lang.dialog_delete_warp_confirm"
+  material: LIME_WOOL
   action: "dialog.confirm_delete_warp"
 
 cancel:
   char: "N"
-  name: "lang.dialog_cancel_name"
-  lore: "lang.dialog_delete_warp_cancel_lore"
-  item: RED_WOOL
+  name: "lang.dialog_cancel"
+  lore: "lang.dialog_delete_warp_cancel"
+  material: RED_WOOL
   action: "dialog.cancel"

@@ -1,10 +1,10 @@
 package me.justlime.betterTeamGUI.commands
 
 import com.booksaw.betterTeams.Team
+import me.justlime.betterTeamGUI.BetterTeamGUI
 import me.justlime.betterTeamGUI.foliaLib
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
-import me.justlime.betterTeamGUI.utilities.TeamService
+import net.justlime.limeframegui.enums.AnsiColor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
@@ -35,16 +35,16 @@ object CommandService {
 
         ConsoleMessage.printHeader()
         try {
-            pluginInstance.saveDefaultConfig()
-            pluginInstance.reloadConfig()
+            BetterTeamGUI.INSTANCE.saveDefaultConfig()
+            BetterTeamGUI.INSTANCE.reloadConfig()
 //            Config.reload(sender)
 //            TeamService.reload()
 //            val message = ConfigManager.messages.getString("reload.chat") ?: ""
 //            sendMessage(sender, message)
             ConsoleMessage.printStep("Config Reloaded")
         } catch (e: Exception) {
-            ConsoleMessage.printStep("Failed to Reload Config", ConsoleMessage.Color.RED)
-            ConsoleMessage.printStep("Error: ${e.message}", ConsoleMessage.Color.BRIGHT_RED)
+            ConsoleMessage.printStep("Failed to Reload Config", AnsiColor.RED)
+            ConsoleMessage.printStep("Error: ${e.message}", AnsiColor.BRIGHT_RED)
         }
 
         ConsoleMessage.printFooter()

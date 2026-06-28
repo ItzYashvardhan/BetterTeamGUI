@@ -1,3 +1,6 @@
+# ----------------------------------------------------
+# Common Buttons
+# ----------------------------------------------------
 home:
   - "[sound] click"
   - "[open] dashboard_view"
@@ -5,6 +8,9 @@ back:
   - "[sound] click"
   - "[back]"
 
+# ----------------------------------------------------
+# Inputs
+# ----------------------------------------------------
 input:
   verify_team_creation:
     sequence:
@@ -22,21 +28,21 @@ input:
           - "[sound] entity.player.levelup"
           - "[open] dashboard_view"
 
+# ----------------------------------------------------
+# Dialogs
+# ----------------------------------------------------
 dialog:
-  # ----------------------------------------------------
   # REUSABLE UTILITIES
-  # ----------------------------------------------------
   delay_back:
     - "[delay] 5"
     - "[back]"
 
-  # ----------------------------------------------------
-  # ACTIONS
-  # ----------------------------------------------------
+  # CANCEL ACTIONS
   cancel:
     - "[sound] click"
     - "[back]"
 
+  # CONFIRMATION ACTION
   confirm_disband:
     - "[sound] click"
     - "[player] {cmd.team} disband"
@@ -358,8 +364,6 @@ warp:
   locked:
     - "[sound] locked"
 
-
-
 inbox:
   allies_request:
     - "[sound] click"
@@ -368,7 +372,12 @@ inbox:
     - "[sound] click"
     - "[open] inbox/team_invites_inbox"
 
-levels: []
+level:
+  rankup:
+    click:
+      - "[player] {cmd.team} rankup"
+      - "[delay] 5"
+      - "[open] pager/levels_view"
 
 
 

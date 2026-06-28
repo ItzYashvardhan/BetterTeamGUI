@@ -37,7 +37,7 @@ main:
 prev_page:
   name: "lang.buttons_prev_name"
   char: "<"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.prev"
   click:
     - "[sound] prev"
@@ -46,7 +46,7 @@ prev_page:
 next_page:
   name: "lang.buttons_next_name"
   char: ">"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.next"
   click:
     - "[sound] next"

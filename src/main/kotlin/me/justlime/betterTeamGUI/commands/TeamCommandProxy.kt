@@ -1,9 +1,11 @@
 package me.justlime.betterTeamGUI.commands
 
+import me.justlime.betterTeamGUI.BetterTeamGUI
 import me.justlime.betterTeamGUI.foliaLib
-import me.justlime.betterTeamGUI.pluginInstance
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import me.justlime.betterTeamGUI.utilities.TeamService
+import net.justlime.limeframegui.enums.AnsiColor
+import net.justlime.limeframegui.manager.GuiManager
 import net.justlime.limeframegui.registry.component.SoundRegistry
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
@@ -17,7 +19,8 @@ import java.lang.reflect.Field
  * Acts as a middle-man between Bukkit and the original BetterTeams command.
  * It intercepts the main command to open the GUI, but passes everything else through.
  */
-class TeamCommandProxy(name: String, private val originalCommand: Command) : Command(name, originalCommand.description, originalCommand.usage, originalCommand.aliases) {
+class TeamCommandProxy(name: String, private val originalCommand: Command) :
+    Command(name, originalCommand.description, originalCommand.usage, originalCommand.aliases) {
 
     override fun execute(sender: CommandSender, label: String, args: Array<out String>): Boolean {
         //If it's a player running "/team" (booksaw original command) with no arguments
@@ -25,7 +28,7 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
             val soundPack = SoundRegistry.get("open-gui")
             foliaLib.scheduler.runNextTick {
 //                GuiSound.playPack(sender,soundPack)
-//                GUIManager.openTeamGUI(sender)
+                GuiManager.open(sender,"dashboard_view")
             }
 
             return true
@@ -58,17 +61,25 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
 
                         // Register our proxy into the map
                         commandMap.register(commandName, proxy)
-
-                        ConsoleMessage.printStep("Successfully hooked into \"/team\" via CommandMap injection!", ConsoleMessage.Color.GREEN)
+                        ConsoleMessage.printStep(
+                            "Successfully hooked into \"/team\" via CommandMap injection!",
+                            AnsiColor.GREEN
+                        )
                     } else {
-                        ConsoleMessage.printStep("Failed to unregister original /team command. Proxy injection aborted.", ConsoleMessage.Color.BRIGHT_RED)
+                        ConsoleMessage.printStep(
+                            "Failed to unregister original /team command. Proxy injection aborted.",
+                            AnsiColor.BRIGHT_RED
+                        )
                     }
                 } else {
-                    ConsoleMessage.printStep("Could not find 'team' command in CommandMap. Is BetterTeams loaded?", ConsoleMessage.Color.BRIGHT_RED)
+                    ConsoleMessage.printStep(
+                        "Could not find 'team' command in CommandMap. Is BetterTeams loaded?",
+                        AnsiColor.BRIGHT_RED
+                    )
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                ConsoleMessage.printStep("Failed to inject TeamCommandProxy!", ConsoleMessage.Color.RED)
+                ConsoleMessage.printStep("Failed to inject TeamCommandProxy!", AnsiColor.RED)
             }
         }
 
@@ -93,12 +104,13 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
                 }
 
                 if (knownCommandsField == null) {
-                    pluginInstance.logger.warning("Could not find 'knownCommands' field in CommandMap hierarchy.")
+                    BetterTeamGUI.INSTANCE.logger.warning("Could not find 'knownCommands' field in CommandMap hierarchy.")
                     return false
                 }
 
                 knownCommandsField.isAccessible = true
-                @Suppress("UNCHECKED_CAST") val knownCommands = knownCommandsField.get(commandMap) as MutableMap<String, Command>
+                @Suppress("UNCHECKED_CAST") val knownCommands =
+                    knownCommandsField.get(commandMap) as MutableMap<String, Command>
 
                 // 2. Collect all keys associated with this command instance to avoid concurrent modification
                 // This covers name, aliases, and fallback prefixes (e.g. "betterteams:team")
@@ -121,7 +133,7 @@ class TeamCommandProxy(name: String, private val originalCommand: Command) : Com
                 return true
 
             } catch (e: Exception) {
-                pluginInstance.logger.severe("Error during command unregistration fallback.")
+                BetterTeamGUI.INSTANCE.logger.severe("Error during command unregistration fallback.")
                 e.printStackTrace()
                 return false
             }

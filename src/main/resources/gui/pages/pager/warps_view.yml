@@ -6,7 +6,7 @@ main:
   font-lore: true
   inherit:
     - "template/border"
-    - "template/pager"
+#    - "template/pager"
     - "template/nav"
   pattern:
     - ". . . . . . . . ."
@@ -14,7 +14,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . . . > . ."
+    - ". . . < . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -33,24 +33,39 @@ dynamic_list:
     claimable-warp:
       name: "lang.warps_view_claimable_name"
       lore: [ "lang.warps_view_claimable_lore" ]
-      item: GREEN_STAINED_GLASS_PANE
+      material: GREEN_STAINED_GLASS_PANE
       action: "warp.claim"
 
     occupied-warp:
       name: "lang.warps_view_occupied_name"
       lore: [ "lang.warps_view_occupied_lore" ]
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       texture: warps.occupied
       action: "warp.teleport"
 
     locked-warp:
       name: "lang.warps_view_locked_name"
       lore: [ "lang.warps_view_locked_lore" ]
-      item: RED_STAINED_GLASS_PANE
+      material: RED_STAINED_GLASS_PANE
       action: "warp.locked"
 
-# ----------------------------------------------------
-# CORE BUTTONS (Mapped to Pattern)
-# ----------------------------------------------------
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
 
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"
 

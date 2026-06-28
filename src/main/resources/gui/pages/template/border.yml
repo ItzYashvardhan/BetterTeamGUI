@@ -1,18 +1,7 @@
 main:
   type: template
-  text:
-    title:
-      font: true
-      weight: [BOLD]
-      prefix: "["
-      suffix: "<reset>]"
-    name:
-      weight: [BOLD]
-      case: UPPERCASE
-    lore:
-      font: true
-      prefix: "<gray>"
-      wrap-length: 45
+  inherit:
+    - "template/text_style"
   pattern:
     default:
       1:
@@ -48,18 +37,18 @@ main:
 background_blue:
   name: " "
   char: "B"
-  item: LIGHT_BLUE_STAINED_GLASS_PANE
+  material: LIGHT_BLUE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 
 background_purple:
   name: " "
   char: "P"
-  item: PURPLE_STAINED_GLASS_PANE
+  material: PURPLE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 
 background_white:
   name: " "
   char: "W"
-  item: WHITE_STAINED_GLASS_PANE
+  material: WHITE_STAINED_GLASS_PANE
   flags: [ HIDE_ATTRIBUTES, HIDE_ADDITIONAL_TOOLTIP ]
 

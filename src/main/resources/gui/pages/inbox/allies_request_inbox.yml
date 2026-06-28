@@ -10,7 +10,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . . . I . . . ."
+    - ". . < . I . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -26,7 +26,7 @@ dynamic_list:
     allies-item:
       name: "lang.allies_view_req_item_name"
       lore: [ "lang.allies_view_req_item_lore" ]
-      item: PLAYER_HEAD
+      material: PLAYER_HEAD
       left-click:
         - "[sound] click"
         - "[player] {cmd.team} ally {team}"
@@ -39,29 +39,31 @@ dynamic_list:
         - "[player] {cmd.team} neutral {team}"
         - "[refresh]"
 
+prev_page:
+  name: "lang.buttons_prev_name"
+  char: "<"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.prev"
+  click:
+    - "[sound] prev"
+  action: "core_prev_page"
+
+next_page:
+  name: "lang.buttons_next_name"
+  char: ">"
+  priority: 10
+  material: PLAYER_HEAD
+  texture: "core.next"
+  click:
+    - "[sound] next"
+  action: "core_next_page"
+
 ally_request_item:
   char: "I"
   name: "lang.allies_view_requests_name"
   lore: [ "lang.allies_view_requests_lore" ]
-  item: CHEST
+  material: CHEST
   action: "inbox.allies_request"
-
-
-
-prev_page:
-  name: "lang.core_prev_page_name"
-  slot: 47
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "core.prev_page"
-  action: "core_prev_page"
-
-next_page:
-  name: "lang.core_next_page_name"
-  slot: 51
-  priority: 1
-  item: PLAYER_HEAD
-  texture: "core.next_page"
-  action: "core_next_page"
 
 

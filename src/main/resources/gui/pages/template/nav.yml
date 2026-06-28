@@ -29,16 +29,14 @@ main:
       - ". . . . . . . . ."
       - ". . . . . . . R H"
 
-back:
-  name: "lang.buttons_back_name"
+buttons_back:
   char: "R"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.back"
   action: "actions.back"
 
-home:
-  name: "lang.buttons_home_name"
+buttons_home:
   char: "H"
-  item: PLAYER_HEAD
+  material: PLAYER_HEAD
   texture: "core.home"
   action: "actions.home"

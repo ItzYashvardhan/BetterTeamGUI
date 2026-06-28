@@ -1,17 +1,15 @@
 package me.justlime.betterTeamGUI.utilities
 
 import com.booksaw.betterTeams.Team
-import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.BetterTeamGUI
 import net.justlime.limeframegui.models.GuiItem
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.bukkit.entity.Player
-import org.bukkit.inventory.StonecutterInventory
 import org.geysermc.floodgate.api.FloodgateApi
-import java.util.UUID
+import java.util.*
 
 fun isBedrockPlayer(player: Player): Boolean =
-    if (pluginInstance.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance()
+    if (BetterTeamGUI.INSTANCE.server.pluginManager.isPluginEnabled("Floodgate")) FloodgateApi.getInstance()
         .isFloodgatePlayer(player.uniqueId) else false
 
 val Team.bannedPlayersList: List<String>

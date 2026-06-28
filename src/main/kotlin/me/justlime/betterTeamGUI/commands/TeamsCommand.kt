@@ -1,6 +1,6 @@
 package me.justlime.betterTeamGUI.commands
 
-import me.justlime.betterTeamGUI.pluginInstance
+import me.justlime.betterTeamGUI.BetterTeamGUI
 import net.justlime.limeframegui.config.GuiDirectoryHandler
 import net.justlime.limeframegui.manager.GuiManager
 import net.justlime.limeframegui.registry.gui.PageRegistry
@@ -21,24 +21,24 @@ class TeamsCommand : CommandExecutor, TabCompleter {
                 return true
             }
             GuiManager.clearHistory(sender.uniqueId)
-            GuiManager.open(sender,"dashboard_view")
+            GuiManager.open(sender, "dashboard_view")
             return true
         }
 
-        if (args[0] == "open" && args.size >1  && sender is Player) {
+        if (args[0] == "open" && args.size > 1 && sender is Player) {
             GuiManager.clearHistory(sender.uniqueId)
-            GuiManager.open(sender,args[1])
+            GuiManager.open(sender, args[1])
             return true
         }
 
 
         if (args[0] == "reload") {
-            GuiDirectoryHandler.reload(pluginInstance,false)
+            GuiDirectoryHandler.reload(BetterTeamGUI.INSTANCE, false)
             return CommandService.reload(sender)
         }
 
         if (args[0] == "reset") {
-            GuiDirectoryHandler.reload(pluginInstance,true)
+            GuiDirectoryHandler.reload(BetterTeamGUI.INSTANCE, true)
             return CommandService.reload(sender)
         }
 

@@ -1,6 +1,8 @@
 package me.justlime.betterTeamGUI
 
 import com.tcoded.folialib.FoliaLib
+import loader.FontLoader
+import loader.SoundLoader
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.commands.TeamCommandProxy
 import me.justlime.betterTeamGUI.config.Config
@@ -8,10 +10,9 @@ import me.justlime.betterTeamGUI.config.ConfigManager
 import me.justlime.betterTeamGUI.enums.JFiles
 import me.justlime.betterTeamGUI.enums.JGui
 import me.justlime.betterTeamGUI.listener.InventoryListener
+import me.justlime.betterTeamGUI.listener.TeamListener
 import me.justlime.betterTeamGUI.utilities.ConsoleMessage
 import net.justlime.limeframegui.api.LimeFrameAPI
-import loader.FontLoader
-import loader.SoundLoader
 import net.justlime.limeframegui.enums.ColorType
 import org.bstats.bukkit.Metrics
 import org.bukkit.inventory.ItemFlag
@@ -46,6 +47,7 @@ class BetterTeamGUI : JavaPlugin() {
         LimeFrameAPI.init(this, ColorType.MINI_MESSAGE)
         Config.reload()
         server.pluginManager.registerEvents(InventoryListener(), this)
+        server.pluginManager.registerEvents(TeamListener(), this)
 
 
         if (!this.server.pluginManager.isPluginEnabled("BetterTeams")) {
@@ -71,7 +73,10 @@ class BetterTeamGUI : JavaPlugin() {
         ConsoleMessage.printStep("LimeFrame Setup Completed")
         ConsoleMessage.printStep("Checking for Updates..")
         checkVersionFromBetterTeamGUIRepo()
-        ConsoleMessage.printStep("Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}", ConsoleMessage.Color.BRIGHT_GREEN)
+        ConsoleMessage.printStep(
+            "Successfully Enabled BetterTeamsGUI by ${this.description.authors.first()}",
+            ConsoleMessage.Color.BRIGHT_GREEN
+        )
         ConsoleMessage.printFooter()
     }
 
@@ -122,7 +127,8 @@ private fun checkVersionFromBetterTeamGUIRepo() {
 
         if (currentVersion != latestTag) {
             ConsoleMessage.printStep(
-                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag", ConsoleMessage.Color.BRIGHT_YELLOW
+                "Outdated Version Found:${ConsoleMessage.Color.WHITE} $currentVersion -> $latestTag",
+                ConsoleMessage.Color.BRIGHT_YELLOW
             )
             ConsoleMessage.printStep("Modrinth", ConsoleMessage.Color.LIGHT_BLUE)
             ConsoleMessage.printStep("https://modrinth.com/plugin/betterteamsgui/versions", ConsoleMessage.Color.WHITE)
@@ -130,7 +136,8 @@ private fun checkVersionFromBetterTeamGUIRepo() {
 
         } else {
             ConsoleMessage.printStep(
-                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)", ConsoleMessage.Color.GREEN
+                "Latest version found${ConsoleMessage.Color.RESET}${ConsoleMessage.Color.WHITE} ($currentVersion)",
+                ConsoleMessage.Color.GREEN
             )
         }
 

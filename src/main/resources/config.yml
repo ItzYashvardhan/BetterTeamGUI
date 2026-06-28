@@ -8,6 +8,9 @@ use-native-command: true # Required Server Restart to apply changes
 # For example, if you set it to "team", then all commands will be executed as "/team <command>".
 command-prefix: "team"
 
+# Bonus Feature On create team it will assign a random color instead default
+random-team-color: true
+
 #For Bedrock Form
 back-button:
   lines:

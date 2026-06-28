@@ -15,6 +15,8 @@ main:
       slot: [ 1,3,5,7,9,17,27,35,45,47,49,51,53 ]
   slot:
     home: 53
+    next: 51
+    prev: 47
 
 claimable-warp:
   item: GREEN_STAINED_GLASS_PANE

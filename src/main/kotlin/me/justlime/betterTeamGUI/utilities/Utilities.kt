@@ -47,15 +47,17 @@ fun permissionDenied(event: InventoryClickEvent, style: GuiStyleSheet) {
 
 fun applyBackground(teamItem: TeamItem, builder: ChestGUIBuilder, enableNav: Boolean = true, onBack: (InventoryClickEvent) -> Unit) {
     builder.apply {
-        if (enableNav) nav {
-            this.prevSlot = teamItem.prevSlot
-            this.nextSlot = teamItem.nextSlot
-            this.nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
-            this.prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
-            buffer {
-                renderLimit = 10
-                margin = 3
-                cleanupMargin = 20
+        if (enableNav) {
+            nav {
+                this.prevSlot = teamItem.prevSlot
+                this.nextSlot = teamItem.nextSlot
+                this.nextItem = TeamButton.next ?: GuiItem(Material.ARROW)
+                this.prevItem = TeamButton.prev ?: GuiItem(Material.ARROW)
+                buffer {
+                    renderLimit = 10
+                    margin = 3
+                    cleanupMargin = 20
+                }
             }
         }
 

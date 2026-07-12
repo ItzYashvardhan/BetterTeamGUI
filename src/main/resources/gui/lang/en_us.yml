@@ -15,13 +15,13 @@ messages:
 # ===================================================================
 # GLOBAL BUTTONS
 # ===================================================================
-button_home:
+buttons_home:
   - '<aqua>Return to Main Page'
 button_back:
   - '<yellow>Go Back'
-button_next:
+buttons_next:
   - '<green>Next'
-button_prev:
+buttons_prev:
   - '<green>Previous'
 button_no_perm:
   - "<red><bold>NO PERMISSION</bold>"
@@ -51,6 +51,7 @@ team_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
 # ===================================================================
 # Main
 dashboard_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
+teamadmin_title: "<bold><gradient:#FF0000:#AA0000>Team Admin Dashboard</gradient></bold>"
 
 # Gui
 dashboard_leave:
@@ -140,6 +141,7 @@ dashboard_info_without_description:
 # ===================================================================
 # Main
 list_view_title: "<bold><gradient:#C45700:#FF7608>Team List (Page - {page})</bold>"
+list_view_search_title: "<bold><gradient:#C45700:#FF7608>Search: \"{list_search}\" ({page})</bold>"
 
 # Gui
 
@@ -148,6 +150,12 @@ list_view_search:
   - "<gray>Looking for a specific group?</gray>"
   - " "
   - "<yellow>▸ Click to search by name</yellow>"
+
+list_view_clear_search:
+  - "<red>❌ Clear Search</red>"
+  - "<gray>Remove your active search query.</gray>"
+  - " "
+  - "<yellow>▸ Click to clear search</yellow>"
 
 list_view_sort_asc:
   - "<green>Order: <white>Ascending ⬆"
@@ -273,6 +281,10 @@ ban_view_item:
   - "<b><red>{team_player}</b>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to unban</gray>"
+ban_view_item_name: "<b><red>{team_player}</b>"
+ban_view_item_lore:
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to unban</gray>"
 
 # ===================================================================
 # pager/members_view - Page
@@ -291,8 +303,14 @@ members_view_member_lore_default:
 members_view_invite:
   - "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
   - "<gray>Click to invite player to your team.</gray>"
+members_view_invite_name: "<b><gradient:#00FF00:#00AA00>Invite Player</gradient></b>"
+members_view_invite_lore:
+  - "<gray>Click to invite player to your team.</gray>"
 members_view_locked:
   - "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
+  - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this member slot.</gray>"
+members_view_locked_name: "<b><gradient:#FF0000:#AA0000>Locked</gradient></b>"
+members_view_locked_lore:
   - "<gray>You need <yellow>Team Level {level}</yellow> to unlock this member slot.</gray>"
 members_view_banlist:
   - "<#D6BA5B><bold>Banned Players</bold>"
@@ -354,6 +372,11 @@ allies_view_item:
   - ""
   - "<green>Left-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to remove ally</gray>"
+allies_view_item_name: "<b><{color}>{team}</{color}></b>"
+allies_view_item_lore:
+  - ""
+  - "<green>Left-Click</green> <gray>to view team</gray>"
+  - "<red>Shift-Click</red> <gray>to remove ally</gray>"
 allies_view_requests:
   - "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
   - "<gray>View pending ally requests</gray>"
@@ -361,6 +384,12 @@ allies_view_requests:
   - "<green>Left-Click</green> <gray>to view</gray>"
 allies_view_req_item:
   - "<b><{color}>{team}</{color}></b>"
+  - ""
+  - "<green>Left-Click</green> <gray>to accept request</gray>"
+  - "<green>Right-Click</green> <gray>to view team</gray>"
+  - "<red>Shift-Click</red> <gray>to deny request</gray>"
+allies_view_req_item_name: "<b><{color}>{team}</{color}></b>"
+allies_view_req_item_lore:
   - ""
   - "<green>Left-Click</green> <gray>to accept request</gray>"
   - "<green>Right-Click</green> <gray>to view team</gray>"
@@ -522,6 +551,13 @@ leaderboard_view_item:
   - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
+leaderboard_view_item_name: "<b><{team_color}>{team}</{team_color}></b>"
+leaderboard_view_item_lore:
+  - " "
+  - " <#5BD686>• Rank:</#5BD686> <white>#<bold>{team_position}</bold></white>"
+  - " <#5BD686>• Score:</#5BD686> <#D6BA5B>{team_score}"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to view team</gray>"
 
 # ===================================================================
 # pager/levels_view - Page
@@ -535,14 +571,29 @@ levels_view_unlocked:
   - "<gray>You have already passed this level.</gray>"
   - ""
   - " <#5BD686>✔ Completed</#5BD686>"
+levels_view_unlocked_name: "<b><#5BD686>Level {level} </b><gray>(Unlocked)"
+levels_view_unlocked_lore:
+  - "<gray>You have already passed this level.</gray>"
+  - ""
+  - " <#5BD686>✔ Completed</#5BD686>"
 levels_view_current:
   - "<b><#36FA00>Level {level} </b>(Current)"
+  - "<gray>Your team is currently at this level.</gray>"
+levels_view_current_name: "<b><#36FA00>Level {level} </b>(Current)"
+levels_view_current_lore:
   - "<gray>Your team is currently at this level.</gray>"
 levels_view_progress:
   - "<b><#F8CB67>Level {level} </b><gray>(In Progress)"
   - "<gray>Reach this level to unlock perks.</gray>"
+levels_view_progress_name: "<b><#F8CB67>Level {level} </b><gray>(In Progress)"
+levels_view_progress_lore:
+  - "<gray>Reach this level to unlock perks.</gray>"
 levels_view_locked:
   - "<b><#FF3B3B>Level {level} </b><dark_gray>(Locked)"
+  - "<gray>This level is Currently locked.</gray>"
+  - "<gray>You must reach Level {prev_level} to view more info.</gray>"
+levels_view_locked_name: "<b><#FF3B3B>Level {level} </b><dark_gray>(Locked)"
+levels_view_locked_lore:
   - "<gray>This level is Currently locked.</gray>"
   - "<gray>You must reach Level {prev_level} to view more info.</gray>"
 levels_view_current_perks_header: "<b><gradient:#FF60C1:#F30094>Current Perks"
@@ -749,6 +800,12 @@ warps_view_claimable:
   - "<gray>where you are standing.</gray>"
   - ""
   - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to claim slot</gray>"
+warps_view_claimable_name: "<bold><#55FF55>+ Create New Warp</bold>"
+warps_view_claimable_lore:
+  - "<gray>Sets a new team warp exactly</gray>"
+  - "<gray>where you are standing.</gray>"
+  - ""
+  - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to claim slot</gray>"
 warps_view_occupied:
   - "<bold><gradient:#FFDAB4:#FFD2D2>{warp_name}</gradient></bold>"
   - "<gray>Location:</gray> <white>{warp_world}</white> <gray>(<white>{warp_x}</white>, <white>{warp_y}</white>, <white>{warp_z}</white>)</gray>"
@@ -756,8 +813,19 @@ warps_view_occupied:
   - ""
   - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to teleport</gray>"
   - "<white>▶</white> <red>Shift-Right-Click</red> <gray>to delete warp</gray>"
+warps_view_occupied_name: "<bold><gradient:#FFDAB4:#FFD2D2>{warp_name}</gradient></bold>"
+warps_view_occupied_lore:
+  - "<gray>Location:</gray> <white>{warp_world}</white> <gray>(<white>{warp_x}</white>, <white>{warp_y}</white>, <white>{warp_z}</white>)</gray>"
+  - "<gray>Secured:</gray> <white>{warp_locked}</white>"
+  - ""
+  - "<white>▶</white> <yellow>Left-Click</yellow> <gray>to teleport</gray>"
+  - "<white>▶</white> <red>Shift-Right-Click</red> <gray>to delete warp</gray>"
 warps_view_locked:
   - "<bold><#FF5555>✖ Locked Slot</bold>"
+  - "<gray>Upgrade your Team Level to</gray>"
+  - "<gray>unlock more warp slots.</gray>"
+warps_view_locked_name: "<bold><#FF5555>✖ Locked Slot</bold>"
+warps_view_locked_lore:
   - "<gray>Upgrade your Team Level to</gray>"
   - "<gray>unlock more warp slots.</gray>"
 
@@ -797,8 +865,17 @@ warps_view_anvil_password_output:
   - ""
   - "<white>▶</white> <yellow>Click</yellow> <gray>to confirm</gray>"
 
-# (removed grouped headers; individual headers inserted near their keys)
 # ===================================================================
 # ANVIL (INPUTS) - GENERIC
 # ===================================================================
 label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+
+list_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+
+list_view_anvil_search_input_name: "<green>Enter Team Name</green>"
+list_view_anvil_search_input_lore: 
+  - "<gray>Type the name to search.</gray>"
+
+list_view_anvil_search_output_name: "<green>Search</green>"
+list_view_anvil_search_output_lore: 
+  - "<gray>Click to search</gray>"

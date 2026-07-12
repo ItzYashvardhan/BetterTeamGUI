@@ -108,7 +108,7 @@ dynamic_list:
       click-sound: gui.levels.locked
 
 prev_page:
-  name: "lang.buttons_prev_name"
+  display: "lang.buttons_prev"
   char: "<"
   priority: 10
   material: PLAYER_HEAD
@@ -118,7 +118,7 @@ prev_page:
   action: "core_prev_page"
 
 next_page:
-  name: "lang.buttons_next_name"
+  display: "lang.buttons_next"
   char: ">"
   priority: 10
   material: PLAYER_HEAD
@@ -128,7 +128,7 @@ next_page:
   action: "core_next_page"
 
 home:
-  name: "lang.buttons_home_name"
+  display: "lang.buttons_home"
   char: "H"
   material: PLAYER_HEAD
   texture: "texture:core.home"

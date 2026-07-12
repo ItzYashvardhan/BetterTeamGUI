@@ -5,6 +5,7 @@ import com.booksaw.betterTeams.Team
 import com.tcoded.folialib.FoliaLib
 import me.justlime.betterTeamGUI.commands.CommandManager
 import me.justlime.betterTeamGUI.commands.TeamCommandProxy
+import me.justlime.betterTeamGUI.commands.TeamaCommandProxy
 import me.justlime.betterTeamGUI.listener.InventoryListener
 import me.justlime.betterTeamGUI.listener.ListenerManager
 import me.justlime.betterTeamGUI.listing.TeamBanManager
@@ -12,6 +13,7 @@ import me.justlime.betterTeamGUI.listing.TeamLeaderboardManager
 import me.justlime.betterTeamGUI.listing.TeamLevelsManager
 import me.justlime.betterTeamGUI.listing.TeamWarpsManager
 import me.justlime.betterTeamGUI.listing.common.TeamAlliesManager
+import me.justlime.betterTeamGUI.listing.inbox.TeamAlliesRequestManager
 import me.justlime.betterTeamGUI.listing.common.TeamMembersManager
 import me.justlime.betterTeamGUI.listing.inbox.TeamInvitationManager
 import me.justlime.betterTeamGUI.listing.viewer.TeamListManager
@@ -63,7 +65,10 @@ class BetterTeamGUI : JavaPlugin() {
 
         if (this.config.getBoolean(JGui.Config.USE_NATIVE_COMMAND, true)) {
             try {
-                TeamCommandProxy.inject() //Experimental
+                foliaLib.scheduler.runLater(Runnable {
+                    TeamCommandProxy.inject()
+                    TeamaCommandProxy.inject()
+                }, 1) //Experimental
             } catch (e: Exception) {
                 ConsoleMessage.printStep("Failed to Inject GUI Commands", AnsiColor.RED)
                 ConsoleMessage.printStep("Error: ${e.message}", AnsiColor.BRIGHT_RED)
@@ -107,6 +112,7 @@ class BetterTeamGUI : JavaPlugin() {
         TeamListManager.registerAll()
         TeamMembersManager.registerPopulators()
         TeamAlliesManager.registerPopulators()
+        TeamAlliesRequestManager.registerPopulators()
         TeamBanManager.registerPopulators()
         TeamLeaderboardManager.registerPopulators()
         TeamWarpsManager.registerPopulators()

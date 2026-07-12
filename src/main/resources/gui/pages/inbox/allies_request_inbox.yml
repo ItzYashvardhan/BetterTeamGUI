@@ -17,7 +17,7 @@ main:
 # ----------------------------------------------------
 dynamic_list:
   char: "L"
-  populator_id: "allies_list"
+  populator_id: "allies_request_list"
   buffer:
     render-limit: 28
     margin: 5
@@ -40,7 +40,7 @@ dynamic_list:
         - "[refresh]"
 
 prev_page:
-  name: "lang.buttons_prev_name"
+  display: "lang.buttons_prev"
   char: "<"
   priority: 10
   material: PLAYER_HEAD
@@ -50,7 +50,7 @@ prev_page:
   action: "core_prev_page"
 
 next_page:
-  name: "lang.buttons_next_name"
+  display: "lang.buttons_next"
   char: ">"
   priority: 10
   material: PLAYER_HEAD
@@ -59,10 +59,8 @@ next_page:
     - "[sound] next"
   action: "core_next_page"
 
-ally_request_item:
+allies_view_requests:
   char: "I"
-  name: "lang.allies_view_requests_name"
-  lore: [ "lang.allies_view_requests_lore" ]
   material: CHEST
   action: "inbox.allies_request"
 

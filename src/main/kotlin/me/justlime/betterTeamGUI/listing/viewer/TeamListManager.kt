@@ -140,8 +140,14 @@ object TeamListManager {
 
         ButtonRegistry.register("list_action_search") { response ->
             val state = getState(response.player)
-            state.searchQuery = response.payload
-            println(state.searchQuery)
+            val query = response.context?.localPlaceholders?.get("input") ?: response.payload
+            state.searchQuery = query.takeIf { it.isNotBlank() }
+            GuiManager.open(response.player, GUI_ID, recordHistory = false)
+        }
+
+        ButtonRegistry.register("list_action_clear_search") { response ->
+            val state = getState(response.player)
+            state.searchQuery = null
             GuiManager.open(response.player, GUI_ID, recordHistory = false)
         }
 
@@ -161,6 +167,16 @@ object TeamListManager {
         }
         PlaceholderRegistry.register("list_search") { player, _ ->
             getState(player).searchQuery ?: ""
+        }
+        PlaceholderRegistry.register("list_dynamic_title") { player, _ ->
+            val state = getState(player)
+            val query = state.searchQuery
+            if (query.isNullOrBlank()) {
+                net.justlime.limeframegui.registry.component.LangRegistry.getString("list_view_title", player.locale) ?: "Team List"
+            } else {
+                val base = net.justlime.limeframegui.registry.component.LangRegistry.getString("list_view_search_title", player.locale) ?: "Search For \"{list_search}\""
+                base.replace("{list_search}", query)
+            }
         }
     }
 }

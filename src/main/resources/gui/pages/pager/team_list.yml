@@ -2,7 +2,7 @@
 # TEAM LIST
 # ===================================================================
 main:
-  title: "lang.list_view_title"
+  title: "{list_dynamic_title}"
   rows: 6
   inherit:
     - "template/border"
@@ -12,7 +12,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - "S . < F T O > . H"
+    - "S C < F T O > . H"
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -116,6 +116,15 @@ list_view_search:
   click:
     - "[sound] light_click"
     - "[input] team/search"
+
+list_view_clear_search:
+  char: "C"
+  material: BARRIER
+  click:
+    - "[sound] light_click"
+    - "[run] list_action_clear_search"
+  view-requirement:
+    - "[condition] '{list_search}' != ''"
 
 list_view_invitation:
   slot: 52

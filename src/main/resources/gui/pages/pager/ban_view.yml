@@ -22,15 +22,16 @@ dynamic_list:
     render-limit: 28
     margin: 5
     cleanup-margin: 40
-  template:
-    name: "lang.ban_view_item_name"
-    lore: ["lang.ban_view_item_lore"]
-    material: PLAYER_HEAD
-    texture: "{team_player_uuid}" # Dynamically replaced by CODE
-    action: "bans.manage_player"
+  templates:
+    ban-item:
+      name: "lang.ban_view_item_name"
+      lore: ["lang.ban_view_item_lore"]
+      material: PLAYER_HEAD
+      texture: "{team_player_uuid}" # Dynamically replaced by CODE
+      action: "bans.manage_player"
 
 prev_page:
-  name: "lang.buttons_prev_name"
+  display: "lang.buttons_prev"
   char: "<"
   priority: 10
   material: PLAYER_HEAD
@@ -40,7 +41,7 @@ prev_page:
   action: "core_prev_page"
 
 next_page:
-  name: "lang.buttons_next_name"
+  display: "lang.buttons_next"
   char: ">"
   priority: 10
   material: PLAYER_HEAD

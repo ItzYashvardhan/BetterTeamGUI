@@ -2,15 +2,15 @@ main:
   title: "lang.list_view_anvil_search_title"
   label: "lang.list_view_anvil_label"
 
-left-item:
+left:
     name: "lang.list_view_anvil_search_input_name"
-    item: PAPER
+    material: PAPER
     lore: [ "lang.list_view_anvil_search_input_lore" ]
     action: back
 
-output-item:
+output:
     name: "lang.list_view_anvil_search_output_name"
-    item: ANVIL
+    material: ANVIL
     lore: [ "lang.list_view_anvil_search_output_lore" ]
     click:
       - "[run] list_action_search"

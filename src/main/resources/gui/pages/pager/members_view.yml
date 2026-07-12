@@ -51,7 +51,7 @@ dynamic_list:
       action: "members.locked_invite"
 
 prev_page:
-  name: "lang.buttons_prev_name"
+  display: "lang.buttons_prev"
   char: "<"
   priority: 10
   material: PLAYER_HEAD
@@ -61,7 +61,7 @@ prev_page:
   action: "core_prev_page"
 
 next_page:
-  name: "lang.buttons_next_name"
+  display: "lang.buttons_next"
   char: ">"
   priority: 10
   material: PLAYER_HEAD
@@ -73,17 +73,15 @@ next_page:
 # ----------------------------------------------------
 # CORE BUTTONS
 # ----------------------------------------------------
-ban_list:
+members_view_banlist:
   char: "B"
-  name: "lang.members_view_banlist_name"
-  lore: ["lang.members_view_banlist_lore"]
   material: PLAYER_HEAD
   texture: "members.ban_list"
   action: "[open] ban_list"
   click-sound: gui.members.ban-list
 
 home:
-  name: "lang.buttons_home_name"
+  display: "lang.buttons_home"
   char: "H"
   material: PLAYER_HEAD
   texture: "core.home"

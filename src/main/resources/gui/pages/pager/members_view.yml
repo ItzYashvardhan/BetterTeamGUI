@@ -1,5 +1,5 @@
 main:
-  title: "lang.members_view_title"
+  title: "lang.member_title"
   rows: 6
   font-title: false
   font-name: true
@@ -26,7 +26,7 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   templates:
-    member-item:
+    member_item:
       name: "lang.members_view_member_name"
       lore: ["lang.members_view_member_lore_admin"]
       material: PLAYER_HEAD

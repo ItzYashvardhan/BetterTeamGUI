@@ -1,5 +1,5 @@
 main:
-  title: "lang.allies_view_title"
+  title: "lang.ally_title"
   rows: 6
   inherit:
     - "template/border"
@@ -23,10 +23,13 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   templates:
-    allies-item:
-      name: "lang.allies_view_item_name"
-      lore: [ "lang.allies_view_item_lore" ]
+    ally_item:
       material: PLAYER_HEAD
+      left-click:
+        - "[action] view.team"
+      shift-click:
+        - "[sound] click"
+        - "[open] dialog/neutral"
 
 prev_page:
   display: "lang.buttons_prev"

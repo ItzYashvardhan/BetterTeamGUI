@@ -12,4 +12,4 @@ main:
     lore:
       font: true
       prefix: "<gray>"
-      wrap-length: 45
+      wrap-length: 36

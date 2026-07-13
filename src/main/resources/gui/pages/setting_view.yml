@@ -17,7 +17,7 @@ main:
 # NAVIGATION BUTTONS
 # ----------------------------------------------------
 back:
-  display: "lang.buttons_back"
+  display: "lang.button_back"
   char: "R"
   material: PLAYER_HEAD
   texture: "core.back"

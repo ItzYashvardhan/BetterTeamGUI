@@ -10,7 +10,7 @@ main:
     - ". L L L L L L L ."
     - ". L L L L L L L ."
     - ". L L L L L L L ."
-    - ". . < . I . > . ."
+    - ". . < . . . > . ."
 
 # ----------------------------------------------------
 # DYNAMIC LIST SETTINGS
@@ -30,6 +30,7 @@ dynamic_list:
       left-click:
         - "[sound] click"
         - "[player] {cmd.team} ally {team}"
+        - "[delay] 4"
         - "[refresh]"
       right-click:
         - "[sound] click"
@@ -37,6 +38,7 @@ dynamic_list:
       shift-click:
         - "[sound] click"
         - "[player] {cmd.team} neutral {team}"
+        - "[delay] 4"
         - "[refresh]"
 
 prev_page:
@@ -58,10 +60,5 @@ next_page:
   click:
     - "[sound] next"
   action: "core_next_page"
-
-allies_view_requests:
-  char: "I"
-  material: CHEST
-  action: "inbox.allies_request"
 
 

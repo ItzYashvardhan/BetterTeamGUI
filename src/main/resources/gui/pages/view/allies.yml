@@ -2,7 +2,7 @@
 # ALLIES VIEW (Dynamic List)
 # ===================================================================
 main:
-  title: "lang.team_viewer_allies_title"
+  title: "lang.ally_view_title"
   rows: 6
   inherit:
     - "template/border"
@@ -21,7 +21,7 @@ dynamic_list:
   buffer:
     render-limit: 28
   templates:
-    team_viewer_ally_item:
+    ally_view_item:
       material: PLAYER_HEAD
       action: view.team
 

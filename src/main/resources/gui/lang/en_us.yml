@@ -15,7 +15,7 @@ messages:
 # ===================================================================
 # GLOBAL BUTTONS
 # ===================================================================
-buttons_home:
+button_home:
   - '<aqua>Return to Main Page'
 button_back:
   - '<yellow>Go Back'
@@ -290,7 +290,7 @@ ban_view_item_lore:
 # pager/members_view - Page
 # ===================================================================
 # Main
-members_view_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team Member's</bold>"
+member_title: "<bold><gradient:#C45700:#FF7608>%betterteams_name% Team Member's</bold>"
 
 # Gui
 members_view_member_name: "<aqua>{team_player}"
@@ -364,19 +364,15 @@ members_management_view_ban:
 # pager/allies_list - Page
 # ===================================================================
 # Main
-allies_view_title: "<bold><gradient:#C45700:#FF7608>Allies List (Page - {page})</bold>"
+ally_title: "<bold><gradient:#C45700:#FF7608>Allies List (Page - {page})</bold>"
 
 # Gui
-allies_view_item:
+ally_item:
   - "<b><{color}>{team}</{color}></b>"
   - ""
   - "<green>Left-Click</green> <gray>to view team</gray>"
   - "<red>Shift-Click</red> <gray>to remove ally</gray>"
-allies_view_item_name: "<b><{color}>{team}</{color}></b>"
-allies_view_item_lore:
-  - ""
-  - "<green>Left-Click</green> <gray>to view team</gray>"
-  - "<red>Shift-Click</red> <gray>to remove ally</gray>"
+
 allies_view_requests:
   - "<b><caps><gradient:#C40067:#EC7FB8>Ally Requests</gradient></b> ({allies_request})"
   - "<gray>View pending ally requests</gray>"
@@ -384,12 +380,6 @@ allies_view_requests:
   - "<green>Left-Click</green> <gray>to view</gray>"
 allies_view_req_item:
   - "<b><{color}>{team}</{color}></b>"
-  - ""
-  - "<green>Left-Click</green> <gray>to accept request</gray>"
-  - "<green>Right-Click</green> <gray>to view team</gray>"
-  - "<red>Shift-Click</red> <gray>to deny request</gray>"
-allies_view_req_item_name: "<b><{color}>{team}</{color}></b>"
-allies_view_req_item_lore:
   - ""
   - "<green>Left-Click</green> <gray>to accept request</gray>"
   - "<green>Right-Click</green> <gray>to view team</gray>"
@@ -473,7 +463,7 @@ dialog_ban_confirm:
 dialog_ban_cancel:
   - "<gray>Click to cancel and return to member management.</gray>"
 dialog_neutral_confirm:
-  - "<gray>Click to confirm removing {team_ally} as an ally.</gray>"
+  - "<gray>Click to confirm removing {team} as an ally.</gray>"
 dialog_neutral_cancel:
   - "<gray>Click to cancel and return to the allies list.</gray>"
 
@@ -764,10 +754,10 @@ team_viewer_allies:
 # view/members - Page
 # ===================================================================
 # Main
-team_viewer_members_title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
+member_view_title: "<bold><gradient:#C45700:#FF7608>{team} Members (Page - {page})</bold>"
 
 # Gui
-team_viewer_member_item:
+member_view_item:
   - "<aqua>{team_player}"
   - "<gray>Rank: <yellow>{rank}"
 
@@ -775,10 +765,10 @@ team_viewer_member_item:
 # view/allies - Page
 # ===================================================================
 # Main
-team_viewer_allies_title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
+ally_view_title: "<bold><gradient:#C45700:#FF7608>{team} Allies (Page - {page})</bold>"
 
 # Gui
-team_viewer_ally_item:
+ally_view_item:
   - "<b><{color}>{team}</{color}></b>"
   - " "
   - " <#5BD686>• Tag:</#5BD686> <white><bold>{tag}</bold></white>"

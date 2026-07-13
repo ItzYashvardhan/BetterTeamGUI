@@ -29,13 +29,13 @@ main:
       - ". . . . . . . . ."
       - ". . . . . . . R H"
 
-buttons_back:
+button_back:
   char: "R"
   material: PLAYER_HEAD
   texture: "core.back"
   action: "actions.back"
 
-buttons_home:
+button_home:
   char: "H"
   material: PLAYER_HEAD
   texture: "core.home"

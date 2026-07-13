@@ -28,7 +28,7 @@ object TeamMembersManager : IPopulator {
             members.addAll(team.members.getRank(PlayerRank.DEFAULT))
 
             // Safely fetch templates (Adapts to which YAML called it)
-            val memberItemTemplate = templatesMap["member-item"] ?: return@register emptyList()
+            val memberItemTemplate = templatesMap["member_item"] ?: templatesMap["member_view_item"] ?: return@register emptyList()
             val memberItemNoAdminTemplate = templatesMap["member-item-no-admin"] ?: memberItemTemplate
             val inviteButtonTemplate = templatesMap["invite-button"] // Might be null for public view
             val lockedInviteTemplate = templatesMap["locked-invite"] // Might be null for public view

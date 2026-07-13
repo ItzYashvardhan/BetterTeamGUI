@@ -144,10 +144,10 @@ list_view_create:
 
 
 home:
-  display: "lang.buttons_home"
+  display: "lang.button_home"
   char: "H"
   material: PLAYER_HEAD
-  texture: "texture:core.home"
+  texture: "core.home"
   action: "home"
   view-requirement:
     - "[condition] '{team}' != ''"

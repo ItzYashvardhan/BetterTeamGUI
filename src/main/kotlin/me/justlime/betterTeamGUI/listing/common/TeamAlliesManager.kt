@@ -6,7 +6,8 @@ import me.justlime.betterTeamGUI.listing.IPopulator
 import net.justlime.limeframegui.registry.gui.ListPopulatorRegistry
 import java.util.UUID
 
-object TeamAlliesManager : IPopulator {
+object
+TeamAlliesManager : IPopulator {
 
     override fun registerPopulators() {
         ListPopulatorRegistry.register("allies_list") { response ->
@@ -18,7 +19,7 @@ object TeamAlliesManager : IPopulator {
             val team = Team.getTeam(targetPlayer) ?: return@register emptyList()
 
             // Fetch the Base Template
-            val baseTemplate = templatesMap["allies-item"] ?: return@register emptyList()
+            val baseTemplate = templatesMap["ally_item"]  ?: templatesMap["ally_view_item"] ?: return@register emptyList()
 
             // Ally Lookup (Handles both UUIDs and Names safely)
             val allies = team.allies.convertedList.mapNotNull { allyStr ->

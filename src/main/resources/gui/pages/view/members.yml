@@ -2,7 +2,7 @@
 # MEMBERS VIEWER
 # ===================================================================
 main:
-  title: "lang.team_viewer_members_title"
+  title: "lang.member_view_title"
   rows: 6
   inherit:
     - "template/border"
@@ -23,7 +23,7 @@ dynamic_list:
     margin: 5
     cleanup-margin: 40
   templates:
-    team_viewer_member_item:
+    member_view_item:
       material: PLAYER_HEAD
       click-sound: gui.team-viewer.member-item
 

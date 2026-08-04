@@ -38,7 +38,7 @@ dependencies {
     implementation(libs.anvilgui)
     compileOnly(libs.floodgate.api)
 
-    // Adventure
+    // Adventuretea
     implementation(libs.adventure.platform.bukkit)
     implementation(libs.adventure.text.minimessage)
     implementation(libs.adventure.text.serializer.plain)
@@ -139,7 +139,7 @@ tasks.register<Delete>("cleanServer") {
 tasks.register<Exec>("runServer") {
     group = "server"
     description = "Run the Minecraft server"
-    dependsOn("copyToServerPlugins", "prepareServerConfigs")
+    dependsOn("copyToServerPlugins")
     workingDir = layout.projectDirectory.dir("run/$serverVersion").asFile
     commandLine("java", "-Xms2G", "-Xmx2G", "-jar", "server.jar", "nogui")
     standardInput = System.`in`
@@ -154,7 +154,7 @@ idea {
                     taskNames = listOf("runServer")
                 }
                 create("Run Server", org.jetbrains.gradle.ext.Gradle::class.java) {
-                    taskNames = listOf("cleanServer", "runServer")
+                    taskNames = listOf("runServer")
                 }
             }
         }

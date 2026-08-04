@@ -1,0 +1,19 @@
+main:
+  title: "lang.money_withdraw_title"
+  label: "lang.label"
+  inherit:
+    - "template/text_style"
+
+money_withdraw_input:
+  type: LEFT
+  material: PLAYER_HEAD
+  texture: dashboard.money
+  click:
+    - "[back]"
+
+money_withdraw_output:
+  type: OUTPUT
+  material: PLAYER_HEAD
+  texture: dashboard.money
+  click:
+    - "[player] {cmd.team} withdraw {input}"

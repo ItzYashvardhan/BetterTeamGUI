@@ -1,14 +1,17 @@
 main:
   title: "lang.warps_view_anvil_password_title"
-  label: "lang.warps_view_anvil_label"
+  label: "lang.label"
+  inherit:
+    - "template/text_style"
 
+warp_password_input:
+  type: LEFT
+  material: PLAYER_HEAD
+  texture: pin
 
-left-item:
-  name: "lang.warps_view_anvil_password_input_name"
-  item: PAPER
-  lore: [ "lang.warps_view_anvil_password_input_lore" ]
-
-output-item:
-  name: "lang.warps_view_anvil_password_output_name"
-  item: ANVIL
-  lore: [ "lang.warps_view_anvil_password_output_lore" ]
+warp_password_output:
+  type: OUTPUT
+  material: PLAYER_HEAD
+  texture: pin
+  click:
+    - "[action] input.check_warp_password"

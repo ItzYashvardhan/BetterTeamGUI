@@ -25,6 +25,8 @@ team_pvp: "%betterteams_pvp%"
 team_title: "%betterteams_title%"
 team_has_home: "%betterteams_hasHome%"
 team_open: "%betterteams_open%"
+team_chat: "%betterteams_teamChat%"
+
 color_delay: 2
 
 

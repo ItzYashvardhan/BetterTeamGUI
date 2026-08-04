@@ -51,7 +51,7 @@ team_join: "<yellow>Right-Click</yellow> <gray>to join team</gray>"
 # ===================================================================
 # Main
 dashboard_title: "<bold><gradient:#C45700:#FF7608>{team} Team</bold>"
-teamadmin_title: "<bold><gradient:#FF0000:#AA0000>Team Admin Dashboard</gradient></bold>"
+
 
 # Gui
 dashboard_leave:
@@ -97,30 +97,28 @@ dashboard_warps:
   - "<gray>View all available team warps.</gray>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to open warps</gray>"
-dashboard_balance:
+dashboard_money:
   - "<b><gradient:#00C67D:#74FFCC>Team Balance</gradient></b>"
   - "<b><gradient:#E2FF8D:#E2FF8D>₹{team_money}</gradient></b>"
   - ""
   - "<yellow>Left-Click</yellow> <gray>to deposit</gray>"
   - "<yellow>Right-Click</yellow> <gray>to withdraw</gray>"
+
+dashboard_chat:
+  - "<gray>Toggle between global, team, and ally chat.</gray>"
+  - ""
+  - "<yellow>Left-Click</yellow> <gray>to toggle global/team chat</gray>"
+  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+
 dashboard_chat_global:
   - "<b><gradient:#E0E300:#D5D676>Global Chat</gradient></b>"
-  - "<gray>Toggle between global, team, and ally chat.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+  - "lang.dashboard_chat"
 dashboard_chat_team:
   - "<b><gradient:#E0E300:#D5D676>Team Chat</gradient></b>"
-  - "<gray>Toggle between global, team, and ally chat.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+  - "lang.dashboard_chat"
 dashboard_chat_ally:
   - "<b><gradient:#E0E300:#D5D676>Ally Chat</gradient></b>"
-  - "<gray>Toggle between global, team, and ally chat.</gray>"
-  - ""
-  - "<yellow>Left-Click</yellow> <gray>to toggle team chat</gray>"
-  - "<yellow>Right-Click</yellow> <gray>to toggle ally chat</gray>"
+  - "lang.dashboard_chat"
 dashboard_settings:
   - "<b><gradient:#FF084E:#FF084E>Team Setting</gradient></b>"
   - "<gray>Manage your team's options.</gray>"
@@ -135,6 +133,12 @@ dashboard_info_without_description:
   - ""
   - "<yellow>Left-Click</yellow> <gray>to view LeaderBoards</gray>"
   - "<yellow>Right-Click</yellow> <gray>to view Team Level</gray>"
+
+# ===================================================================
+# Admin Settings - Page
+# ===================================================================
+# Main
+teamadmin_title: "<bold><gradient:#FF0000:#AA0000>Team Admin Dashboard</gradient></bold>"
 
 # ===================================================================
 # pager/team_list - Page
@@ -242,33 +246,7 @@ list_view_create:
   - " "
   - "<#00FFC7>▸ Click to create</#00FFC7>"
 
-# ===================================================================
-# team/search - Inputs
-# ===================================================================
-# Main
-list_view_anvil_search_title: "<bold>Search Team</bold>"
 
-# Input item
-list_view_search_input:
-  - "<green>Enter Team Name</green>"
-  - "<gray>Enter the name of the team you want to search for.</gray>"
-list_view_search_output:
-  - "<green>Search</green>"
-  - "<gray>Click to search for the team.</gray>"
-
-# ===================================================================
-# team/create - Input
-# ===================================================================
-# Main
-list_view_create_title: "<bold>Create Team</bold>"
-
-# Input item
-list_view_create_input:
-  - "<green>Enter Team Name</green>"
-  - "<gray>Enter the name of your new team.</gray>"
-list_view_create_output:
-  - "<green>Create</green>"
-  - "<gray>Click to create your team.</gray>"
 
 # ===================================================================
 # pager/ban_view - Page
@@ -496,25 +474,6 @@ invite_view_invited_list_item:
   - " "
   - "<green>Left-Click</green> <gray>to view</gray>"
 
-# inputs/team/search.yml - Input
-# Main (input)
-invite_view_anvil_search_title: "<bold>Search Player</bold>"
-# inputs/team/create.yml - Input
-invite_view_anvil_invite_title: "Invite Player"
-
-# Input item
-invite_view_anvil_search_input:
-  - "<green>Enter Player Name</green>"
-  - "<gray>Enter the name of the player you want to search for.</gray>"
-invite_view_anvil_search_output:
-  - "<green>Search</green>"
-  - "<gray>Click to search for the player.</gray>"
-invite_view_anvil_invite_input:
-  - "<green>Enter Player Name</green>"
-  - "<gray>Enter the name of the player you want to invite.</gray>"
-invite_view_anvil_invite_output:
-  - "<green>Invite Player</green>"
-  - "<gray>Click to invite this player.</gray>"
 
 # ===================================================================
 # invited_players_view - Page
@@ -600,26 +559,7 @@ levels_view_requirement_fail: " <#FF3B3B>❌<#FF3B3B> <white>{required_type} <#F
 levels_view_requirement_success: " <#36FA00>✔<#36FA00> <white>{required_type} <#36FA00><b>{required_amount}"
 levels_view_click_rankup: "<b><#36FA00>Left-Click to Rank Up"
 
-# ===================================================================
-# money_view - Page
-# ===================================================================
-# Main (input)
-money_view_deposit_title: "<bold>Deposit Amount</bold>"
-money_view_withdraw_title: "<bold>Withdraw Amount</bold>"
 
-# Input item
-money_view_deposit_input:
-  - "<green>Enter Deposit Amount</green>"
-  - "<gray>Enter the amount you wish to deposit.</gray>"
-money_view_deposit_output:
-  - "<green>Confirm Deposit</green>"
-  - "<gray>Click to confirm your deposit.</gray>"
-money_view_withdraw_input:
-  - "<green>Enter Withdraw Amount</green>"
-  - "<gray>Enter the amount you wish to withdraw.</gray>"
-money_view_withdraw_output:
-  - "<green>Confirm Withdraw</green>"
-  - "<gray>Click to confirm your withdrawal.</gray>"
 
 # ===================================================================
 # setting_view - Page
@@ -821,12 +761,12 @@ warps_view_locked_lore:
 
 # inputs/warp/claim.yml - Input
 # Main (input)
-warps_view_anvil_set_name_title: "<bold><#55FF55>Name Your Warp</bold>"
+warp_title: "<bold><#55FF55>Name Your Warp</bold>"
 # inputs/warp/passward.yml - Input
-warps_view_anvil_password_title: "<bold><#FF5555>Restricted Warp</bold>"
+warp_password_title: "<bold><#FF5555>Restricted Warp</bold>"
 
 # Input item
-warps_view_anvil_set_name_input:
+warp_set_input:
   - "<bold><green>Create a New Warp</green></bold>"
   - "<gray>Type a name for your team's new warp</gray>"
   - "<gray>in the text box above.</gray>"
@@ -836,36 +776,100 @@ warps_view_anvil_set_name_input:
   - ""
   - "<yellow>Syntax:</yellow> <white>Name [Password]</white>"
   - "<gray>Example:</gray> <white>Base secret123</white>"
-warps_view_anvil_set_name_output:
+warp_set_output:
   - "<bold><#55FF55>✔ Confirm Creation</bold>"
   - "<gray>Your new warp will be created</gray>"
   - "<gray>exactly where you are standing.</gray>"
   - ""
   - "<white>▶</white> <yellow>Click</yellow> <gray>to save</gray>"
-warps_view_anvil_password_input:
+warp_password_input:
   - "<bold><gold>Enter Password</gold></bold>"
   - "<gray>This warp is secured. You must</gray>"
   - "<gray>enter the password to access it.</gray>"
   - ""
   - "<white>▶</white> <gray>Type the password above.</gray>"
-warps_view_anvil_password_output:
+warp_password_output:
   - "<bold><#55FF55>✔ Authenticate</bold>"
   - "<gray>Submit the password to attempt</gray>"
   - "<gray>teleportation.</gray>"
   - ""
   - "<white>▶</white> <yellow>Click</yellow> <gray>to confirm</gray>"
 
+
+
 # ===================================================================
-# ANVIL (INPUTS) - GENERIC
+# GENERIC - Inputs
 # ===================================================================
 label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
 
-list_view_anvil_label: "<gradient:#00FFC7:#00BC92>➞ </gradient>"
+# ===================================================================
+# teams/search - Inputs
+# ===================================================================
+# Main
+list_view_anvil_search_title: "<bold>Search Team</bold>"
 
-list_view_anvil_search_input_name: "<green>Enter Team Name</green>"
-list_view_anvil_search_input_lore: 
-  - "<gray>Type the name to search.</gray>"
+# Item
+list_view_search_input:
+  - "<green>Enter Team Name</green>"
+  - "<gray>Enter the name of the team you want to search for.</gray>"
+list_view_search_output:
+  - "<green>Search</green>"
+  - "<gray>Click to search for the team.</gray>"
 
-list_view_anvil_search_output_name: "<green>Search</green>"
-list_view_anvil_search_output_lore: 
-  - "<gray>Click to search</gray>"
+# ===================================================================
+# teams/create - Input
+# ===================================================================
+# Main
+list_view_create_title: "<bold>Create Team</bold>"
+
+# Item
+list_view_create_input:
+  - "<green>Enter Team Name</green>"
+  - "<gray>Enter the name of your new team.</gray>"
+list_view_create_output:
+  - "<green>Create</green>"
+  - "<gray>Click to create your team.</gray>"
+
+# ===================================================================
+# dasboard/transaction - Input
+# ===================================================================
+# Main
+money_deposit_title: "<bold>Deposit Amount</bold>"
+money_withdraw_title: "<bold>Withdraw Amount</bold>"
+
+# item
+money_deposit_input:
+  - "<green>Enter Deposit Amount</green>"
+  - "<gray>Enter the amount you wish to deposit.</gray>"
+money_deposit_output:
+  - "<green>Confirm Deposit</green>"
+  - "<gray>Click to confirm your deposit.</gray>"
+money_withdraw_input:
+  - "<green>Enter Withdraw Amount</green>"
+  - "<gray>Enter the amount you wish to withdraw.</gray>"
+money_withdraw_output:
+  - "<green>Confirm Withdraw</green>"
+  - "<gray>Click to confirm your withdrawal.</gray>"
+
+# ===================================================================
+# team/invite - Input
+# ===================================================================
+# inputs/team/search.yml - Input
+# Main (input)
+invite_view_anvil_search_title: "<bold>Search Player</bold>"
+# inputs/team/create.yml - Input
+invite_view_anvil_invite_title: "Invite Player"
+
+# Input item
+invite_view_anvil_search_input:
+  - "<green>Enter Player Name</green>"
+  - "<gray>Enter the name of the player you want to search for.</gray>"
+invite_view_anvil_search_output:
+  - "<green>Search</green>"
+  - "<gray>Click to search for the player.</gray>"
+invite_view_anvil_invite_input:
+  - "<green>Enter Player Name</green>"
+  - "<gray>Enter the name of the player you want to invite.</gray>"
+invite_view_anvil_invite_output:
+  - "<green>Invite Player</green>"
+  - "<gray>Click to invite this player.</gray>"

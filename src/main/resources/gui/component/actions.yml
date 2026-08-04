@@ -24,10 +24,27 @@ input:
 
       else:
         click:
-          - "[message] <green>Team created successfully!"
+          - "[message] <green>Team created successfully!}"
           - "[sound] entity.player.levelup"
           - "[open] dashboard_view"
-
+  check_warp_password:
+    sequence:
+      1:
+        requirements:
+          - "[condition] check_warp_password {warp_name} {input}"
+        click:
+          - "[player] {cmd.team} warp {warp_name} {input}"
+          - "[delay] 4"
+          - "[sound] teleport"
+          - "[close]"
+      else:
+        click:
+          - "[message] invalid password for {input}"
+          - "[message] lang.invalid_password"
+          - "[sound] locked"
+    withdraw:
+      click:
+        - ""
 # ----------------------------------------------------
 # Dialogs
 # ----------------------------------------------------
@@ -153,15 +170,47 @@ dashboard:
   warps:
     - "[sound] light_teleport"
     - "[open] pager/warps_view"
-  balance:
-    - "[sound] balance"
-    - "[open] money_view"
-  chat_global:
-    - "[sound] chat.global"
-  chat_team:
-    - "[sound] chat.team"
-  chat_ally:
-    - "[sound] chat.ally"
+  money:
+    left-click:
+      - "[sound] balance"
+      - "[input] money/deposit"
+    right-click:
+      - "[sound] balance"
+      - "[input] money/withdraw"
+  chat:
+    global:
+      left-click:
+        - "[sound] chat.global"
+        - "[player] {cmd.team} chat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
+      right-click:
+        - "[sound] chat.ally"
+        - "[player] {cmd.team} allychat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
+    team:
+      left-click:
+        - "[sound] chat.team"
+        - "[player] {cmd.team} chat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
+      right-click:
+        - "[sound] chat.ally"
+        - "[player] {cmd.team} allychat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
+    ally:
+      left-click:
+        - "[sound] chat.team"
+        - "[player] {cmd.team} chat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
+      right-click:
+        - "[sound] chat.ally"
+        - "[player] {cmd.team} allychat"
+        - "[delay] 4"
+        - "[open] dashboard_view"
   settings:
     - "[sound] setting"
     - "[open] setting_view"
@@ -322,8 +371,8 @@ color_picker:
 team_list:
   create:
     click:
-    - "[sound] click"
-    - "[input] team/create"
+      - "[sound] click"
+      - "[input] team/create"
   search:
     - "[sound] click"
     - "[input] team/search"
@@ -344,6 +393,8 @@ warp:
   claim:
     - "[sound] light_click"
     - "[input] warp/claim [player] {cmd.team} setwarp {input}"
+
+
   teleport:
     click:
       when:
@@ -351,15 +402,15 @@ warp:
         result:
           "Yes":
             - "[sound] locked"
-            - "[input] warp/passward [player] {cmd.team} warp {warp_name} {input}"
+            - "[input] warp/passward"
           else:
             - "[player] {cmd.team} warp {warp_name}"
-            - "[sound] teleport" ## If you have warp tp cooldown use delay :)
+            - "[delay] 3"
+            - "[sound] teleport" ## Note For Developer:  If you have warp tp cooldown use delay here!!
             - "[close]"
     shift-click: # Delete
       - "[sound] light_click"
       - "[open] dialog/delete_warp"
-
 
   locked:
     - "[sound] locked"

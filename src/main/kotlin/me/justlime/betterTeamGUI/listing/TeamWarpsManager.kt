@@ -50,7 +50,8 @@ object TeamWarpsManager : IPopulator {
                             "warp_y" to y,
                             "warp_z" to z,
                             "warp_pos" to "$x, $y, $z",
-                            "warp_locked" to if (currentWarp.hasPassword()) "Yes" else "No"
+                            "warp_locked" to if (currentWarp.hasPassword()) "Yes" else "No",
+                            "warp_password" to currentWarp.encrypPassword
                         )
 
                         itemToAdd.style.placeholder.putAll(placeholders)

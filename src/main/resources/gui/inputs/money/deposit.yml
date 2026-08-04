@@ -1,0 +1,21 @@
+main:
+  title: "lang.money_deposit_title"
+  label: "lang.label"
+  inherit:
+    - "template/text_style"
+
+money_deposit_input:
+  type: LEFT
+  material: PLAYER_HEAD
+  texture: dashboard.money
+  click:
+    - "[back]"
+
+money_deposit_output:
+  type: OUTPUT
+  material: PLAYER_HEAD
+  texture: dashboard.money
+  click:
+    - "[player] {cmd.team} deposit {input}"
+
+

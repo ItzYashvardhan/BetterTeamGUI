@@ -86,45 +86,39 @@ dashboard_warps:
   texture: "dashboard.warps"
   action: "dashboard.warps"
 
-dashboard_balance:
+dashboard_money:
   char: "E"
   material: PLAYER_HEAD
-  texture: "dashboard.balance"
-  action: "dashboard.balance"
+  texture: "dashboard.money"
+  action: "dashboard.money"
 
 dashboard_chat_global:
   char: "T"
   material: PLAYER_HEAD
   texture: "dashboard.chat.global"
   action: "dashboard.chat.global"
+  view-requirement:
+    - "[condition] equals '{team_chat}' 'Global Chat'"
+
+dashboard_chat_team:
+  char: "T"
+  material: PLAYER_HEAD
+  texture: "dashboard.chat.team"
+  action: "dashboard.chat.team"
+  view-requirement:
+    - "[condition] equals '{team_chat}' 'Team Chat'"
+
+dashboard_chat_ally:
+  char: "T"
+  material: PLAYER_HEAD
+  texture: "dashboard.chat.ally"
+  action: "dashboard.chat.ally"
+  view-requirement:
+    - "[condition] equals '{team_chat}' 'Ally Chat'"
+
 
 dashboard_settings:
   char: "S"
   material: PLAYER_HEAD
   texture: "dashboard.settings"
   action: "dashboard.settings"
-
-# ----------------------------------------------------
-# CONDITIONAL OVERRIDES
-# ----------------------------------------------------
-
-dashboard_members_admin:
-  display: "lang.dashboard_members_admin"
-  char: "m"
-  material: PLAYER_HEAD
-  texture: "dashboard.members"
-  action: "dashboard.members"
-
-dashboard_chat_team:
-  display: "lang.dashboard_chat_team"
-  char: "t"
-  material: PLAYER_HEAD
-  texture: "dashboard.chat.team"
-  action: "dashboard.chat.team"
-
-dashboard_chat_ally:
-  display: "lang.dashboard_chat_ally"
-  char: "a"
-  material: PLAYER_HEAD
-  texture: "dashboard.chat.ally"
-  action: "dashboard.chat.ally"

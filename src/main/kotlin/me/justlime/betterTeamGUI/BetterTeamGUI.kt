@@ -23,9 +23,11 @@ import net.justlime.limeframegui.api.LimeFrameAPI
 import net.justlime.limeframegui.config.GuiDirectoryHandler
 import net.justlime.limeframegui.enums.AnsiColor
 import net.justlime.limeframegui.enums.ColorType
+import net.justlime.limeframegui.registry.component.ConditionRegistry
 import net.justlime.limeframegui.registry.component.PlaceholderRegistry
 import net.justlime.limeframegui.util.LimeConsole
 import org.bstats.bukkit.Metrics
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.HttpURLConnection
 import java.net.URI
@@ -119,6 +121,7 @@ class BetterTeamGUI : JavaPlugin() {
         TeamLevelsManager.registerPopulators()
         TeamInvitationManager.registerPopulators()
         injectPlaceholder()
+        injectCondition()
     }
 
     fun injectPlaceholder() {
@@ -162,6 +165,35 @@ class BetterTeamGUI : JavaPlugin() {
             }
             result
         }
+    }
+
+    fun injectCondition(){
+        ConditionRegistry.register("check_warp_password") { player, args ->
+            if (args.size < 2) return@register false
+
+            val warpName = args[0]
+            val typedPassword = args[1]
+
+            val team = Team.getTeam(player) ?: return@register false
+            val warp = team.getWarp(warpName) ?: return@register false
+            warp.isCorrectPassword(typedPassword)
+        }
+
+        ConditionRegistry.register("equals") { player, args ->
+            val fullArgs = args.joinToString(" ")
+            val regex = Regex("(['\"])(.*?)\\1")
+            val matches = regex.findAll(fullArgs).toList()
+            if (matches.size < 2) {
+                ConsoleMessage.printStep("Invalid 'equals' syntax! You must use quotes. Example: [condition] equals '{team_chat}' 'Global Chat'")
+                return@register false
+            }
+
+            val leftString = matches[0].groupValues[2]
+            val rightString = matches[1].groupValues[2]
+            val ignoreCase = !fullArgs.trim().endsWith("false", ignoreCase = true)
+            return@register leftString.equals(rightString, ignoreCase)
+        }
+
     }
 }
 
